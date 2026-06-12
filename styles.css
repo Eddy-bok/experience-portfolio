@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 20px 40px;
     color: #222;
 }
 
@@ -10,7 +10,8 @@ body {
     display: flex;
     align-items: center;
     gap: 60px;
-    min-height: 80vh;
+    min-height: 55vh;
+    padding: 40px 0;
 }
 
 .hero-image img {
@@ -55,4 +56,142 @@ body {
     text-decoration: none;
     border: 1px solid #222;
     color: #222;
+}
+
+
+.section {
+    padding: 35px 0;
+}
+
+.section-label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.section-title {
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.research-card {
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
+}
+
+.research-card h3 {
+    line-height: 1.4;
+}
+
+.status {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.submitted {
+    color: #1f7a1f;
+}
+
+.ongoing {
+    color: #b26a00;
+}
+
+.domain {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fafafa;
+}
+
+.project-card h3 {
+    line-height: 1.4;
+}
+
+.project-type {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #444;
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.achievement-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.achievement-card h3 {
+  margin-bottom: 1rem;
+}
+
+.achievement-subtitle {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.achievement-card ul {
+  padding-left: 1.2rem;
+}
+
+.achievement-card li {
+  margin-bottom: 0.8rem;
+}
+
+.contact-section {
+    text-align: center;
+    padding: 45px 0 30px;
+    border-top: 1px solid #ddd;
+}
+
+.contact-section .section-title {
+    margin-bottom: 15px;
+}
+
+.contact-section p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.contact-links {
+    margin-top: 24px;
+}
+
+.contact-links a {
+    display: inline-block;
+    margin: 6px;
+    padding: 12px 26px;
+    border: 1px solid #222;
+    color: #222;
+    text-decoration: none;
+    border-radius: 6px;
 }
