@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             addMessage(
                 "assistant",
-                "I could not reach the portfolio assistant API. Make sure the local FastAPI server is running at http://127.0.0.1:8000."
+                "I could not reach Ariel right now. Please try again in a moment."
             );
 
         } finally {
