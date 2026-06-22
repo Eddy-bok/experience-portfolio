@@ -1,6 +1,19 @@
 const ASSISTANT_API_URL = "https://eddie-portfolio-ai-api-9516.azurewebsites.net/ask";
 
+const ASSISTANT_SCRIPT_SRC =
+    document.currentScript && document.currentScript.src
+        ? document.currentScript.src
+        : "";
+
+const ASSISTANT_BASE_URL = ASSISTANT_SCRIPT_SRC
+    ? new URL(".", ASSISTANT_SCRIPT_SRC).href
+    : "";
+
+const ASSISTANT_AVATAR_URL = `${ASSISTANT_BASE_URL}images/ariel-avatar.webp`;
+
 document.addEventListener("DOMContentLoaded", () => {
+    ensureAssistantWidget();
+
     const widget = document.getElementById("assistantWidget");
     const toggleButton = document.getElementById("assistantToggle");
     const calloutButton = document.getElementById("assistantCallout");
@@ -35,9 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (calloutButton) {
-    calloutButton.addEventListener("click", () => {
-        openAssistant();
-    });
+        calloutButton.addEventListener("click", () => {
+            openAssistant();
+        });
     }
 
     closeButton.addEventListener("click", () => {
@@ -190,3 +203,85 @@ document.addEventListener("DOMContentLoaded", () => {
         return div.innerHTML;
     }
 });
+
+function ensureAssistantWidget() {
+    if (document.getElementById("assistantWidget")) {
+        return;
+    }
+
+    const assistantWidget = document.createElement("div");
+
+    assistantWidget.id = "assistantWidget";
+    assistantWidget.className = "assistant-widget";
+
+    assistantWidget.innerHTML = `
+        <button
+            id="assistantCallout"
+            class="assistant-callout"
+            type="button"
+        >
+            <span class="assistant-callout-small">Hi, I am Ariel</span>
+            <span class="assistant-callout-main">Eddie&apos;s portfolio assistant</span>
+        </button>
+
+        <button
+            id="assistantToggle"
+            class="assistant-toggle"
+            type="button"
+            aria-label="Open Ariel, Eddie&apos;s portfolio assistant"
+            aria-expanded="false"
+        >
+            <img
+                src="${ASSISTANT_AVATAR_URL}"
+                alt="Ariel, Eddie&apos;s portfolio assistant"
+                class="assistant-avatar-image"
+            />
+        </button>
+
+        <div id="assistantPanel" class="assistant-panel" aria-hidden="true">
+            <div class="assistant-panel-header">
+                <div>
+                    <p class="assistant-panel-label">Ariel</p>
+                    <h3>Eddie&apos;s Portfolio Assistant</h3>
+                </div>
+
+                <button
+                    id="assistantClose"
+                    class="assistant-close"
+                    type="button"
+                    aria-label="Close Ariel"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p class="assistant-panel-description">
+                Ask about Eddie&apos;s research, projects, presentations, skills, or certifications.
+            </p>
+
+            <div id="assistantMessages" class="assistant-messages" aria-live="polite">
+                <div class="assistant-message assistant-message-bot">
+                    Hi, I&apos;m Ariel, Eddie&apos;s portfolio assistant. Ask me anything about his portfolio.
+                </div>
+            </div>
+
+            <form id="assistantForm" class="assistant-form">
+                <input
+                    id="assistantInput"
+                    type="text"
+                    placeholder="Ask a question..."
+                    autocomplete="off"
+                    required
+                />
+
+                <button id="assistantSubmit" type="submit">
+                    Ask
+                </button>
+            </form>
+
+            <p id="assistantStatus" class="assistant-status"></p>
+        </div>
+    `;
+
+    document.body.appendChild(assistantWidget);
+}
