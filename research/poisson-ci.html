@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certified Real-Time Anomaly Detection | Edidiong Ibokete</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <main class="detail-page">
+    <a class="back-link" href="../index.html">← Back to Portfolio</a>
+
+    <section class="detail-hero">
+      <p class="section-label">Research</p>
+
+      <h1>
+        Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification
+      </h1>
+
+      <p class="detail-subtitle">
+        A submitted cybersecurity research project focused on certified anomaly detection,
+        formal false-positive guarantees, and real-time deployment for IoT network environments.
+      </p>
+
+      <p class="domain">
+        Cybersecurity • IoT Networks • Statistical Learning • Certified Anomaly Detection
+      </p>
+    </section>
+
+    <section class="detail-section">
+  <h2>Research Problem</h2>
+
+  <p>
+    Anomaly detectors for dependable IoT systems face a practical gap:
+    methods with formal false-alarm guarantees can be too slow for line-rate
+    inference, while fast deployable methods such as autoencoders and isolation
+    forests often rely on post-hoc threshold tuning without provable bounds.
+  </p>
+
+  <p>
+    This research addresses that gap for count-based network telemetry by
+    developing a certified detector that combines formal false-positive control
+    with real-time inference behavior.
+  </p>
+</section>
+
+<section class="detail-section">
+  <h2>Core Contribution</h2>
+
+  <p>
+    The work introduces a certified anomaly detection framework built on new
+    concentration inequalities for weighted sums of independent Poisson random
+    variables. These inequalities produce confidence intervals at a user-specified
+    significance level and support anomaly scoring through normalized deviation
+    from the certified interval.
+  </p>
+
+  <p>
+    The framework also includes a pre-deployment diagnostic based on the
+    variance-to-mean ratio of benign counts, helping operators assess which
+    protocol channels and bin widths are likely to produce tight bounds before
+    deployment.
+  </p>
+</section>
+
+<section class="detail-section">
+  <h2>Key Results</h2>
+
+  <ul class="results-list">
+    <li>
+      Achieved strong anomaly detection performance on the CIC IoT-DIAD 2024 dataset.
+    </li>
+
+    <li>
+      Delivered certified false-positive guarantees through concentration-inequality-based confidence intervals.
+    </li>
+
+    <li>
+      Demonstrated real-time suitability through lightweight count-based inference.
+    </li>
+
+    <li>
+      Validated generalization on an independent IoT cybersecurity dataset.
+    </li>
+  </ul>
+</section>
+
+
+<section class="detail-section">
+  <h2>Experimental Results</h2>
+
+  <p>
+    The detector was evaluated on CIC IoT-DIAD 2024, a benchmark dataset
+    containing benign IoT traffic and multiple attack families. The evaluation
+    compared the certified Poisson-CI detector against classical anomaly
+    detection baselines under matched false-positive-rate settings.
+  </p>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <span class="metric-value">0.9648</span>
+      <span class="metric-label">ROC-AUC</span>
+    </div>
+
+    <div class="metric-card">
+      <span class="metric-value">0.9708</span>
+      <span class="metric-label">F1 at matched 1% FPR</span>
+    </div>
+
+    <div class="metric-card">
+      <span class="metric-value">1023 µs</span>
+      <span class="metric-label">Latency per 10 ms window</span>
+    </div>
+
+    <div class="metric-card">
+      <span class="metric-value">8</span>
+      <span class="metric-label">Attack families in primary evaluation</span>
+    </div>
+  </div>
+
+  <figure class="research-visual">
+    <img
+        src="../images/research/poisson-ci/poisson-ci-timeline.png"
+        alt="Poisson-CI confidence interval behavior showing benign and attack regions with detected violations"
+    />
+
+    <figcaption>
+        <strong>Figure 1.</strong> Certified Poisson-CI detection behavior. Benign
+        traffic remains largely within the confidence interval, while attack traffic
+        produces repeated violations above the certified upper bound.
+    </figcaption>
+  </figure>
+
+
+  <div class="results-table-wrapper">
+  <h3>Matched-FPR Performance Comparison: CIC IoT-DIAD 2024</h3>
+
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>ROC-AUC</th>
+        <th>F1 at matched 1% FPR</th>
+        <th>Interpretation</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Poisson-CI</td>
+        <td>0.9648</td>
+        <td>0.9708</td>
+        <td>Certified detector with strong discrimination and formal false-positive control.</td>
+      </tr>
+
+      <tr>
+        <td>Isolation Forest</td>
+        <td>0.5080</td>
+        <td>0.1554</td>
+        <td>Fast unsupervised baseline, but without certified false-positive guarantees.</td>
+      </tr>
+
+      <tr>
+        <td>One-Class SVM</td>
+        <td>0.7186</td>
+        <td>0.1811</td>
+        <td>Kernel-based anomaly detector with heuristic thresholding and weaker matched-FPR performance.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <div class="evidence-note">
+  <h3>Cross-Dataset Validation</h3>
+
+  <p>
+    The detector was also evaluated on CICIoT2023 to test generalization beyond
+    the primary benchmark. On volumetric attacks, it achieved F1 scores of
+    0.7957 on DDoS-TCP-Flood and 0.8112 on DoS-UDP-Flood, while maintaining a
+    false-positive rate of 0.0126. The portfolio summarizes these results as
+    external validation, while the full paper contains the detailed per-attack
+    breakdown.
+  </p>
+</div>
+
+  <p>
+    The results show that the certified detector achieved strong discrimination
+    while preserving the interpretability and operational value of confidence
+    interval-based anomaly detection.
+  </p>
+</section>
+
+
+<section class="detail-section">
+  <h2>Technical Approach</h2>
+
+  <p>
+    The detector converts raw IoT network traffic into count-based telemetry,
+    estimates expected benign behavior, and uses certified confidence intervals
+    to determine whether an incoming observation should be treated as anomalous.
+  </p>
+
+  <div class="pipeline-visual" aria-label="Poisson-CI anomaly detection pipeline">
+    <div class="pipeline-step">
+        <span class="pipeline-number">01</span>
+        <strong>Raw IoT Traffic</strong>
+        <small>Network events</small>
+    </div>
+
+    <span class="pipeline-arrow">→</span>
+
+    <div class="pipeline-step">
+        <span class="pipeline-number">02</span>
+        <strong>Count Telemetry</strong>
+        <small>10 ms windows</small>
+    </div>
+
+    <span class="pipeline-arrow">→</span>
+
+    <div class="pipeline-step">
+        <span class="pipeline-number">03</span>
+        <strong>Benign Rate Estimate</strong>
+        <small>Expected behavior</small>
+    </div>
+
+    <span class="pipeline-arrow">→</span>
+
+    <div class="pipeline-step">
+        <span class="pipeline-number">04</span>
+        <strong>Certified Interval</strong>
+        <small>False-positive control</small>
+    </div>
+
+    <span class="pipeline-arrow">→</span>
+
+    <div class="pipeline-step">
+        <span class="pipeline-number">05</span>
+        <strong>Anomaly Score</strong>
+        <small>Deviation from interval</small>
+    </div>
+    </div>
+
+  <div class="approach-grid">
+    <div class="approach-card">
+      <h3>1. Count-Based Telemetry</h3>
+      <p>
+        Network events are aggregated into short time windows and represented
+        using protocol-aware count features such as total events, TCP, UDP,
+        ICMP, and related traffic statistics.
+      </p>
+    </div>
+
+    <div class="approach-card">
+      <h3>2. Benign Rate Estimation</h3>
+      <p>
+        The system estimates expected benign traffic behavior from historical
+        benign windows, producing local rate estimates that support interval
+        construction.
+      </p>
+    </div>
+
+    <div class="approach-card">
+      <h3>3. Certified Intervals</h3>
+      <p>
+        Concentration inequalities for weighted Poisson sums are used to build
+        confidence intervals around expected benign behavior at a user-specified
+        significance level.
+      </p>
+    </div>
+
+    <div class="approach-card">
+      <h3>4. Anomaly Scoring</h3>
+      <p>
+        Incoming observations are scored by their normalized deviation from the
+        certified interval. Values outside the interval indicate anomalous
+        network behavior.
+      </p>
+    </div>
+
+    <div class="approach-card">
+      <h3>5. Pre-Deployment Verification</h3>
+      <p>
+        A variance-to-mean diagnostic helps assess whether protocol channels and
+        time-window choices are likely to produce tight, reliable bounds before
+        deployment.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="detail-section">
+  <h2>Role and Contributions</h2>
+
+  <p>
+    I served as a co-author on this research in collaboration with Dr. Sana Spektor,
+    Director of the Graduate Program in Data Analytics at Canisius University.
+    My contributions spanned implementation, experimentation, evaluation, research
+    communication, and manuscript preparation.
+  </p>
+
+  <div class="contribution-grid">
+    <div class="contribution-card">
+      <h3>Research Implementation</h3>
+      <p>
+        Contributed to the development and testing of the certified anomaly
+        detection pipeline, including feature construction, model execution,
+        and experiment workflow support.
+      </p>
+    </div>
+
+    <div class="contribution-card">
+      <h3>Experimental Evaluation</h3>
+      <p>
+        Supported dataset preprocessing, benchmark evaluation, matched-FPR
+        comparisons, cross-dataset validation, and interpretation of performance
+        results.
+      </p>
+    </div>
+
+    <div class="contribution-card">
+      <h3>Figures, Tables, and Outputs</h3>
+      <p>
+        Helped prepare and verify experimental outputs, result summaries,
+        figures, tables, and reproducibility materials used to support the
+        submitted manuscript.
+      </p>
+    </div>
+
+    <div class="contribution-card">
+      <h3>Manuscript Development</h3>
+      <p>
+        Contributed to manuscript review, technical refinement, result checking,
+        and research communication for submission.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <h2>Research Artifacts</h2>
+
+  <p>
+    Supporting artifacts for this research include the submitted manuscript,
+    experimental outputs, figures, and reproducibility materials. Public links
+    will be added as they become available.
+  </p>
+
+  <div class="artifact-grid">
+    <div class="artifact-card">
+      <h3>Submitted Manuscript</h3>
+      <p>
+        Full research paper describing the theoretical framework, certified
+        detection pipeline, experiments, and evaluation results.
+      </p>
+      <span class="artifact-status">Submitted manuscript</span>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Experimental Results</h3>
+      <p>
+        Evaluation outputs including performance metrics, matched-FPR comparisons,
+        cross-dataset validation, and latency analysis.
+      </p>
+      <span class="artifact-status">Summarized on this page</span>
+    </div>
+
+    <div class="artifact-card">
+      <h3>Reproducibility Package</h3>
+      <p>
+        Code, configuration files, and output logs supporting the experimental
+        results and deployment pipeline.
+      </p>
+      <span class="artifact-status">Pending public release</span>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+</body>
+</html>
