@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     max-width: 1200px;
@@ -46,18 +50,29 @@ body {
 }
 
 .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-top: 30px;
 }
 
 .hero-links a {
-    display: inline-block;
-    margin-right: 15px;
-    padding: 12px 24px;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    padding: 12px 18px;
     border: 1px solid #222;
-    color: #222;
+    background: #fff;
+    color: #111;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin: 0;
 }
 
+.hero-links a:hover {
+    background: #f5f5f5;
+}
 
 .section {
     padding: 35px 0;
@@ -218,12 +233,6 @@ body {
     align-items: center;
     justify-content: center;
     line-height: 1;
-}
-
-.assistant-avatar-emoji {
-    font-size: 3.5rem;
-    line-height: 1;
-    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22));
 }
 
 .assistant-toggle:hover {
@@ -445,10 +454,6 @@ body {
         bottom: 72px;
     }
 
-    .assistant-avatar-emoji {
-        font-size: 2.8rem;
-    }
-
     .assistant-callout {
         display: none;
     }
@@ -613,6 +618,8 @@ body {
     border: 1px solid #e2e2e2;
     border-radius: 12px;
     background: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .artifact-card h3 {
@@ -626,7 +633,7 @@ body {
 
 .artifact-status {
     display: inline-block;
-    margin-top: 12px;
+    margin-top: auto;
     font-size: 0.85rem;
     font-weight: 600;
     color: #666;
@@ -812,8 +819,190 @@ body {
     font-size: 0.9rem;
     line-height: 1.6;
     color: #666;
+    text-align: left;
+    word-spacing: normal;
 }
 
 .research-visual figcaption strong {
     color: #222;
+}
+
+@media (max-width: 768px) {
+    body {
+        max-width: none;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+        min-height: auto;
+        padding: 48px 24px;
+    }
+
+    .hero-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-image img {
+        width: 180px;
+        height: 180px;
+        max-width: 70%;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .eyebrow {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .hero-text h1 {
+        font-size: 2.35rem;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-text h2 {
+        font-size: 1.8rem;
+        line-height: 1.25;
+    }
+
+    .intro {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .hero-links {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .hero-links a {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .section {
+        padding: 42px 24px;
+    }
+
+    .section-title {
+        font-size: 1.55rem;
+        line-height: 1.3;
+        margin-bottom: 28px;
+    }
+
+    .research-grid,
+    .project-grid,
+    .achievement-grid,
+    .metrics-grid,
+    .approach-grid,
+    .contribution-grid,
+    .artifact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-card,
+    .project-card,
+    .achievement-card,
+    .metric-card,
+    .approach-card,
+    .contribution-card,
+    .artifact-card {
+        width: 100%;
+    }
+
+    .research-card h3,
+    .project-card h3,
+    .achievement-card h3 {
+        font-size: 1.05rem;
+        line-height: 1.3;
+        overflow-wrap: break-word;
+    }
+
+    .detail-page {
+        width: 100%;
+        max-width: 100%;
+        padding: 28px 24px;
+    }
+
+    .detail-hero h1 {
+        font-size: 2rem;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+    }
+
+    .detail-subtitle {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .detail-section {
+        padding: 28px 0;
+    }
+
+    .detail-section h2 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .detail-section p,
+    .results-list {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .approach-card:last-child {
+        grid-column: auto;
+    }
+
+    .pipeline-visual {
+        flex-direction: column;
+    }
+
+    .pipeline-arrow {
+        justify-content: center;
+        transform: rotate(90deg);
+        padding: 4px 0;
+    }
+
+    .results-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .results-table {
+        min-width: 680px;
+    }
+
+    .assistant-widget {
+        right: 18px;
+        bottom: 18px;
+    }
+
+    .assistant-callout {
+        display: none;
+    }
+
+    .assistant-panel {
+        width: calc(100vw - 36px);
+        right: 0;
+        bottom: 72px;
+    }
+
+    .assistant-avatar-image {
+        width: 56px;
+        height: 56px;
+    }
 }
