@@ -32,69 +32,156 @@
     </div>
   </div>
 </header>
-<section id="research" class="section">
-  <p class="section-label">Research</p>
-  <h2 class="section-title">Research at the intersection of machine learning, probability theory, cybersecurity, and information systems.
-</h2>
 
-  <div class="research-grid">
+  <section id="research" class="section research-section">
+  <div class="section-with-side-nav">
+    <nav class="homepage-side-nav" aria-label="Homepage section navigation">
+      <a href="#research" class="is-current">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav> 
 
-    <a class="research-card card-link" href="research/poisson-ci.html">
-      <p class="status submitted">Submitted</p>
-      <h3>Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification</h3>
-      <p>
-        Developed a certified anomaly detection framework for IoT network security using concentration inequalities for weighted Poisson processes. 
-        The framework provides formal false-positive guarantees while maintaining real-time inference performance, bridging the gap between theoretical reliability and operational cybersecurity deployment. 
+    <div class="section-main-content">
+      <p class="section-label">Research</p>
 
-      </p>
-      <p class="domain">Cybersecurity • Machine Learning • Statistical Learning • Anomaly Detection</p>
-    </a>
+    <h2 class="section-title">
+      Research at the intersection of machine learning, probability theory,
+      cybersecurity, and information systems.
+    </h2>
 
-    <a class="research-card card-link" href="research/nb-ci.html">
-      <p class="status submitted">Submitted</p>
-      <h3>Certified Anomaly Detection for Overdispersed IoT Traffic</h3>
-      <p>
-        Submitted T-IFS research for sums of independent Negative Binomial random variables, 
-        extending classical probabilistic guarantees beyond Poisson and sub-Gaussian settings. 
-        The work focuses on building theoretical foundations for machine learning systems operating 
-        on overdispersed count data, where traditional assumptions frequently break down.
-      </p>
-      <p class="domain">Statistical Learning Theory • Probability Theory • Concentration Inequalities • Machine Learning Reliability</p>
-    </a>
+    <div class="research-showcase-grid">
+      <article class="research-feature-card">
+        <img
+          src="images/research/cards/poisson-research-card.jpg"
+          alt="Abstract visualization representing Poisson-CI anomaly detection research"
+          class="research-card-image"
+        />
 
-    <article class="research-card">
-      <p class="status ongoing">Ongoing</p>
-      <h3>Multi-Institutional Cataloging Exchange Conceptualization</h3>
-      <p>
-        Designed a data-driven framework for collaborative cataloging across institutions,
-        exploring how algorithmic matching can reduce cataloging backlogs while preserving fairness,
-        quality standards, and resource efficiency. The project was presented at a research 
-        seminar focused on analytics, data ecosystems, and AI-enabled information systems.
+        <div class="research-card-body">
+          <p class="status submitted">Submitted</p>
 
-      </p>
-      <p class="domain">Information Systems • Library Cataloging • Workflow Design</p>
-    </article>
+          <h3>Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification</h3>
 
-  </div>
-</section>
-<section id="projects" class="section">
+          <p>
+            A certified anomaly detection framework for IoT network security using concentration
+            inequalities for weighted Poisson processes, designed to provide formal false-positive
+            guarantees while supporting real-time inference.
+          </p>
+
+          <p class="research-tags">
+            Cybersecurity • Machine Learning • Statistical Learning • Anomaly Detection
+          </p>
+
+          <div class="research-card-actions">
+            <a href="research/poisson-ci.html" class="research-card-button">Find out more</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="research-feature-card">
+        <img
+          src="images/research/cards/nb-ci-research-card.jpg"
+          alt="Abstract visualization representing negative-binomial concentration research"
+          class="research-card-image"
+        />
+
+        <div class="research-card-body">
+          <p class="status submitted">Submitted under review</p>
+
+          <h3>Certified Anomaly Detection for Overdispersed IoT Traffic</h3>
+
+          <p>
+            A negative-binomial concentration framework for overdispersed IoT count traffic,
+            extending certified anomaly detection beyond equidispersion assumptions commonly
+            used in Poisson-based models.
+          </p>
+
+          <p class="research-tags">
+            Probability Theory • Concentration Inequalities • IoT Security • Certified ML
+          </p>
+
+          <div class="research-card-actions">
+            <a href="research/nb-ci.html" class="research-card-button">Find out more</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="research-feature-card">
+        <img
+          src="images/research/cards/library-exch-cards.jpg"
+          alt="Abstract visualization representing cataloging exchange and information systems research"
+          class="research-card-image"
+        />
+
+        <div class="research-card-body">
+          <p class="status ongoing">Ongoing</p>
+
+          <h3>Multi-Institutional Cataloging Exchange Conceptualization</h3>
+
+          <p>
+            A data-driven framework for collaborative cataloging across libraries, exploring
+            how algorithmic matching can reduce backlogs while preserving fairness, quality
+            standards, and resource efficiency.
+          </p>
+
+          <p class="research-tags">
+            Information Systems • Library Cataloging • Workflow Design • Algorithmic Matching
+          </p>
+
+          <div class="research-card-actions">
+            <span class="research-card-button research-card-button-disabled" aria-disabled="true">
+              Find out more
+            </span>
+
+            <a
+              href="https://www.canisius.edu/news/ai-solutions-cataloging-challenges"
+              class="research-card-button research-card-button-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog post
+            </a>
+          </div>
+        </div>
+      </article>
+     </div>
+    </div>
+  </section>
+
+
+<section id="projects" class="section section-projects">
   <p class="section-label">Featured Projects</p>
+
   <h2 class="section-title">Applied machine learning, analytics, and algorithmic systems built to solve real-world problems.
-</h2>
+  </h2>
 
-  <div class="project-grid">
+  <div class="project-carousel" data-carousel>
+    <button class="carousel-button carousel-button-left" type="button" aria-label="Previous projects" data-carousel-prev>
+      &lt;
+    </button>
 
-    <article class="project-card">
-      <p class="project-type">Applied AI</p>
-      <h3>Project ARIEL (RAG AI system)</h3>
-      <p>
-        An applied AI and retrieval-augmented generation project designed to answer questions from curated
-        documents and research materials using modern AI application workflows.
-      </p>
-      <p class="domain">RAG • LLMs • Azure AI • Retrieval Systems</p>
-    </article>
+    <div class="project-grid" data-carousel-track>
 
-    <article class="project-card">
+      <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/ariel-card-bg.jpg'); --project-card-position: center;">
+        <p class="project-type">Applied AI</p>
+
+        <h3>Project ARIEL (RAG AI system)</h3>
+
+        <p>
+          A deployed RAG assistant that lets users ask natural-language questions about Eddie's
+          research, projects, skills, and portfolio background.
+        </p>
+
+        <p class="domain">RAG • LLMs • Azure AI • FastAPI • Retrieval Systems</p>
+
+        <div class="project-actions">
+          <a href="projects/ariel.html" class="project-action">View project</a>
+          <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+        </div>
+      </article>
+
+    <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/catalog-exchange-bg.jpg'); --project-card-position: center;">
       <p class="project-type">Algorithm Design</p>
       <h3>Cataloging Algorithm</h3>
       <p>
@@ -102,9 +189,14 @@
         how structured information can be organized, matched, or exchanged across systems.
       </p>
       <p class="domain">Algorithms • Information Systems • Cataloging</p>
+
+      <div class="project-actions">
+        <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+        <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+      </div>
     </article>
 
-    <article class="project-card">
+    <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/data-olympiad-bg.jpg'); --project-card-position: center; --card-overlay-left: rgba(8, 28, 31, 0.94); --card-overlay-mid: rgba(8, 28, 31, 0.52); --card-overlay-right: rgba(8, 28, 31, 0.18);">
       <p class="project-type">Data Science Competition</p>
       <h3>Data Olympiad</h3>
       <p>
@@ -112,9 +204,21 @@
         interpretation, and presentation of insights under competition constraints.
       </p>
       <p class="domain">Data Science • Analytics • Problem Solving</p>
+
+      <div class="project-actions">
+        <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+        <a
+          href="https://github.com/Eddy-bok/Data_Olympiad_2025_Canisius.git"
+          class="project-action"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source code
+        </a>
+      </div>
     </article>
 
-    <article class="project-card">
+    <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/visualization-bg.png'); --project-card-position: center; --card-overlay-left: rgba(8, 28, 31, 0.52); --card-overlay-mid: rgba(8, 28, 31, 0.52); --card-overlay-right: rgba(8, 28, 31, 0.18);">
       <p class="project-type">Visualization</p>
       <h3>Visualization Project</h3>
       <p>
@@ -122,10 +226,22 @@
         dashboards, visual analysis, and data storytelling.
       </p>
       <p class="domain">Visualization • Dashboards • Data Storytelling</p>
+
+      <div class="project-actions">
+        <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+        <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+      </div>
     </article>
 
+      </div>
+
+    <button class="carousel-button carousel-button-right" type="button" aria-label="Next projects" data-carousel-next>
+      &gt;
+    </button>
   </div>
 </section>
+
+
 <section id="achievements" class="section">
 
   <p class="section-label">Achievements & Recognition</p>
@@ -196,7 +312,7 @@
   </div>
 </section>
 
+<script src="carousel.js"></script>
 <script src="assistant.js"></script>
 </body>
 </html>
-
