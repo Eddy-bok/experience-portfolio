@@ -1994,6 +1994,12 @@ body {
 /* =========================================================
    CERTIFICATIONS SECTION
    Credential cards with verification links.
+
+   Tunable controls:
+   - --credential-card-radius controls card roundness
+   - --credential-card-shadow controls card depth
+   - --credential-accent controls each card's accent color
+   - --credential-soft controls each card's subtle background wash
    ========================================================= */
 
 .certifications-section {
@@ -2001,62 +2007,156 @@ body {
 }
 
 .credential-card {
+    --credential-card-radius: 20px;
+    --credential-card-shadow: 0 18px 38px rgba(16, 42, 45, 0.075);
+    --credential-accent: var(--portfolio-accent);
+    --credential-soft: rgba(238, 246, 246, 0.72);
+
     position: relative;
-    padding: 28px;
-    border: 1px solid rgba(16, 42, 45, 0.14);
-    border-radius: 18px;
-    background: white;
-    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.07);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 30px 28px;
+    border: 1px solid rgba(16, 42, 45, 0.12);
+    border-radius: var(--credential-card-radius);
+    background:
+        radial-gradient(circle at 92% 12%, var(--credential-soft), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 58%, rgba(238, 246, 246, 0.42) 100%);
+    box-shadow: var(--credential-card-shadow);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
 }
 
+.credential-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(47, 111, 115, 0.26);
+    box-shadow: 0 24px 48px rgba(16, 42, 45, 0.12);
+}
+
+/* Small verification mark in the card corner.
+   This avoids using external logo images while still implying credential verification. */
+.credential-card::after {
+    content: "✓";
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(47, 111, 115, 0.08);
+    color: var(--credential-accent);
+    font-size: 0.92rem;
+    font-weight: 900;
+    opacity: 0.82;
+}
+
+/* Gold rule above each card, now connected to the individual credential accent. */
 .credential-card::before {
     content: "";
-    display: block;
-    width: 46px;
+    width: 52px;
     height: 4px;
+    display: block;
     margin-bottom: 18px;
     border-radius: 999px;
-    background: var(--color-gold);
+    background: linear-gradient(90deg, var(--color-gold), var(--credential-accent));
+}
+
+.credential-card-cloud {
+    --credential-accent: #2f6f73;
+    --credential-soft: rgba(238, 246, 246, 0.84);
+}
+
+.credential-card-analytics {
+    --credential-accent: #3f7fbf;
+    --credential-soft: rgba(64, 127, 200, 0.12);
+}
+
+.credential-card-mlops {
+    --credential-accent: #9a6a18;
+    --credential-soft: rgba(201, 168, 106, 0.16);
 }
 
 .credential-provider {
-    margin: 0 0 10px;
+    margin: 0 42px 10px 0;
     text-transform: uppercase;
-    letter-spacing: 1.4px;
+    letter-spacing: 1.6px;
     color: var(--portfolio-accent);
-    font-size: 0.76rem;
+    font-size: 0.74rem;
+    font-weight: 900;
+    line-height: 1.35;
+}
+
+.credential-track {
+    align-self: flex-start;
+    margin: 0 0 16px;
+    padding: 7px 11px;
+    border: 1px solid rgba(47, 111, 115, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--credential-accent);
+    font-size: 0.78rem;
     font-weight: 800;
+    line-height: 1;
 }
 
 .credential-card h3 {
     margin: 0 0 14px;
+    max-width: 92%;
     font-size: 1.16rem;
     line-height: 1.35;
     color: var(--color-dark);
 }
 
-.credential-card p:not(.credential-provider) {
+.credential-card > p:not(.credential-provider):not(.credential-track) {
+    margin: 0 0 22px;
     color: var(--color-muted);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .credential-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    align-self: flex-start;
+    margin-top: auto;
     padding: 11px 16px;
+    border: 1px solid rgba(47, 111, 115, 0.16);
     border-radius: 999px;
     background: var(--portfolio-accent);
     color: white;
     text-decoration: none;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 800;
+    line-height: 1;
 }
 
 .credential-button:hover {
     background: var(--color-dark);
     color: white;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .credential-card::after {
+        top: 22px;
+        right: 22px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.82rem;
+    }
+
+    .credential-provider {
+        margin-right: 38px;
+    }
+
+    .credential-card h3 {
+        max-width: 100%;
+    }
 }
 
 
