@@ -3,7 +3,7 @@
 }
 
 :root {
-    --color-bg: #fbfaf7;
+    --color-bg: #ffffff;
     --color-surface: #ffffff;
     --color-text: #222222;
     --color-muted: #666666;
@@ -1825,5 +1825,1071 @@ body {
 @media (max-width: 560px) {
     .ariel-body-layout .ariel-section-nav {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   HOMEPAGE EXPANDED LAYOUT
+   Controls the main homepage structure after the hero.
+   Sections affected: Research, Projects, Skills, Certifications,
+   Presentations, Achievements.
+   ========================================================= */
+
+.homepage-layout {
+    /* Main homepage width control */
+    --homepage-max-width: 1660px;
+
+    /* Sidebar width and space between sidebar and content */
+    --homepage-sidebar-width: 170px;
+    --homepage-content-gap: 64px;
+
+    /* Moves the side navigation left without shifting the main content */
+    --homepage-sidebar-offset-x: -34px;
+
+    /* Outer page spacing */
+    --homepage-padding-top: 56px;
+    --homepage-padding-x: clamp(28px, 4vw, 72px);
+
+    max-width: var(--homepage-max-width);
+    margin: 0 auto;
+    padding: var(--homepage-padding-top) var(--homepage-padding-x) 0;
+    display: grid;
+    grid-template-columns: var(--homepage-sidebar-width) minmax(0, 1fr);
+    gap: var(--homepage-content-gap);
+}
+
+.homepage-sidebar {
+    min-width: 0;
+}
+
+.homepage-sections {
+    min-width: 0;
+}
+
+.homepage-layout .section {
+    max-width: none;
+    padding: 0 0 82px;
+}
+
+.homepage-layout .section:last-child {
+    padding-bottom: 72px;
+}
+
+.homepage-layout .section-title {
+    max-width: 920px;
+}
+
+
+/* =========================================================
+   HOMEPAGE SIDE NAVIGATION
+   Sticky section navigation on desktop.
+   Horizontal scroll navigation on smaller screens.
+   ========================================================= */
+
+.homepage-layout .homepage-side-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    padding-top: 4px;
+    transform: translateX(var(--homepage-sidebar-offset-x));
+}
+
+.homepage-layout .homepage-side-nav a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.20);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+.homepage-layout .homepage-side-nav a:hover,
+.homepage-layout .homepage-side-nav a.is-current {
+    color: var(--portfolio-accent);
+    border-bottom-color: var(--portfolio-accent);
+}
+
+
+/* =========================================================
+   PROJECT CAROUSEL REFINEMENTS
+   Controls project card width, height, image overlay, and arrows.
+   ========================================================= */
+
+.project-carousel {
+    /* Project card size controls */
+    --project-card-width: 500px;
+    --project-card-height: 292px;
+    --project-card-gap: 24px;
+}
+
+/* Lighter image overlay so project images stay visible */
+.section-projects .project-card-visual {
+    background:
+        linear-gradient(
+            90deg,
+            var(--card-overlay-left, rgba(8, 28, 31, 0.62)) 0%,
+            var(--card-overlay-mid, rgba(8, 28, 31, 0.38)) 46%,
+            var(--card-overlay-right, rgba(8, 28, 31, 0.14)) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.08)
+        ),
+        var(--project-card-image);
+    background-size: cover;
+    background-position: var(--project-card-position, center);
+}
+
+.section-projects .project-card-visual .project-type,
+.section-projects .project-card-visual h3,
+.section-projects .project-card-visual p {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.section-projects .project-card {
+    padding: 24px;
+}
+
+.section-projects .project-card h3 {
+    font-size: 1.12rem;
+    line-height: 1.28;
+}
+
+.section-projects .project-card > p:not(.project-type):not(.domain):not(.project-link-text) {
+    min-height: 4.5em;
+    -webkit-line-clamp: 3;
+}
+
+.section-projects .project-card .domain {
+    font-size: 0.88rem;
+}
+
+.section-projects .project-actions {
+    margin-top: 14px;
+}
+
+/* Carousel arrow placement */
+.homepage-layout .carousel-button {
+    width: 46px;
+    height: 46px;
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.homepage-layout .carousel-button-left {
+    left: -54px;
+}
+
+.homepage-layout .carousel-button-right {
+    right: -54px;
+}
+
+
+/* =========================================================
+   CERTIFICATIONS SECTION
+   Credential cards with verification links.
+   ========================================================= */
+
+.certifications-section {
+    padding-top: 4px;
+}
+
+.credential-card {
+    position: relative;
+    padding: 28px;
+    border: 1px solid rgba(16, 42, 45, 0.14);
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.07);
+}
+
+.credential-card::before {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 4px;
+    margin-bottom: 18px;
+    border-radius: 999px;
+    background: var(--color-gold);
+}
+
+.credential-provider {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--portfolio-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
+.credential-card h3 {
+    margin: 0 0 14px;
+    font-size: 1.16rem;
+    line-height: 1.35;
+    color: var(--color-dark);
+}
+
+.credential-card p:not(.credential-provider) {
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+.credential-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 11px 16px;
+    border-radius: 999px;
+    background: var(--portfolio-accent);
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.credential-button:hover {
+    background: var(--color-dark);
+    color: white;
+}
+
+
+/* =========================================================
+   PRESENTATIONS SECTION
+   Visual cards for research posters and presentation artifacts.
+   ========================================================= */
+
+.presentation-card {
+    overflow: hidden;
+    border: 1px solid rgba(16, 42, 45, 0.14);
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.08);
+}
+
+.presentation-image {
+    width: 100%;
+    height: 330px;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+}
+
+.presentation-card-body {
+    padding: 26px;
+}
+
+.presentation-meta {
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--portfolio-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.presentation-card h3 {
+    margin: 0 0 14px;
+    font-size: 1.18rem;
+    line-height: 1.35;
+    color: var(--color-dark);
+}
+
+.presentation-card p:not(.presentation-meta):not(.presentation-detail) {
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+.presentation-detail {
+    margin-top: 16px;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.presentation-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 11px 16px;
+    border: 1px solid var(--portfolio-accent-border);
+    border-radius: 999px;
+    background: white;
+    color: var(--portfolio-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.presentation-button:hover {
+    background: var(--portfolio-accent-soft);
+    color: var(--portfolio-accent);
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS SECTION
+   Recognition cards for awards, fellowships, and academic honors.
+   ========================================================= */
+
+.recognition-card {
+    padding: 28px;
+    border: 1px solid rgba(16, 42, 45, 0.14);
+    border-radius: 18px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(238, 246, 246, 0.72));
+    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.07);
+}
+
+.recognition-kicker {
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--portfolio-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
+.recognition-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.16rem;
+    line-height: 1.35;
+    color: var(--color-dark);
+}
+
+.recognition-card p:not(.recognition-kicker):not(.achievement-subtitle) {
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   K-MEANS SKILLS SECTION
+   Main customizable controls are grouped here.
+   This section uses four visual clusters around four centroids.
+   ========================================================= */
+
+.homepage-layout .skills-cluster-section {
+    /* Outer section spacing and shape */
+    --skills-section-margin-bottom: 82px;
+    --skills-section-padding: 42px;
+    --skills-section-radius: 30px;
+
+    /* Outer section tile controls */
+    --skills-outer-grid-size: 36px;
+    --skills-outer-grid-rgb: 16, 42, 45;
+    --skills-outer-grid-opacity: 0.095;
+    --skills-outer-grid-layer-opacity: 0.25;
+
+    /* Outer section color wash */
+    --skills-outer-teal-glow: rgba(47, 111, 115, 0.14);
+    --skills-outer-gold-glow: rgba(201, 168, 106, 0.18);
+
+    position: relative;
+    margin-bottom: var(--skills-section-margin-bottom);
+    padding: var(--skills-section-padding);
+    overflow: hidden;
+    border: 1px solid rgba(16, 42, 45, 0.12);
+    border-radius: var(--skills-section-radius);
+    background:
+        radial-gradient(circle at 14% 18%, var(--skills-outer-teal-glow), transparent 30%),
+        radial-gradient(circle at 86% 20%, var(--skills-outer-gold-glow), transparent 30%),
+        linear-gradient(135deg, #fbfaf7 0%, #eef6f6 52%, #f8f3e8 100%);
+    box-shadow: 0 28px 70px rgba(16, 42, 45, 0.16);
+}
+
+/* Outer section square tiles behind the Skills heading */
+.homepage-layout .skills-cluster-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            rgba(var(--skills-outer-grid-rgb), var(--skills-outer-grid-opacity)) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(var(--skills-outer-grid-rgb), var(--skills-outer-grid-opacity)) 1px,
+            transparent 1px
+        );
+    background-size: var(--skills-outer-grid-size) var(--skills-outer-grid-size);
+    opacity: var(--skills-outer-grid-layer-opacity);
+    pointer-events: none;
+}
+
+.skills-cluster-header {
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+}
+
+.homepage-layout .skills-cluster-section .section-label {
+    color: var(--portfolio-accent);
+}
+
+.homepage-layout .skills-cluster-section .section-title {
+    margin-bottom: 16px;
+    color: var(--color-dark);
+}
+
+.skills-cluster-intro {
+    max-width: 790px;
+    margin: 0 0 32px;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   K-MEANS MAP FRAME
+   This is the inner plotting area that contains legend,
+   centroids, and skill balls.
+   ========================================================= */
+
+.skills-cluster-map {
+    /* Inner map dimensions */
+    --skills-map-height: 560px;
+    --skills-map-radius: 28px;
+
+    /* Inner map grid controls */
+    --skills-map-grid-size: 42px;
+    --skills-map-grid-rgb: 16, 42, 45;
+    --skills-map-grid-opacity: 0.065;
+
+    /* Optional image background controls */
+    --skills-map-image-opacity: 0.28;
+    --skills-map-overlay-start: rgba(255, 255, 255, 0.42);
+    --skills-map-overlay-end: rgba(238, 246, 246, 0.22);
+
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    min-height: var(--skills-map-height);
+    overflow: hidden;
+    border: 1px solid rgba(47, 111, 115, 0.22);
+    border-radius: var(--skills-map-radius);
+    background: rgba(255, 255, 255, 0.66);
+}
+
+/* Optional custom background image layer.
+   To use, add inline style to the map div:
+   style="--skills-map-image: url('images/skills/your-image.jpg'); --skills-map-image-opacity: 0.35;"
+*/
+.skills-cluster-map::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    background-image: var(--skills-map-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--skills-map-image-opacity);
+    pointer-events: none;
+}
+
+/* Grid and wash layer over the optional background image */
+.skills-cluster-map::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    background:
+        linear-gradient(
+            rgba(var(--skills-map-grid-rgb), var(--skills-map-grid-opacity)) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(var(--skills-map-grid-rgb), var(--skills-map-grid-opacity)) 1px,
+            transparent 1px
+        ),
+        linear-gradient(135deg, var(--skills-map-overlay-start), var(--skills-map-overlay-end));
+    background-size:
+        var(--skills-map-grid-size) var(--skills-map-grid-size),
+        var(--skills-map-grid-size) var(--skills-map-grid-size),
+        100% 100%;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   K-MEANS LEGEND
+   Category labels in the top-left of the plot area.
+   ========================================================= */
+
+.cluster-legend {
+    position: absolute;
+    left: 28px;
+    top: 24px;
+    z-index: 6;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    max-width: 780px;
+}
+
+.cluster-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    color: var(--color-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
+}
+
+.legend-dot {
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.programming-dot {
+    background: #19aebc;
+}
+
+.ml-dot {
+    background: #d89b28;
+}
+
+.ai-dot {
+    background: #407fc8;
+}
+
+.bi-dot {
+    background: #708186;
+}
+
+
+/* =========================================================
+   K-MEANS CENTROIDS
+   Controls the black X markers.
+   Update left/top to move a centroid.
+   ========================================================= */
+
+.cluster-centroid {
+    position: absolute;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    transform: translate(-50%, -50%);
+}
+
+.centroid-marker {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: rgba(8, 22, 24, 0.94);
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    box-shadow:
+        0 8px 18px rgba(16, 42, 45, 0.24),
+        0 0 0 4px rgba(255, 255, 255, 0.68);
+}
+
+.centroid-label {
+    display: none;
+}
+
+/* Diagonal centroid arrangement */
+.centroid-programming {
+    left: 20%;
+    top: 30%;
+}
+
+.centroid-ml {
+    left: 43%;
+    top: 44%;
+}
+
+.centroid-ai {
+    left: 64%;
+    top: 58%;
+}
+
+.centroid-bi {
+    left: 83%;
+    top: 72%;
+}
+
+
+/* =========================================================
+   SKILL BALL BASE STYLE
+   Controls the glossy ball effect shared by all skills.
+   ========================================================= */
+
+.cluster-skill {
+    position: absolute;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    color: #ffffff;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    -webkit-text-stroke: 0.35px rgba(8, 22, 24, 0.72);
+    background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.52) 12%, transparent 27%),
+        radial-gradient(circle at 68% 76%, rgba(255, 255, 255, 0.28) 0%, transparent 30%),
+        radial-gradient(circle at 50% 46%, var(--skill-core) 0%, var(--skill-core) 34%, var(--skill-edge) 68%, var(--skill-deep) 100%);
+    box-shadow:
+        inset 8px 10px 22px rgba(255, 255, 255, 0.32),
+        inset -14px -18px 26px rgba(0, 0, 0, 0.24),
+        0 18px 36px rgba(16, 42, 45, 0.20),
+        0 0 28px var(--skill-glow);
+    text-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.72),
+        0 0 6px rgba(0, 0, 0, 0.42),
+        1px 1px 0 rgba(8, 22, 24, 0.50),
+        -1px 1px 0 rgba(8, 22, 24, 0.35);
+    animation:
+        clusterHoverSmall var(--float-speed, 8s) ease-in-out infinite,
+        skillBreath 6s ease-in-out infinite;
+}
+
+.cluster-skill::before {
+    content: "";
+    position: absolute;
+    top: 14%;
+    left: 17%;
+    width: 36%;
+    height: 25%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.24) 58%, transparent 74%);
+    filter: blur(0.5px);
+    transform: rotate(-14deg);
+}
+
+
+/* =========================================================
+   SKILL BALL SIZES
+   Adjust these to scale all balls of a given size.
+   ========================================================= */
+
+.skill-lg {
+    width: 104px;
+    height: 104px;
+    font-size: 0.84rem;
+}
+
+.skill-md {
+    width: 82px;
+    height: 82px;
+    font-size: 0.72rem;
+}
+
+.skill-sm {
+    width: 58px;
+    height: 58px;
+    font-size: 0.66rem;
+}
+
+
+/* =========================================================
+   SKILL CATEGORY COLORS
+   Four category colors.
+   Adjust core, edge, deep, and glow to tune each group.
+   ========================================================= */
+
+.programming-skill {
+    --skill-core: rgba(31, 190, 202, 0.94);
+    --skill-edge: rgba(16, 126, 136, 0.90);
+    --skill-deep: rgba(5, 57, 64, 0.94);
+    --skill-glow: rgba(31, 190, 202, 0.28);
+}
+
+.ml-skill {
+    --skill-core: rgba(238, 177, 40, 0.95);
+    --skill-edge: rgba(190, 121, 18, 0.90);
+    --skill-deep: rgba(87, 51, 8, 0.94);
+    --skill-glow: rgba(238, 177, 40, 0.30);
+}
+
+.ai-skill {
+    --skill-core: rgba(67, 143, 235, 0.95);
+    --skill-edge: rgba(31, 87, 164, 0.90);
+    --skill-deep: rgba(9, 39, 87, 0.94);
+    --skill-glow: rgba(67, 143, 235, 0.30);
+}
+
+.bi-skill {
+    --skill-core: rgba(142, 160, 166, 0.95);
+    --skill-edge: rgba(83, 103, 109, 0.90);
+    --skill-deep: rgba(30, 43, 47, 0.94);
+    --skill-glow: rgba(142, 160, 166, 0.26);
+}
+
+
+/* =========================================================
+   PROGRAMMING & DATA CLUSTER POSITIONS
+   Move each skill with left/top percentages.
+   ========================================================= */
+
+.skill-python {
+    left: 5%;
+    top: 15%;
+    --float-speed: 8.2s;
+}
+
+.skill-sql {
+    left: 15%;
+    top: 10%;
+    --float-speed: 9.1s;
+    animation-delay: -1.1s;
+}
+
+.skill-r {
+    left: 10%;
+    top: 32%;
+    --float-speed: 8.7s;
+    animation-delay: -2.2s;
+}
+
+.skill-html {
+    left: 14%;
+    top: 39%;
+    --float-speed: 8.4s;
+    animation-delay: -2.8s;
+}
+
+.skill-css {
+    left: 20%;
+    top: 44%;
+    --float-speed: 9.2s;
+    animation-delay: -1.7s;
+}
+
+.skill-cleaning {
+    left: 23%;
+    top: 28%;
+    --float-speed: 8.8s;
+    animation-delay: -3.2s;
+}
+
+.skill-eda {
+    left: 26%;
+    top: 15%;
+    --float-speed: 7.9s;
+    animation-delay: -2.4s;
+}
+
+
+/* =========================================================
+   MACHINE LEARNING CLUSTER POSITIONS
+   Move each skill with left/top percentages.
+   ========================================================= */
+
+.skill-ml {
+    left: 32%;
+    top: 35%;
+    --float-speed: 8.8s;
+    animation-delay: -1.2s;
+}
+
+.skill-feature {
+    left: 47%;
+    top: 25%;
+    --float-speed: 9.4s;
+    animation-delay: -2.5s;
+}
+
+.skill-timeseries {
+    left: 38%;
+    top: 55%;
+    --float-speed: 8.3s;
+    animation-delay: -3s;
+}
+
+.skill-anomaly {
+    left: 46%;
+    top: 44%;
+    --float-speed: 8.7s;
+    animation-delay: -1.8s;
+}
+
+.skill-eval {
+    left: 37%;
+    top: 20%;
+    --float-speed: 9s;
+    animation-delay: -3.3s;
+}
+
+
+/* =========================================================
+   AI ENGINEERING CLUSTER POSITIONS
+   Move each skill with left/top percentages.
+   ========================================================= */
+
+.skill-rag {
+    left: 59%;
+    top: 30%;
+    --float-speed: 8.4s;
+    animation-delay: -2.2s;
+}
+
+.skill-mlops {
+    left: 65%;
+    top: 60%;
+    --float-speed: 9.2s;
+    animation-delay: -1.4s;
+}
+
+.skill-cloud {
+    left: 69%;
+    top: 45%;
+    --float-speed: 8.6s;
+    animation-delay: -2.9s;
+}
+
+.skill-research {
+    left: 57%;
+    top: 63%;
+    --float-speed: 9.5s;
+    animation-delay: -3.8s;
+}
+
+.skill-git {
+    left: 55%;
+    top: 48%;
+    --float-speed: 7.9s;
+    animation-delay: -2.1s;
+}
+
+
+/* =========================================================
+   BI & STATISTICS CLUSTER POSITIONS
+   Move each skill with left/top percentages.
+   ========================================================= */
+
+.skill-powerbi {
+    left: 83%;
+    top: 47%;
+    --float-speed: 9.1s;
+    animation-delay: -1.6s;
+}
+
+.skill-tableau {
+    left: 89%;
+    top: 63%;
+    --float-speed: 8.6s;
+    animation-delay: -3.1s;
+}
+
+.skill-stats {
+    left: 76%;
+    top: 75%;
+    --float-speed: 8.9s;
+    animation-delay: -2.3s;
+}
+
+.skill-dashboard {
+    left: 84%;
+    top: 76%;
+    --float-speed: 9.3s;
+    animation-delay: -2.7s;
+}
+
+.skill-business {
+    left: 75%;
+    top: 55%;
+    --float-speed: 8.1s;
+    animation-delay: -3.7s;
+}
+
+
+/* =========================================================
+   SKILL BALL MOTION
+   Small hover motion keeps balls near their cluster centroid.
+   ========================================================= */
+
+.programming-skill,
+.ai-skill {
+    animation-name: clusterHoverSmall, skillBreath;
+}
+
+.ml-skill,
+.bi-skill {
+    animation-name: clusterHoverSmallReverse, skillBreath;
+}
+
+@keyframes clusterHoverSmall {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    35% {
+        transform: translate3d(5px, -6px, 0) scale(1.015);
+    }
+
+    70% {
+        transform: translate3d(-5px, 5px, 0) scale(0.995);
+    }
+}
+
+@keyframes clusterHoverSmallReverse {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    35% {
+        transform: translate3d(-5px, 6px, 0) scale(1.015);
+    }
+
+    70% {
+        transform: translate3d(5px, -5px, 0) scale(0.995);
+    }
+}
+
+@keyframes skillBreath {
+    0%,
+    100% {
+        filter: saturate(1) brightness(1);
+    }
+
+    50% {
+        filter: saturate(1.12) brightness(1.07);
+    }
+}
+
+.cluster-skill:hover {
+    z-index: 10;
+    animation-play-state: paused;
+    filter: saturate(1.18) brightness(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cluster-skill {
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   HOMEPAGE RESPONSIVE BEHAVIOR
+   Covers homepage layout, project carousel, presentations,
+   and Skills section mobile behavior.
+   ========================================================= */
+
+@media (max-width: 1000px) {
+    .homepage-layout {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 42px 24px 0;
+    }
+
+    .homepage-layout .homepage-side-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding: 0 0 6px;
+        transform: none;
+    }
+
+    .homepage-layout .homepage-side-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        line-height: 1.2;
+    }
+
+    .homepage-layout .section {
+        padding-bottom: 62px;
+    }
+
+    .homepage-layout .carousel-button-left {
+        left: 8px;
+    }
+
+    .homepage-layout .carousel-button-right {
+        right: 8px;
+    }
+
+    .project-carousel {
+        --project-card-width: 82vw;
+        --project-card-height: 300px;
+    }
+
+    .presentation-image {
+        height: 270px;
+    }
+
+    .homepage-layout .skills-cluster-section {
+        padding: 30px 24px;
+        border-radius: 24px;
+    }
+
+    .skills-cluster-map {
+        min-height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 84px 20px 24px;
+    }
+
+    .cluster-centroid {
+        display: none;
+    }
+
+    .cluster-skill {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        min-height: 48px;
+        padding: 11px 15px;
+        font-size: 0.78rem;
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-layout {
+        padding: 36px 24px 0;
+    }
+
+    .presentation-image {
+        height: 230px;
+    }
+
+    .credential-card,
+    .presentation-card-body,
+    .recognition-card {
+        padding: 22px;
     }
 }
