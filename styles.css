@@ -2162,38 +2162,150 @@ body {
 
 /* =========================================================
    PRESENTATIONS SECTION
-   Visual cards for research posters and presentation artifacts.
+   Visual cards for research talks, posters, slides, features,
+   and event-photo artifacts.
+
+   Tunable controls:
+   - --presentation-radius controls card roundness
+   - --presentation-image-height controls desktop poster height
+   - --presentation-accent controls each card's accent color
+   - --presentation-soft controls subtle background wash
    ========================================================= */
 
-.presentation-card {
-    overflow: hidden;
-    border: 1px solid rgba(16, 42, 45, 0.14);
-    border-radius: 18px;
-    background: white;
-    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.08);
+.presentations-section {
+    padding-top: 4px;
 }
 
-.presentation-image {
-    width: 100%;
-    height: 330px;
-    display: block;
-    object-fit: cover;
-    object-position: top center;
+.presentation-card {
+    --presentation-radius: 20px;
+    --presentation-image-height: 410px;
+    --presentation-accent: var(--portfolio-accent);
+    --presentation-soft: rgba(238, 246, 246, 0.72);
+
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(16, 42, 45, 0.13);
+    border-radius: var(--presentation-radius);
+    background:
+        radial-gradient(circle at 88% 8%, var(--presentation-soft), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 64%, rgba(238, 246, 246, 0.40) 100%);
+    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.08);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.presentation-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: 0 24px 50px rgba(16, 42, 45, 0.12);
+}
+
+.presentation-card-cataloging {
+    --presentation-accent: #2f6f73;
+    --presentation-soft: rgba(47, 111, 115, 0.11);
+}
+
+.presentation-card-poisson {
+    --presentation-accent: #c9a86a;
+    --presentation-soft: rgba(201, 168, 106, 0.15);
+}
+
+.presentation-cover {
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    min-height: var(--presentation-image-height);
+    padding: 14px;
+    background:
+        linear-gradient(135deg, rgba(238, 246, 246, 0.46), rgba(255, 255, 255, 0.88));
     border-bottom: 1px solid rgba(16, 42, 45, 0.10);
 }
 
+/* Blurred poster background:
+   Keeps the real poster fully visible while filling the extra side space. */
+.presentation-cover::before {
+    content: "";
+    position: absolute;
+    inset: -22px;
+    z-index: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.38)),
+        var(--presentation-cover-bg);
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px) saturate(1.05);
+    transform: scale(1.04);
+    opacity: 0.58;
+}
+
+.presentation-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.18), transparent 48%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.52));
+    pointer-events: none;
+}
+
+.presentation-image {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    max-width: 100%;
+    height: var(--presentation-image-height);
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 10px;
+    box-shadow: 0 14px 34px rgba(16, 42, 45, 0.14);
+}
+
 .presentation-card-body {
-    padding: 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+}
+
+.presentation-card-topline {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.presentation-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 7px 11px;
+    border: 1px solid rgba(47, 111, 115, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--presentation-accent);
+    font-size: 0.74rem;
+    font-weight: 900;
+    line-height: 1;
 }
 
 .presentation-meta {
-    margin: 0 0 12px;
+    flex: 1 1 260px;
+    margin: 0;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.4px;
     color: var(--portfolio-accent);
     font-size: 0.76rem;
-    font-weight: 800;
-    line-height: 1.4;
+    font-weight: 900;
+    line-height: 1.45;
 }
 
 .presentation-card h3 {
@@ -2205,36 +2317,106 @@ body {
 
 .presentation-card p:not(.presentation-meta):not(.presentation-detail) {
     color: var(--color-muted);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .presentation-detail {
-    margin-top: 16px;
+    margin: 0 0 22px;
     color: var(--color-muted);
     font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.55;
+}
+
+.presentation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
 }
 
 .presentation-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    min-height: 40px;
     padding: 11px 16px;
-    border: 1px solid var(--portfolio-accent-border);
     border-radius: 999px;
-    background: white;
-    color: var(--portfolio-accent);
     text-decoration: none;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 800;
+    line-height: 1;
 }
 
-.presentation-button:hover {
+.presentation-button-primary {
+    border: 1px solid rgba(47, 111, 115, 0.16);
+    background: var(--portfolio-accent);
+    color: white;
+}
+
+.presentation-button-primary:hover {
+    background: var(--color-dark);
+    color: white;
+}
+
+.presentation-button-secondary {
+    border: 1px solid var(--portfolio-accent-border);
+    background: white;
+    color: var(--portfolio-accent);
+}
+
+.presentation-button-secondary:hover {
     background: var(--portfolio-accent-soft);
     color: var(--portfolio-accent);
 }
 
+.presentation-button-link {
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--presentation-accent);
+}
+
+.presentation-button-link:hover {
+    background: rgba(238, 246, 246, 0.72);
+    color: var(--portfolio-accent);
+}
+
+@media (max-width: 1000px) {
+    .presentation-card {
+        --presentation-image-height: 330px;
+    }
+
+    .presentation-cover {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .presentation-card {
+        --presentation-image-height: 270px;
+    }
+
+    .presentation-cover {
+        padding: 8px;
+    }
+
+    .presentation-card-body {
+        padding: 22px;
+    }
+
+    .presentation-card-topline {
+        gap: 8px;
+    }
+
+    .presentation-actions {
+        gap: 8px;
+    }
+
+    .presentation-button {
+        min-height: 38px;
+        padding: 10px 14px;
+        font-size: 0.86rem;
+    }
+}
 
 /* =========================================================
    ACHIEVEMENTS SECTION
@@ -2424,6 +2606,19 @@ body {
 
 .bi-dot {
     background: #708186;
+}
+
+.centroid-dot {
+    width: 16px;
+    height: 16px;
+    display: inline-grid;
+    place-items: center;
+    background: rgba(16, 42, 45, 0.78);
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 1;
 }
 
 
@@ -2947,9 +3142,6 @@ body {
         right: calc(50% - 52px);
     }
 
-    .presentation-image {
-        height: 270px;
-    }
 
     /* Mobile Skills layout:
        Keeps the K-means idea on desktop, but turns mobile into a compact clustered chip map. */
@@ -3063,12 +3255,7 @@ body {
         padding: 36px 24px 0;
     }
 
-    .presentation-image {
-        height: 230px;
-    }
-
     .credential-card,
-    .presentation-card-body,
     .recognition-card {
         padding: 22px;
     }
