@@ -2179,58 +2179,31 @@ body {
    ========================================================= */
 
 .homepage-layout .skills-cluster-section {
-    /* Outer section spacing and shape */
-    --skills-section-margin-bottom: 82px;
-    --skills-section-padding: 42px;
-    --skills-section-radius: 30px;
-
-    /* Outer section tile controls */
-    --skills-outer-grid-size: 36px;
-    --skills-outer-grid-rgb: 16, 42, 45;
-    --skills-outer-grid-opacity: 0.095;
-    --skills-outer-grid-layer-opacity: 0.25;
-
-    /* Outer section color wash */
-    --skills-outer-teal-glow: rgba(47, 111, 115, 0.14);
-    --skills-outer-gold-glow: rgba(201, 168, 106, 0.18);
+    /* Skills section now sits directly on the page background.
+       The inner map remains the visual container for the K-means concept. */
+    --skills-section-margin-bottom: 72px;
 
     position: relative;
     margin-bottom: var(--skills-section-margin-bottom);
-    padding: var(--skills-section-padding);
-    overflow: hidden;
-    border: 1px solid rgba(16, 42, 45, 0.12);
-    border-radius: var(--skills-section-radius);
-    background:
-        radial-gradient(circle at 14% 18%, var(--skills-outer-teal-glow), transparent 30%),
-        radial-gradient(circle at 86% 20%, var(--skills-outer-gold-glow), transparent 30%),
-        linear-gradient(135deg, #fbfaf7 0%, #eef6f6 52%, #f8f3e8 100%);
-    box-shadow: 0 28px 70px rgba(16, 42, 45, 0.16);
+    padding: 0;
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
-/* Outer section square tiles behind the Skills heading */
+/* Outer section grid removed.
+   The Skills section now uses the normal homepage background. */
 .homepage-layout .skills-cluster-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            rgba(var(--skills-outer-grid-rgb), var(--skills-outer-grid-opacity)) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(var(--skills-outer-grid-rgb), var(--skills-outer-grid-opacity)) 1px,
-            transparent 1px
-        );
-    background-size: var(--skills-outer-grid-size) var(--skills-outer-grid-size);
-    opacity: var(--skills-outer-grid-layer-opacity);
-    pointer-events: none;
+    content: none;
 }
 
 .skills-cluster-header {
     position: relative;
     z-index: 2;
     max-width: 920px;
+    margin-bottom: 30px;
 }
 
 .homepage-layout .skills-cluster-section .section-label {
@@ -2244,7 +2217,7 @@ body {
 
 .skills-cluster-intro {
     max-width: 790px;
-    margin: 0 0 32px;
+    margin: 0;
     color: var(--color-muted);
     font-size: 1rem;
     line-height: 1.7;
@@ -2258,28 +2231,20 @@ body {
    ========================================================= */
 
 .skills-cluster-map {
-    /* Inner map dimensions */
-    --skills-map-height: 560px;
-    --skills-map-radius: 28px;
-
-    /* Inner map grid controls */
-    --skills-map-grid-size: 42px;
-    --skills-map-grid-rgb: 16, 42, 45;
-    --skills-map-grid-opacity: 0.065;
-
-    /* Optional image background controls */
-    --skills-map-image-opacity: 0.28;
-    --skills-map-overlay-start: rgba(255, 255, 255, 0.42);
-    --skills-map-overlay-end: rgba(238, 246, 246, 0.22);
+    /* The Skills visual now integrates directly into the white page.
+       No chart frame, no border, no panel background. */
+    --skills-map-height: 520px;
+    --skills-map-image-opacity: 0.18;
 
     position: relative;
     z-index: 2;
     isolation: isolate;
     min-height: var(--skills-map-height);
-    overflow: hidden;
-    border: 1px solid rgba(47, 111, 115, 0.22);
-    border-radius: var(--skills-map-radius);
-    background: rgba(255, 255, 255, 0.66);
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 /* Optional custom background image layer.
@@ -2297,32 +2262,13 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     opacity: var(--skills-map-image-opacity);
+    filter: saturate(0.92) brightness(1.04);
     pointer-events: none;
 }
 
 /* Grid and wash layer over the optional background image */
 .skills-cluster-map::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: block;
-    background:
-        linear-gradient(
-            rgba(var(--skills-map-grid-rgb), var(--skills-map-grid-opacity)) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(var(--skills-map-grid-rgb), var(--skills-map-grid-opacity)) 1px,
-            transparent 1px
-        ),
-        linear-gradient(135deg, var(--skills-map-overlay-start), var(--skills-map-overlay-end));
-    background-size:
-        var(--skills-map-grid-size) var(--skills-map-grid-size),
-        var(--skills-map-grid-size) var(--skills-map-grid-size),
-        100% 100%;
-    pointer-events: none;
+    content: none;
 }
 
 
@@ -2396,19 +2342,18 @@ body {
 }
 
 .centroid-marker {
-    width: 34px;
-    height: 34px;
+    width: 20px;
+    height: 20px;
     display: grid;
     place-items: center;
-    border-radius: 8px;
-    background: rgba(8, 22, 24, 0.94);
-    color: white;
-    font-size: 2rem;
-    font-weight: 900;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 50%;
+    background: rgba(16, 42, 45, 0.78);
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 1.35rem;
+    font-weight: 700;
     line-height: 1;
-    box-shadow:
-        0 8px 18px rgba(16, 42, 45, 0.24),
-        0 0 0 4px rgba(255, 255, 255, 0.68);
+    box-shadow: none;
 }
 
 .centroid-label {
@@ -2432,7 +2377,7 @@ body {
 }
 
 .centroid-bi {
-    left: 83%;
+    left: 85%;
     top: 72%;
 }
 
@@ -2451,26 +2396,24 @@ body {
     text-align: center;
     padding: 12px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.46);
     color: #ffffff;
     font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    -webkit-text-stroke: 0.35px rgba(8, 22, 24, 0.72);
+    -webkit-text-stroke: 0.22px rgba(8, 22, 24, 0.55);
     background:
-        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.52) 12%, transparent 27%),
-        radial-gradient(circle at 68% 76%, rgba(255, 255, 255, 0.28) 0%, transparent 30%),
-        radial-gradient(circle at 50% 46%, var(--skill-core) 0%, var(--skill-core) 34%, var(--skill-edge) 68%, var(--skill-deep) 100%);
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.32) 12%, transparent 24%),
+        radial-gradient(circle at 68% 76%, rgba(255, 255, 255, 0.20) 0%, transparent 28%),
+        radial-gradient(circle at 50% 46%, var(--skill-core) 0%, var(--skill-core) 36%, var(--skill-edge) 70%, var(--skill-deep) 100%);
     box-shadow:
-        inset 8px 10px 22px rgba(255, 255, 255, 0.32),
-        inset -14px -18px 26px rgba(0, 0, 0, 0.24),
-        0 18px 36px rgba(16, 42, 45, 0.20),
-        0 0 28px var(--skill-glow);
+        inset 6px 8px 18px rgba(255, 255, 255, 0.24),
+        inset -12px -15px 22px rgba(0, 0, 0, 0.20),
+        0 14px 28px rgba(16, 42, 45, 0.17),
+        0 0 20px var(--skill-glow);
     text-shadow:
-        0 2px 3px rgba(0, 0, 0, 0.72),
-        0 0 6px rgba(0, 0, 0, 0.42),
-        1px 1px 0 rgba(8, 22, 24, 0.50),
-        -1px 1px 0 rgba(8, 22, 24, 0.35);
+        0 2px 3px rgba(0, 0, 0, 0.62),
+        0 0 5px rgba(0, 0, 0, 0.34);
     animation:
         clusterHoverSmall var(--float-speed, 8s) ease-in-out infinite,
         skillBreath 6s ease-in-out infinite;
@@ -2481,8 +2424,8 @@ body {
     position: absolute;
     top: 14%;
     left: 17%;
-    width: 36%;
-    height: 25%;
+    width: 27%;
+    height: 19%;
     border-radius: 50%;
     background:
         radial-gradient(circle, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.24) 58%, transparent 74%);
@@ -2497,21 +2440,21 @@ body {
    ========================================================= */
 
 .skill-lg {
-    width: 104px;
-    height: 104px;
-    font-size: 0.84rem;
+    width: 96px;
+    height: 96px;
+    font-size: 0.80rem;
 }
 
 .skill-md {
-    width: 82px;
-    height: 82px;
-    font-size: 0.72rem;
+    width: 76px;
+    height: 76px;
+    font-size: 0.69rem;
 }
 
 .skill-sm {
-    width: 58px;
-    height: 58px;
-    font-size: 0.66rem;
+    width: 54px;
+    height: 54px;
+    font-size: 0.63rem;
 }
 
 
@@ -2611,34 +2554,34 @@ body {
 
 .skill-ml {
     left: 32%;
-    top: 35%;
+    top: 37%;
     --float-speed: 8.8s;
     animation-delay: -1.2s;
 }
 
 .skill-feature {
-    left: 47%;
+    left: 46%;
     top: 25%;
     --float-speed: 9.4s;
     animation-delay: -2.5s;
 }
 
 .skill-timeseries {
-    left: 38%;
-    top: 55%;
+    left: 37%;
+    top: 57%;
     --float-speed: 8.3s;
     animation-delay: -3s;
 }
 
 .skill-anomaly {
     left: 46%;
-    top: 44%;
+    top: 45%;
     --float-speed: 8.7s;
     animation-delay: -1.8s;
 }
 
 .skill-eval {
-    left: 37%;
+    left: 36%;
     top: 20%;
     --float-speed: 9s;
     animation-delay: -3.3s;
@@ -2651,36 +2594,36 @@ body {
    ========================================================= */
 
 .skill-rag {
-    left: 59%;
-    top: 30%;
+    left: 60%;
+    top: 29%;
     --float-speed: 8.4s;
     animation-delay: -2.2s;
 }
 
 .skill-mlops {
-    left: 65%;
+    left: 66%;
     top: 60%;
     --float-speed: 9.2s;
     animation-delay: -1.4s;
 }
 
 .skill-cloud {
-    left: 69%;
-    top: 45%;
+    left: 70%;
+    top: 44%;
     --float-speed: 8.6s;
     animation-delay: -2.9s;
 }
 
 .skill-research {
-    left: 57%;
-    top: 63%;
+    left: 58%;
+    top: 64%;
     --float-speed: 9.5s;
     animation-delay: -3.8s;
 }
 
 .skill-git {
-    left: 55%;
-    top: 48%;
+    left: 56%;
+    top: 49%;
     --float-speed: 7.9s;
     animation-delay: -2.1s;
 }
@@ -2692,7 +2635,7 @@ body {
    ========================================================= */
 
 .skill-powerbi {
-    left: 83%;
+    left: 82%;
     top: 47%;
     --float-speed: 9.1s;
     animation-delay: -1.6s;
@@ -2700,28 +2643,28 @@ body {
 
 .skill-tableau {
     left: 89%;
-    top: 63%;
+    top: 62%;
     --float-speed: 8.6s;
     animation-delay: -3.1s;
 }
 
 .skill-stats {
-    left: 76%;
-    top: 75%;
+    left: 75%;
+    top: 72%;
     --float-speed: 8.9s;
     animation-delay: -2.3s;
 }
 
 .skill-dashboard {
-    left: 84%;
-    top: 76%;
+    left: 85%;
+    top: 77%;
     --float-speed: 9.3s;
     animation-delay: -2.7s;
 }
 
 .skill-business {
-    left: 75%;
-    top: 55%;
+    left: 76%;
+    top: 56%;
     --float-speed: 8.1s;
     animation-delay: -3.7s;
 }
@@ -2729,9 +2672,18 @@ body {
 
 /* =========================================================
    SKILL BALL MOTION
-   Small hover motion keeps balls near their cluster centroid.
+   CSS provides a fallback animation.
+   JavaScript upgrades the movement when skills-cluster.js loads.
+
+   Main JS controls are inside skills-cluster.js:
+   - driftRadius
+   - driftVariation
+   - speedBase
+   - mouseInfluenceRadius
+   - mousePushStrength
    ========================================================= */
 
+/* Fallback motion if JavaScript does not load */
 .programming-skill,
 .ai-skill {
     animation-name: clusterHoverSmall, skillBreath;
@@ -2783,6 +2735,24 @@ body {
     }
 }
 
+/* JavaScript-enabled motion.
+   JS updates these CSS variables:
+   --skill-js-x
+   --skill-js-y
+   --skill-js-scale
+*/
+.skills-js-enabled .cluster-skill {
+    animation: skillBreath 6s ease-in-out infinite;
+    transform:
+        translate3d(
+            var(--skill-js-x, 0px),
+            var(--skill-js-y, 0px),
+            0
+        )
+        scale(var(--skill-js-scale, 1));
+    will-change: transform, filter;
+}
+
 .cluster-skill:hover {
     z-index: 10;
     animation-play-state: paused;
@@ -2790,11 +2760,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cluster-skill {
+    .cluster-skill,
+    .skills-js-enabled .cluster-skill {
         animation: none;
+        transform: none;
     }
 }
-
 
 /* =========================================================
    HOMEPAGE RESPONSIVE BEHAVIOR
@@ -2831,34 +2802,102 @@ body {
         padding-bottom: 62px;
     }
 
+    /* Mobile carousel tuning:
+       Cards stay swipeable, but arrows move below the card so they do not cover text. */
+    .project-carousel {
+        --project-card-width: min(84vw, 360px);
+        --project-card-height: 318px;
+        --project-card-gap: 14px;
+
+        padding-bottom: 58px;
+    }
+
+    .section-projects .project-grid {
+        overflow-x: auto;
+        align-items: stretch;
+        padding: 18px 24px 28px;
+        margin: 0 -24px;
+        scroll-padding-left: 24px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .section-projects .project-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .section-projects .project-grid > .card-link.is-active .project-card,
+    .section-projects .project-grid > .project-card.is-active {
+        transform: none;
+    }
+
+    .homepage-layout .carousel-button {
+        top: auto;
+        bottom: 0;
+        width: 42px;
+        height: 42px;
+        transform: none;
+    }
+
     .homepage-layout .carousel-button-left {
-        left: 8px;
+        left: calc(50% - 52px);
     }
 
     .homepage-layout .carousel-button-right {
-        right: 8px;
-    }
-
-    .project-carousel {
-        --project-card-width: 82vw;
-        --project-card-height: 300px;
+        right: calc(50% - 52px);
     }
 
     .presentation-image {
         height: 270px;
     }
 
-    .homepage-layout .skills-cluster-section {
-        padding: 30px 24px;
-        border-radius: 24px;
+    /* Mobile Skills layout:
+       Keeps the K-means idea on desktop, but turns mobile into a compact clustered chip map. */
+   .homepage-layout .skills-cluster-section {
+        margin-bottom: 58px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .skills-cluster-intro {
+        margin-bottom: 22px;
+        font-size: 0.96rem;
+        line-height: 1.65;
     }
 
     .skills-cluster-map {
+        --skills-map-image-opacity: 0.10;
+
         min-height: auto;
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        padding: 84px 20px 24px;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 18px 0 6px;
+        border: none;
+        border-radius: 0;
+        overflow: visible;
+        background: transparent;
+    }
+
+    .cluster-legend {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        max-width: none;
+        order: -1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 12px;
+        margin-bottom: 10px;
+    }
+
+    .cluster-legend span {
+        min-width: 0;
+        font-size: 0.74rem;
+        line-height: 1.2;
     }
 
     .cluster-centroid {
@@ -2869,12 +2908,53 @@ body {
         position: relative;
         left: auto;
         top: auto;
+        flex: 0 1 auto;
         width: auto;
         height: auto;
-        min-height: 48px;
-        padding: 11px 15px;
-        font-size: 0.78rem;
+        min-height: 36px;
+        max-width: 100%;
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 0.68rem;
+        line-height: 1.1;
+        white-space: nowrap;
         animation: none;
+        -webkit-text-stroke: 0;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.50);
+        box-shadow:
+            inset 4px 5px 12px rgba(255, 255, 255, 0.26),
+            inset -8px -10px 16px rgba(0, 0, 0, 0.16),
+            0 8px 18px rgba(16, 42, 45, 0.12);
+    }
+
+    .skills-cluster-map .skill-lg,
+    .skills-cluster-map .skill-md,
+    .skills-cluster-map .skill-sm {
+        width: auto;
+        height: auto;
+        font-size: 0.68rem;
+    }
+
+    .cluster-skill::before {
+        width: 26%;
+        height: 18%;
+        opacity: 0.48;
+    }
+
+    .programming-skill {
+        order: 1;
+    }
+
+    .ml-skill {
+        order: 2;
+    }
+
+    .ai-skill {
+        order: 3;
+    }
+
+    .bi-skill {
+        order: 4;
     }
 }
 
