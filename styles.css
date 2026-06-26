@@ -144,71 +144,6 @@ body {
 }
 
 
-/* Homepage section side navigation */
-
-.section-with-side-nav {
-    display: grid;
-    grid-template-columns: 128px minmax(0, 1fr);
-    gap: 34px;
-    align-items: start;
-}
-
-.section-main-content {
-    min-width: 0;
-}
-
-.homepage-side-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    padding-top: 4px;
-    margin-left: -80px;
-}
-
-.homepage-side-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 700;
-    line-height: 2.5;
-}
-
-.homepage-side-nav a:hover,
-.homepage-side-nav a.is-current {
-    color: var(--portfolio-accent);
-    border-bottom-color: var(--portfolio-accent);
-}
-
-@media (max-width: 1000px) {
-    .section-with-side-nav {
-        grid-template-columns: 1fr;
-        gap: 22px;
-    }
-
-    .homepage-side-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-top: 0;
-        padding-bottom: 4px;
-        margin-left: 0;
-    }
-
-    .homepage-side-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(16, 42, 45, 0.18);
-        border-radius: 999px;
-        background: white;
-    }
-}
-
-
 /* Research image cards */
 
 .research-section {
@@ -342,23 +277,6 @@ body {
 .domain {
     font-size: 0.9rem;
     color: #666;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-.project-card {
-    padding: 25px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background: #fafafa;
-}
-
-.project-card h3 {
-    line-height: 1.4;
 }
 
 /* Featured Projects carousel */
@@ -591,46 +509,6 @@ body {
     pointer-events: none;
 }
 
-
-.project-type {
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #444;
-}
-
-
-.achievement-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-}
-
-.achievement-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 2rem;
-}
-
-.achievement-card h3 {
-  margin-bottom: 1rem;
-}
-
-.achievement-subtitle {
-  font-weight: 600;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.achievement-card ul {
-  padding-left: 1.2rem;
-}
-
-.achievement-card li {
-  margin-bottom: 0.8rem;
-}
-
 /* =========================================================
    CONTACT SECTION
    Final homepage call-to-action with social icon links.
@@ -803,6 +681,15 @@ body {
 
 .assistant-toggle:hover {
     transform: translateY(-2px);
+}
+
+.assistant-avatar-image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.22));
 }
 
 .assistant-panel {
@@ -1070,38 +957,6 @@ body {
     100% {
         transform: translateY(0);
     }
-}
-
-@media (max-width: 600px) {
-    .assistant-widget {
-        right: 18px;
-        bottom: 18px;
-    }
-
-    .assistant-panel {
-        width: calc(100vw - 36px);
-        right: 0;
-        bottom: 72px;
-    }
-
-    .assistant-callout {
-        display: none;
-    }
-}
-.assistant-avatar-image {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.22));
-}
-
-@media (max-width: 600px) {
-  .assistant-avatar-image {
-    width: 56px;
-    height: 56px;
-  }
 }
 
 
@@ -1466,24 +1321,6 @@ body {
         min-height: auto;
         padding: 56px 24px;
         background-position: center;
-    }
-
-    .contact-section {
-        padding: 56px 24px 96px;
-    }
-
-    .contact-inner {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
-    .contact-copy {
-        text-align: center;
-    }
-
-    .contact-section p {
-        max-width: 100%;
-        margin: 0 auto;
     }
 
     .hero-image {
