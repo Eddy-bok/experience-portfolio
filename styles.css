@@ -2421,24 +2421,93 @@ body {
 /* =========================================================
    ACHIEVEMENTS SECTION
    Recognition cards for awards, fellowships, and academic honors.
+
+   Tunable controls:
+   - --recognition-radius controls card roundness
+   - --recognition-accent controls marker, tags, and link color
+   - --recognition-soft controls the background wash
    ========================================================= */
 
+.achievements-section {
+    padding-top: 4px;
+}
+
 .recognition-card {
-    padding: 28px;
-    border: 1px solid rgba(16, 42, 45, 0.14);
-    border-radius: 18px;
+    --recognition-radius: 20px;
+    --recognition-accent: var(--portfolio-accent);
+    --recognition-soft: rgba(238, 246, 246, 0.72);
+
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 30px 28px;
+    border: 1px solid rgba(16, 42, 45, 0.13);
+    border-radius: var(--recognition-radius);
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(238, 246, 246, 0.72));
-    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.07);
+        radial-gradient(circle at 88% 10%, var(--recognition-soft), transparent 36%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.45) 100%);
+    box-shadow: 0 18px 38px rgba(16, 42, 45, 0.075);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.recognition-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: 0 24px 50px rgba(16, 42, 45, 0.12);
+}
+
+.recognition-card-award {
+    --recognition-accent: #9a6a18;
+    --recognition-soft: rgba(201, 168, 106, 0.18);
+}
+
+.recognition-card-fellowship {
+    --recognition-accent: #2f6f73;
+    --recognition-soft: rgba(47, 111, 115, 0.13);
+}
+
+.recognition-card-academic {
+    --recognition-accent: #3f7fbf;
+    --recognition-soft: rgba(64, 127, 200, 0.12);
+}
+
+.recognition-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.recognition-marker {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(16, 42, 45, 0.10);
+    border-radius: 16px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), var(--recognition-soft));
+    color: var(--recognition-accent);
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    box-shadow: 0 10px 22px rgba(16, 42, 45, 0.08);
 }
 
 .recognition-kicker {
-    margin: 0 0 12px;
+    margin: 0;
     text-transform: uppercase;
     letter-spacing: 1.4px;
     color: var(--portfolio-accent);
     font-size: 0.76rem;
-    font-weight: 800;
+    font-weight: 900;
+    line-height: 1.4;
 }
 
 .recognition-card h3 {
@@ -2448,11 +2517,86 @@ body {
     color: var(--color-dark);
 }
 
-.recognition-card p:not(.recognition-kicker):not(.achievement-subtitle) {
-    color: var(--color-muted);
-    line-height: 1.6;
+.achievement-subtitle {
+    margin: 0 0 18px;
+    color: #555;
+    font-weight: 800;
+    line-height: 1.55;
 }
 
+.recognition-card p:not(.recognition-kicker):not(.achievement-subtitle) {
+    margin: 0 0 22px;
+    color: var(--color-muted);
+    line-height: 1.65;
+}
+
+.recognition-proof-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: auto;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    line-height: 1.55;
+}
+
+.recognition-proof-points span {
+    display: inline;
+    color: inherit;
+    font-size: inherit;
+    font-weight: 550;
+    line-height: inherit;
+}
+
+.recognition-proof-points span:not(:last-child)::after {
+    content: " • ";
+    color: var(--color-muted);
+}
+
+.recognition-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.recognition-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 10px 15px;
+    border: 1px solid var(--portfolio-accent-border);
+    border-radius: 999px;
+    background: white;
+    color: var(--portfolio-accent);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.recognition-button:hover {
+    background: var(--portfolio-accent-soft);
+    color: var(--portfolio-accent);
+}
+
+@media (max-width: 768px) {
+    .recognition-card {
+        padding: 22px;
+    }
+
+    .recognition-card-top {
+        align-items: flex-start;
+    }
+
+    .recognition-marker {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+        border-radius: 14px;
+    }
+}
 
 /* =========================================================
    K-MEANS SKILLS SECTION
