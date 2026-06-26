@@ -631,51 +631,150 @@ body {
   margin-bottom: 0.8rem;
 }
 
+/* =========================================================
+   CONTACT SECTION
+   Final homepage call-to-action with social icon links.
+
+   Tunable controls:
+   - --contact-icon-size controls icon circle size
+   - --contact-icon-gap controls spacing between social icons
+   - --contact-glow controls subtle background glow
+   ========================================================= */
+
 .contact-section {
+    --contact-icon-size: 62px;
+    --contact-icon-gap: 16px;
+    --contact-glow: rgba(201, 168, 106, 0.12);
+
     max-width: none;
     width: 100%;
     margin: 0;
-    text-align: center;
-    padding: 64px var(--site-gutter) 72px;
+    padding: 82px var(--site-gutter) 92px;
     border-top: none;
-    background: var(--color-dark);
+    background:
+        radial-gradient(circle at 16% 22%, rgba(47, 111, 115, 0.24), transparent 28%),
+        radial-gradient(circle at 84% 18%, var(--contact-glow), transparent 30%),
+        linear-gradient(135deg, #0d292c 0%, #102a2d 52%, #0b2225 100%);
     color: white;
 }
 
+.contact-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.65fr);
+    gap: clamp(36px, 6vw, 88px);
+    align-items: center;
+}
+
+.contact-copy {
+    text-align: left;
+}
+
 .contact-section .section-label {
+    margin-bottom: 12px;
     color: var(--color-gold);
 }
 
 .contact-section .section-title {
-    margin-bottom: 15px;
+    margin: 0 0 18px;
     color: white;
+    font-size: clamp(2.2rem, 4vw, 3.35rem);
+    line-height: 1.08;
 }
 
 .contact-section p {
-    max-width: 650px;
-    margin: 0 auto;
-    line-height: 1.7;
+    max-width: 740px;
+    margin: 0;
+    line-height: 1.75;
     color: rgba(255, 255, 255, 0.82);
 }
 
-.contact-links {
-    margin-top: 24px;
+.contact-social-area {
+    justify-self: end;
+    text-align: center;
 }
 
-.contact-links a {
-    display: inline-block;
-    margin: 6px;
-    padding: 12px 26px;
-    border: 1px solid rgba(255, 255, 255, 0.75);
+.contact-social-kicker {
+    margin: 0 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--color-gold);
+    font-size: 0.76rem;
+    font-weight: 900;
+}
+
+.contact-social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--contact-icon-gap);
+}
+
+.contact-social-link {
+    width: var(--contact-icon-size);
+    height: var(--contact-icon-size);
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.06);
+    font-size: 1.45rem;
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
 }
 
-.contact-links a:hover {
-    background: white;
-    color: var(--color-dark);
+.contact-social-link:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 168, 106, 0.72);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+}
+
+.contact-social-email {
+    border-color: rgba(201, 168, 106, 0.56);
+    background: rgba(201, 168, 106, 0.13);
+}
+
+.contact-social-note {
+    max-width: 280px;
+    margin: 18px auto 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        --contact-icon-size: 56px;
+        --contact-icon-gap: 14px;
+
+        padding: 58px 24px 96px;
+    }
+
+    .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .contact-copy,
+    .contact-social-area {
+        justify-self: center;
+        text-align: center;
+    }
+
+    .contact-section p {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .contact-social-note {
+        max-width: 260px;
+    }
 }
 
 
@@ -1306,20 +1405,21 @@ body {
     }
 
     .contact-section {
-        padding: 52px 24px 90px;
+        padding: 56px 24px 96px;
     }
 
-    .contact-links {
-        display: grid;
+    .contact-inner {
         grid-template-columns: 1fr;
-        gap: 10px;
-        max-width: 280px;
-        margin: 24px auto 0;
+        gap: 28px;
     }
 
-    .contact-links a {
-        width: 100%;
-        margin: 0;
+    .contact-copy {
+        text-align: center;
+    }
+
+    .contact-section p {
+        max-width: 100%;
+        margin: 0 auto;
     }
 
     .hero-image {
