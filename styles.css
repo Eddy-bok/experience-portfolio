@@ -285,8 +285,8 @@ body {
     background: var(--portfolio-accent);
     color: white;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.92rem;
+    font-weight: 550;
+    font-size: 0.82rem;
 }
 
 .research-tags + .research-card-button {
@@ -2068,7 +2068,7 @@ body {
     color: var(--color-muted);
     text-decoration: none;
     font-size: 0.95rem;
-    font-weight: 800;
+    font-weight: 549;
     line-height: 1.35;
     letter-spacing: -0.01em;
 }
@@ -2288,14 +2288,14 @@ body {
     justify-content: center;
     align-self: flex-start;
     margin-top: auto;
-    padding: 11px 16px;
+    padding: 10px 10px;
     border: 1px solid rgba(47, 111, 115, 0.16);
     border-radius: 999px;
     background: var(--portfolio-accent);
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 800;
+    font-size: 0.8rem;
+    font-weight: 550;
     line-height: 1;
 }
 
@@ -2503,11 +2503,11 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 40px;
-    padding: 11px 16px;
+    padding: 10px 10px;
     border-radius: 999px;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 800;
+    font-size: 0.8rem;
+    font-weight: 550;
     line-height: 1;
 }
 
@@ -2738,7 +2738,7 @@ body {
     color: var(--portfolio-accent);
     text-decoration: none;
     font-size: 0.88rem;
-    font-weight: 800;
+    font-weight: 550;
     line-height: 1;
 }
 
@@ -2892,7 +2892,7 @@ body {
     backdrop-filter: none;
     color: var(--color-dark);
     font-size: 0.82rem;
-    font-weight: 900;
+    font-weight: 750;
 }
 
 .legend-heading {
@@ -2900,7 +2900,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1.4px;
     font-size: 0.68rem;
-    font-weight: 900;
+    font-weight: 800;
 }
 
 .legend-centroid-note {
@@ -3015,7 +3015,7 @@ body {
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.46);
     color: #ffffff;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
     -webkit-text-stroke: 0.22px rgba(8, 22, 24, 0.55);
@@ -3400,12 +3400,12 @@ body {
     background: rgba(255, 255, 255, 0.97);
     color: var(--color-dark);
     font-size: 0.76rem;
-    font-weight: 200;
+    font-weight: 150;
     line-height: 1.4;
     letter-spacing: 0;
     text-align: center;
     white-space: normal;
-    text-shadow: 0;
+    text-shadow: none;
     box-shadow: 0 14px 28px rgba(16, 42, 45, 0.18);
     opacity: 0;
     visibility: hidden;
