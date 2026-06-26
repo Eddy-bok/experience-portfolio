@@ -36,323 +36,314 @@
   </header>
 
   <main class="homepage-layout">
-  <aside class="homepage-sidebar" aria-label="Homepage section navigation">
-    <nav class="homepage-side-nav">
-      <a href="#research" class="is-current">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#presentations">Presentations</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </aside>
-
-  <div class="homepage-sections">
-
-
-
-    <section id="research" class="section research-section">
-      <p class="section-label">Research</p>
-
-      <h2 class="section-title">
-        Research at the intersection of machine learning, probability theory,
-        cybersecurity, and information systems.
-      </h2>
-
-      <div class="research-showcase-grid">
-        <article class="research-feature-card">
-          <img
-            src="images/research/cards/poisson-research-card.jpg"
-            alt="Abstract visualization representing Poisson-CI anomaly detection research"
-            class="research-card-image"
-          />
-
-          <div class="research-card-body">
-            <p class="status submitted">Submitted</p>
-
-            <h3>Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification</h3>
-
-            <p>
-              A certified anomaly detection framework for IoT network security using concentration
-              inequalities for weighted Poisson processes, designed to provide formal false-positive
-              guarantees while supporting real-time inference.
-            </p>
-
-            <p class="research-tags">
-              Cybersecurity • Machine Learning • Statistical Learning • Anomaly Detection
-            </p>
-
-            <div class="research-card-actions">
-              <a href="research/poisson-ci.html" class="research-card-button">Find out more</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="research-feature-card">
-          <img
-            src="images/research/cards/nb-ci-research-card.jpg"
-            alt="Abstract visualization representing negative-binomial concentration research"
-            class="research-card-image"
-          />
-
-          <div class="research-card-body">
-            <p class="status submitted">Submitted under review</p>
-
-            <h3>Certified Anomaly Detection for Overdispersed IoT Traffic</h3>
-
-            <p>
-              A negative-binomial concentration framework for overdispersed IoT count traffic,
-              extending certified anomaly detection beyond equidispersion assumptions commonly
-              used in Poisson-based models.
-            </p>
-
-            <p class="research-tags">
-              Probability Theory • Concentration Inequalities • IoT Security • Certified ML
-            </p>
-
-            <div class="research-card-actions">
-              <a href="research/nb-ci.html" class="research-card-button">Find out more</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="research-feature-card">
-          <img
-            src="images/research/cards/library-exch-cards.jpg"
-            alt="Abstract visualization representing cataloging exchange and information systems research"
-            class="research-card-image"
-          />
-
-          <div class="research-card-body">
-            <p class="status ongoing">Ongoing</p>
-
-            <h3>Multi-Institutional Cataloging Exchange Conceptualization</h3>
-
-            <p>
-              A data-driven framework for collaborative cataloging across libraries, exploring
-              how algorithmic matching can reduce backlogs while preserving fairness, quality
-              standards, and resource efficiency.
-            </p>
-
-            <p class="research-tags">
-              Information Systems • Library Cataloging • Workflow Design • Algorithmic Matching
-            </p>
-
-            <div class="research-card-actions">
-              <span class="research-card-button research-card-button-disabled" aria-disabled="true">
-                Find out more
-              </span>
-
-              <a
-                href="https://www.canisius.edu/news/ai-solutions-cataloging-challenges"
-                class="research-card-button research-card-button-secondary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Blog post
-              </a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-
-
-
-    <section id="projects" class="section section-projects">
-      <p class="section-label">Featured Projects</p>
-
-      <h2 class="section-title">
-        Applied machine learning, analytics, and algorithmic systems built to solve real-world problems.
-      </h2>
-
-      <div class="project-carousel" data-carousel>
-        <button class="carousel-button carousel-button-left" type="button" aria-label="Previous projects" data-carousel-prev>
-          &lt;
-        </button>
-
-        <div class="project-grid" data-carousel-track>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/ariel-card-bg.jpg'); --project-card-position: center;">
-            <p class="project-type">Applied AI</p>
-
-            <h3>Project ARIEL (RAG AI system)</h3>
-
-            <p>
-              A deployed RAG assistant that lets users ask natural-language questions about Eddie's
-              research, projects, skills, and portfolio background.
-            </p>
-
-            <p class="domain">RAG • LLMs • Azure AI • FastAPI • Retrieval Systems</p>
-
-            <div class="project-actions">
-              <a href="projects/ariel.html" class="project-action">View project</a>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/smart-city-anomaly-bg1.jpg'); --project-card-position: center;">
-            <p class="project-type">Anomaly Detection</p>
-
-            <h3>Smart City Anomaly Detection</h3>
-
-            <p>
-              Used clustering and anomaly detection methods to identify unusual activity patterns
-              in smart-city management data.
-            </p>
-
-            <p class="domain">Clustering • Anomaly Detection • Smart Cities • Unsupervised ML</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/data-olympiad-bg.jpg'); --project-card-position: center;">
-            <p class="project-type">Data Science Competition</p>
-
-            <h3>Data Olympiad / Energy Forecasting</h3>
-
-            <p>
-              A first-place data science project focused on forecasting electricity demand and
-              generating efficiency insights for commercial buildings.
-            </p>
-
-            <p class="domain">Forecasting • Energy Analytics • Machine Learning • Business Impact</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <a
-                href="https://github.com/Eddy-bok/Data_Olympiad_2025_Canisius.git"
-                class="project-action"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source code
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/breast-cancer-ml-bg.jpg'); --project-card-position: center;">
-            <p class="project-type">Healthcare ML</p>
-
-            <h3>Breast Cancer Classification</h3>
-
-            <p>
-              Built and evaluated machine learning classifiers for breast cancer prediction,
-              emphasizing model performance and interpretability.
-            </p>
-
-            <p class="domain">Classification • Model Evaluation • Healthcare Data • Anomaly Detection</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/customer-purchase-bg.jpg'); --project-card-position: center;">
-            <p class="project-type">Business Analytics</p>
-
-            <h3>Customer Purchase Prediction</h3>
-
-            <p>
-              Modeled customer purchase likelihood using logistic regression, feature analysis,
-              and classification evaluation metrics.
-            </p>
-
-            <p class="domain">Logistic Regression • Customer Analytics • Classification • EDA</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/catalog-exchange-bg.jpg'); --project-card-position: center;">
-            <p class="project-type">Algorithm Design</p>
-
-            <h3>Cataloging Algorithm</h3>
-
-            <p>
-              An algorithm-focused project connected to cataloging workflows, designed to improve
-              how structured information can be organized, matched, or exchanged.
-            </p>
-
-            <p class="domain">Algorithms • Information Systems • Cataloging • Matching Logic</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/house-price-ml-bg1.jpg'); --project-card-position: center;">
-            <p class="project-type">Regression Modeling</p>
-
-            <h3>House Price Prediction</h3>
-
-            <p>
-              Compared linear regression and neural network approaches for predicting house prices
-              from structured housing data.
-            </p>
-
-            <p class="domain">Linear Regression • Neural Networks • Feature Engineering • Prediction</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-          <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/visualization-bg.png'); --project-card-position: center;">
-            <p class="project-type">Visualization</p>
-
-            <h3>Tableau Visualization Project</h3>
-
-            <p>
-              A Tableau-based visualization project focused on communicating insights clearly through
-              dashboards, visual analysis, and data storytelling.
-            </p>
-
-            <p class="domain">Tableau • Dashboards • Data Storytelling • Business Intelligence</p>
-
-            <div class="project-actions">
-              <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
-              <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
-            </div>
-          </article>
-
-        </div>
-
-        <button class="carousel-button carousel-button-right" type="button" aria-label="Next projects" data-carousel-next>
-          &gt;
-        </button>
-      </div>
-    </section>
-
-
-
-
-    <section id="skills" class="section skills-section skills-cluster-section">
-      <div class="skills-cluster-header">
-        <p class="section-label">Skills</p>
+    <aside class="homepage-sidebar" aria-label="Homepage section navigation">
+      <nav class="homepage-side-nav">
+        <a href="#research" class="is-current">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#presentations">Presentations</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </aside>
+
+    <div class="homepage-sections">
+      <section id="research" class="section research-section">
+        <p class="section-label">Research</p>
 
         <h2 class="section-title">
-          Technical skills grouped like K-means clusters around four professional centroids.
+          Research at the intersection of machine learning, probability theory,
+          cybersecurity, and information systems.
         </h2>
 
-        <p class="skills-cluster-intro">
-          My technical toolkit spans data preparation, machine learning, model evaluation,
-          AI engineering, business intelligence, and research computing, with a focus on
-          building reliable systems that turn data into practical decisions.
-        </p>
-      </div>
+        <div class="research-showcase-grid">
+          <article class="research-feature-card">
+            <img
+              src="images/research/cards/poisson-research-card.jpg"
+              alt="Abstract visualization representing Poisson-CI anomaly detection research"
+              class="research-card-image"
+            />
 
-      <div class="cluster-legend" aria-label="Skills cluster legend">
+            <div class="research-card-body">
+              <p class="status submitted">Submitted</p>
+
+              <h3>Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification</h3>
+
+              <p>
+                A certified anomaly detection framework for IoT network security using concentration
+                inequalities for weighted Poisson processes, designed to provide formal false-positive
+                guarantees while supporting real-time inference.
+              </p>
+
+              <p class="research-tags">
+                Cybersecurity • Machine Learning • Statistical Learning • Anomaly Detection
+              </p>
+
+              <div class="research-card-actions">
+                <a href="research/poisson-ci.html" class="research-card-button">Find out more</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="research-feature-card">
+            <img
+              src="images/research/cards/nb-ci-research-card.jpg"
+              alt="Abstract visualization representing negative-binomial concentration research"
+              class="research-card-image"
+            />
+
+            <div class="research-card-body">
+              <p class="status submitted">Submitted under review</p>
+
+              <h3>Certified Anomaly Detection for Overdispersed IoT Traffic</h3>
+
+              <p>
+                A negative-binomial concentration framework for overdispersed IoT count traffic,
+                extending certified anomaly detection beyond equidispersion assumptions commonly
+                used in Poisson-based models.
+              </p>
+
+              <p class="research-tags">
+                Probability Theory • Concentration Inequalities • IoT Security • Certified ML
+              </p>
+
+              <div class="research-card-actions">
+                <a href="research/nb-ci.html" class="research-card-button">Find out more</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="research-feature-card">
+            <img
+              src="images/research/cards/library-exch-cards.jpg"
+              alt="Abstract visualization representing cataloging exchange and information systems research"
+              class="research-card-image"
+            />
+
+            <div class="research-card-body">
+              <p class="status ongoing">Ongoing</p>
+
+              <h3>Multi-Institutional Cataloging Exchange Conceptualization</h3>
+
+              <p>
+                A data-driven framework for collaborative cataloging across libraries, exploring
+                how algorithmic matching can reduce backlogs while preserving fairness, quality
+                standards, and resource efficiency.
+              </p>
+
+              <p class="research-tags">
+                Information Systems • Library Cataloging • Workflow Design • Algorithmic Matching
+              </p>
+
+              <div class="research-card-actions">
+                <span class="research-card-button research-card-button-disabled" aria-disabled="true">
+                  Find out more
+                </span>
+
+                <a
+                  href="https://www.canisius.edu/news/ai-solutions-cataloging-challenges"
+                  class="research-card-button research-card-button-secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Blog post
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section section-projects">
+        <p class="section-label">Featured Projects</p>
+
+        <h2 class="section-title">
+          Applied machine learning, analytics, and algorithmic systems built to solve real-world problems.
+        </h2>
+
+        <div class="project-carousel" data-carousel>
+          <button class="carousel-button carousel-button-left" type="button" aria-label="Previous projects" data-carousel-prev>
+            &lt;
+          </button>
+
+          <div class="project-grid" data-carousel-track>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/ariel-card-bg.jpg'); --project-card-position: center;">
+              <p class="project-type">Applied AI</p>
+
+              <h3>Project ARIEL (RAG AI system)</h3>
+
+              <p>
+                A deployed RAG assistant that lets users ask natural-language questions about Eddie's
+                research, projects, skills, and portfolio background.
+              </p>
+
+              <p class="domain">RAG • LLMs • Azure AI • FastAPI • Retrieval Systems</p>
+
+              <div class="project-actions">
+                <a href="projects/ariel.html" class="project-action">View project</a>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/smart-city-anomaly-bg1.jpg'); --project-card-position: center;">
+              <p class="project-type">Anomaly Detection</p>
+
+              <h3>Smart City Anomaly Detection</h3>
+
+              <p>
+                Used clustering and anomaly detection methods to identify unusual activity patterns
+                in smart-city management data.
+              </p>
+
+              <p class="domain">Clustering • Anomaly Detection • Smart Cities • Unsupervised ML</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/data-olympiad-bg.jpg'); --project-card-position: center;">
+              <p class="project-type">Data Science Competition</p>
+
+              <h3>Data Olympiad / Energy Forecasting</h3>
+
+              <p>
+                A first-place data science project focused on forecasting electricity demand and
+                generating efficiency insights for commercial buildings.
+              </p>
+
+              <p class="domain">Forecasting • Energy Analytics • Machine Learning • Business Impact</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <a
+                  href="https://github.com/Eddy-bok/Data_Olympiad_2025_Canisius.git"
+                  class="project-action"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source code
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/breast-cancer-ml-bg.jpg'); --project-card-position: center;">
+              <p class="project-type">Healthcare ML</p>
+
+              <h3>Breast Cancer Classification</h3>
+
+              <p>
+                Built and evaluated machine learning classifiers for breast cancer prediction,
+                emphasizing model performance and interpretability.
+              </p>
+
+              <p class="domain">Classification • Model Evaluation • Healthcare Data • Anomaly Detection</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/customer-purchase-bg.jpg'); --project-card-position: center;">
+              <p class="project-type">Business Analytics</p>
+
+              <h3>Customer Purchase Prediction</h3>
+
+              <p>
+                Modeled customer purchase likelihood using logistic regression, feature analysis,
+                and classification evaluation metrics.
+              </p>
+
+              <p class="domain">Logistic Regression • Customer Analytics • Classification • EDA</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/catalog-exchange-bg.jpg'); --project-card-position: center;">
+              <p class="project-type">Algorithm Design</p>
+
+              <h3>Cataloging Algorithm</h3>
+
+              <p>
+                An algorithm-focused project connected to cataloging workflows, designed to improve
+                how structured information can be organized, matched, or exchanged.
+              </p>
+
+              <p class="domain">Algorithms • Information Systems • Cataloging • Matching Logic</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/house-price-ml-bg1.jpg'); --project-card-position: center;">
+              <p class="project-type">Regression Modeling</p>
+
+              <h3>House Price Prediction</h3>
+
+              <p>
+                Compared linear regression and neural network approaches for predicting house prices
+                from structured housing data.
+              </p>
+
+              <p class="domain">Linear Regression • Neural Networks • Feature Engineering • Prediction</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+            <article class="project-card project-card-visual" style="--project-card-image: url('images/projects/cards/visualization-bg.png'); --project-card-position: center;">
+              <p class="project-type">Visualization</p>
+
+              <h3>Tableau Visualization Project</h3>
+
+              <p>
+                A Tableau-based visualization project focused on communicating insights clearly through
+                dashboards, visual analysis, and data storytelling.
+              </p>
+
+              <p class="domain">Tableau • Dashboards • Data Storytelling • Business Intelligence</p>
+
+              <div class="project-actions">
+                <span class="project-action project-action-disabled" aria-disabled="true">View project</span>
+                <span class="project-action project-action-disabled" aria-disabled="true">Source code</span>
+              </div>
+            </article>
+
+          </div>
+
+          <button class="carousel-button carousel-button-right" type="button" aria-label="Next projects" data-carousel-next>
+            &gt;
+          </button>
+        </div>
+      </section>
+
+      <section id="skills" class="section skills-section skills-cluster-section">
+        <div class="skills-cluster-header">
+          <p class="section-label">Skills</p>
+
+          <h2 class="section-title">
+            Technical skills grouped like K-means clusters around four professional centroids.
+          </h2>
+
+          <p class="skills-cluster-intro">
+            My technical toolkit spans data preparation, machine learning, model evaluation,
+            AI engineering, business intelligence, and research computing, with a focus on
+            building reliable systems that turn data into practical decisions.
+          </p>
+        </div>
+
+        <div class="cluster-legend" aria-label="Skills cluster legend">
           <span class="legend-heading">Centroid categories</span>
 
           <span><i class="legend-dot programming-dot"></i>Programming & Data</span>
@@ -367,447 +358,436 @@
         </div>
 
 
-      <div class="skills-cluster-map" aria-label="K-means inspired technical skills map" style="--skills-map-image: url('images/skills/skills-cloud-bg.jpg'); --skills-map-image-opacity: 0.22;">
-        <div class="cluster-centroid centroid-programming">
-          <span class="centroid-marker">×</span>
-          <span class="centroid-label">Programming & Data</span>
+        <div class="skills-cluster-map" aria-label="K-means inspired technical skills map" style="--skills-map-image: url('images/skills/skills-cloud-bg.jpg'); --skills-map-image-opacity: 0.22;">
+          <div class="cluster-centroid centroid-programming">
+            <span class="centroid-marker">×</span>
+            <span class="centroid-label">Programming & Data</span>
+          </div>
+
+          <div class="cluster-centroid centroid-ml">
+            <span class="centroid-marker">×</span>
+            <span class="centroid-label">Machine Learning</span>
+          </div>
+
+          <div class="cluster-centroid centroid-ai">
+            <span class="centroid-marker">×</span>
+            <span class="centroid-label">AI Engineering</span>
+          </div>
+
+          <div class="cluster-centroid centroid-bi">
+            <span class="centroid-marker">×</span>
+            <span class="centroid-label">BI & Statistics</span>
+          </div>
+
+          <span class="cluster-skill programming-skill skill-lg skill-python" tabindex="0" data-skill-note="Pandas • NumPy • Matplotlib" aria-label="Python, Pandas, NumPy, and Matplotlib">Python</span>
+          <span class="cluster-skill programming-skill skill-md skill-sql" tabindex="0" data-skill-note="Joins • CTEs • Window functions" aria-label="SQL, joins, CTEs, and window functions">SQL</span>
+          <span class="cluster-skill programming-skill skill-sm skill-r" tabindex="0" data-skill-note="Statistics • Modeling • Visualization" aria-label="R, statistics, modeling, and visualization">R</span>
+          <span class="cluster-skill programming-skill skill-sm skill-html" tabindex="0" data-skill-note="Semantic markup • Links • Page structure" aria-label="HTML, semantic markup, links, and page structure">HTML</span>
+          <span class="cluster-skill programming-skill skill-sm skill-css" tabindex="0" data-skill-note="Bootstrap • Responsive layout • UI polish" aria-label="CSS, Bootstrap, responsive layout, and UI polish">CSS</span>
+          <span class="cluster-skill programming-skill skill-md skill-cleaning" tabindex="0" data-skill-note="ETL • Missing values • Outliers" aria-label="Data Cleaning, ETL, missing values, and outliers">Data Cleaning</span>
+          <span class="cluster-skill programming-skill skill-sm skill-eda" tabindex="0" data-skill-note="Profiling • Distributions • Correlations" aria-label="EDA, profiling, distributions, and correlations">EDA</span>
+
+          <span class="cluster-skill ml-skill skill-lg skill-ml" tabindex="0" data-skill-note="scikit-learn • TensorFlow • Model training" aria-label="Machine Learning, scikit-learn, TensorFlow, and model training">Machine Learning</span>
+          <span class="cluster-skill ml-skill skill-md skill-feature" tabindex="0" data-skill-note="Encoding • Scaling • Pipelines" aria-label="Feature Engineering, encoding, scaling, and pipelines">Feature Engineering</span>
+          <span class="cluster-skill ml-skill skill-lg skill-timeseries" tabindex="0" data-skill-note="Forecasting • Trends • Validation" aria-label="Time-Series Forecasting, forecasting, trends, and validation">Time-Series Forecasting</span>
+          <span class="cluster-skill ml-skill skill-lg skill-anomaly" tabindex="0" data-skill-note="Poisson-CI • NB-CI • Thresholding" aria-label="Anomaly Detection, Poisson-CI, NB-CI, and thresholding">Anomaly Detection</span>
+          <span class="cluster-skill ml-skill skill-md skill-eval" tabindex="0" data-skill-note="ROC-AUC • F1 • Cross-validation" aria-label="Model Evaluation, ROC-AUC, F1, and cross-validation">Model Evaluation</span>
+
+          <span class="cluster-skill ai-skill skill-lg skill-rag" tabindex="0" data-skill-note="Chunking • Embeddings • Retrieval" aria-label="RAG, chunking, embeddings, and retrieval">RAG</span>
+          <span class="cluster-skill ai-skill skill-md skill-mlops" tabindex="0" data-skill-note="Deployment • Monitoring • Versioning" aria-label="MLOps, deployment, monitoring, and versioning">MLOps</span>
+          <span class="cluster-skill ai-skill skill-md skill-cloud" tabindex="0" data-skill-note="Azure AI • Foundry • Model endpoints" aria-label="Cloud AI, Azure AI, Foundry, and model endpoints">Cloud AI</span>
+          <span class="cluster-skill ai-skill skill-md skill-research" tabindex="0" data-skill-note="Notebooks • Experiments • Reproducibility" aria-label="Research Computing, notebooks, experiments, and reproducibility">Research Computing</span>
+          <span class="cluster-skill ai-skill skill-md skill-git" tabindex="0" data-skill-note="Branches • Commits • Pull requests • Git Actions" aria-label="Git Workflow, branches, commits, pull requests and Git Actions">Git Workflow</span>
+
+          <span class="cluster-skill bi-skill skill-md skill-powerbi" tabindex="0" data-skill-note="DAX • Data modeling • Dashboards" aria-label="Power BI, DAX, data modeling, and dashboards">Power BI</span>
+          <span class="cluster-skill bi-skill skill-md skill-tableau" tabindex="0" data-skill-note="Filters • Stories • Public dashboards" aria-label="Tableau, filters, stories, and public dashboards">Tableau</span>
+          <span class="cluster-skill bi-skill skill-md skill-stats" tabindex="0" data-skill-note="Inference • Regression • Dispersion" aria-label="Statistical Modeling, inference, regression, and dispersion">Statistical Modeling</span>
+          <span class="cluster-skill bi-skill skill-lg skill-dashboard" tabindex="0" data-skill-note="KPIs • Layout • Stakeholder reporting" aria-label="Dashboarding, KPIs, layout, and stakeholder reporting">Dashboard</span>
+          <span class="cluster-skill bi-skill skill-md skill-business" tabindex="0" data-skill-note="Metrics • Reporting • Decision support" aria-label="Business Intelligence, metrics, reporting, and decision support">Business Intelligence</span>
         </div>
+      </section>
 
-        <div class="cluster-centroid centroid-ml">
-          <span class="centroid-marker">×</span>
-          <span class="centroid-label">Machine Learning</span>
-        </div>
+      <section id="certifications" class="section certifications-section">
+        <p class="section-label">Certifications</p>
 
-        <div class="cluster-centroid centroid-ai">
-          <span class="centroid-marker">×</span>
-          <span class="centroid-label">AI Engineering</span>
-        </div>
+        <h2 class="section-title">
+          Verified Microsoft credentials supporting cloud, analytics, and machine learning operations.
+        </h2>
 
-        <div class="cluster-centroid centroid-bi">
-          <span class="centroid-marker">×</span>
-          <span class="centroid-label">BI & Statistics</span>
-        </div>
-
-        <span class="cluster-skill programming-skill skill-lg skill-python" tabindex="0" data-skill-note="Pandas • NumPy • Matplotlib" aria-label="Python, Pandas, NumPy, and Matplotlib">Python</span>
-        <span class="cluster-skill programming-skill skill-md skill-sql" tabindex="0" data-skill-note="Joins • CTEs • Window functions" aria-label="SQL, joins, CTEs, and window functions">SQL</span>
-        <span class="cluster-skill programming-skill skill-sm skill-r" tabindex="0" data-skill-note="Statistics • Modeling • Visualization" aria-label="R, statistics, modeling, and visualization">R</span>
-        <span class="cluster-skill programming-skill skill-sm skill-html" tabindex="0" data-skill-note="Semantic markup • Links • Page structure" aria-label="HTML, semantic markup, links, and page structure">HTML</span>
-        <span class="cluster-skill programming-skill skill-sm skill-css" tabindex="0" data-skill-note="Bootstrap • Responsive layout • UI polish" aria-label="CSS, Bootstrap, responsive layout, and UI polish">CSS</span>
-        <span class="cluster-skill programming-skill skill-md skill-cleaning" tabindex="0" data-skill-note="ETL • Missing values • Outliers" aria-label="Data Cleaning, ETL, missing values, and outliers">Data Cleaning</span>
-        <span class="cluster-skill programming-skill skill-sm skill-eda" tabindex="0" data-skill-note="Profiling • Distributions • Correlations" aria-label="EDA, profiling, distributions, and correlations">EDA</span>
-
-        <span class="cluster-skill ml-skill skill-lg skill-ml" tabindex="0" data-skill-note="scikit-learn • TensorFlow • Model training" aria-label="Machine Learning, scikit-learn, TensorFlow, and model training">Machine Learning</span>
-        <span class="cluster-skill ml-skill skill-md skill-feature" tabindex="0" data-skill-note="Encoding • Scaling • Pipelines" aria-label="Feature Engineering, encoding, scaling, and pipelines">Feature Engineering</span>
-        <span class="cluster-skill ml-skill skill-lg skill-timeseries" tabindex="0" data-skill-note="Forecasting • Trends • Validation" aria-label="Time-Series Forecasting, forecasting, trends, and validation">Time-Series Forecasting</span>
-        <span class="cluster-skill ml-skill skill-lg skill-anomaly" tabindex="0" data-skill-note="Poisson-CI • NB-CI • Thresholding" aria-label="Anomaly Detection, Poisson-CI, NB-CI, and thresholding">Anomaly Detection</span>
-        <span class="cluster-skill ml-skill skill-md skill-eval" tabindex="0" data-skill-note="ROC-AUC • F1 • Cross-validation" aria-label="Model Evaluation, ROC-AUC, F1, and cross-validation">Model Evaluation</span>
-
-        <span class="cluster-skill ai-skill skill-lg skill-rag" tabindex="0" data-skill-note="Chunking • Embeddings • Retrieval" aria-label="RAG, chunking, embeddings, and retrieval">RAG</span>
-        <span class="cluster-skill ai-skill skill-md skill-mlops" tabindex="0" data-skill-note="Deployment • Monitoring • Versioning" aria-label="MLOps, deployment, monitoring, and versioning">MLOps</span>
-        <span class="cluster-skill ai-skill skill-md skill-cloud" tabindex="0" data-skill-note="Azure AI • Foundry • Model endpoints" aria-label="Cloud AI, Azure AI, Foundry, and model endpoints">Cloud AI</span>
-        <span class="cluster-skill ai-skill skill-md skill-research" tabindex="0" data-skill-note="Notebooks • Experiments • Reproducibility" aria-label="Research Computing, notebooks, experiments, and reproducibility">Research Computing</span>
-        <span class="cluster-skill ai-skill skill-md skill-git" tabindex="0" data-skill-note="Branches • Commits • Pull requests • Git Actions" aria-label="Git Workflow, branches, commits, pull requests and Git Actions">Git Workflow</span>
-
-        <span class="cluster-skill bi-skill skill-md skill-powerbi" tabindex="0" data-skill-note="DAX • Data modeling • Dashboards" aria-label="Power BI, DAX, data modeling, and dashboards">Power BI</span>
-        <span class="cluster-skill bi-skill skill-md skill-tableau" tabindex="0" data-skill-note="Filters • Stories • Public dashboards" aria-label="Tableau, filters, stories, and public dashboards">Tableau</span>
-        <span class="cluster-skill bi-skill skill-md skill-stats" tabindex="0" data-skill-note="Inference • Regression • Dispersion" aria-label="Statistical Modeling, inference, regression, and dispersion">Statistical Modeling</span>
-        <span class="cluster-skill bi-skill skill-lg skill-dashboard" tabindex="0" data-skill-note="KPIs • Layout • Stakeholder reporting" aria-label="Dashboarding, KPIs, layout, and stakeholder reporting">Dashboard</span>
-        <span class="cluster-skill bi-skill skill-md skill-business" tabindex="0" data-skill-note="Metrics • Reporting • Decision support" aria-label="Business Intelligence, metrics, reporting, and decision support">Business Intelligence</span>
-      </div>
-    </section>
-
-
-
-    <section id="certifications" class="section certifications-section">
-      <p class="section-label">Certifications</p>
-
-      <h2 class="section-title">
-        Verified Microsoft credentials supporting cloud, analytics, and machine learning operations.
-      </h2>
-
-      <div class="row g-4">
-        <div class="col-md-6 col-xl-4">
-          <article class="credential-card credential-card-cloud h-100">
-            <p class="credential-provider">Microsoft Certified</p>
-            <p class="credential-track">Cloud Foundations</p>
-            <h3>Azure Fundamentals</h3>
-            <p>
-              Foundational credential covering Azure cloud concepts, services, governance,
-              pricing, and core cloud architecture.
-            </p>
-            <a
-              href="https://learn.microsoft.com/api/credentials/share/en-us/EdidiongIbokete-5057/B158335507A65EC?sharingId=8C564C2C18804A78"
-              class="credential-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Verify credential
-            </a>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-xl-4">
-          <article class="credential-card credential-card-analytics h-100">
-            <p class="credential-provider">Microsoft Certified</p>
-            <p class="credential-track">Analytics & BI</p>
-            <h3>Power BI Data Analyst Associate</h3>
-            <p>
-              Professional credential focused on data modeling, visualization, dashboarding,
-              analytics, and business intelligence reporting.
-            </p>
-            <a
-              href="https://learn.microsoft.com/api/credentials/share/en-us/EdidiongIbokete-5057/DA17B6951B0802D3?sharingId=8C564C2C18804A78"
-              class="credential-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Verify credential
-            </a>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-xl-4">
-          <article class="credential-card credential-card-mlops h-100">
-            <p class="credential-provider">Microsoft Certified</p>
-            <p class="credential-track">MLOps & AI Engineering</p>
-            <h3>Machine Learning Operations Engineer Associate</h3>
-            <p>
-              Associate-level credential aligned with deploying, monitoring, and managing
-              machine learning systems in production-oriented workflows.
-            </p>
-            <a
-              href="https://learn.microsoft.com/api/credentials/share/en-gb/EdidiongIbokete-5057/FA6274DAB8DF82CD?sharingId=8C564C2C18804A78"
-              class="credential-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Verify credential
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-
-
-
-    <section id="presentations" class="section presentations-section">
-      <p class="section-label">Presentations</p>
-
-      <h2 class="section-title">
-        Research presentations, public talks, and presentation artifacts connecting AI,
-        cybersecurity, and information access.
-      </h2>
-
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <article class="presentation-card presentation-card-cataloging h-100">
-            <div class="presentation-cover" style="--presentation-cover-bg: url('images/presentations/cataloging-ai-poster.jpg');">
-              <img
-                src="images/presentations/cataloging-ai-poster.jpg"
-                alt="Poster for Using AI to Address Cataloging Backlogs"
-                class="presentation-image"
-              />
-            </div>
-
-            <div class="presentation-card-body">
-              <div class="presentation-card-topline">
-                <span class="presentation-pill">Featured seminar</span>
-                <p class="presentation-meta">CCADE Fall 2025 Research Seminar • September 30, 2025</p>
-              </div>
-
-              <h3>Using AI to Address Cataloging Backlogs</h3>
-
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4">
+            <article class="credential-card credential-card-cloud h-100">
+              <p class="credential-provider">Microsoft Certified</p>
+              <p class="credential-track">Cloud Foundations</p>
+              <h3>Azure Fundamentals</h3>
               <p>
-                Presented at Canisius University, highlighting AI-assisted approaches for addressing
-                cataloging backlogs and improving information access workflows.
+                Foundational credential covering Azure cloud concepts, services, governance,
+                pricing, and core cloud architecture.
               </p>
-
-              <p class="presentation-detail">
-                Old Main OM 102 • Center for Research Libraries Global Resources Network
-              </p>
-
-              <div class="presentation-actions">
-                <a
-                  href="images/presentations/cataloging-ai-poster.jpg"
-                  class="presentation-button presentation-button-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View poster
-                </a>
-
-                <a
-                  href="files/presentations/Cooperative-Cataloging-Exchange-Algorithm.pdf"
-                  class="presentation-button presentation-button-secondary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open slides
-                </a>
-
-                <a
-                  href="files/presentations/ccade-newsletter.pdf"
-                  class="presentation-button presentation-button-secondary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Newsletter
-                </a>
-
-                <a
-                  href="https://www.canisius.edu/news/ai-solutions-cataloging-challenges"
-                  class="presentation-button presentation-button-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Canisius feature
-                </a>
-
-                <a
-                  href="files/presentations/cataloging-event-photos.pdf"
-                  class="presentation-button presentation-button-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Event photos
-                </a>
-
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-lg-6">
-          <article class="presentation-card presentation-card-poisson h-100">
-            <div class="presentation-cover" style="--presentation-cover-bg: url('images/presentations/poisson-presentation.png');">
-              <img
-                src="images/presentations/poisson-presentation.png"
-                alt="Poster for From Probability to Protection presentation"
-                class="presentation-image"
-              />
-            </div>
-
-            <div class="presentation-card-body">
-              <div class="presentation-card-topline">
-                <span class="presentation-pill">Research showcase</span>
-                <p class="presentation-meta">IMPACT Faculty Celebration • October 22, 2025</p>
-              </div>
-
-              <h3>From Probability to Protection: Poisson Inequalities for Machine Learning in Cybersecurity</h3>
-
-              <p>
-                Presented with Prof. Sana Spektor at Canisius University, connecting probability
-                theory, concentration inequalities, and machine learning for cybersecurity anomaly detection.
-              </p>
-
-              <p class="presentation-detail">
-                Science Hall • Canisius University
-              </p>
-
-              <div class="presentation-actions">
-                <a
-                  href="images/presentations/poisson-presentation.png"
-                  class="presentation-button presentation-button-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View poster
-                </a>
-
-                <a
-                  href="files/presentations/From_Probability_to_Protection.pdf"
-                  class="presentation-button presentation-button-secondary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open slides
-                </a>
-
-                <a
-                  href="files/presentations/poisson-event-photos.pdf"
-                  class="presentation-button presentation-button-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Event photos
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-
-
-    <section id="achievements" class="section achievements-section">
-      <p class="section-label">Achievements & Recognition</p>
-
-      <h2 class="section-title">
-        Recognition across competitive data science, funded research, and academic performance.
-      </h2>
-
-      <div class="row g-4">
-        <div class="col-md-6 col-xl-4">
-          <article class="recognition-card recognition-card-award h-100">
-            <div class="recognition-card-top">
-              <span class="recognition-marker">1st</span>
-              <p class="recognition-kicker">Competition Award</p>
-            </div>
-
-            <h3>Data Masters Challenge</h3>
-
-            <p class="achievement-subtitle">
-              Data Science Olympiad • April 2025
-            </p>
-
-            <p>
-              Awarded first place for a competitive data science project involving analytical
-              problem-solving, predictive modeling, and communication of findings.
-            </p>
-
-            <div class="recognition-proof-points" aria-label="Recognition focus areas">
-              <span>1st Place</span>
-              <span>Forecasting</span>
-              <span>Predictive modeling</span>
-            </div>
-
-            <div class="recognition-actions">
               <a
-                href="files/achievements/data-masters-challenge-certificate.pdf"
-                class="recognition-button"
+                href="https://learn.microsoft.com/api/credentials/share/en-us/EdidiongIbokete-5057/B158335507A65EC?sharingId=8C564C2C18804A78"
+                class="credential-button"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View certificate
+                Verify credential
               </a>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-xl-4">
-          <article class="recognition-card recognition-card-fellowship h-100">
-            <div class="recognition-card-top">
-              <span class="recognition-marker">KSF</span>
-              <p class="recognition-kicker">Research Fellowship</p>
-            </div>
-
-            <h3>Koessler Summer Fellowship</h3>
-
-            <p class="achievement-subtitle">
-              2025 • Canisius University
-            </p>
-
-            <p>
-              Fellowship support connected to research on concentration inequality-based
-              machine learning methods for certified anomaly detection.
-            </p>
-
-            <div class="recognition-proof-points" aria-label="Recognition focus areas">
-              <span>Certified ML</span>
-              <span>Anomaly detection</span>
-              <span>Research support</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-xl-4">
-          <article class="recognition-card recognition-card-academic h-100">
-            <div class="recognition-card-top">
-              <span class="recognition-marker">DL</span>
-              <p class="recognition-kicker">Academic Recognition</p>
-            </div>
-
-            <h3>Dean’s List Excellence Award</h3>
-
-            <p class="achievement-subtitle">
-              Academic distinction
-            </p>
-
-            <p>
-              Recognition for academic excellence and sustained academic performance,
-              included as part of the portfolio knowledge base.
-            </p>
-
-            <div class="recognition-proof-points" aria-label="Recognition focus areas">
-              <span>Academic excellence</span>
-              <span>Consistency</span>
-              <span>Recognition</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-    
-
-  </div>
-  </main>
-
-
-
-    <section id="contact" class="section contact-section">
-      <div class="contact-inner">
-        <div class="contact-copy">
-          <p class="section-label">Contact</p>
-
-          <h2 class="section-title">
-            Let’s connect.
-          </h2>
-
-          <p>
-            I am open to data science, applied AI, machine learning, and research-oriented
-            opportunities where analytical thinking, model development, and clear communication matter.
-          </p>
-        </div>
-
-        <div class="contact-social-area" aria-label="Contact and social links">
-          <p class="contact-social-kicker">Reach me here</p>
-
-          <div class="contact-social-links">
-            <a
-              href="mailto:iboketee@icloud.com?subject=Portfolio%20Inquiry%20-%20Edidiong%20Ibokete"
-              class="contact-social-link contact-social-email"
-              aria-label="Email Eddie"
-              title="Email Eddie"
-            >
-              <i class="bi bi-envelope-at-fill" aria-hidden="true"></i>
-              <span class="visually-hidden">Email</span>
-            </a>
-
-            <a
-              href="https://github.com/Eddy-bok"
-              class="contact-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Eddie's GitHub"
-            >
-              <i class="bi bi-github" aria-hidden="true"></i>
-              <span class="visually-hidden">GitHub</span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/edidiong-ibokete/"
-              class="contact-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Eddie's LinkedIn"
-            >
-              <i class="bi bi-linkedin" aria-hidden="true"></i>
-              <span class="visually-hidden">LinkedIn</span>
-            </a>
+            </article>
           </div>
 
-          <p class="contact-social-note">
-            Email and LinkedIn are the best ways to reach me.
-          </p>
+          <div class="col-md-6 col-xl-4">
+            <article class="credential-card credential-card-analytics h-100">
+              <p class="credential-provider">Microsoft Certified</p>
+              <p class="credential-track">Analytics & BI</p>
+              <h3>Power BI Data Analyst Associate</h3>
+              <p>
+                Professional credential focused on data modeling, visualization, dashboarding,
+                analytics, and business intelligence reporting.
+              </p>
+              <a
+                href="https://learn.microsoft.com/api/credentials/share/en-us/EdidiongIbokete-5057/DA17B6951B0802D3?sharingId=8C564C2C18804A78"
+                class="credential-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Verify credential
+              </a>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <article class="credential-card credential-card-mlops h-100">
+              <p class="credential-provider">Microsoft Certified</p>
+              <p class="credential-track">MLOps & AI Engineering</p>
+              <h3>Machine Learning Operations Engineer Associate</h3>
+              <p>
+                Associate-level credential aligned with deploying, monitoring, and managing
+                machine learning systems in production-oriented workflows.
+              </p>
+              <a
+                href="https://learn.microsoft.com/api/credentials/share/en-gb/EdidiongIbokete-5057/FA6274DAB8DF82CD?sharingId=8C564C2C18804A78"
+                class="credential-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Verify credential
+              </a>
+            </article>
+          </div>
         </div>
+      </section>
+
+      <section id="presentations" class="section presentations-section">
+        <p class="section-label">Presentations</p>
+
+        <h2 class="section-title">
+          Research presentations, public talks, and presentation artifacts connecting AI,
+          cybersecurity, and information access.
+        </h2>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="presentation-card presentation-card-cataloging h-100">
+              <div class="presentation-cover" style="--presentation-cover-bg: url('images/presentations/cataloging-ai-poster.jpg');">
+                <img
+                  src="images/presentations/cataloging-ai-poster.jpg"
+                  alt="Poster for Using AI to Address Cataloging Backlogs"
+                  class="presentation-image"
+                />
+              </div>
+
+              <div class="presentation-card-body">
+                <div class="presentation-card-topline">
+                  <span class="presentation-pill">Featured seminar</span>
+                  <p class="presentation-meta">CCADE Fall 2025 Research Seminar • September 30, 2025</p>
+                </div>
+
+                <h3>Using AI to Address Cataloging Backlogs</h3>
+
+                <p>
+                  Presented at Canisius University, highlighting AI-assisted approaches for addressing
+                  cataloging backlogs and improving information access workflows.
+                </p>
+
+                <p class="presentation-detail">
+                  Old Main OM 102 • Center for Research Libraries Global Resources Network
+                </p>
+
+                <div class="presentation-actions">
+                  <a
+                    href="images/presentations/cataloging-ai-poster.jpg"
+                    class="presentation-button presentation-button-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View poster
+                  </a>
+
+                  <a
+                    href="files/presentations/Cooperative-Cataloging-Exchange-Algorithm.pdf"
+                    class="presentation-button presentation-button-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open slides
+                  </a>
+
+                  <a
+                    href="files/presentations/ccade-newsletter.pdf"
+                    class="presentation-button presentation-button-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Newsletter
+                  </a>
+
+                  <a
+                    href="https://www.canisius.edu/news/ai-solutions-cataloging-challenges"
+                    class="presentation-button presentation-button-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Canisius feature
+                  </a>
+
+                  <a
+                    href="files/presentations/cataloging-event-photos.pdf"
+                    class="presentation-button presentation-button-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Event photos
+                  </a>
+
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-6">
+            <article class="presentation-card presentation-card-poisson h-100">
+              <div class="presentation-cover" style="--presentation-cover-bg: url('images/presentations/poisson-presentation.png');">
+                <img
+                  src="images/presentations/poisson-presentation.png"
+                  alt="Poster for From Probability to Protection presentation"
+                  class="presentation-image"
+                />
+              </div>
+
+              <div class="presentation-card-body">
+                <div class="presentation-card-topline">
+                  <span class="presentation-pill">Research showcase</span>
+                  <p class="presentation-meta">IMPACT Faculty Celebration • October 22, 2025</p>
+                </div>
+
+                <h3>From Probability to Protection: Poisson Inequalities for Machine Learning in Cybersecurity</h3>
+
+                <p>
+                  Presented with Prof. Sana Spektor at Canisius University, connecting probability
+                  theory, concentration inequalities, and machine learning for cybersecurity anomaly detection.
+                </p>
+
+                <p class="presentation-detail">
+                  Science Hall • Canisius University
+                </p>
+
+                <div class="presentation-actions">
+                  <a
+                    href="images/presentations/poisson-presentation.png"
+                    class="presentation-button presentation-button-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View poster
+                  </a>
+
+                  <a
+                    href="files/presentations/From_Probability_to_Protection.pdf"
+                    class="presentation-button presentation-button-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open slides
+                  </a>
+
+                  <a
+                    href="files/presentations/poisson-event-photos.pdf"
+                    class="presentation-button presentation-button-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Event photos
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" class="section achievements-section">
+        <p class="section-label">Achievements & Recognition</p>
+
+        <h2 class="section-title">
+          Recognition across competitive data science, funded research, and academic performance.
+        </h2>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4">
+            <article class="recognition-card recognition-card-award h-100">
+              <div class="recognition-card-top">
+                <span class="recognition-marker">1st</span>
+                <p class="recognition-kicker">Competition Award</p>
+              </div>
+
+              <h3>Data Masters Challenge</h3>
+
+              <p class="achievement-subtitle">
+                Data Science Olympiad • April 2025
+              </p>
+
+              <p>
+                Awarded first place for a competitive data science project involving analytical
+                problem-solving, predictive modeling, and communication of findings.
+              </p>
+
+              <div class="recognition-proof-points" aria-label="Recognition focus areas">
+                <span>1st Place</span>
+                <span>Forecasting</span>
+                <span>Predictive modeling</span>
+              </div>
+
+              <div class="recognition-actions">
+                <a
+                  href="files/achievements/data-masters-challenge-certificate.pdf"
+                  class="recognition-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View certificate
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <article class="recognition-card recognition-card-fellowship h-100">
+              <div class="recognition-card-top">
+                <span class="recognition-marker">KSF</span>
+                <p class="recognition-kicker">Research Fellowship</p>
+              </div>
+
+              <h3>Koessler Summer Fellowship</h3>
+
+              <p class="achievement-subtitle">
+                2025 • Canisius University
+              </p>
+
+              <p>
+                Fellowship support connected to research on concentration inequality-based
+                machine learning methods for certified anomaly detection.
+              </p>
+
+              <div class="recognition-proof-points" aria-label="Recognition focus areas">
+                <span>Certified ML</span>
+                <span>Anomaly detection</span>
+                <span>Research support</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <article class="recognition-card recognition-card-academic h-100">
+              <div class="recognition-card-top">
+                <span class="recognition-marker">DL</span>
+                <p class="recognition-kicker">Academic Recognition</p>
+              </div>
+
+              <h3>Dean’s List Excellence Award</h3>
+
+              <p class="achievement-subtitle">
+                Academic distinction
+              </p>
+
+              <p>
+                Recognition for academic excellence and sustained academic performance,
+                included as part of the portfolio knowledge base.
+              </p>
+
+              <div class="recognition-proof-points" aria-label="Recognition focus areas">
+                <span>Academic excellence</span>
+                <span>Consistency</span>
+                <span>Recognition</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  </main>
+
+  <section id="contact" class="section contact-section">
+    <div class="contact-inner">
+      <div class="contact-copy">
+        <p class="section-label">Contact</p>
+
+        <h2 class="section-title">
+          Let’s connect.
+        </h2>
+
+        <p>
+          I am open to data science, applied AI, machine learning, and research-oriented
+          opportunities where analytical thinking, model development, and clear communication matter.
+        </p>
       </div>
-    </section>
 
+      <div class="contact-social-area" aria-label="Contact and social links">
+        <p class="contact-social-kicker">Reach me here</p>
 
-<script src="carousel.js"></script>
-<script src="skills-cluster.js"></script>
-<script src="assistant.js"></script>
+        <div class="contact-social-links">
+          <a
+            href="mailto:iboketee@icloud.com?subject=Portfolio%20Inquiry%20-%20Edidiong%20Ibokete"
+            class="contact-social-link contact-social-email"
+            aria-label="Email Eddie"
+            title="Email Eddie"
+          >
+            <i class="bi bi-envelope-at-fill" aria-hidden="true"></i>
+            <span class="visually-hidden">Email</span>
+          </a>
+
+          <a
+            href="https://github.com/Eddy-bok"
+            class="contact-social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Eddie's GitHub"
+          >
+            <i class="bi bi-github" aria-hidden="true"></i>
+            <span class="visually-hidden">GitHub</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/edidiong-ibokete/"
+            class="contact-social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Eddie's LinkedIn"
+          >
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+            <span class="visually-hidden">LinkedIn</span>
+          </a>
+        </div>
+
+        <p class="contact-social-note">
+          Email and LinkedIn are the best ways to reach me.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="carousel.js"></script>
+  <script src="skills-cluster.js"></script>
+  <script src="assistant.js"></script>
 </body>
 </html>
