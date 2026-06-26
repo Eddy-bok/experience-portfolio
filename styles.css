@@ -830,39 +830,58 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     gap: 15px;
-    padding: 18px 18px 10px;
-    border-bottom: 1px solid #e5e5e5;
-    background: white;
+    padding: 18px 18px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background:
+        radial-gradient(circle at 18% 18%, rgba(201, 168, 106, 0.18), transparent 34%),
+        linear-gradient(135deg, #102a2d 0%, #17393d 100%);
+    color: white;
 }
 
 .assistant-panel-label {
     margin: 0 0 4px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #666;
+    color: var(--color-gold);
     font-size: 0.72rem;
+    font-weight: 800;
 }
 
 .assistant-panel-header h3 {
     margin: 0;
+    color: white;
     font-size: 1.05rem;
 }
 
 .assistant-close {
-    border: none;
-    background: transparent;
-    font-size: 1.6rem;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.35rem;
     line-height: 1;
     cursor: pointer;
-    color: #555;
+}
+
+.assistant-close:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: white;
 }
 
 .assistant-panel-description {
     margin: 0;
     padding: 14px 18px;
-    color: #444;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    background:
+        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.10), transparent 32%),
+        linear-gradient(135deg, #eef6f6 0%, #e7f1f1 100%);
+    color: var(--color-dark);
     line-height: 1.5;
-    font-size: 0.92rem;
+    font-size: 0.82rem;
 }
 
 .assistant-messages {
@@ -898,6 +917,33 @@ body {
     color: #222;
 }
 
+.assistant-message-typing {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #444;
+}
+
+.assistant-message-typing::after {
+    content: "";
+    width: 28px;
+    height: 8px;
+    display: inline-block;
+    background:
+        radial-gradient(circle, #666 2px, transparent 3px) 0 50% / 9px 8px repeat-x;
+    animation: assistantTypingDots 900ms infinite steps(3);
+}
+
+@keyframes assistantTypingDots {
+    from {
+        clip-path: inset(0 22px 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
 .assistant-message-bot a {
     color: #005ea8;
     font-weight: 600;
@@ -906,27 +952,44 @@ body {
 .assistant-form {
     display: flex;
     gap: 8px;
-    padding: 14px 18px 10px;
-    background: #fafafa;
+    padding: 16px 18px 12px;
+    border-top: 1px solid rgba(16, 42, 45, 0.10);
+    background:
+        radial-gradient(circle at 92% 10%, rgba(201, 168, 106, 0.12), transparent 34%),
+        linear-gradient(135deg, #eef6f6 0%, #e7f1f1 100%);
 }
 
 .assistant-form input {
     flex: 1;
     min-width: 0;
-    padding: 12px;
-    border: 1px solid #bbb;
-    border-radius: 8px;
+    padding: 12px 13px;
+    border: 1px solid rgba(47, 111, 115, 0.28);
+    border-radius: 12px;
+    background: white;
+    color: var(--color-dark);
     font-size: 0.95rem;
+    outline: none;
+}
+
+.assistant-form input:focus {
+    border-color: var(--portfolio-accent);
+    box-shadow: 0 0 0 3px rgba(47, 111, 115, 0.12);
 }
 
 .assistant-form button {
     padding: 12px 16px;
-    border: 1px solid #222;
-    border-radius: 8px;
-    background: #222;
+    border: 1px solid var(--portfolio-accent);
+    border-radius: 12px;
+    background: var(--portfolio-accent);
     color: white;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.assistant-form button:hover {
+    background: var(--color-dark);
+    border-color: var(--color-dark);
 }
 
 .assistant-form button:disabled {
@@ -938,7 +1001,8 @@ body {
     min-height: 18px;
     margin: 0;
     padding: 0 18px 14px;
-    color: #666;
+    background: #eef6f6;
+    color: var(--color-muted);
     font-size: 0.85rem;
 }
 
@@ -1567,8 +1631,8 @@ body {
     }
 
     .assistant-widget {
-        right: 14px;
-        bottom: 14px;
+        right: 4px;
+        bottom: 22px;
     }
 
     .assistant-callout {
@@ -1577,8 +1641,8 @@ body {
 
     .assistant-panel {
         width: calc(100vw - 32px);
-        right: 0;
-        bottom: 64px;
+        right: 10px;
+        bottom: 68px;
     }
 
     .assistant-avatar-image {
@@ -2633,7 +2697,7 @@ body {
 .recognition-proof-points {
     display: flex;
     flex-wrap: wrap;
-    gap: 0;
+    row-gap: 4px;
     margin-top: auto;
     color: var(--color-muted);
     font-size: 0.8rem;
@@ -2641,7 +2705,8 @@ body {
 }
 
 .recognition-proof-points span {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
     color: inherit;
     font-size: inherit;
     font-weight: 550;
@@ -2649,7 +2714,8 @@ body {
 }
 
 .recognition-proof-points span:not(:last-child)::after {
-    content: " • ";
+    content: "•";
+    margin: 0 0.42rem;
     color: var(--color-muted);
 }
 

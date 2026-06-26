@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const messages = document.getElementById("assistantMessages");
     const submitButton = document.getElementById("assistantSubmit");
     const status = document.getElementById("assistantStatus");
+    let typingIndicator = null;
 
     if (
         !widget ||
@@ -76,7 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
         addMessage("user", question);
         input.value = "";
 
-        setLoading(true, "Thinking...");
+        setLoading(true, "");
+        showTypingIndicator();
 
         try {
             const response = await fetch(ASSISTANT_API_URL, {
@@ -119,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
         } finally {
+            removeTypingIndicator();
             setLoading(false, "");
             input.focus();
         }
@@ -169,6 +172,24 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.disabled = isLoading;
         input.disabled = isLoading;
         status.textContent = message;
+    }
+
+    function showTypingIndicator() {
+        removeTypingIndicator();
+
+        typingIndicator = document.createElement("div");
+        typingIndicator.className = "assistant-message assistant-message-bot assistant-message-typing";
+        typingIndicator.textContent = "Ariel is typing";
+
+        messages.appendChild(typingIndicator);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        if (typingIndicator) {
+            typingIndicator.remove();
+            typingIndicator = null;
+        }
     }
 
     function extractApiError(data) {
