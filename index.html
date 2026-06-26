@@ -345,15 +345,22 @@
         </p>
       </div>
 
-      <div class="skills-cluster-map" aria-label="K-means inspired technical skills map" style="--skills-map-image: url('images/skills/skills-cloud-bg.jpg'); --skills-map-image-opacity: 0.22;">
-        <div class="cluster-legend">
+      <div class="cluster-legend" aria-label="Skills cluster legend">
+          <span class="legend-heading">Centroid categories</span>
+
           <span><i class="legend-dot programming-dot"></i>Programming & Data</span>
           <span><i class="legend-dot ml-dot"></i>Machine Learning</span>
           <span><i class="legend-dot ai-dot"></i>AI Engineering</span>
           <span><i class="legend-dot bi-dot"></i>BI & Statistics</span>
-          <span><i class="legend-dot centroid-dot" aria-hidden="true">×</i>Centroids</span>
+
+          <span class="legend-centroid-note">
+            <i class="legend-dot centroid-dot" aria-hidden="true">×</i>
+            marker = centroid position
+          </span>
         </div>
 
+
+      <div class="skills-cluster-map" aria-label="K-means inspired technical skills map" style="--skills-map-image: url('images/skills/skills-cloud-bg.jpg'); --skills-map-image-opacity: 0.22;">
         <div class="cluster-centroid centroid-programming">
           <span class="centroid-marker">×</span>
           <span class="centroid-label">Programming & Data</span>
@@ -374,31 +381,31 @@
           <span class="centroid-label">BI & Statistics</span>
         </div>
 
-        <span class="cluster-skill programming-skill skill-lg skill-python">Python</span>
-        <span class="cluster-skill programming-skill skill-md skill-sql">SQL</span>
-        <span class="cluster-skill programming-skill skill-sm skill-r">R</span>
-        <span class="cluster-skill programming-skill skill-sm skill-html">HTML</span>
-        <span class="cluster-skill programming-skill skill-sm skill-css">CSS</span>
-        <span class="cluster-skill programming-skill skill-md skill-cleaning">Data Cleaning</span>
-        <span class="cluster-skill programming-skill skill-sm skill-eda">EDA</span>
+        <span class="cluster-skill programming-skill skill-lg skill-python" tabindex="0" data-skill-note="Pandas • NumPy • Matplotlib" aria-label="Python, Pandas, NumPy, and Matplotlib">Python</span>
+        <span class="cluster-skill programming-skill skill-md skill-sql" tabindex="0" data-skill-note="Joins • CTEs • Window functions" aria-label="SQL, joins, CTEs, and window functions">SQL</span>
+        <span class="cluster-skill programming-skill skill-sm skill-r" tabindex="0" data-skill-note="Statistics • Modeling • Visualization" aria-label="R, statistics, modeling, and visualization">R</span>
+        <span class="cluster-skill programming-skill skill-sm skill-html" tabindex="0" data-skill-note="Semantic markup • Links • Page structure" aria-label="HTML, semantic markup, links, and page structure">HTML</span>
+        <span class="cluster-skill programming-skill skill-sm skill-css" tabindex="0" data-skill-note="Bootstrap • Responsive layout • UI polish" aria-label="CSS, Bootstrap, responsive layout, and UI polish">CSS</span>
+        <span class="cluster-skill programming-skill skill-md skill-cleaning" tabindex="0" data-skill-note="ETL • Missing values • Outliers" aria-label="Data Cleaning, ETL, missing values, and outliers">Data Cleaning</span>
+        <span class="cluster-skill programming-skill skill-sm skill-eda" tabindex="0" data-skill-note="Profiling • Distributions • Correlations" aria-label="EDA, profiling, distributions, and correlations">EDA</span>
 
-        <span class="cluster-skill ml-skill skill-lg skill-ml">Machine Learning</span>
-        <span class="cluster-skill ml-skill skill-md skill-feature">Feature Engineering</span>
-        <span class="cluster-skill ml-skill skill-lg skill-timeseries">Time-Series Forecasting</span>
-        <span class="cluster-skill ml-skill skill-lg skill-anomaly">Anomaly Detection</span>
-        <span class="cluster-skill ml-skill skill-md skill-eval">Model Evaluation</span>
+        <span class="cluster-skill ml-skill skill-lg skill-ml" tabindex="0" data-skill-note="scikit-learn • TensorFlow • Model training" aria-label="Machine Learning, scikit-learn, TensorFlow, and model training">Machine Learning</span>
+        <span class="cluster-skill ml-skill skill-md skill-feature" tabindex="0" data-skill-note="Encoding • Scaling • Pipelines" aria-label="Feature Engineering, encoding, scaling, and pipelines">Feature Engineering</span>
+        <span class="cluster-skill ml-skill skill-lg skill-timeseries" tabindex="0" data-skill-note="Forecasting • Trends • Validation" aria-label="Time-Series Forecasting, forecasting, trends, and validation">Time-Series Forecasting</span>
+        <span class="cluster-skill ml-skill skill-lg skill-anomaly" tabindex="0" data-skill-note="Poisson-CI • NB-CI • Thresholding" aria-label="Anomaly Detection, Poisson-CI, NB-CI, and thresholding">Anomaly Detection</span>
+        <span class="cluster-skill ml-skill skill-md skill-eval" tabindex="0" data-skill-note="ROC-AUC • F1 • Cross-validation" aria-label="Model Evaluation, ROC-AUC, F1, and cross-validation">Model Evaluation</span>
 
-        <span class="cluster-skill ai-skill skill-lg skill-rag">RAG</span>
-        <span class="cluster-skill ai-skill skill-md skill-mlops">MLOps</span>
-        <span class="cluster-skill ai-skill skill-md skill-cloud">Cloud AI</span>
-        <span class="cluster-skill ai-skill skill-md skill-research">Research Computing</span>
-        <span class="cluster-skill ai-skill skill-md skill-git">Git Workflow</span>
+        <span class="cluster-skill ai-skill skill-lg skill-rag" tabindex="0" data-skill-note="Chunking • Embeddings • Retrieval" aria-label="RAG, chunking, embeddings, and retrieval">RAG</span>
+        <span class="cluster-skill ai-skill skill-md skill-mlops" tabindex="0" data-skill-note="Deployment • Monitoring • Versioning" aria-label="MLOps, deployment, monitoring, and versioning">MLOps</span>
+        <span class="cluster-skill ai-skill skill-md skill-cloud" tabindex="0" data-skill-note="Azure AI • Foundry • Model endpoints" aria-label="Cloud AI, Azure AI, Foundry, and model endpoints">Cloud AI</span>
+        <span class="cluster-skill ai-skill skill-md skill-research" tabindex="0" data-skill-note="Notebooks • Experiments • Reproducibility" aria-label="Research Computing, notebooks, experiments, and reproducibility">Research Computing</span>
+        <span class="cluster-skill ai-skill skill-md skill-git" tabindex="0" data-skill-note="Branches • Commits • Pull requests" aria-label="Git Workflow, branches, commits, and pull requests">Git Workflow</span>
 
-        <span class="cluster-skill bi-skill skill-md skill-powerbi">Power BI</span>
-        <span class="cluster-skill bi-skill skill-md skill-tableau">Tableau</span>
-        <span class="cluster-skill bi-skill skill-md skill-stats">Statistical Modeling</span>
-        <span class="cluster-skill bi-skill skill-lg skill-dashboard">Dashboarding</span>
-        <span class="cluster-skill bi-skill skill-md skill-business">Business Intelligence</span>
+        <span class="cluster-skill bi-skill skill-md skill-powerbi" tabindex="0" data-skill-note="DAX • Data modeling • Dashboards" aria-label="Power BI, DAX, data modeling, and dashboards">Power BI</span>
+        <span class="cluster-skill bi-skill skill-md skill-tableau" tabindex="0" data-skill-note="Filters • Stories • Public dashboards" aria-label="Tableau, filters, stories, and public dashboards">Tableau</span>
+        <span class="cluster-skill bi-skill skill-md skill-stats" tabindex="0" data-skill-note="Inference • Regression • Dispersion" aria-label="Statistical Modeling, inference, regression, and dispersion">Statistical Modeling</span>
+        <span class="cluster-skill bi-skill skill-lg skill-dashboard" tabindex="0" data-skill-note="KPIs • Layout • Stakeholder reporting" aria-label="Dashboarding, KPIs, layout, and stakeholder reporting">Dashboard</span>
+        <span class="cluster-skill bi-skill skill-md skill-business" tabindex="0" data-skill-note="Metrics • Reporting • Decision support" aria-label="Business Intelligence, metrics, reporting, and decision support">Business Intelligence</span>
       </div>
     </section>
 

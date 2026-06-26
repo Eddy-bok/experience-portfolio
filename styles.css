@@ -2560,14 +2560,14 @@ body {
    ========================================================= */
 
 .cluster-legend {
-    position: absolute;
-    left: 28px;
-    top: 24px;
+    position: relative;
     z-index: 6;
     display: flex;
     flex-wrap: wrap;
-    gap: 22px;
-    max-width: 780px;
+    align-items: center;
+    gap: 10px 20px;
+    max-width: 980px;
+    margin: 0 0 24px;
 }
 
 .cluster-legend span {
@@ -2583,6 +2583,18 @@ body {
     color: var(--color-dark);
     font-size: 0.82rem;
     font-weight: 900;
+}
+
+.legend-heading {
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.legend-centroid-note {
+    color: var(--color-muted);
 }
 
 .legend-dot {
@@ -3048,10 +3060,62 @@ body {
     will-change: transform, filter;
 }
 
-.cluster-skill:hover {
-    z-index: 10;
+.cluster-skill:hover,
+.cluster-skill:focus-visible {
+    z-index: 20;
     animation-play-state: paused;
     filter: saturate(1.18) brightness(1.08);
+    cursor: help;
+}
+
+.cluster-skill:focus-visible {
+    outline: 3px solid rgba(47, 111, 115, 0.34);
+    outline-offset: 5px;
+}
+
+/* Skill micro-tooltips:
+   Uses each skill's data-skill-note value.
+   Each note should sell practical usage, not merely repeat the skill label. */
+.cluster-skill::after {
+    content: attr(data-skill-note);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 12px);
+    z-index: 30;
+    width: max-content;
+    max-width: 260px;
+    padding: 9px 12px;
+    border: 1px solid rgba(16, 42, 45, 0.14);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.97);
+    color: var(--color-dark);
+    font-size: 0.76rem;
+    font-weight: 200;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: normal;
+    text-shadow: 0;
+    box-shadow: 0 14px 28px rgba(16, 42, 45, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 8px);
+    transition:
+        opacity 140ms ease,
+        visibility 140ms ease,
+        transform 140ms ease;
+    pointer-events: none;
+}
+
+.cluster-skill::before {
+    z-index: 1;
+}
+
+.cluster-skill:hover::after,
+.cluster-skill:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3247,6 +3311,15 @@ body {
 
     .bi-skill {
         order: 4;
+    }
+
+    .cluster-skill::after {
+        display: none;
+    }
+
+    .cluster-legend .legend-heading,
+    .cluster-legend .legend-centroid-note {
+        grid-column: 1 / -1;
     }
 }
 
