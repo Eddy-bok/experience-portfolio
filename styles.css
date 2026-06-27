@@ -1496,6 +1496,304 @@ body {
 }
 
 
+/* =========================================================
+   RESEARCH DETAIL PAGE TEMPLATE
+   Used for research case-study pages such as Poisson-CI and NB-CI.
+
+   Tunable controls:
+   - --research-hero-image controls the page-specific hero image
+   - --research-hero-min-height controls hero depth
+   - --research-hero-overlay-left controls dark overlay strength
+   - --research-hero-overlay-right controls image visibility
+   ========================================================= */
+
+.research-detail-body {
+    background: #ffffff;
+}
+
+.research-hero {
+    --research-hero-min-height: 620px;
+    --research-hero-overlay-left: rgba(8, 28, 31, 0.88);
+    --research-hero-overlay-mid: rgba(8, 28, 31, 0.58);
+    --research-hero-overlay-right: rgba(8, 28, 31, 0.18);
+
+    position: relative;
+    width: 100vw;
+    min-height: var(--research-hero-min-height);
+    margin-left: calc(50% - 50vw);
+    padding: 88px var(--site-gutter) 72px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    background:
+        linear-gradient(
+            90deg,
+            var(--research-hero-overlay-left) 0%,
+            var(--research-hero-overlay-mid) 47%,
+            var(--research-hero-overlay-right) 100%
+        );
+    background-size: cover;
+    background-position: center right;
+}
+
+
+.research-hero-poisson {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 28, 31, 0.90) 0%,
+            rgba(8, 28, 31, 0.60) 45%,
+            rgba(8, 28, 31, 0.22) 100%
+        ),
+        url("images/research/cards/poisson-research-card.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
+.research-hero-back {
+    position: absolute;
+    top: 28px;
+    left: var(--site-gutter);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.84);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.research-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.research-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.58fr);
+    gap: clamp(36px, 5vw, 72px);
+    align-items: center;
+}
+
+.research-hero-topline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.research-hero .section-label {
+    margin: 0;
+    color: var(--color-gold);
+    font-weight: 800;
+}
+
+.research-status-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 7px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.42);
+    border-radius: 999px;
+    background: rgba(201, 168, 106, 0.14);
+    color: #f3d58a;
+    font-size: 0.76rem;
+    font-weight: 850;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.research-hero h1 {
+    max-width: 850px;
+    margin: 0 0 22px;
+    color: white;
+    font-size: clamp(2.35rem, 4.3vw, 4.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+}
+
+.research-hero-subtitle {
+    max-width: 760px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: clamp(1rem, 1.3vw, 1.16rem);
+    line-height: 1.75;
+}
+
+.research-hero-tags {
+    max-width: 760px;
+    margin: 24px 0 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.92rem;
+    font-weight: 650;
+    line-height: 1.55;
+}
+
+.research-hero-panel {
+    display: flex;
+    align-items: center;
+}
+
+.research-hero-metrics {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.research-hero-metric {
+    min-height: 112px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.12), transparent 38%),
+        rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.research-hero-metric-value {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-size: clamp(1.55rem, 2.2vw, 2.25rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.research-hero-metric-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.research-detail-page.detail-page {
+    max-width: 1040px;
+    padding: 52px 40px 76px;
+}
+
+.research-detail-page .detail-section:first-child {
+    padding-top: 0;
+}
+
+@media (max-width: 900px) {
+    .research-hero {
+        min-height: auto;
+        padding: 82px 24px 52px;
+    }
+
+    .research-hero-back {
+        left: 24px;
+    }
+
+    .research-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .research-hero-image-card img {
+        height: 220px;
+    }
+
+    .research-detail-page.detail-page {
+        max-width: 100%;
+        padding: 38px 24px 68px;
+    }
+}
+
+@media (max-width: 560px) {
+    .research-hero {
+        --research-hero-min-height: auto;
+
+        padding: 72px 24px 34px;
+        align-items: flex-start;
+        background-position: center;
+    }
+
+    .research-hero-back {
+        top: 24px;
+        font-size: 0.9rem;
+    }
+
+    .research-hero-topline {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .research-status-pill {
+        min-height: 28px;
+        padding: 7px 11px;
+        font-size: 0.7rem;
+    }
+
+    .research-hero h1 {
+        margin-bottom: 18px;
+        font-size: clamp(2.25rem, 12vw, 3.25rem);
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+    }
+
+    .research-hero-subtitle {
+        font-size: 0.98rem;
+        line-height: 1.65;
+    }
+
+    .research-hero-tags {
+        margin-top: 20px;
+        font-size: 0.84rem;
+        line-height: 1.55;
+    }
+
+    .research-hero-inner {
+        gap: 26px;
+    }
+
+    .research-hero-panel {
+        width: 100%;
+    }
+
+    .research-hero-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .research-hero-metric {
+        min-height: 96px;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .research-hero-metric-value {
+        font-size: 1.65rem;
+    }
+
+    .research-hero-metric-label {
+        font-size: 0.76rem;
+    }
+
+    .poisson-research-page .assistant-widget {
+        right: 6px;
+        bottom: 14px;
+    }
+
+    .poisson-research-page .assistant-avatar-image {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+
+
 /* Project ARIEL case-study page */
 
 .project-case-study .detail-hero,

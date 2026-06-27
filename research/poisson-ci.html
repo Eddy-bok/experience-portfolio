@@ -4,29 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Certified Real-Time Anomaly Detection | Edidiong Ibokete</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body>
+<body class="research-detail-body poisson-research-page">
 
-  <main class="detail-page">
-    <a class="back-link" href="../index.html">← Back to Portfolio</a>
+  <header class="research-hero research-hero-poisson">
+    <a class="research-hero-back" href="../index.html#research">
+      <i class="bi bi-arrow-left" aria-hidden="true"></i>
+      Back to Research
+    </a> 
 
-    <section class="detail-hero">
-      <p class="section-label">Research</p>
+    <div class="research-hero-inner">
+      <div class="research-hero-copy">
+        <div class="research-hero-topline">
+          <p class="section-label">Research</p>
+          <span class="research-status-pill">Submitted</span>
+        </div>
 
-      <h1>
-        Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification
-      </h1>
+        <h1>
+          Certified Real-Time Anomaly Detection for IoT Networks with Pre-Deployment Verification
+        </h1>
 
-      <p class="detail-subtitle">
-        A submitted cybersecurity research project focused on certified anomaly detection,
-        formal false-positive guarantees, and real-time deployment for IoT network environments.
-      </p>
+        <p class="research-hero-subtitle">
+          A cybersecurity research project focused on certified anomaly detection,
+          formal false-positive guarantees, and real-time deployment for IoT network environments.
+        </p>
 
-      <p class="domain">
-        Cybersecurity • IoT Networks • Statistical Learning • Certified Anomaly Detection
-      </p>
-    </section>
+        <p class="research-hero-tags">
+          Cybersecurity • IoT Networks • Statistical Learning • Certified Anomaly Detection
+        </p>
+      </div>
+
+      <aside class="research-hero-panel" aria-label="Poisson-CI headline research metrics">
+        <div class="research-hero-metrics">
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">0.9648</span>
+            <span class="research-hero-metric-label">ROC-AUC</span>
+          </div>
+
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">0.9708</span>
+            <span class="research-hero-metric-label">F1 at matched 1% FPR</span>
+          </div>
+
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">1023 µs</span>
+            <span class="research-hero-metric-label">Latency per 10 ms window</span>
+          </div>
+
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">8</span>
+            <span class="research-hero-metric-label">Attack families evaluated</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main class="detail-page research-detail-page">
 
     <section class="detail-section">
   <h2>Research Problem</h2>
@@ -96,28 +133,6 @@
     compared the certified Poisson-CI detector against classical anomaly
     detection baselines under matched false-positive-rate settings.
   </p>
-
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <span class="metric-value">0.9648</span>
-      <span class="metric-label">ROC-AUC</span>
-    </div>
-
-    <div class="metric-card">
-      <span class="metric-value">0.9708</span>
-      <span class="metric-label">F1 at matched 1% FPR</span>
-    </div>
-
-    <div class="metric-card">
-      <span class="metric-value">1023 µs</span>
-      <span class="metric-label">Latency per 10 ms window</span>
-    </div>
-
-    <div class="metric-card">
-      <span class="metric-value">8</span>
-      <span class="metric-label">Attack families in primary evaluation</span>
-    </div>
-  </div>
 
   <figure class="research-visual">
     <img
