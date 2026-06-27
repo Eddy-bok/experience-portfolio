@@ -1729,7 +1729,7 @@ body {
     color: var(--color-muted);
     text-decoration: none;
     font-size: 0.92rem;
-    font-weight: 700;
+    font-weight: 550;
     line-height: 1.35;
 }
 
@@ -1747,8 +1747,8 @@ body {
 .research-detail-content .detail-section {
     max-width: none;
     scroll-margin-top: 32px;
-    padding: 0 0 54px;
-    margin-bottom: 54px;
+    padding: 0 0 34px;
+    margin-bottom: 36px;
     border-bottom: 1px solid rgba(16, 42, 45, 0.10);
 }
 
@@ -2024,8 +2024,8 @@ body {
 
     .research-detail-content .detail-section {
         scroll-margin-top: 18px;
-        padding-bottom: 42px;
-        margin-bottom: 42px;
+        padding-bottom: 30px;
+        margin-bottom: 32px;
     }
 
         .research-detail-content .research-visual,
@@ -2539,15 +2539,26 @@ body {
     color: var(--color-muted);
     text-decoration: none;
     font-size: 0.95rem;
-    font-weight: 549;
+    font-weight: 550;
     line-height: 1.35;
     letter-spacing: -0.01em;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
 }
 
 .homepage-layout .homepage-side-nav a:hover,
 .homepage-layout .homepage-side-nav a.is-current {
     color: var(--portfolio-accent);
     border-bottom-color: var(--portfolio-accent);
+}
+
+@media (min-width: 1001px) {
+    .homepage-layout .homepage-side-nav a:hover,
+    .homepage-layout .homepage-side-nav a:focus-visible {
+        transform: translateX(8px);
+    }
 }
 
 
