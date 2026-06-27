@@ -63,89 +63,102 @@
     </div>
   </header>
 
-  <main class="detail-page research-detail-page">
+  <main class="research-detail-shell">
+    <aside class="research-detail-sidebar" aria-label="Poisson-CI page navigation">
+      <nav class="research-section-nav">
+        <a href="#research-problem">Research Problem</a>
+        <a href="#core-contribution">Core Contribution</a>
+        <a href="#key-results">Key Results</a>
+        <a href="#experimental-results">Experimental Results</a>
+        <a href="#technical-approach">Technical Approach</a>
+        <a href="#role-contributions">Role & Contributions</a>
+        <a href="#research-artifacts">Research Artifacts</a>
+      </nav>
+    </aside>
 
-    <section class="detail-section">
-  <h2>Research Problem</h2>
+    <div class="detail-page research-detail-page research-detail-content">
 
-  <p>
-    Anomaly detectors for dependable IoT systems face a practical gap:
-    methods with formal false-alarm guarantees can be too slow for line-rate
-    inference, while fast deployable methods such as autoencoders and isolation
-    forests often rely on post-hoc threshold tuning without provable bounds.
-  </p>
+    <section id="research-problem" class="detail-section">
+      <h2>Research Problem</h2>
 
-  <p>
-    This research addresses that gap for count-based network telemetry by
-    developing a certified detector that combines formal false-positive control
-    with real-time inference behavior.
-  </p>
-</section>
+      <p>
+        Anomaly detectors for dependable IoT systems face a practical gap:
+        methods with formal false-alarm guarantees can be too slow for line-rate
+        inference, while fast deployable methods such as autoencoders and isolation
+        forests often rely on post-hoc threshold tuning without provable bounds.
+      </p>
 
-<section class="detail-section">
-  <h2>Core Contribution</h2>
+      <p>
+        This research addresses that gap for count-based network telemetry by
+        developing a certified detector that combines formal false-positive control
+        with real-time inference behavior.
+      </p>
+    </section>
 
-  <p>
-    The work introduces a certified anomaly detection framework built on new
-    concentration inequalities for weighted sums of independent Poisson random
-    variables. These inequalities produce confidence intervals at a user-specified
-    significance level and support anomaly scoring through normalized deviation
-    from the certified interval.
-  </p>
+    <section id="core-contribution" class="detail-section">
+      <h2>Core Contribution</h2>
 
-  <p>
-    The framework also includes a pre-deployment diagnostic based on the
-    variance-to-mean ratio of benign counts, helping operators assess which
-    protocol channels and bin widths are likely to produce tight bounds before
-    deployment.
-  </p>
-</section>
+      <p>
+        The work introduces a certified anomaly detection framework built on new
+        concentration inequalities for weighted sums of independent Poisson random
+        variables. These inequalities produce confidence intervals at a user-specified
+        significance level and support anomaly scoring through normalized deviation
+        from the certified interval.
+      </p>
 
-<section class="detail-section">
-  <h2>Key Results</h2>
+      <p>
+        The framework also includes a pre-deployment diagnostic based on the
+        variance-to-mean ratio of benign counts, helping operators assess which
+        protocol channels and bin widths are likely to produce tight bounds before
+        deployment.
+      </p>
+    </section>
 
-  <ul class="results-list">
-    <li>
-      Achieved strong anomaly detection performance on the CIC IoT-DIAD 2024 dataset.
-    </li>
+    <section id="key-results" class="detail-section">
+      <h2>Key Results</h2>
 
-    <li>
-      Delivered certified false-positive guarantees through concentration-inequality-based confidence intervals.
-    </li>
+      <ul class="results-list">
+        <li>
+          Achieved strong anomaly detection performance on the CIC IoT-DIAD 2024 dataset.
+        </li>
 
-    <li>
-      Demonstrated real-time suitability through lightweight count-based inference.
-    </li>
+        <li>
+          Delivered certified false-positive guarantees through concentration-inequality-based confidence intervals.
+        </li>
 
-    <li>
-      Validated generalization on an independent IoT cybersecurity dataset.
-    </li>
-  </ul>
-</section>
+        <li>
+          Demonstrated real-time suitability through lightweight count-based inference.
+        </li>
+
+        <li>
+          Validated generalization on an independent IoT cybersecurity dataset.
+        </li>
+      </ul>
+    </section>
 
 
-<section class="detail-section">
+<section id="experimental-results" class="detail-section">
   <h2>Experimental Results</h2>
 
-  <p>
-    The detector was evaluated on CIC IoT-DIAD 2024, a benchmark dataset
-    containing benign IoT traffic and multiple attack families. The evaluation
-    compared the certified Poisson-CI detector against classical anomaly
-    detection baselines under matched false-positive-rate settings.
-  </p>
+    <p>
+      The detector was evaluated on CIC IoT-DIAD 2024, a benchmark dataset
+      containing benign IoT traffic and multiple attack families. The evaluation
+      compared the certified Poisson-CI detector against classical anomaly
+      detection baselines under matched false-positive-rate settings.
+    </p>
 
-  <figure class="research-visual">
-    <img
-        src="../images/research/poisson-ci/poisson-ci-timeline.png"
-        alt="Poisson-CI confidence interval behavior showing benign and attack regions with detected violations"
-    />
+    <figure class="research-visual">
+      <img
+          src="../images/research/poisson-ci/poisson-ci-timeline.png"
+          alt="Poisson-CI confidence interval behavior showing benign and attack regions with detected violations"
+      />
 
-    <figcaption>
-        <strong>Figure 1.</strong> Certified Poisson-CI detection behavior. Benign
-        traffic remains largely within the confidence interval, while attack traffic
-        produces repeated violations above the certified upper bound.
-    </figcaption>
-  </figure>
+      <figcaption>
+          <strong>Figure 1.</strong> Certified Poisson-CI detection behavior. Benign
+          traffic remains largely within the confidence interval, while attack traffic
+          produces repeated violations above the certified upper bound.
+      </figcaption>
+    </figure>
 
 
   <div class="results-table-wrapper">
@@ -207,7 +220,7 @@
 </section>
 
 
-<section class="detail-section">
+<section id="technical-approach" class="detail-section">
   <h2>Technical Approach</h2>
 
   <p>
@@ -305,7 +318,7 @@
 </section>
 
 
-<section class="detail-section">
+<section id="role-contributions" class="detail-section">
   <h2>Role and Contributions</h2>
 
   <p>
@@ -353,7 +366,7 @@
   </div>
 </section>
 
-<section class="detail-section">
+<section id="research-artifacts" class="detail-section">
   <h2>Research Artifacts</h2>
 
   <p>
@@ -392,7 +405,8 @@
   </div>
 </section>
 
-  </main>
+  </div>
+</main>
 
   <script src="../assistant.js"></script>
 </body>
