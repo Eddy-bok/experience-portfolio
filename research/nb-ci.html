@@ -3,422 +3,495 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>NB-CI Certified Anomaly Detection | Edidiong Ibokete</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body>
 
-  <main class="detail-page">
-    <a class="back-link" href="../index.html">← Back to Portfolio</a>
+<body class="research-detail-body nbci-research-page">
 
-    <section class="detail-hero">
-      <p class="section-label">Research</p>
+  <header class="research-hero research-hero-nbci">
+    <a class="research-hero-back" href="../index.html#research">
+      <i class="bi bi-arrow-left" aria-hidden="true"></i>
+      Back to Research
+    </a>
 
-      <h1>
-        Certified Anomaly Detection for Overdispersed IoT Traffic via a Negative-Binomial Khinchine-Fubini Concenration Inequality
-      </h1>
+    <div class="research-hero-inner">
+      <div class="research-hero-copy">
+        <div class="research-hero-topline">
+          <p class="section-label">Research</p>
+          <span class="research-status-pill">Submitted under review</span>
+        </div>
 
-      <p class="detail-subtitle">
-        A submitted IEEE Transactions on Information Forensics & Security manuscript,
-        currently under full consideration, focused on certified anomaly detection
-        for overdispersed IoT traffic using a Negative-Binomial Khinchine–Fubini
-        concentration inequality.
-      </p>
+        <h1>
+          Certified Anomaly Detection for Overdispersed IoT Traffic via a
+          Negative-Binomial Khinchine–Fubini Concentration Inequality
+        </h1>
 
-      <p class="domain">
-        IoT Security • Overdispersed Count Data • Negative-Binomial Models • Concentration Inequalities • Certified Anomaly Detection
-      </p>
-    </section>
+        <p class="research-hero-subtitle">
+          A certified IoT cybersecurity research project focused on overdispersed
+          traffic, Negative-Binomial concentration bounds, and formal
+          false-positive-rate control.
+        </p>
 
-<section class="detail-section">
-  <h2>Research Problem</h2>
+        <p class="research-hero-tags">
+          IoT Security • Overdispersed Count Data • Negative-Binomial Models •
+          Concentration Inequalities • Certified Anomaly Detection
+        </p>
+      </div>
 
-  <p>
-    Safety-critical IoT deployments need anomaly detectors that provide a
-    pre-deployment guarantee on the false-positive rate, not only post-hoc
-    accuracy on a held-out test split.
-  </p>
+      <aside class="research-hero-panel" aria-label="NB-CI headline research metrics">
+        <div class="research-hero-metrics">
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">1.000</span>
+            <span class="research-hero-metric-label">AUC on CIC IoT-DIAD 2024</span>
+          </div>
 
-  <p>
-    Existing concentration-based certified detectors built on Poisson assumptions
-    are limited by equidispersion: the assumption that per-window traffic counts
-    have variance equal to their mean. Real IoT traffic is often strongly
-    overdispersed because of bursty device behavior, protocol heterogeneity, and
-    traffic aggregation.
-  </p>
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">0.000</span>
+            <span class="research-hero-metric-label">Certified-mode benign FPR</span>
+          </div>
 
-  <p>
-    When benign traffic is overdispersed but the certified interval is sized
-    using a Poisson model, the interval can be mis-sized. This research addresses
-    that gap by developing a certified detector designed for overdispersed IoT
-    count traffic.
-  </p>
-</section>
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">98.5%</span>
+            <span class="research-hero-metric-label">Gotham devices where NB fit better</span>
+          </div>
 
-<section class="detail-section">
-  <h2>Core Contribution</h2>
-
-  <p>
-    The work introduces a Negative-Binomial Khinchine–Fubini concentration
-    inequality for weighted sums of independent Negative-Binomial counts.
-  </p>
-
-  <p>
-    This moment bound is combined with Markov's inequality to construct certified
-    confidence intervals whose half-width adapts to local dispersion. In the
-    equidispersion limit, the framework recovers the Poisson–Touchard interval,
-    allowing a direct comparison between Negative-Binomial and Poisson certified
-    detectors.
-  </p>
-
-  <p>
-    The result is a certified anomaly detection framework that better reflects
-    overdispersed IoT traffic while preserving the interpretability and formal
-    false-positive-rate control of concentration-based detection.
-  </p>
-</section>
-
-<section class="detail-section">
-  <h2>Key Results</h2>
-
-  <ul class="results-list">
-    <li>
-      Achieved AUC 1.000 on CIC IoT-DIAD 2024, compared with 0.965 for the
-      Poisson certified baseline under the same calibrated setting.
-    </li>
-
-    <li>
-      Improved detection on volumetric attacks, lifting F1 by up to 0.34 at a
-      1% false-positive-rate operating point.
-    </li>
-
-    <li>
-      Confirmed on Gotham 2025 that the Negative-Binomial model fit overdispersed
-      device traffic significantly better than the Poisson model on 98.5% of
-      applicable devices.
-    </li>
-
-    <li>
-      Preserved the certified false-positive guarantee at the κ = 1 operating
-      point, with realized benign FPR remaining at 0.000 across validation
-      settings.
-    </li>
-  </ul>
-</section>
-
-<section class="detail-section">
-  <h2>Experimental Results</h2>
-
-  <p>
-    The NB-CI detector was evaluated on CIC IoT-DIAD 2024 as the primary
-    benchmark and on Gotham 2025 as a cross-testbed stress test for
-    overdispersed multi-device IoT traffic. The evaluation compares NB-CI against
-    the Poisson certified baseline, a conformal anomaly detector, and a learned
-    MLP baseline.
-  </p>
-
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <span class="metric-value">1.000</span>
-      <span class="metric-label">AUC on CIC IoT-DIAD 2024</span>
+          <div class="research-hero-metric">
+            <span class="research-hero-metric-value">448 µs</span>
+            <span class="research-hero-metric-label">Latency per 10 ms window</span>
+          </div>
+        </div>
+      </aside>
     </div>
+  </header>
 
-    <div class="metric-card">
-      <span class="metric-value">0.000</span>
-      <span class="metric-label">Certified-mode realized benign FPR</span>
+  <main class="research-detail-shell">
+    <aside class="research-detail-sidebar" aria-label="NB-CI page navigation">
+      <nav class="research-section-nav">
+        <a href="#research-problem">Research Problem</a>
+        <a href="#core-contribution">Core Contribution</a>
+        <a href="#key-results">Key Results</a>
+        <a href="#experimental-results">Experimental Results</a>
+        <a href="#technical-approach">Technical Approach</a>
+        <a href="#role-contributions">Roles & Contributions</a>
+        <a href="#research-artifacts">Research Artifacts</a>
+      </nav>
+    </aside>
+
+    <div class="detail-page research-detail-page research-detail-content">
+      <section id="research-problem" class="detail-section">
+        <h2>Research Problem</h2>
+
+        <p>
+          Safety-critical IoT deployments need anomaly detectors that provide
+          pre-deployment false-positive-rate guarantees, not only post-hoc
+          accuracy on a held-out test split.
+        </p>
+
+        <p>
+          Existing certified detectors based on Poisson assumptions are limited
+          by equidispersion, the assumption that per-window traffic counts have
+          variance equal to their mean. Real IoT traffic is often strongly
+          overdispersed because of bursty device behavior, protocol
+          heterogeneity, and traffic aggregation.
+        </p>
+
+        <p>
+          When benign traffic is overdispersed but the certified interval is
+          sized using a Poisson model, the interval can be mis-sized. This
+          research addresses that gap by developing a certified detector designed
+          for overdispersed IoT count traffic.
+        </p>
+      </section>
+
+      <section id="core-contribution" class="detail-section">
+        <h2>Core Contribution</h2>
+
+        <p>
+          The work introduces a Negative-Binomial Khinchine–Fubini concentration
+          inequality for weighted sums of independent Negative-Binomial counts.
+        </p>
+
+        <p>
+          This moment bound is combined with Markov's inequality to construct
+          certified confidence intervals whose half-width adapts to local
+          dispersion. In the equidispersion limit, the framework recovers the
+          Poisson–Touchard interval, allowing a direct comparison between
+          Negative-Binomial and Poisson certified detectors.
+        </p>
+
+        <p>
+          The result is a certified anomaly detection framework that better
+          reflects overdispersed IoT traffic while preserving the interpretability
+          and formal false-positive-rate control of concentration-based detection.
+        </p>
+      </section>
+
+      <section id="key-results" class="detail-section">
+        <h2>Key Results</h2>
+
+        <ul class="results-list">
+          <li>
+            Achieved AUC 1.000 on CIC IoT-DIAD 2024, compared with 0.965 for the
+            Poisson certified baseline under the same calibrated setting.
+          </li>
+
+          <li>
+            Improved detection on volumetric attacks, lifting F1 by up to 0.34
+            at a 1% false-positive-rate operating point.
+          </li>
+
+          <li>
+            Confirmed on Gotham 2025 that the Negative-Binomial model fit
+            overdispersed device traffic significantly better than the Poisson
+            model on 98.5% of applicable devices.
+          </li>
+
+          <li>
+            Preserved the certified false-positive guarantee at the κ = 1
+            operating point, with realized benign FPR remaining at 0.000 across
+            validation settings.
+          </li>
+        </ul>
+      </section>
+
+      <section id="experimental-results" class="detail-section">
+        <h2>Experimental Results</h2>
+
+        <p>
+          The NB-CI detector was evaluated on CIC IoT-DIAD 2024 as the primary
+          benchmark and on Gotham 2025 as a cross-testbed stress test for
+          overdispersed multi-device IoT traffic. The evaluation compares NB-CI
+          against the Poisson certified baseline, a conformal anomaly detector,
+          and a learned MLP baseline.
+        </p>
+
+        <figure class="research-visual">
+          <img
+            src="../images/research/nb-ci/nb-ci-halfwidth.png"
+            alt="Negative-Binomial certified interval half-width adapting to overdispersion compared with the Poisson interval"
+          />
+
+          <figcaption>
+            <strong>Figure 1.</strong> Certified interval behavior under
+            overdispersion. NB-CI widens the interval as benign traffic becomes
+            more overdispersed, while Poisson-CI remains tied to the
+            equidispersed assumption and can under-size benign variability.
+          </figcaption>
+        </figure>
+
+        <div class="results-table-wrapper">
+          <h3>Detector Comparison on CIC IoT-DIAD 2024</h3>
+
+          <p>
+            On the identical CIC IoT-DIAD test stream, NB-CI matched the best
+            raw detection performance while retaining a certified
+            false-positive-rate guarantee that the learned baseline does not
+            provide.
+          </p>
+
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Detector</th>
+                <th>AUC</th>
+                <th>pAUC<sub>0.05</sub></th>
+                <th>Realized FPR</th>
+                <th>Certification</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>NB-CI</td>
+                <td>1.000</td>
+                <td>1.000</td>
+                <td>0.000</td>
+                <td>Certified concentration bound</td>
+              </tr>
+
+              <tr>
+                <td>Poisson-CI</td>
+                <td>0.967</td>
+                <td>0.948</td>
+                <td>0.000</td>
+                <td>Certified concentration bound</td>
+              </tr>
+
+              <tr>
+                <td>Split Conformal</td>
+                <td>0.511</td>
+                <td>&mdash;</td>
+                <td>0.0066</td>
+                <td>Valid calibration, low power</td>
+              </tr>
+
+              <tr>
+                <td>MLP Baseline</td>
+                <td>1.000</td>
+                <td>&mdash;</td>
+                <td>0.0100</td>
+                <td>No pre-deployment certificate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="evidence-note">
+          <h3>Cross-Testbed Stress Test</h3>
+
+          <p>
+            On the Gotham 2025 dataset, the Negative-Binomial model fit
+            overdispersed device traffic significantly better than the Poisson
+            model on 98.5% of applicable devices. On the non-trivial contested
+            devices, NB-CI outperformed the Poisson detector by a median of
+            0.40 AUC, with the strongest gains appearing on highly overdispersed
+            camera channels.
+          </p>
+        </div>
+
+        <p>
+          These results show that NB-CI extends certified IoT anomaly detection
+          beyond the equidispersed Poisson setting, improving performance on
+          overdispersed traffic while preserving formal false-positive-rate
+          control.
+        </p>
+      </section>
+
+      <section id="technical-approach" class="detail-section">
+        <h2>Technical Approach</h2>
+
+        <p>
+          The detector models IoT traffic as overdispersed count data, estimates
+          local Negative-Binomial behavior from benign windows, and constructs
+          certified confidence intervals whose width adapts to the observed
+          dispersion.
+        </p>
+
+        <div class="pipeline-visual" aria-label="NB-CI anomaly detection pipeline">
+          <div class="pipeline-step">
+            <span class="pipeline-number">01</span>
+            <strong>IoT Traffic</strong>
+            <small>Packet events</small>
+          </div>
+
+          <span class="pipeline-arrow">→</span>
+
+          <div class="pipeline-step">
+            <span class="pipeline-number">02</span>
+            <strong>Count Windows</strong>
+            <small>10 ms telemetry</small>
+          </div>
+
+          <span class="pipeline-arrow">→</span>
+
+          <div class="pipeline-step">
+            <span class="pipeline-number">03</span>
+            <strong>Local NB Fit</strong>
+            <small>Mean and dispersion</small>
+          </div>
+
+          <span class="pipeline-arrow">→</span>
+
+          <div class="pipeline-step">
+            <span class="pipeline-number">04</span>
+            <strong>Certified Interval</strong>
+            <small>NB Khinchine–Fubini bound</small>
+          </div>
+
+          <span class="pipeline-arrow">→</span>
+
+          <div class="pipeline-step">
+            <span class="pipeline-number">05</span>
+            <strong>Anomaly Decision</strong>
+            <small>Deviation from interval</small>
+          </div>
+        </div>
+
+        <div class="approach-grid">
+          <div class="approach-card">
+            <h3>1. Count-Based Telemetry</h3>
+            <p>
+              Network traffic is aggregated into short time windows and
+              represented through protocol-aware count features, with event
+              counts used as the detection target.
+            </p>
+          </div>
+
+          <div class="approach-card">
+            <h3>2. Overdispersion Modeling</h3>
+            <p>
+              Instead of assuming that count variance equals the mean, the
+              framework uses a Negative-Binomial model to represent bursty benign
+              traffic whose variance-to-mean ratio exceeds one.
+            </p>
+          </div>
+
+          <div class="approach-card">
+            <h3>3. Local Dispersion Estimation</h3>
+            <p>
+              For each incoming window, nearby benign windows are used to
+              estimate local Negative-Binomial parameters, allowing the interval
+              width to adapt to local traffic variability.
+            </p>
+          </div>
+
+          <div class="approach-card">
+            <h3>4. Certified Interval Construction</h3>
+            <p>
+              The NB Khinchine–Fubini moment inequality is combined with Markov's
+              inequality to produce a certified interval with a target
+              false-positive-rate guarantee.
+            </p>
+          </div>
+
+          <div class="approach-card">
+            <h3>5. Calibration and Deployment</h3>
+            <p>
+              The certified κ = 1 setting preserves the formal guarantee, while
+              a bootstrap-calibrated operating point recovers practical recall
+              for deployment-oriented evaluation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="role-contributions" class="detail-section">
+        <h2>Roles and Contributions</h2>
+
+        <p>
+          As a co-author, I collaborated with Dr. Sana Spektor on the
+          implementation, experimental evaluation, validation, and reproducibility
+          of a certified anomaly detection framework for IoT cybersecurity. My
+          work focused on translating the theoretical framework into a robust
+          software implementation, conducting large-scale experimental studies,
+          validating results across multiple datasets, preparing reproducible
+          research artifacts, and contributing to the technical refinement of the
+          submitted manuscript.
+        </p>
+
+        <div class="contribution-grid">
+          <div class="contribution-card">
+            <h3>Research Implementation</h3>
+            <p>
+              Implemented and refined the certified anomaly detection pipeline by
+              developing feature engineering workflows, integrating the proposed
+              concentration inequality models, building reusable software
+              modules, and supporting the end-to-end experimental infrastructure
+              used throughout the study.
+            </p>
+          </div>
+
+          <div class="contribution-card">
+            <h3>Experimental Evaluation</h3>
+            <p>
+              Designed and executed the experimental evaluation pipeline,
+              including dataset preprocessing, benchmark implementation, matched
+              false-positive-rate comparisons, cross-dataset validation, ROC
+              analysis, and quantitative performance assessment across multiple
+              attack scenarios.
+            </p>
+          </div>
+
+          <div class="contribution-card">
+            <h3>Reproducibility and Research Software</h3>
+            <p>
+              Engineered a reproducible research package by modularizing the
+              implementation into reusable Python components, creating
+              configuration-driven experiment pipelines, automating notebook
+              execution, organizing the repository for public release, and
+              preparing reviewer-ready reproducibility materials.
+            </p>
+          </div>
+
+          <div class="contribution-card">
+            <h3>Verification and Result Validation</h3>
+            <p>
+              Verified experimental outputs by auditing numerical results,
+              validating consistency between notebooks, generated tables,
+              figures, and manuscript values, investigating discrepancies, and
+              ensuring that reported performance metrics accurately reflected the
+              underlying experimental results.
+            </p>
+          </div>
+
+          <div class="contribution-card">
+            <h3>Figures, Tables, and Research Outputs</h3>
+            <p>
+              Generated and validated publication-quality figures, tables,
+              performance summaries, and experimental artifacts used throughout
+              the manuscript, ensuring accuracy, consistency, and reproducibility
+              across all reported evaluations.
+            </p>
+          </div>
+
+          <div class="contribution-card">
+            <h3>Manuscript Development</h3>
+            <p>
+              Contributed to the technical preparation of the manuscript through
+              result verification, methodological refinement, reproducibility
+              documentation, technical writing, and collaborative review during
+              the submission process for publication.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="research-artifacts" class="detail-section">
+        <h2>Research Artifacts</h2>
+
+        <p>
+          Supporting artifacts for this research include the submitted
+          manuscript, experimental outputs, distributional-fit diagnostics,
+          benchmark comparisons, and reproducibility materials. Public links will
+          be added when they are appropriate to release.
+        </p>
+
+        <div class="artifact-grid">
+          <div class="artifact-card">
+            <h3>Submitted Manuscript</h3>
+            <p>
+              Full research paper describing the Negative-Binomial
+              Khinchine–Fubini concentration inequality, certified interval
+              construction, and IoT anomaly detection evaluation.
+            </p>
+            <span class="artifact-status">Submitted, under full consideration</span>
+          </div>
+
+          <div class="artifact-card">
+            <h3>Experimental Results</h3>
+            <p>
+              Evaluation outputs covering CIC IoT-DIAD 2024, Gotham 2025,
+              NB-vs-Poisson comparisons, conformal baseline results, certified
+              FPR validation, and latency benchmarking.
+            </p>
+            <span class="artifact-status">Summarized on this page</span>
+          </div>
+
+          <div class="artifact-card">
+            <h3>Reproducibility Package</h3>
+            <p>
+              Code, configuration files, deterministic splits, result tables, and
+              supplementary experiment outputs supporting the submitted
+              manuscript.
+            </p>
+            <span class="artifact-status">Pending public release</span>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <div class="metric-card">
-      <span class="metric-value">98.5%</span>
-      <span class="metric-label">Gotham devices where NB fit better</span>
-    </div>
-
-    <div class="metric-card">
-      <span class="metric-value">448 µs</span>
-      <span class="metric-label">NB-CI latency per window</span>
-    </div>
-  </div>
-
-  <figure class="research-visual">
-    <img
-      src="../images/research/nb-ci/nb-ci-halfwidth.png"
-      alt="Negative-Binomial certified interval half-width adapting to overdispersion compared with the Poisson interval"
-    />
-
-    <figcaption>
-      <strong>Figure 1.</strong> Certified interval behavior under overdispersion.
-      NB-CI widens the interval as benign traffic becomes more overdispersed, while
-      Poisson-CI remains tied to the equidispersed assumption and can under-size
-      benign variability.
-    </figcaption>
-  </figure>
-
-
-  <div class="results-table-wrapper">
-    <h3>Detector Comparison on CIC IoT-DIAD 2024</h3>
-
-    <p>
-      On the identical CIC IoT-DIAD test stream, NB-CI matched the best raw
-      detection performance while retaining a certified false-positive-rate
-      guarantee that the learned baseline does not provide.
-    </p>
-
-    <table class="results-table">
-      <thead>
-        <tr>
-          <th>Detector</th>
-          <th>AUC</th>
-          <th>pAUC<sub>0.05</sub></th>
-          <th>Realized FPR</th>
-          <th>Certification</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>NB-CI</td>
-          <td>1.000</td>
-          <td>1.000</td>
-          <td>0.000</td>
-          <td>Certified concentration bound</td>
-        </tr>
-
-        <tr>
-          <td>Poisson-CI</td>
-          <td>0.967</td>
-          <td>0.948</td>
-          <td>0.000</td>
-          <td>Certified concentration bound</td>
-        </tr>
-
-        <tr>
-          <td>Split Conformal</td>
-          <td>0.511</td>
-          <td>&mdash;</td>
-          <td>0.0066</td>
-          <td>Valid calibration, low power</td>
-        </tr>
-
-        <tr>
-          <td>MLP Baseline</td>
-          <td>1.000</td>
-          <td>&mdash;</td>
-          <td>0.0100</td>
-          <td>No pre-deployment certificate</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="evidence-note">
-    <h3>Cross-Testbed Stress Test</h3>
-
-    <p>
-      On Gotham 2025 dataset, the Negative-Binomial model fit overdispersed device
-      traffic significantly better than the Poisson model on 98.5% of applicable
-      devices. On the non-trivial contested devices, NB-CI outperformed the
-      Poisson detector by a median of 0.40 AUC, with the strongest gains appearing
-      on highly overdispersed camera channels.
-    </p>
-  </div>
-
-  <p>
-    These results show that NB-CI extends certified IoT anomaly detection beyond
-    the equidispersed Poisson setting, improving performance on overdispersed
-    traffic while preserving formal false-positive-rate control.
-  </p>
-</section>
-
-
-<section class="detail-section">
-  <h2>Technical Approach</h2>
-
-  <p>
-    The detector models IoT traffic as overdispersed count data, estimates local
-    Negative-Binomial behavior from benign windows, and constructs certified
-    confidence intervals whose width adapts to the observed dispersion.
-  </p>
-
-  <div class="pipeline-visual" aria-label="NB-CI anomaly detection pipeline">
-    <div class="pipeline-step">
-      <span class="pipeline-number">01</span>
-      <strong>IoT Traffic</strong>
-      <small>Packet events</small>
-    </div>
-
-    <span class="pipeline-arrow">→</span>
-
-    <div class="pipeline-step">
-      <span class="pipeline-number">02</span>
-      <strong>Count Windows</strong>
-      <small>10 ms telemetry</small>
-    </div>
-
-    <span class="pipeline-arrow">→</span>
-
-    <div class="pipeline-step">
-      <span class="pipeline-number">03</span>
-      <strong>Local NB Fit</strong>
-      <small>Mean and dispersion</small>
-    </div>
-
-    <span class="pipeline-arrow">→</span>
-
-    <div class="pipeline-step">
-      <span class="pipeline-number">04</span>
-      <strong>Certified Interval</strong>
-      <small>NB Khinchine–Fubini bound</small>
-    </div>
-
-    <span class="pipeline-arrow">→</span>
-
-    <div class="pipeline-step">
-      <span class="pipeline-number">05</span>
-      <strong>Anomaly Decision</strong>
-      <small>Deviation from interval</small>
-    </div>
-  </div>
-
-  <div class="approach-grid">
-    <div class="approach-card">
-      <h3>1. Count-Based Telemetry</h3>
-      <p>
-        Network traffic is aggregated into short time windows and represented
-        through protocol-aware count features, with event counts used as the
-        detection target.
-      </p>
-    </div>
-
-    <div class="approach-card">
-      <h3>2. Overdispersion Modeling</h3>
-      <p>
-        Instead of assuming that count variance equals the mean, the framework
-        uses a Negative-Binomial model to represent bursty benign traffic whose
-        variance-to-mean ratio exceeds one.
-      </p>
-    </div>
-
-    <div class="approach-card">
-      <h3>3. Local Dispersion Estimation</h3>
-      <p>
-        For each incoming window, nearby benign windows are used to estimate
-        local Negative-Binomial parameters, allowing the interval width to adapt
-        to local traffic variability.
-      </p>
-    </div>
-
-    <div class="approach-card">
-      <h3>4. Certified Interval Construction</h3>
-      <p>
-        The NB Khinchine–Fubini moment inequality is combined with Markov's
-        inequality to produce a certified interval with a target
-        false-positive-rate guarantee.
-      </p>
-    </div>
-
-    <div class="approach-card">
-      <h3>5. Calibration and Deployment</h3>
-      <p>
-        The certified κ = 1 setting preserves the formal guarantee, while a
-        bootstrap-calibrated operating point recovers practical recall for
-        deployment-oriented evaluation.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<section class="detail-section">
-  <h2>Role and Contributions</h2>
-
-  <p>
-    I served as a co-author on this submitted manuscript in collaboration with
-    Dr. S. Spektor, Director of the Graduate Program in Data Analytics at
-    Canisius University. My contributions spanned research implementation,
-    experimental evaluation, result verification, manuscript preparation, and
-    research communication.
-  </p>
-
-  <div class="contribution-grid">
-    <div class="contribution-card">
-      <h3>Research Implementation</h3>
-      <p>
-        Contributed to the implementation and testing of the NB-CI certified
-        anomaly detection pipeline, including count-based feature construction,
-        local dispersion estimation, and detector execution.
-      </p>
-    </div>
-
-    <div class="contribution-card">
-      <h3>Experimental Evaluation</h3>
-      <p>
-        Supported evaluation across CIC IoT-DIAD 2024 and Gotham 2025, including
-        NB-vs-Poisson comparisons, certified FPR validation, conformal baseline
-        comparison, bootstrap analysis, and latency benchmarking.
-      </p>
-    </div>
-
-    <div class="contribution-card">
-      <h3>Results and Reproducibility</h3>
-      <p>
-        prepared, verified, and organized experimental outputs, tables,
-        figures, result summaries, and reproducibility materials supporting the
-        submitted manuscript.
-      </p>
-    </div>
-
-    <div class="contribution-card">
-      <h3>Manuscript Development</h3>
-      <p>
-        Contributed to manuscript review, technical refinement, result checking,
-        and research communication for journal submission.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="detail-section">
-  <h2>Research Artifacts</h2>
-
-  <p>
-    Supporting artifacts for this research include the submitted manuscript,
-    experimental outputs, distributional-fit diagnostics, benchmark comparisons,
-    and reproducibility materials. Public links will be added when they are
-    appropriate to release.
-  </p>
-
-  <div class="artifact-grid">
-    <div class="artifact-card">
-      <h3>Submitted Manuscript</h3>
-      <p>
-        Full research paper describing the Negative-Binomial Khinchine–Fubini
-        concentration inequality, certified interval construction, and IoT
-        anomaly detection evaluation.
-      </p>
-      <span class="artifact-status">Submitted, under full consideration</span>
-    </div>
-
-    <div class="artifact-card">
-      <h3>Experimental Results</h3>
-      <p>
-        Evaluation outputs covering CIC IoT-DIAD 2024, Gotham 2025, NB-vs-Poisson
-        comparisons, conformal baseline results, certified FPR validation, and
-        latency benchmarking.
-      </p>
-      <span class="artifact-status">Summarized on this page</span>
-    </div>
-
-    <div class="artifact-card">
-      <h3>Reproducibility Package</h3>
-      <p>
-        Code, configuration files, deterministic splits, result tables, and
-        supplementary experiment outputs supporting the submitted manuscript.
-      </p>
-      <span class="artifact-status">Pending public release</span>
-    </div>
-  </div>
-</section>
-
   </main>
 
   <script src="../assistant.js"></script>
