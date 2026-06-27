@@ -107,13 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
 
-            addMessage(
-                "assistant",
+            removeTypingIndicator();
+
+            await addAssistantMessageWithTyping(
                 data.answer || "I could not generate an answer."
             );
 
         } catch (error) {
             console.error("Assistant API error:", error);
+
+            removeTypingIndicator();
 
             addMessage(
                 "assistant",
@@ -168,6 +171,56 @@ document.addEventListener("DOMContentLoaded", () => {
         messages.scrollTop = messages.scrollHeight;
     }
 
+
+    async function addAssistantMessageWithTyping(text) {
+        const message = document.createElement("div");
+        message.className = "assistant-message assistant-message-bot";
+
+        messages.appendChild(message);
+        messages.scrollTop = messages.scrollHeight;
+
+        const chunks = splitAssistantResponse(text);
+        let visibleText = "";
+
+        for (const chunk of chunks) {
+            visibleText += chunk;
+            message.innerHTML = formatAssistantText(visibleText);
+            messages.scrollTop = messages.scrollHeight;
+
+            await wait(getTypingDelay(chunk));
+        }
+    }
+
+
+    function splitAssistantResponse(text) {
+        return text.match(/(\S+\s*)/g) || [text];
+    }
+
+    function getTypingDelay(chunk) {
+        const trimmedChunk = chunk.trim();
+
+        if (!trimmedChunk) {
+            return 35;
+        }
+
+        if (/[.!?]$/.test(trimmedChunk)) {
+            return 220;
+        }
+
+        if (/[,;:]$/.test(trimmedChunk)) {
+            return 130;
+        }
+
+        return 80;
+    }
+
+    function wait(milliseconds) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, milliseconds);
+        });
+    }
+
+
     function setLoading(isLoading, message) {
         submitButton.disabled = isLoading;
         input.disabled = isLoading;
@@ -182,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         typingIndicator.textContent = "Ariel is typing";
 
         messages.appendChild(typingIndicator);
-        messages.scrollTop = messages.scrollHeight;
+        messages.scrollTop = messages.scrollHeight; 
     }
 
     function removeTypingIndicator() {
