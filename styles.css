@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 :root {
     --color-bg: #ffffff;
     --color-surface: #ffffff;
@@ -2159,215 +2169,617 @@ body {
 
 
 
-/* Project ARIEL case-study page */
+/* =========================================================
+   PROJECT ARIEL CASE STUDY PAGE
+   Applied AI / RAG engineering project detail page.
 
-.project-case-study .detail-hero,
-.project-case-study .detail-section {
-    max-width: 1000px;
-}
+   Tunable controls:
+   - --ariel-page-max controls the main content width
+   - --ariel-sidebar-width controls side navigation width
+   - --ariel-accent controls the project accent color
+   ========================================================= */
 
+.ariel-page {
+    --ariel-page-max: 1660px;
+    --ariel-sidebar-width: 170px;
+    --ariel-content-gap: 64px;
+    --ariel-sidebar-offset-x: -34px;
+    --ariel-padding-x: clamp(28px, 4vw, 72px);
+    --ariel-accent: var(--portfolio-accent);
+    --ariel-soft: rgba(238, 246, 246, 0.72);
 
-.detail-tags {
-    max-width: 850px;
-    margin-top: 18px;
-    color: #666;
-    line-height: 1.6;
-}
-
-.ariel-architecture-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 24px;
-    align-items: start;
-    max-width: 1000px;
-    margin-top: 28px;
-}
-
-.ariel-architecture-image {
-    margin: 0;
-}
-
-.ariel-architecture-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.ariel-architecture-cards .metric-value {
-    font-size: 1.35rem;
-}
-
-.ariel-kb-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 14px;
-    max-width: 900px;
-    margin-top: 25px;
-}
-
-.ariel-kb-grid article {
-    padding: 18px;
-    border: 1px solid var(--portfolio-accent-border);
-    border-radius: 12px;
-    background: linear-gradient(180deg, var(--portfolio-accent-soft), #ffffff);
-    color: var(--portfolio-accent);
-    font-weight: 700;
-    text-align: center;
-}
-
-.ariel-image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    max-width: 1000px;
-    margin-top: 28px;
-}
-
-.ariel-image-grid .research-visual {
     max-width: none;
-    margin: 0;
+    padding: 0;
+    background: #ffffff;
 }
 
-.ariel-image-grid .research-visual img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-}
-
-.ariel-metrics-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1000px;
-}
-
-@media (max-width: 900px) {
-    .ariel-architecture-grid,
-    .ariel-image-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ariel-architecture-cards,
-    .ariel-metrics-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .ariel-image-grid .research-visual img {
-    aspect-ratio: 16 / 10;
-    }
-}
-
-
-.project-link-text {
-    margin-top: 18px;
-    font-weight: 700;
-    color: var(--portfolio-accent);
-}
-
-/* Project ARIEL headline hero */
+/* Hero */
 
 .ariel-page-hero {
     position: relative;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    min-height: 560px;
-    padding: 96px max(24px, calc((100vw - 1200px) / 2 + 40px)) 88px;
+    min-height: 520px;
+    padding: 82px var(--ariel-padding-x) 76px;
     display: flex;
     align-items: center;
+    overflow: hidden;
     color: white;
     background:
+        radial-gradient(circle at 18% 28%, rgba(201, 168, 106, 0.16), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(47, 111, 115, 0.22), transparent 34%),
         linear-gradient(
             90deg,
-            rgba(16, 42, 45, 0.94),
-            rgba(16, 42, 45, 0.84),
-            rgba(16, 42, 45, 0.68)
+            rgba(7, 25, 31, 0.96) 0%,
+            rgba(10, 36, 50, 0.86) 48%,
+            rgba(9, 28, 48, 0.78) 100%
         ),
         url("images/projects/ariel/ariel-hero-bg.jpg");
     background-size: cover;
     background-position: center;
-    border-bottom: none;
+}
+
+.ariel-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
 }
 
 .ariel-hero-back {
     position: absolute;
     top: 28px;
-    left: max(24px, calc((100vw - 1200px) / 2 + 40px));
-    color: rgba(255, 255, 255, 0.88);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
+    left: var(--ariel-padding-x);
     z-index: 2;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
 }
 
 .ariel-hero-back:hover {
     color: var(--color-gold);
 }
 
-.ariel-page-hero-inner {
-    display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
-    gap: 56px;
+.ariel-hero-source {
+    position: absolute;
+    right: var(--ariel-padding-x);
+    bottom: 20px;
+    z-index: 3;
+    display: inline-flex;
     align-items: center;
-    max-width: 1100px;
-    width: 100%;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.ariel-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.ariel-hero-source-disabled {
+    opacity: 0.78;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.ariel-page-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1400px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: clamp(38px, 5vw, 70px);
+    align-items: center;
 }
 
 .ariel-page-hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.ariel-page-hero-image::before {
+    content: "";
+    position: absolute;
+    width: 290px;
+    height: 290px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(47, 111, 115, 0.34), transparent 62%);
+    filter: blur(2px);
 }
 
 .ariel-page-hero-image img {
-    width: 260px;
-    height: 260px;
+    position: relative;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.20);
     border-radius: 50%;
-    border: 4px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    box-shadow:
+        0 24px 62px rgba(0, 0, 0, 0.36),
+        0 0 0 12px rgba(255, 255, 255, 0.045);
 }
 
 .ariel-page-hero-copy .section-label {
+    margin-bottom: 14px;
     color: var(--color-gold);
-    opacity: 0.95;
+    font-weight: 850;
 }
 
 .ariel-page-hero-copy h1 {
-    max-width: 850px;
+    max-width: 820px;
     margin: 0 0 18px;
-    font-size: 3rem;
-    line-height: 1.15;
+    color: white;
+    font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
 }
 
 .ariel-page-hero-copy h2 {
-    max-width: 850px;
-    margin: 0 0 22px;
-    font-size: 1.65rem;
+    max-width: 820px;
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
     line-height: 1.35;
+    letter-spacing: -0.025em;
 }
 
 .ariel-page-hero-copy p {
-    max-width: 820px;
-    font-size: 1.05rem;
-    line-height: 1.75;
-    color: rgba(255, 255, 255, 0.88);
+    max-width: 790px;
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 1.02rem;
+    line-height: 1.7;
 }
 
 .ariel-page-hero-copy .detail-tags {
-    margin-top: 24px;
-    color: rgba(255, 255, 255, 0.78);
-    font-weight: 600;
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.92rem;
+    font-weight: 750;
 }
 
-@media (max-width: 768px) {
+/* Body layout */
+
+.ariel-body-layout {
+    max-width: var(--ariel-page-max);
+    margin: 0 auto;
+    padding: 56px var(--ariel-padding-x) 82px;
+    display: grid;
+    grid-template-columns: var(--ariel-sidebar-width) minmax(0, 1fr);
+    gap: var(--ariel-content-gap);
+}
+
+.ariel-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.ariel-body-layout .ariel-section-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transform: translateX(var(--ariel-sidebar-offset-x));
+}
+
+.ariel-body-layout .ariel-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.ariel-body-layout .ariel-section-nav a:hover,
+.ariel-body-layout .ariel-section-nav a:focus-visible {
+    color: var(--ariel-accent);
+    border-bottom-color: var(--ariel-accent);
+    transform: translateX(8px);
+}
+
+.ariel-body-content {
+    min-width: 0;
+}
+
+.ariel-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.ariel-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.ariel-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.ariel-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.ariel-body-content .detail-section h2::before {
+    content: "";
+    width: 52px;
+    height: 4px;
+    display: block;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold), var(--ariel-accent));
+}
+
+.ariel-body-content .detail-section p {
+    max-width: 850px;
+    color: #263234;
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+/* Shared Ariel cards */
+
+.ariel-body-content .approach-card,
+.ariel-body-content .contribution-card,
+.ariel-body-content .artifact-card,
+.ariel-body-content .metric-card,
+.ariel-body-content .research-visual {
+    border: 1px solid rgba(16, 42, 45, 0.12);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.ariel-body-content .approach-card,
+.ariel-body-content .contribution-card,
+.ariel-body-content .artifact-card,
+.ariel-body-content .metric-card {
+    padding: 24px;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.ariel-body-content .approach-card:hover,
+.ariel-body-content .contribution-card:hover,
+.ariel-body-content .artifact-card:hover,
+.ariel-body-content .metric-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
+}
+
+.ariel-body-content .approach-card h3,
+.ariel-body-content .contribution-card h3,
+.ariel-body-content .artifact-card h3 {
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+/* Problem callout */
+
+.ariel-body-content .evidence-note {
+    max-width: 920px;
+    margin: 30px 0 0;
+    padding: 24px 26px;
+    border-left: 5px solid var(--ariel-accent);
+    border-radius: 0 18px 18px 0;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, var(--ariel-soft) 100%);
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.ariel-body-content .evidence-note h3 {
+    color: var(--color-dark);
+}
+
+/* Problem visuals */
+
+.ariel-problem-visuals {
+    max-width: 1040px;
+    margin: 30px 0 32px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.ariel-problem-visual {
+    max-width: none;
+    margin: 0;
+    padding: 14px;
+}
+
+.ariel-problem-visual img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.ariel-problem-visual figcaption {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+/* Architecture */
+
+.ariel-architecture-grid {
+    max-width: 1000px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.1fr);
+    gap: 22px;
+    align-items: stretch;
+}
+
+.ariel-architecture-image {
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.ariel-architecture-image img {
+    width: 100%;
+    flex: 1;
+    min-height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.ariel-architecture-image figcaption {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(16, 42, 45, 0.10);
+    line-height: 1.65;
+}
+
+.ariel-architecture-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.ariel-architecture-cards .metric-card {
+    min-height: 100%;
+}
+
+.ariel-architecture-cards .metric-value {
+    color: var(--color-dark);
+    font-size: 1.3rem;
+    line-height: 1.2;
+}
+
+.ariel-architecture-cards .metric-label {
+    color: var(--color-muted);
+}
+
+/* Pipeline */
+
+.ariel-body-content .pipeline-visual {
+    max-width: 1000px;
+    gap: 12px;
+    margin: 32px 0 34px;
+}
+
+.ariel-body-content .pipeline-step {
+    min-height: 150px;
+    padding: 20px;
+    border: 1px solid rgba(47, 111, 115, 0.22);
+    border-top: 4px solid var(--ariel-accent);
+    border-radius: 16px;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(201, 168, 106, 0.11), transparent 34%),
+        linear-gradient(180deg, var(--ariel-soft), #ffffff);
+    box-shadow: 0 14px 28px rgba(16, 42, 45, 0.055);
+}
+
+.ariel-body-content .pipeline-number {
+    color: var(--ariel-accent);
+    letter-spacing: 0.08em;
+}
+
+.ariel-body-content .pipeline-step strong {
+    color: var(--color-dark);
+}
+
+/* Knowledge base */
+
+.ariel-kb-grid {
+    max-width: 900px;
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.ariel-kb-grid article {
+    padding: 18px;
+    border: 1px solid rgba(47, 111, 115, 0.20);
+    border-radius: 14px;
+    background:
+        linear-gradient(135deg, var(--ariel-soft), #ffffff);
+    color: var(--ariel-accent);
+    font-weight: 850;
+    text-align: center;
+    box-shadow: 0 10px 22px rgba(16, 42, 45, 0.045);
+}
+
+/* Frontend images */
+
+.ariel-image-grid {
+    position: relative;
+    isolation: isolate;
+    max-width: 1180px;
+    margin-top: 30px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.40fr) minmax(320px, 0.465fr);
+    gap: 18px;
+    align-items: start;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.92) 5%,
+            rgba(255, 255, 255, 0.78) 40%,
+            rgba(255, 255, 255, 0.76) 100%
+        ),
+        url("images/projects/ariel/code-background2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ariel-image-grid .research-visual {
+    position: relative;
+    z-index: 1;
+}
+
+.ariel-image-grid .research-visual {
+    max-width: none;
+    margin: 0;
+    padding: 14px;
+}
+
+.ariel-image-grid .research-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(2px);
+}
+
+.ariel-image-grid .research-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: initial;
+    object-position: initial;
+    border-radius: 12px;
+    background: transparent;
+}
+
+.ariel-frontend-showcase .ariel-featured-screenshot {
+    grid-row: span 4;
+}
+
+.ariel-frontend-showcase .ariel-featured-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    object-fit: initial;
+    object-position: initial;
+    background: transparent;
+}
+
+.ariel-image-grid .research-visual figcaption {
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    line-height: 1.55;
+}
+
+/* Evaluation */
+
+.ariel-metrics-grid {
+    max-width: 1000px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ariel-metrics-grid .metric-card {
+    min-height: 150px;
+}
+
+.ariel-metrics-grid .metric-value {
+    color: var(--color-dark);
+    font-size: 2.2rem;
+    letter-spacing: -0.04em;
+}
+
+.ariel-metrics-grid .metric-label {
+    color: var(--color-muted);
+}
+
+
+/* Status and roadmap */
+
+.ariel-roadmap-grid {
+    max-width: 1000px;
+}
+
+.ariel-roadmap-grid .approach-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.ariel-roadmap-grid .approach-card::before {
+    content: "";
+    width: 46px;
+    height: 4px;
+    display: block;
+    margin-bottom: 16px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold), var(--ariel-accent));
+}
+
+
+/* Artifacts */
+
+.ariel-body-content .artifact-status {
+    color: var(--ariel-accent);
+    font-weight: 850;
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
     .ariel-page-hero {
         min-height: auto;
-        padding: 72px 24px 56px;
-    }
-
-    .ariel-hero-back {
-        top: 20px;
-        left: 24px;
+        padding: 76px 24px 58px;
     }
 
     .ariel-page-hero-inner {
@@ -2376,7 +2788,12 @@ body {
     }
 
     .ariel-page-hero-image {
-        justify-content: center;
+        justify-content: flex-start;
+    }
+
+    .ariel-page-hero-image::before {
+        width: 210px;
+        height: 210px;
     }
 
     .ariel-page-hero-image img {
@@ -2384,111 +2801,151 @@ body {
         height: 170px;
     }
 
-    .ariel-page-hero-copy h1 {
-        font-size: 2.15rem;
-    }
-
-    .ariel-page-hero-copy h2 {
-        font-size: 1.35rem;
-    }
-
-    .ariel-page-hero-copy p {
-        font-size: 1rem;
-    }
-}
-
-/* Project ARIEL main-page sidebar layout */
-
-.ariel-page.detail-page {
-    max-width: none;
-    padding: 0;
-}
-
-.ariel-body-layout {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 900px);
-    gap: 56px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 44px 40px 70px;
-}
-
-.ariel-page-sidebar {
-    padding-top: 8px;
-}
-
-.ariel-body-layout .ariel-section-nav {
-    position: sticky;
-    top: 28px;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    width: 100%;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    overflow: visible;
-}
-
-.ariel-body-layout .ariel-section-nav a {
-    display: block;
-    width: 100%;
-    padding: 14px 0 12px;
-    border-bottom: 1px solid #d8d2c8;
-    border-radius: 0;
-    color: #222;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.35;
-    white-space: normal;
-}
-
-.ariel-body-layout .ariel-section-nav a:hover {
-    padding-left: 8px;
-    color: var(--portfolio-accent);
-    border-bottom-color: var(--portfolio-accent);
-}
-
-.ariel-body-content {
-    min-width: 0;
-}
-
-.ariel-body-content .detail-section {
-    max-width: 900px;
-}
-
-.ariel-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-@media (max-width: 900px) {
     .ariel-body-layout {
         grid-template-columns: 1fr;
         gap: 28px;
-        padding: 34px 24px 60px;
-    }
-
-    .ariel-page-sidebar {
-        padding-top: 0;
+        padding: 38px 24px 70px;
     }
 
     .ariel-body-layout .ariel-section-nav {
         position: static;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0 18px;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .ariel-body-layout .ariel-section-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .ariel-body-layout .ariel-section-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .ariel-body-layout .ariel-section-nav a:hover,
+    .ariel-body-layout .ariel-section-nav a:focus-visible {
+        transform: none;
+        color: var(--ariel-accent);
+        border-color: var(--portfolio-accent-border);
+        background: var(--portfolio-accent-soft);
+    }
+
+    .ariel-architecture-grid,
+    .ariel-problem-visuals,
+    .ariel-image-grid,
+    .ariel-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ariel-architecture-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .ariel-body-content .pipeline-visual {
+        flex-direction: column;
+    }
+
+    .ariel-body-content .pipeline-arrow {
+        justify-content: center;
+        transform: rotate(90deg);
+        padding: 4px 0;
     }
 }
 
 @media (max-width: 560px) {
-    .ariel-body-layout .ariel-section-nav {
-        grid-template-columns: 1fr;
+    .ariel-page-hero {
+        padding: 68px 22px 46px;
+        background-position: center;
+    }
+
+    .ariel-hero-back {
+        top: 22px;
+        left: 22px;
+        font-size: 0.88rem;
+    }
+
+    .ariel-page-hero-image {
+        justify-content: center;
+    }
+
+    .ariel-page-hero-image img {
+        width: 142px;
+        height: 142px;
+    }
+
+    .ariel-page-hero-copy h1 {
+        font-size: clamp(2rem, 6vw, 1.55rem);
+        line-height: 1.02;
+    }
+
+    .ariel-page-hero-copy h2 {
+        font-size: 1.12rem;
+        line-height: 1.45;
+    }
+
+    .ariel-page-hero-copy p {
+        font-size: 0.96rem;
+        line-height: 1.65;
+    }
+
+    .ariel-page-hero-copy .detail-tags {
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+
+    .ariel-body-layout {
+        padding: 32px 22px 72px;
+    }
+
+    .ariel-body-content .detail-section {
+        padding-bottom: 30px;
+        margin-bottom: 32px;
+    }
+
+    .ariel-body-content .detail-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .ariel-body-content .approach-card,
+    .ariel-body-content .contribution-card,
+    .ariel-body-content .artifact-card,
+    .ariel-body-content .metric-card {
+        padding: 20px;
+    }
+
+    .ariel-kb-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ariel-frontend-showcase .ariel-featured-screenshot {
+        grid-row: auto;
+    }
+
+    .ariel-frontend-showcase .ariel-featured-screenshot img,
+    .ariel-image-grid .research-visual img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: initial;
+        background: transparent;
+    }
+
+    .ariel-hero-source {
+        right: 22px;
+        bottom: 22px;
+        min-height: 38px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
     }
 }
 

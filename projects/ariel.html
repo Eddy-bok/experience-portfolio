@@ -20,6 +20,15 @@
 
         <a href="../index.html#projects" class="ariel-hero-back">← Back to Projects</a>
 
+        <a
+          href="#"
+          class="ariel-hero-source ariel-hero-source-disabled"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          Source Code
+        </a>
+
         <div class="ariel-page-hero-inner">
 
             <div class="ariel-page-hero-image">
@@ -64,6 +73,7 @@
             <a href="#deployment">Deployment</a>
             <a href="#evaluation">Evaluation</a>
             <a href="#role">Role</a>
+            <a href="#status-roadmap">Status & Roadmap</a>
             <a href="#artifacts">Artifacts</a>
             </nav>
         </aside>
@@ -74,15 +84,37 @@
       <h2>Project Problem</h2>
 
       <p>
-        A traditional portfolio website is static. Visitors can read pages manually, but they cannot
-        ask direct questions about specific research, projects, technical skills, achievements, or
-        presentations.
+        Traditional portfolio websites are static. Visitors have to manually navigate pages to understand a candidate’s 
+        research, projects, skills, certifications, achievements, and technical background. This creates friction for 
+        recruiters, collaborators, and technical reviewers who may want quick answers to specific questions.
       </p>
 
       <p>
-        Ariel addresses this limitation by adding an interactive question-answering layer over a
-        curated portfolio knowledge base.
+        Ariel addresses this by adding an interactive AI question-answering layer over a curated portfolio knowledge base, 
+        allowing visitors to explore Eddie’s work through natural language instead of page-by-page browsing.
       </p>
+
+      <div class="ariel-problem-visuals">
+        <figure class="research-visual ariel-problem-visual">
+          <img
+            src="../images/projects/ariel/ariel-problem-browsing-stress.png"
+            alt="A stressed visitor reviewing a portfolio website on a laptop"
+          />
+          <figcaption>
+            Traditional portfolio browsing can require visitors to manually scan pages and locate answers themselves.
+          </figcaption>
+        </figure>
+
+        <figure class="research-visual ariel-problem-visual">
+          <img
+            src="../images/projects/ariel/ariel-problem-human-robot.png"
+            alt="A visitor directly interacting with a robot assistant"
+          />
+          <figcaption>
+            Ariel adds a conversational layer so visitors can directly ask questions and get guided portfolio answers.
+          </figcaption>
+        </figure>
+      </div>
 
       <div class="evidence-note">
         <h3>Example visitor questions</h3>
@@ -133,8 +165,9 @@
       <h2>System Architecture</h2>
 
       <p>
-        Ariel is built as a cloud-backed RAG application connected to a static GitHub Pages portfolio
-        website.
+        Ariel is built as a cloud-backed RAG application connected to a static GitHub Pages portfolio website. 
+        The system separates the public portfolio frontend from the AI backend, allowing the assistant to retrieve 
+        curated portfolio knowledge, assemble context, and generate grounded responses through a deployed API service.
       </p>
 
       <div class="ariel-architecture-grid">
@@ -144,30 +177,29 @@
             alt="Cloud backend, AI application, or software architecture visual"
           />
           <figcaption>
-            Suggested image: cloud backend, API infrastructure, AI software dashboard, or developer
-            workspace. Use this area for a polished stock image.
+            Cloud-backed architecture supporting Ariel's retrieval, answer generation, and portfolio integration workflow.
           </figcaption>
         </figure>
 
         <div class="ariel-architecture-cards">
           <article class="metric-card">
-            <span class="metric-value">GitHub Pages</span>
-            <span class="metric-label">Hosts the public portfolio website and loads the Ariel widget.</span>
+            <span class="metric-value">GitHub Pages Frontend</span>
+            <span class="metric-label">Hosts the public portfolio website and loads the Ariel assistant widget that visitors use to ask questions.</span>
           </article>
 
           <article class="metric-card">
-            <span class="metric-value">FastAPI</span>
-            <span class="metric-label">Exposes the backend service used by the assistant widget.</span>
+            <span class="metric-value">JavaScript Assistant Widget</span>
+            <span class="metric-label">Captures visitor questions, sends requests to the backend API, and displays Ariel’s grounded responses inside the portfolio interface.</span>
           </article>
 
           <article class="metric-card">
-            <span class="metric-value">Azure App Service</span>
-            <span class="metric-label">Runs the deployed cloud backend for Ariel.</span>
+            <span class="metric-value">FastAPI Retrieval Backend</span>
+            <span class="metric-label">Handles the assistant request flow, including query intake, knowledge base retrieval, context assembly, model calls, and response formatting.</span>
           </article>
 
           <article class="metric-card">
-            <span class="metric-value">Azure AI</span>
-            <span class="metric-label">Supports embedding generation and grounded answer generation.</span>
+            <span class="metric-value">Azure App Service + Model Layer</span>
+            <span class="metric-label">Runs the deployed FastAPI backend on Azure App Service and connects the assistant to OpenAI models for embedding generation, retrieval support, and grounded answer generation.</span>
           </article>
         </div>
       </div>
@@ -177,39 +209,40 @@
       <h2>RAG Pipeline</h2>
 
       <p>
-        Ariel uses retrieval augmented generation to connect a structured portfolio knowledge base
-        with a language model.
+        Ariel uses retrieval-augmented generation to connect a structured portfolio knowledge base
+        with an OpenAI language model, allowing visitors to ask questions and receive grounded answers
+        from curated portfolio content.
       </p>
 
       <div class="pipeline-visual">
         <div class="pipeline-step">
           <span class="pipeline-number">01</span>
-          <strong>Load documents</strong>
-          <small>Read markdown files and YAML metadata from the portfolio knowledge base.</small>
+          <strong>Load and structure knowledge base</strong>
+          <small>Read markdown files with YAML metadata, aliases, keywords, project categories, and question-intent fields from the portfolio knowledge base.</small>
         </div>
 
         <div class="pipeline-arrow">→</div>
 
         <div class="pipeline-step">
           <span class="pipeline-number">02</span>
-          <strong>Embed content</strong>
-          <small>Generate embeddings with text-embedding-3-large.</small>
+          <strong>Chunk and embed content</strong>
+          <small>Split knowledge base documents into retrieval-friendly chunks, then generate semantic embeddings.</small>
         </div>
 
         <div class="pipeline-arrow">→</div>
 
         <div class="pipeline-step">
           <span class="pipeline-number">03</span>
-          <strong>Retrieve top-k</strong>
-          <small>Rank documents using semantic similarity and metadata-aware retrieval.</small>
+          <strong>Retrieve and assemble context</strong>
+          <small>Rank the most relevant chunks using semantic similarity and metadata-aware retrieval, then assemble the selected content into a grounded response context.</small>
         </div>
 
         <div class="pipeline-arrow">→</div>
 
         <div class="pipeline-step">
           <span class="pipeline-number">04</span>
-          <strong>Generate answer</strong>
-          <small>Use GPT-4.1-mini to answer from the retrieved portfolio context.</small>
+          <strong>Generate grounded answer</strong>
+          <small>Use gpt-4.1-mini to answer from the retrieved portfolio context and return the response through the Ariel assistant widget.</small>
         </div>
       </div>
     </section>
@@ -243,24 +276,24 @@
         by including the assistant script.
       </p>
 
-      <div class="ariel-image-grid">
+      <div class="ariel-image-grid ariel-frontend-showcase">
+        <figure class="research-visual ariel-featured-screenshot">
+          <img
+            src="../images/projects/ariel/widget-open.jpg"
+            alt="Ariel assistant widget open with a sample conversation"
+          />
+          <figcaption>
+            Ariel open in conversation within the portfolio chat interface.
+          </figcaption>
+        </figure>
+
         <figure class="research-visual">
           <img
             src="../images/projects/ariel/ariel-widget-home.jpg"
             alt="Ariel assistant widget closed on the portfolio homepage"
           />
           <figcaption>
-            Ariel closed on the homepage. Use your real homepage screenshot here.
-          </figcaption>
-        </figure>
-
-        <figure class="research-visual">
-          <img
-            src="../images/projects/ariel/widget-open.jpg"
-            alt="Ariel assistant widget open with a sample conversation"
-          />
-          <figcaption>
-            Ariel open with a sample conversation. Use your real assistant screenshot here.
+            Ariel closed on the homepage as a lightweight entry point.
           </figcaption>
         </figure>
 
@@ -270,7 +303,7 @@
             alt="Ariel assistant widget on a research detail page"
           />
           <figcaption>
-            Ariel on a research detail page. Use your real research-page screenshot here.
+            Ariel available on a research detail page for context-aware questions.
           </figcaption>
         </figure>
       </div>
@@ -280,32 +313,36 @@
       <h2>Deployment</h2>
 
       <p>
-        Ariel uses a split deployment model. The portfolio website is hosted with GitHub Pages, while
-        the assistant backend runs as a FastAPI service deployed to Azure App Service.
+        Ariel uses a split deployment architecture. The portfolio website is hosted with GitHub Pages,
+        while the AI assistant runs through a FastAPI backend deployed on Azure App Service. This separates
+        the public frontend from the retrieval and answer-generation service, making the assistant easier
+        to maintain, expand, and monitor.
       </p>
 
       <div class="approach-grid">
         <article class="approach-card">
-          <h3>Public website</h3>
+          <h3>Public Portfolio Frontend</h3>
           <p>
-            The static portfolio is served through GitHub Pages and includes a JavaScript assistant
-            widget.
+            The portfolio is served through GitHub Pages and includes a JavaScript assistant widget that lets visitors
+            ask questions directly from the live website.
           </p>
         </article>
 
         <article class="approach-card">
-          <h3>Cloud backend</h3>
+          <h3>Azure-Hosted AI Backend</h3>
           <p>
-            The assistant calls an Azure-hosted FastAPI backend that handles retrieval and answer
-            generation.
+            The assistant backend runs as a FastAPI service on Azure App Service. It receives visitor questions,
+            performs retrieval over the curated knowledge base, builds the response context, and coordinates model-based
+            answer generation.
           </p>
         </article>
 
         <article class="approach-card">
-          <h3>Grounded response flow</h3>
+          <h3>Grounded Response Flow</h3>
           <p>
-            The frontend sends a visitor's question to the backend. The backend retrieves context,
-            calls the model, and returns a grounded portfolio answer.
+            When a visitor submits a question, the frontend sends the request to the Azure backend. The backend retrieves
+            relevant portfolio context, generates a grounded answer from that context, and returns the response to the Ariel
+            widget for display.
           </p>
         </article>
       </div>
@@ -336,12 +373,24 @@
         </article>
 
         <article class="metric-card">
-          <span class="metric-value">100%</span>
+          <span
+            class="metric-value ariel-count-up"
+            data-count-start="1"
+            data-count-target="100"
+            data-count-decimals="0"
+            data-count-suffix="%"
+          >1%</span>
           <span class="metric-label">Top-k retrieval coverage across current suites</span>
         </article>
 
         <article class="metric-card">
-          <span class="metric-value">98.4%</span>
+          <span
+            class="metric-value ariel-count-up"
+            data-count-start="1"
+            data-count-target="98.4"
+            data-count-decimals="1"
+            data-count-suffix="%"
+          >1%</span>
           <span class="metric-label">Top-1 retrieval accuracy across current suites</span>
         </article>
 
@@ -365,62 +414,89 @@
       <h2>My Role and Implementation</h2>
 
       <p>
-        I designed and implemented Ariel as an applied AI engineering project that combines knowledge
-        base design, retrieval, evaluation, backend deployment, and frontend integration.
+        I designed and implemented Ariel as an end-to-end applied AI assistant that connects structured portfolio
+        knowledge, retrieval-based reasoning, backend deployment, and frontend user interaction into a working
+        RAG application.
       </p>
 
       <div class="contribution-grid">
         <article class="contribution-card">
-          <h3>RAG pipeline</h3>
+          <h3>End-to-end RAG system architecture</h3>
           <p>
-            Built the workflow for loading documents, generating embeddings, retrieving relevant
-            context, and generating grounded answers.
+            Built the full retrieval-augmented generation pipeline, including document loading, chunking, embedding
+            generation, semantic retrieval, context assembly, and grounded answer generation using OpenAI models.
           </p>
         </article>
 
         <article class="contribution-card">
-          <h3>Knowledge base design</h3>
+          <h3>Knowledge base engineering</h3>
           <p>
-            Organized portfolio content into structured markdown files with metadata, aliases,
-            keywords, and question intents.
+            Designed a structured markdown knowledge base with metadata, aliases, keywords, project categories,
+            and question intents so Ariel can accurately retrieve information about my research, projects, achievements,
+            and technical background.
           </p>
         </article>
 
         <article class="contribution-card">
-          <h3>Evaluation workflow</h3>
+          <h3>Retrieval evaluation and reliability testing</h3>
           <p>
-            Created retrieval test suites, smoke tests, report outputs, top-k evaluation, and failure
-            tracking.
+            Created evaluation workflows to test retrieval quality, measure top-k accuracy, review similarity scores,
+            track failed queries, and improve the knowledge base based on retrieval performance instead of guesswork.
           </p>
         </article>
 
         <article class="contribution-card">
-          <h3>Deployment and integration</h3>
+          <h3>Cloud deployment and portfolio integration</h3>
           <p>
-            Connected a FastAPI backend deployed on Azure App Service to a GitHub Pages portfolio
-            frontend through the Ariel assistant widget.
+            Deployed the FastAPI backend on Azure App Service and integrated Ariel into my GitHub Pages portfolio
+            through a frontend assistant widget, turning the project into a live, interactive AI product.
           </p>
         </article>
       </div>
     </section>
 
-    <section id="status" class="detail-section">
-      <h2>Current Status</h2>
+    <section id="status-roadmap" class="detail-section">
+      <h2>Status and Roadmap</h2>
 
       <p>
-        Ariel is currently a deployed cloud-backed portfolio prototype connected to Eddie's live
-        GitHub Pages portfolio website.
+        Ariel is currently deployed as a cloud-backed portfolio AI assistant connected to Eddie’s live GitHub Pages portfolio.
+        The current version combines a curated knowledge base, embedding-based retrieval, context-grounded answer generation,
+        a FastAPI backend on Azure App Service, and a JavaScript assistant widget integrated into the portfolio website.
       </p>
-    </section>
 
-    <section id="roadmap" class="detail-section">
-      <h2>Next Improvements</h2>
+      <div class="approach-grid ariel-roadmap-grid">
+        <article class="approach-card">
+          <h3>Current Live Deployment</h3>
+          <p>
+            Ariel is live as an interactive portfolio assistant that can answer questions about Eddie’s research, projects,
+            skills, certifications, presentations, achievements, and professional background using curated knowledge base content.
+          </p>
+        </article>
 
-      <p>
-        Planned improvements include expanding evaluation coverage, improving source-aware answers,
-        strengthening monitoring, refining the mobile assistant experience, and adding more
-        portfolio content as Eddie's projects continue to grow.
-      </p>
+        <article class="approach-card">
+          <h3>Retrieval Evaluation System</h3>
+          <p>
+            Initial evaluation workflows have been implemented, including retrieval test suites, smoke tests, top-k accuracy checks,
+            similarity score review, report outputs, and failure tracking to improve retrieval quality over time.
+          </p>
+        </article>
+
+        <article class="approach-card">
+          <h3>Knowledge Base Expansion</h3>
+          <p>
+            The knowledge base is actively being expanded as the portfolio grows, with structured markdown files, metadata, aliases,
+            keywords, and question intents added for research, projects, achievements, and professional background.
+          </p>
+        </article>
+
+        <article class="approach-card">
+          <h3>Production Roadmap</h3>
+          <p>
+            Next improvements include source-aware answer display, supporting snippets or references, visitor feedback collection,
+            latency tracking, cold-start optimization, and deeper monitoring for answer quality and system reliability.
+          </p>
+        </article>
+      </div>
     </section>
 
     <section id="artifacts" class="detail-section">
@@ -457,6 +533,7 @@
   </div>
   </main>
 
+  <script src="../ariel-metrics.js"></script>
   <script src="../assistant.js"></script>
 </body>
 </html>
