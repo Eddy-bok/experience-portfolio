@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 :root {
     --color-bg: #ffffff;
     --color-surface: #ffffff;
@@ -2170,9 +2180,11 @@ body {
    ========================================================= */
 
 .ariel-page {
-    --ariel-page-max: 1240px;
-    --ariel-sidebar-width: 210px;
-    --ariel-content-gap: 62px;
+    --ariel-page-max: 1660px;
+    --ariel-sidebar-width: 170px;
+    --ariel-content-gap: 64px;
+    --ariel-sidebar-offset-x: -34px;
+    --ariel-padding-x: clamp(28px, 4vw, 72px);
     --ariel-accent: var(--portfolio-accent);
     --ariel-soft: rgba(238, 246, 246, 0.72);
 
@@ -2188,7 +2200,7 @@ body {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     min-height: 520px;
-    padding: 82px max(28px, calc((100vw - 1220px) / 2 + 40px)) 76px;
+    padding: 82px var(--ariel-padding-x) 76px;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -2219,7 +2231,7 @@ body {
 .ariel-hero-back {
     position: absolute;
     top: 28px;
-    left: max(28px, calc((100vw - 1220px) / 2 + 40px));
+    left: var(--ariel-padding-x);
     z-index: 2;
     color: rgba(255, 255, 255, 0.86);
     text-decoration: none;
@@ -2231,10 +2243,45 @@ body {
     color: var(--color-gold);
 }
 
+.ariel-hero-source {
+    position: absolute;
+    right: var(--ariel-padding-x);
+    bottom: 20px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.ariel-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.ariel-hero-source-disabled {
+    opacity: 0.78;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .ariel-page-hero-inner {
     position: relative;
     z-index: 2;
-    width: min(1120px, 100%);
+    width: min(1400px, 100%);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 260px minmax(0, 1fr);
@@ -2315,7 +2362,7 @@ body {
 .ariel-body-layout {
     max-width: var(--ariel-page-max);
     margin: 0 auto;
-    padding: 54px 40px 82px;
+    padding: 56px var(--ariel-padding-x) 82px;
     display: grid;
     grid-template-columns: var(--ariel-sidebar-width) minmax(0, 1fr);
     gap: var(--ariel-content-gap);
@@ -2332,6 +2379,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    transform: translateX(var(--ariel-sidebar-offset-x));
 }
 
 .ariel-body-layout .ariel-section-nav a {
@@ -2462,13 +2510,43 @@ body {
     color: var(--color-dark);
 }
 
+/* Problem visuals */
+
+.ariel-problem-visuals {
+    max-width: 1040px;
+    margin: 30px 0 32px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.ariel-problem-visual {
+    max-width: none;
+    margin: 0;
+    padding: 14px;
+}
+
+.ariel-problem-visual img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.ariel-problem-visual figcaption {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
 /* Architecture */
 
 .ariel-architecture-grid {
     max-width: 1000px;
     margin-top: 30px;
     display: grid;
-    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.1fr);
     gap: 22px;
     align-items: stretch;
 }
@@ -2476,11 +2554,25 @@ body {
 .ariel-architecture-image {
     margin: 0;
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .ariel-architecture-image img {
-    aspect-ratio: 4 / 3;
+    width: 100%;
+    flex: 1;
+    min-height: 200px;
     object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.ariel-architecture-image figcaption {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(16, 42, 45, 0.10);
+    line-height: 1.65;
 }
 
 .ariel-architecture-cards {
@@ -2557,11 +2649,31 @@ body {
 /* Frontend images */
 
 .ariel-image-grid {
-    max-width: 1000px;
+    position: relative;
+    isolation: isolate;
+    max-width: 1180px;
     margin-top: 30px;
+    padding: 30px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 0.40fr) minmax(320px, 0.465fr);
     gap: 18px;
+    align-items: start;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.92) 5%,
+            rgba(255, 255, 255, 0.78) 40%,
+            rgba(255, 255, 255, 0.76) 100%
+        ),
+        url("images/projects/ariel/code-background2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ariel-image-grid .research-visual {
+    position: relative;
+    z-index: 1;
 }
 
 .ariel-image-grid .research-visual {
@@ -2570,16 +2682,45 @@ body {
     padding: 14px;
 }
 
+.ariel-image-grid .research-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(2px);
+}
+
 .ariel-image-grid .research-visual img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    object-position: top;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: initial;
+    object-position: initial;
     border-radius: 12px;
+    background: transparent;
+}
+
+.ariel-frontend-showcase .ariel-featured-screenshot {
+    grid-row: span 4;
+}
+
+.ariel-frontend-showcase .ariel-featured-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    object-fit: initial;
+    object-position: initial;
+    background: transparent;
 }
 
 .ariel-image-grid .research-visual figcaption {
     color: var(--color-muted);
-    font-size: 0.88rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
 }
 
 /* Evaluation */
@@ -2672,6 +2813,7 @@ body {
         gap: 10px;
         overflow-x: auto;
         padding-bottom: 8px;
+        transform: none;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
@@ -2699,6 +2841,7 @@ body {
     }
 
     .ariel-architecture-grid,
+    .ariel-problem-visuals,
     .ariel-image-grid,
     .ariel-metrics-grid {
         grid-template-columns: 1fr;
@@ -2782,6 +2925,27 @@ body {
 
     .ariel-kb-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ariel-frontend-showcase .ariel-featured-screenshot {
+        grid-row: auto;
+    }
+
+    .ariel-frontend-showcase .ariel-featured-screenshot img,
+    .ariel-image-grid .research-visual img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: initial;
+        background: transparent;
+    }
+
+    .ariel-hero-source {
+        right: 22px;
+        bottom: 22px;
+        min-height: 38px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
     }
 }
 
