@@ -64,6 +64,7 @@
             <a href="#deployment">Deployment</a>
             <a href="#evaluation">Evaluation</a>
             <a href="#role">Role</a>
+            <a href="#status-roadmap">Status & Roadmap</a>
             <a href="#artifacts">Artifacts</a>
             </nav>
         </aside>
@@ -403,23 +404,53 @@
       </div>
     </section>
 
-    <section id="status" class="detail-section">
-      <h2>Current Status</h2>
+    <section id="status-roadmap" class="detail-section">
+      <h2>Status and Roadmap</h2>
 
       <p>
-        Ariel is currently a deployed cloud-backed portfolio prototype connected to Eddie's live
-        GitHub Pages portfolio website.
+        Ariel is currently deployed as a cloud-backed portfolio assistant connected
+        to Eddie's live GitHub Pages portfolio website. The current version supports
+        portfolio question answering through a curated knowledge base, embedding
+        retrieval, a FastAPI backend, and a JavaScript frontend widget.
       </p>
-    </section>
 
-    <section id="roadmap" class="detail-section">
-      <h2>Next Improvements</h2>
+      <div class="approach-grid ariel-roadmap-grid">
+        <article class="approach-card">
+          <h3>Current Deployment</h3>
+          <p>
+            Ariel is live as an interactive assistant widget that can answer
+            questions about Eddie's research, projects, skills, certifications,
+            presentations, achievements, and portfolio background.
+          </p>
+        </article>
 
-      <p>
-        Planned improvements include expanding evaluation coverage, improving source-aware answers,
-        strengthening monitoring, refining the mobile assistant experience, and adding more
-        portfolio content as Eddie's projects continue to grow.
-      </p>
+        <article class="approach-card">
+          <h3>Evaluation Expansion</h3>
+          <p>
+            Planned improvements include expanding retrieval test suites, adding
+            more question categories, and strengthening evaluation coverage as the
+            portfolio grows.
+          </p>
+        </article>
+
+        <article class="approach-card">
+          <h3>Source-Aware Answers</h3>
+          <p>
+            Future versions can improve answer transparency by exposing supporting
+            source snippets, confidence indicators, or page-level references when
+            useful to visitors.
+          </p>
+        </article>
+
+        <article class="approach-card">
+          <h3>Monitoring and Feedback</h3>
+          <p>
+            Additional improvements may include structured feedback collection,
+            answer quality monitoring, latency tracking, and deeper production
+            observability for the RAG system.
+          </p>
+        </article>
+      </div>
     </section>
 
     <section id="artifacts" class="detail-section">
