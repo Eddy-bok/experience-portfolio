@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Reciprocal Resource Matching | Eddie Ibokete</title>
+  <meta
+    name="description"
+    content="A capacity-constrained reciprocal resource matching algorithm for coordinating institutional needs, contributor capabilities, reciprocity rules, and assignment limits."
+  />
+
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <main class="detail-page project-case-study resource-page">
+
+    <header class="resource-page-hero">
+      <a href="../index.html#projects" class="resource-hero-back">← Back to Projects</a>
+
+      <a
+        href="#"
+        class="resource-hero-source resource-hero-source-disabled"
+        aria-disabled="true"
+        tabindex="-1"
+      >
+        Source Code
+      </a>
+
+      <div class="resource-page-hero-inner">
+        <div class="resource-page-hero-copy">
+            <p class="section-label">Algorithm Design Project</p>
+
+            <h1>Reciprocal Resource Matching</h1>
+
+            <h2>
+            A capacity-constrained matching framework for coordinating institutional needs,
+            contributor capabilities, reciprocity, and assignment limits.
+            </h2>
+
+            <p>
+            This project models a common coordination problem: organizations need support,
+            organizations can contribute support, and the system must decide who should help whom
+            under priority, qualification, trust, reciprocity, and capacity constraints.
+            </p>
+
+            <p class="detail-tags">
+            Python • Pandas • Matching Algorithms • Resource Allocation • Reproducible Pipelines
+            </p>
+        </div>
+        </div>
+    </header>
+
+    <div class="resource-body-layout">
+      <aside class="resource-page-sidebar">
+        <nav class="resource-section-nav" aria-label="Reciprocal Resource Matching page sections">
+          <a href="#problem">Problem</a>
+          <a href="#why-simple-matching-fails">Why It Is Hard</a>
+          <a href="#framework">Framework</a>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#case-study">Case Study</a>
+          <a href="#results">Results</a>
+          <a href="#role">Role</a>
+          <a href="#applications">Applications</a>
+          <a href="#artifacts">Artifacts</a>
+        </nav>
+      </aside>
+
+      <div class="resource-body-content">
+
+        <section id="problem" class="detail-section">
+          <h2>Project Problem</h2>
+
+          <p>
+            Many institutional networks face the same coordination problem: some participants
+            need support, some can provide support, and many do both. The challenge is not simply
+            finding a contributor. The system must identify useful matches while respecting
+            priorities, skill requirements, trust indicators, reciprocity rules, and capacity limits.
+          </p>
+
+
+          <figure class="resource-problem-figure">
+            <img
+                src="../images/projects/resource-matching/resource-bottleneck.png"
+                alt="People holding disconnected puzzle pieces before assembling them into a coordinated whole"
+            />
+
+          <figcaption>
+            The project models this kind of coordination problem: separate institutional needs and capabilities
+            must be evaluated, matched, and assembled into a useful exchange network.
+          </figcaption>
+          </figure>
+
+
+          <p>
+            This project turns that coordination problem into a structured matching workflow. Each
+            requester’s needs are compared against contributor capabilities, scored based on fit,
+            filtered through reciprocity rules, and assigned under institutional capacity caps.
+          </p>
+
+          <div class="resource-problem-grid">
+            <article class="resource-problem-card">
+              <span class="resource-card-number">01</span>
+              <h3>Institutions need support</h3>
+              <p>
+                Requests may differ by priority, type of work, required qualification level, and urgency.
+              </p>
+            </article>
+
+            <article class="resource-problem-card">
+              <span class="resource-card-number">02</span>
+              <h3>Institutions also contribute</h3>
+              <p>
+                Contributors have different capabilities, trust signals, skill levels, and available capacity.
+              </p>
+            </article>
+
+            <article class="resource-problem-card">
+              <span class="resource-card-number">03</span>
+              <h3>Fair exchange requires constraints</h3>
+              <p>
+                Matching must avoid overloading high-capability contributors while preserving reciprocal participation.
+              </p>
+            </article>
+          </div>
+
+          <div class="evidence-note">
+            <h3>Portfolio framing</h3>
+            <p>
+              The library cataloging exchange is the applied use case. The broader project is an algorithmic
+              framework for reciprocal, capacity-constrained resource coordination.
+            </p>
+          </div>
+        </section>
+
+        <section id="why-simple-matching-fails" class="detail-section">
+          <h2>Why Simple Matching Fails</h2>
+
+          <p>
+            A simple one-to-one match is not enough because each participant can appear on both
+            sides of the exchange. A strong contributor for one request may also need help from
+            another institution. The system therefore has to reason across a network, not just a
+            pair of records.
+          </p>
+
+          <div class="approach-grid resource-challenge-grid">
+            <article class="approach-card">
+              <h3>Multi-sided participation</h3>
+              <p>
+                Institutions can be requesters, contributors, or both, which makes the assignment
+                problem closer to a constrained exchange network than a simple lookup table.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Qualification fit</h3>
+              <p>
+                Contributors must be evaluated against required levels of work, with exact, fallback,
+                and underqualified matches handled differently.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Capacity pressure</h3>
+              <p>
+                High-capability contributors should not absorb every assignment. Capacity caps help
+                distribute work more fairly across the network.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Reciprocity</h3>
+              <p>
+                The algorithm prioritizes exchange behavior so participants contribute to others
+                while also receiving support for their own needs.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="framework" class="detail-section">
+          <h2>Matching Framework</h2>
+
+          <p>
+            The framework builds requester and contributor profiles, scores viable matches, filters
+            candidates through reciprocity rules, applies capacity constraints, and exports final
+            assignment outputs for review.
+          </p>
+
+          <div class="resource-framework-grid">
+            <article class="metric-card">
+              <span class="metric-value">Needs</span>
+              <span class="metric-label">Requester profiles built from requested work categories, priority rankings, and required qualification levels.</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Capabilities</span>
+              <span class="metric-label">Contributor profiles built from available expertise, contribution levels, trust indicators, and capacity settings.</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Scoring</span>
+              <span class="metric-label">Candidate matches ranked using priority fit, qualification fit, skill surplus, and trust or performance signals.</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Assignment</span>
+              <span class="metric-label">Final matches selected after reciprocity filtering, exact/fallback logic, and institutional capacity caps.</span>
+            </article>
+          </div>
+
+          <div class="results-table-wrapper resource-table-wrapper">
+            <h3>Core scoring components</h3>
+
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Material priority</td>
+                  <td>Gives higher weight to higher-priority requester needs.</td>
+                </tr>
+                <tr>
+                  <td>Language priority</td>
+                  <td>Rewards contributors who can satisfy priority language or category needs.</td>
+                </tr>
+                <tr>
+                  <td>Required level fit</td>
+                  <td>Checks whether the contributor meets the requester’s minimum accepted level.</td>
+                </tr>
+                <tr>
+                  <td>Skill surplus</td>
+                  <td>Rewards contributors who exceed the requested qualification level.</td>
+                </tr>
+                <tr>
+                  <td>Trust indicators</td>
+                  <td>Adds signal for recognized cooperative or quality-assurance markers.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="pipeline" class="detail-section">
+          <h2>Algorithm Pipeline</h2>
+
+          <p>
+            The project is organized as a reproducible Python workflow that moves from anonymized
+            sample survey data to scored match pools, reciprocal eligibility checks, final assignment
+            outputs, and summary checkpoint metrics.
+          </p>
+
+          <div class="pipeline-visual resource-pipeline">
+            <div class="pipeline-step">
+              <span class="pipeline-number">01</span>
+              <strong>Load and prepare data</strong>
+              <small>Read anonymized sample data, normalize fields, and prepare the merged working dataset.</small>
+            </div>
+
+            <div class="pipeline-arrow">→</div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-number">02</span>
+              <strong>Build institution profiles</strong>
+              <small>Create requester and contributor profiles from needs, capabilities, priorities, and levels.</small>
+            </div>
+
+            <div class="pipeline-arrow">→</div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-number">03</span>
+              <strong>Score candidate matches</strong>
+              <small>Rank viable requester-contributor pairs using priority, qualification, surplus, and trust signals.</small>
+            </div>
+
+            <div class="pipeline-arrow">→</div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-number">04</span>
+              <strong>Assign final contributors</strong>
+              <small>Apply reciprocity rules, capacity caps, exact/fallback logic, and export final match outputs.</small>
+            </div>
+          </div>
+        </section>
+
+        <section id="case-study" class="detail-section resource-case-section">
+          <h2>Applied Case Study: Cooperative Cataloging Exchange</h2>
+
+          <p>
+            The current implementation is demonstrated through a cooperative cataloging exchange
+            use case for the Center for Research Libraries. Participating institutions may request
+            cataloging support for specific material-language combinations while also contributing
+            cataloging capabilities to others.
+          </p>
+
+          <p>
+            In this setting, the algorithm helps identify balanced exchanges where institutions receive
+            help for their own backlogs while contributing cataloging work back into the network.
+          </p>
+
+          <div class="resource-case-study">
+            <div class="resource-case-copy">
+              <h3>From cataloging backlog to network coordination</h3>
+              <p>
+                The cataloging use case is valuable because it captures a general systems problem:
+                expertise is available somewhere in the network, but it is unevenly distributed and
+                difficult to coordinate manually.
+              </p>
+            </div>
+
+            <div class="resource-case-network" aria-label="Example exchange chain">
+              <span>Institution A</span>
+              <span>Institution B</span>
+              <span>Institution C</span>
+              <span>Institution D</span>
+              <span>Institution E</span>
+              <span>Institution F</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" class="detail-section">
+          <h2>Results and Reproducibility</h2>
+
+          <p>
+            The public version of the project uses anonymized sample data that preserves the original
+            workflow structure while removing private institution and contact details. The pipeline can
+            be rerun to reproduce checkpoint outputs.
+          </p>
+
+          <div class="metrics-grid resource-metrics-grid">
+            <article class="metric-card">
+              <span class="metric-value">19</span>
+              <span class="metric-label">Merged dataset rows in the anonymized sample pipeline</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">143</span>
+              <span class="metric-label">Merged dataset columns after survey preparation</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">565</span>
+              <span class="metric-label">Total scored candidate matches before final assignment</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">546</span>
+              <span class="metric-label">Reciprocal eligible matches after exchange filtering</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">31</span>
+              <span class="metric-label">Final assignment recommendations exported by the pipeline</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">1 passed</span>
+              <span class="metric-label">Smoke test confirms the end-to-end pipeline runs successfully</span>
+            </article>
+          </div>
+
+          <div class="evidence-note">
+            <h3>Why this matters</h3>
+            <p>
+              The reproducible sample version lets reviewers inspect the algorithmic workflow without
+              exposing private institutional data from the original project.
+            </p>
+          </div>
+        </section>
+
+        <section id="role" class="detail-section">
+          <h2>My Role and Implementation</h2>
+
+          <p>
+            I developed the matching workflow as an applied algorithm and data engineering project,
+            translating a real institutional coordination challenge into a reproducible Python pipeline.
+          </p>
+
+          <div class="contribution-grid">
+            <article class="contribution-card">
+              <h3>Data modeling and normalization</h3>
+              <p>
+                Structured survey data into requester and contributor profiles, cleaned inconsistent fields,
+                and prepared the inputs needed for match scoring and assignment logic.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Matching and scoring design</h3>
+              <p>
+                Designed scoring logic around priority, qualification fit, surplus capability, trust indicators,
+                and final assignment behavior.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Reciprocity and capacity rules</h3>
+              <p>
+                Added constraints to support balanced exchange behavior and prevent high-capability contributors
+                from being overloaded.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Reproducible project structure</h3>
+              <p>
+                Refactored the workflow into reusable modules, a clean demonstration notebook, a runnable pipeline,
+                anonymized sample data handling, output exports, and a smoke test.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="applications" class="detail-section">
+          <h2>Broader Applications</h2>
+
+          <p>
+            Although the working implementation is demonstrated through cooperative cataloging exchange,
+            the matching structure can transfer to other reciprocal coordination problems where organizations
+            exchange support under capacity constraints.
+          </p>
+
+          <div class="resource-application-grid">
+            <article>Institutional service exchange</article>
+            <article>Expertise matching</article>
+            <article>Volunteer allocation</article>
+            <article>Peer support networks</article>
+            <article>Interdepartmental resource coordination</article>
+            <article>Nonprofit capacity sharing</article>
+            <article>Library and archive collaboration</article>
+            <article>Multi-institution project coordination</article>
+          </div>
+        </section>
+
+        <section id="artifacts" class="detail-section">
+          <h2>Project Artifacts</h2>
+
+          <div class="artifact-grid">
+            <article class="artifact-card">
+              <h3>Public repository</h3>
+              <p>
+                Refactored project structure with anonymized sample data, scripts, source modules,
+                notebook, and test workflow.
+              </p>
+              <span class="artifact-status">Ready to link</span>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Presentation slides</h3>
+              <p>
+                Project presentation artifact for the cooperative cataloging exchange algorithm.
+              </p>
+              <a
+                href="../files/presentations/Cooperative-Cataloging-Exchange-Algorithm.pdf"
+                class="resource-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open slides
+              </a>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Canisius feature</h3>
+              <p>
+                Public feature describing the AI and cataloging challenge context behind the project.
+              </p>
+              <a
+                href="https://www.canisius.edu/news/ai-solutions-cataloging-challenges"
+                class="resource-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read feature
+              </a>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="../assistant.js"></script>
+</body>
+</html>
