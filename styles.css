@@ -2486,6 +2486,68 @@ body {
 }
 
 
+.resource-inline-figure {
+    margin: 0;
+}
+
+.resource-inline-figure img {
+    width: 100%;
+    display: block;
+}
+
+.resource-inline-figure figcaption {
+    display: none;
+}
+
+
+/* Why Simple Matching Fails section.
+   Keeps the capacity image on the page background while preventing
+   the Capacity pressure card from stretching to match the image height. */
+
+.resource-challenge-grid {
+    max-width: 870px;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+    gap: 22px;
+    align-items: center;
+}
+
+.resource-challenge-grid .approach-card {
+    border-color: transparent;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
+        linear-gradient(
+            125deg,
+            rgba(231, 242, 243, 0.28) 0%,
+            rgba(217, 235, 236, 0.22) 56%,
+            rgba(199, 224, 226, 0.94) 100%
+        );
+    box-shadow: 0 18px 36px rgba(7, 31, 36, 0.075);
+}
+
+.resource-challenge-grid .approach-card h3 {
+    color: #0d3f44;
+}
+
+.resource-challenge-grid .approach-card p {
+    color: #243f42;
+}
+
+.resource-capacity-card {
+    align-self: center;
+    min-height: auto;
+}
+
+.resource-capacity-figure {
+    align-self: center;
+    justify-self: center;
+    width: min(100%, 330px);
+}
+
+.resource-reciprocity-card {
+    grid-column: 1 / -1;
+}
+
+
 .resource-problem-figure {
     max-width: 870px;
     margin: 30px 0 32px;
@@ -2523,7 +2585,7 @@ body {
 }
 
 .resource-framework-grid {
-    max-width: 1040px;
+    max-width: 1000px;
     margin: 30px 0;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2545,7 +2607,7 @@ body {
 }
 
 .resource-table-wrapper {
-    max-width: 1040px;
+    max-width: 1000px;
 }
 
 .resource-body-content .results-table {
@@ -2578,31 +2640,22 @@ body {
 
 /* Pipeline */
 
-.resource-body-content .pipeline-visual {
-    max-width: 1060px;
-    gap: 12px;
-    margin: 32px 0 34px;
+.resource-pipeline-figure {
+    max-width: 1000px;
+    margin: 34px 0 18px;
 }
 
-.resource-body-content .pipeline-step {
-    min-height: 150px;
-    padding: 20px;
-    border: 1px solid rgba(47, 111, 115, 0.22);
-    border-top: 4px solid var(--resource-accent);
-    border-radius: 16px;
-    background:
-        radial-gradient(circle at 88% 10%, rgba(201, 168, 106, 0.11), transparent 34%),
-        linear-gradient(180deg, var(--resource-soft), #ffffff);
-    box-shadow: 0 14px 28px rgba(16, 42, 45, 0.055);
+.resource-pipeline-figure img {
+    width: 100%;
+    display: block;
 }
 
-.resource-body-content .pipeline-number {
-    color: var(--resource-accent);
-    letter-spacing: 0.08em;
-}
-
-.resource-body-content .pipeline-step strong {
-    color: var(--color-dark);
+.resource-pipeline-figure figcaption {
+    max-width: 900px;
+    margin-top: 12px;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
 }
 
 
@@ -2618,13 +2671,13 @@ body {
     --case-study-bg: url("images/projects/resource-matching/background-case-study1.jpg");
 
     /* Image tuning */
-    --case-study-bg-position: center;
+    --case-study-bg-position: 42% center;
     --case-study-bg-size: cover;
 
     /* Text readability tuning */
     --case-study-overlay-left: rgba(255, 255, 255, 0.27);
-    --case-study-overlay-mid: rgba(255, 255, 255, 0.12);
-    --case-study-overlay-right: rgba(255, 255, 255, 0.12);
+    --case-study-overlay-mid: rgba(255, 255, 255, 0.32);
+    --case-study-overlay-right: rgba(255, 255, 255, 0.32);
 
     /* Edge fade tuning */
     --case-study-edge-fade: #ffffff;
@@ -2664,7 +2717,7 @@ body {
 .resource-body-content .resource-case-section::before {
     content: "";
     position: absolute;
-    inset: 0.5;
+    inset: 0;
     z-index: 0;
     background:
         radial-gradient(circle at 14% 18%, rgba(47, 111, 115, 0.10), transparent 32%),
@@ -2679,6 +2732,12 @@ body {
 
 .resource-body-content .resource-case-section > p {
     max-width: 780px;
+    color: #102a2d;
+    font-weight: 500;
+    line-height: 1.72;
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.82),
+        0 0 16px rgba(255, 255, 255, 0.78);
 }
 
 
@@ -2749,8 +2808,69 @@ body {
     letter-spacing: -0.04em;
 }
 
+.resource-metric-count {
+    font-variant-numeric: tabular-nums;
+}
+
+.resource-metric-count.is-counting {
+    color: #0f4f55;
+}
+
+.resource-metric-count.has-counted {
+    color: var(--color-dark);
+}
+
 .resource-metrics-grid .metric-label {
     color: var(--color-muted);
+}
+
+/* Results metric cards.
+   Matches the darker teal treatment used in the Why Simple Matching Fails cards. */
+
+.resource-metrics-grid .metric-card {
+    border-color: rgba(15, 79, 85, 0.18);
+    background:
+        radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
+        linear-gradient(
+            125deg,
+            rgba(231, 242, 243, 0.28) 0%,
+            rgba(217, 235, 236, 0.22) 56%,
+            rgba(199, 224, 226, 0.94) 100%
+        );
+    box-shadow: 0 18px 36px rgba(7, 31, 36, 0.075);
+}
+
+.resource-metrics-grid .metric-value {
+    color: #0d3f44;
+}
+
+.resource-metrics-grid .metric-label {
+    color: #243f42;
+}
+
+/* Results evidence note.
+   Matches the Results metric card teal treatment without changing
+   evidence notes in other sections. */
+
+.resource-body-content #results .evidence-note {
+    border-left-color: #0f4f55;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
+        linear-gradient(
+            125deg,
+            rgba(231, 242, 243, 0.28) 0%,
+            rgba(217, 235, 236, 0.22) 56%,
+            rgba(199, 224, 226, 0.94) 100%
+        );
+    box-shadow: 0 18px 36px rgba(7, 31, 36, 0.075);
+}
+
+.resource-body-content #results .evidence-note h3 {
+    color: #0d3f44;
+}
+
+.resource-body-content #results .evidence-note p {
+    color: #243f42;
 }
 
 /* Applications */
@@ -2860,16 +2980,6 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .resource-body-content .pipeline-visual {
-        flex-direction: column;
-    }
-
-    .resource-body-content .pipeline-arrow {
-        justify-content: center;
-        transform: rotate(90deg);
-        padding: 4px 0;
-    }
-
     .resource-body-content .results-table-wrapper {
         overflow-x: auto;
         padding-bottom: 4px;
@@ -2877,6 +2987,15 @@ body {
 
     .resource-body-content .results-table {
         min-width: 680px;
+    }
+
+    .resource-challenge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-capacity-figure {
+        width: min(100%, 420px);
+        justify-self: center;
     }
 }
 

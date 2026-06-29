@@ -138,10 +138,9 @@
           <h2>Why Simple Matching Fails</h2>
 
           <p>
-            A simple one-to-one match is not enough because each participant can appear on both
-            sides of the exchange. A strong contributor for one request may also need help from
-            another institution. The system therefore has to reason across a network, not just a
-            pair of records.
+            A simple one-to-one match is not enough because each institution can appear on both sides of the exchange. 
+            A strong contributor for one request may also need support from another institution, so the system has to 
+            reason across a constrained exchange network rather than selecting isolated pairs of records.
           </p>
 
           <div class="approach-grid resource-challenge-grid">
@@ -156,23 +155,30 @@
             <article class="approach-card">
               <h3>Qualification fit</h3>
               <p>
-                Contributors must be evaluated against required levels of work, with exact, fallback,
-                and underqualified matches handled differently.
+                Contributors must be evaluated against required levels of work. The algorithm distinguishes 
+                exact fits, acceptable fallback options, and invalid matches instead of treating all candidates equally.
               </p>
             </article>
 
-            <article class="approach-card">
+            <article class="approach-card resource-capacity-card">
               <h3>Capacity pressure</h3>
               <p>
-                High-capability contributors should not absorb every assignment. Capacity caps help
-                distribute work more fairly across the network.
+                High-capability contributors should not absorb every assignment. Capacity caps help distribute work more 
+                fairly and prevent the strongest institutions from being overloaded.
               </p>
             </article>
 
-            <article class="approach-card">
+            <figure class="resource-inline-figure resource-capacity-figure">
+              <img
+                src="../images/projects/resource-matching/workload-imbalance.png"
+                alt="A worker carrying a heavy stack of files while handing over work to someone receiving only a few files, illustrating imbalanced resource sharing"
+              />
+            </figure>
+
+            <article class="approach-card resource-reciprocity-card">
               <h3>Reciprocity</h3>
               <p>
-                The algorithm prioritizes exchange behavior so participants contribute to others
+                The algorithm prioritizes balanced exchange behavior so participants contribute to others
                 while also receiving support for their own needs.
               </p>
             </article>
@@ -183,30 +189,44 @@
           <h2>Matching Framework</h2>
 
           <p>
-            The framework builds requester and contributor profiles, scores viable matches, filters
-            candidates through reciprocity rules, applies capacity constraints, and exports final
-            assignment outputs for review.
+            The framework models requester needs and contributor capabilities across a reciprocal
+            resource-sharing network, then ranks viable matches using priority, qualification fit,
+            surplus capability, reciprocity, and capacity constraints. In the current cataloging
+            exchange implementation, the pipeline supports reviewable assignment recommendations
+            across 194 cataloging tasks and 19 participating institutions and entities.
           </p>
 
           <div class="resource-framework-grid">
             <article class="metric-card">
               <span class="metric-value">Needs</span>
-              <span class="metric-label">Requester profiles built from requested work categories, priority rankings, and required qualification levels.</span>
+              <span class="metric-label">
+                Requester profiles built from work categories, priority rankings, backlog needs,
+                domain requirements, and minimum accepted qualification levels.
+              </span>
             </article>
 
             <article class="metric-card">
               <span class="metric-value">Capabilities</span>
-              <span class="metric-label">Contributor profiles built from available expertise, contribution levels, trust indicators, and capacity settings.</span>
+              <span class="metric-label">
+                Contributor profiles built from available expertise, contribution levels, surplus
+                capacity, trust or quality indicators, and institution-level capacity settings.
+              </span>
             </article>
 
             <article class="metric-card">
               <span class="metric-value">Scoring</span>
-              <span class="metric-label">Candidate matches ranked using priority fit, qualification fit, skill surplus, and trust or performance signals.</span>
+              <span class="metric-label">
+                Candidate matches ranked using requester priority, qualification fit, need-capability
+                alignment, skill surplus, contributor capacity, and trust or quality markers.
+              </span>
             </article>
 
             <article class="metric-card">
               <span class="metric-value">Assignment</span>
-              <span class="metric-label">Final matches selected after reciprocity filtering, exact/fallback logic, and institutional capacity caps.</span>
+              <span class="metric-label">
+                Final recommendations selected through reciprocity filtering, exact and fallback
+                assignment logic, institutional capacity caps, and exportable outputs for transparent review.
+              </span>
             </article>
           </div>
 
@@ -222,24 +242,36 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Material priority</td>
-                  <td>Gives higher weight to higher-priority requester needs.</td>
+                  <td>Request priority</td>
+                  <td>Gives higher weight to requester needs with greater support urgency or backlog importance.</td>
                 </tr>
                 <tr>
-                  <td>Language priority</td>
-                  <td>Rewards contributors who can satisfy priority language or category needs.</td>
+                  <td>Need-capability fit</td>
+                  <td>Rewards contributors whose available capabilities align with the requester’s priority need type, domain area, service category, or required support profile.</td>
                 </tr>
                 <tr>
-                  <td>Required level fit</td>
-                  <td>Checks whether the contributor meets the requester’s minimum accepted level.</td>
+                  <td>Qualification fit</td>
+                  <td>Checks whether the contributor meets the requester’s minimum accepted support level.</td>
                 </tr>
                 <tr>
                   <td>Skill surplus</td>
-                  <td>Rewards contributors who exceed the requested qualification level.</td>
+                  <td>Adds value when a contributor exceeds the requested qualification level, creating stronger assignment confidence.</td>
                 </tr>
                 <tr>
-                  <td>Trust indicators</td>
-                  <td>Adds signal for recognized cooperative or quality-assurance markers.</td>
+                  <td>Contributor capacity</td>
+                  <td>Accounts for whether a contributor has enough available support capacity before assigning additional exchange work.</td>
+                </tr>
+                <tr>
+                  <td>Reciprocity balance</td>
+                  <td>Reduces one-sided exchange behavior by encouraging fairer requester-contributor balance across institutions.</td>
+                </tr>
+                <tr>
+                  <td>Trust and quality indicators</td>
+                  <td>Adds signal for recognized cooperative, reliability, or quality-assurance markers that strengthen match confidence.</td>
+                </tr>
+                <tr>
+                  <td>Final assignment readiness</td>
+                  <td>Combines the scoring signals into a ranked recommendation that supports transparent match selection.</td>
                 </tr>
               </tbody>
             </table>
@@ -255,37 +287,16 @@
             outputs, and summary checkpoint metrics.
           </p>
 
-          <div class="pipeline-visual resource-pipeline">
-            <div class="pipeline-step">
-              <span class="pipeline-number">01</span>
-              <strong>Load and prepare data</strong>
-              <small>Read anonymized sample data, normalize fields, and prepare the merged working dataset.</small>
-            </div>
-
-            <div class="pipeline-arrow">→</div>
-
-            <div class="pipeline-step">
-              <span class="pipeline-number">02</span>
-              <strong>Build institution profiles</strong>
-              <small>Create requester and contributor profiles from needs, capabilities, priorities, and levels.</small>
-            </div>
-
-            <div class="pipeline-arrow">→</div>
-
-            <div class="pipeline-step">
-              <span class="pipeline-number">03</span>
-              <strong>Score candidate matches</strong>
-              <small>Rank viable requester-contributor pairs using priority, qualification, surplus, and trust signals.</small>
-            </div>
-
-            <div class="pipeline-arrow">→</div>
-
-            <div class="pipeline-step">
-              <span class="pipeline-number">04</span>
-              <strong>Assign final contributors</strong>
-              <small>Apply reciprocity rules, capacity caps, exact/fallback logic, and export final match outputs.</small>
-            </div>
-          </div>
+          <figure class="resource-pipeline-figure">
+            <img
+              src="../images/projects/resource-matching/resource-matching-pipeline.png"
+              alt="Six-step reciprocal resource matching pipeline showing data preparation, institution profiles, candidate generation, scoring, assignment rules, and final output export"
+            />
+            <figcaption>
+              The production workflow moves from standardized inputs and institution profile construction
+              to candidate generation, match scoring, assignment-rule enforcement, and export-ready outputs.
+            </figcaption>
+          </figure>
         </section>
 
         <section id="case-study" class="detail-section resource-case-section">
@@ -350,12 +361,12 @@
             </article>
 
             <article class="metric-card">
-              <span class="metric-value">546</span>
+              <span class="metric-value resource-metric-count" data-resource-target="546">0</span>
               <span class="metric-label">Reciprocal eligible matches after exchange filtering</span>
             </article>
 
             <article class="metric-card">
-              <span class="metric-value">31</span>
+              <span class="metric-value resource-metric-count" data-resource-target="31">0</span>
               <span class="metric-label">Final assignment recommendations exported by the pipeline</span>
             </article>
 
@@ -378,40 +389,46 @@
           <h2>My Role and Implementation</h2>
 
           <p>
-            I developed the matching workflow as an applied algorithm and data engineering project,
-            translating a real institutional coordination challenge into a reproducible Python pipeline.
+            I developed the cataloging exchange workflow as an applied algorithm and data engineering project, 
+            transforming a multi-institutional backlog coordination problem into a reproducible Python-based 
+            matching pipeline. The system models requester needs, contributor capacity, qualification fit, 
+            exchange balance, and assignment behavior to support fairer and more transparent cataloging exchange decisions.
           </p>
 
           <div class="contribution-grid">
             <article class="contribution-card">
-              <h3>Data modeling and normalization</h3>
+              <h3>Data modeling and institution profiling</h3>
               <p>
-                Structured survey data into requester and contributor profiles, cleaned inconsistent fields,
-                and prepared the inputs needed for match scoring and assignment logic.
+                Structured survey responses into normalized requester and contributor profiles, cleaned inconsistent fields, 
+                anonymized sensitive institution-level inputs, and prepared the data model needed to compare demand, available 
+                support, qualifications, and exchange constraints across participating institutions.
               </p>
             </article>
 
             <article class="contribution-card">
-              <h3>Matching and scoring design</h3>
+              <h3>Matching algorithm and scoring logic</h3>
               <p>
-                Designed scoring logic around priority, qualification fit, surplus capability, trust indicators,
-                and final assignment behavior.
+                Designed the scoring framework used to evaluate potential exchanges across priority, qualification fit, 
+                surplus capability, trust indicators, and final assignment behavior. The workflow converts institutional 
+                profile data into ranked match recommendations rather than simple one-off pairings.
               </p>
             </article>
 
             <article class="contribution-card">
-              <h3>Reciprocity and capacity rules</h3>
+              <h3>Reciprocity, capacity, and fairness constraints</h3>
               <p>
-                Added constraints to support balanced exchange behavior and prevent high-capability contributors
-                from being overloaded.
+                Added rules to prevent high-capacity contributors from being overloaded, support balanced exchange behavior, 
+                and account for contributor availability when assigning cataloging support. These constraints made the matching 
+                process more realistic, explainable, and operationally useful.
               </p>
             </article>
 
             <article class="contribution-card">
-              <h3>Reproducible project structure</h3>
+              <h3>Reproducible pipeline and decision outputs</h3>
               <p>
-                Refactored the workflow into reusable modules, a clean demonstration notebook, a runnable pipeline,
-                anonymized sample data handling, output exports, and a smoke test.
+                Refactored the workflow into reusable Python modules, a clean demonstration notebook, runnable pipeline scripts, 
+                anonymized sample data handling, output exports, and validation checks. The final structure supports repeatable 
+                analysis, transparent review, and portfolio-safe demonstration of the matching system.
               </p>
             </article>
           </div>
@@ -487,6 +504,7 @@
     </div>
   </main>
 
+  <script src="../resource-metrics.js"></script>
   <script src="../assistant.js"></script>
 </body>
 </html>
