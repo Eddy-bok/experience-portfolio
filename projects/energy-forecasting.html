@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Commercial Building Energy Forecasting and Optimization | Edidiong Ibokete</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+  <main class="detail-page energy-page">
+    <header class="energy-page-hero">
+      <a href="../index.html#projects" class="energy-hero-back">← Back to projects</a>
+
+      <a
+        href="https://github.com/Eddy-bok/Data_Olympiad_2025_Canisius.git"
+        class="energy-hero-source"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Source code
+      </a>
+
+      <div class="energy-page-hero-inner">
+        <div class="energy-page-hero-copy">
+          <p class="section-label">1st Place Inter-University Data Science Olympiad Project</p>
+
+          <h1>Commercial Building Energy Forecasting and Optimization</h1>
+
+          <h2>
+            An XGBoost-based forecasting and analytics pipeline for predicting energy demand,
+            identifying inefficiencies, and translating model outputs into operational energy-saving strategy.
+          </h2>
+
+          <p>
+            Built for the Data Masters Challenge Olympiad, this project analyzed commercial-building
+            energy consumption across a large REIT portfolio under a tight competition deadline.
+            The work combined data cleaning, time-series feature engineering, predictive modeling,
+            explainability, residual diagnostics, and executive-ready business recommendations.
+          </p>
+
+          <p class="detail-tags">
+            XGBoost • SHAP Explainability • Forecasting • Energy Analytics • Business Impact • Time-Series Features
+          </p>
+        </div>
+
+        <div class="energy-hero-metrics" aria-label="Project highlights">
+          <article class="energy-hero-metric">
+            <span class="energy-hero-metric-value">1st</span>
+            <span class="energy-hero-metric-label">Place, Data Masters Challenge Olympiad</span>
+          </article>
+
+          <article class="energy-hero-metric">
+            <span class="energy-hero-metric-value">0.979</span>
+            <span class="energy-hero-metric-label">XGBoost R² on future-period evaluation</span>
+          </article>
+
+          <article class="energy-hero-metric">
+            <span class="energy-hero-metric-value">1,600+</span>
+            <span class="energy-hero-metric-label">Commercial buildings in the client portfolio</span>
+          </article>
+
+          <article class="energy-hero-metric">
+            <span
+            class="energy-hero-metric-value energy-money-count"
+            data-energy-start="500000"
+            data-energy-target="1700000"
+            data-energy-step="100000"
+            >
+            $500K
+            </span>
+            <span class="energy-hero-metric-label">Potential annual savings at 20% reduction</span>
+          </article>
+        </div>
+      </div>
+    </header>
+
+    <div class="energy-body-layout">
+      <aside class="energy-page-sidebar" aria-label="Energy forecasting page navigation">
+        <nav class="energy-section-nav">
+          <a href="#overview">Overview</a>
+          <a href="#competition">Competition</a>
+          <a href="#problem">Problem</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#insights">Insights</a>
+          <a href="#modeling">Modeling</a>
+          <a href="#explainability">Explainability</a>
+          <a href="#impact">Impact</a>
+          <a href="#role">My Role</a>
+          <a href="#artifacts">Artifacts</a>
+        </nav>
+      </aside>
+
+      <div class="energy-body-content">
+        <section id="overview" class="detail-section">
+          <h2>Project Overview</h2>
+
+          <p>
+            This project developed a forecasting and decision-support workflow for building energy
+            optimization. The goal was not only to predict future consumption, but also to identify
+            where energy waste was concentrated, which factors were driving demand, and how the
+            client could prioritize efficiency investments.
+          </p>
+
+          <div class="energy-summary-grid">
+            <article class="metric-card">
+              <span class="metric-value">Forecast</span>
+              <span class="metric-label">Predicted daily energy consumption using engineered temporal, building, and weather features.</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Explain</span>
+              <span class="metric-label">Used SHAP and feature diagnostics to interpret the model’s strongest predictive drivers.</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Prioritize</span>
+              <span class="metric-label">Translated residuals, usage patterns, and savings simulations into business recommendations.</span>
+            </article>
+          </div>
+        </section>
+
+        <section id="competition" class="detail-section energy-recognition-section">
+          <h2>Competition Result</h2>
+
+          <p>
+            The project was completed for the Data Masters Challenge Olympiad, an inter-university
+            competition involving teams from Canisius University, NY and the University of Alberta.
+            The challenge required teams to clean messy energy data, build machine learning models,
+            create visual insights, and deliver a structured business report under a compressed deadline.
+          </p>
+
+          <div class="energy-certificate-showcase">
+            <figure class="energy-certificate-card">
+              <img
+                src="../images/projects/energy-forecasting/certificate-first-place.jpg"
+                alt="Data Masters Challenge certificate showing 1st place award"
+              />
+            </figure>
+
+            <div class="energy-certificate-copy">
+              <p class="energy-proof-label">Award outcome</p>
+
+              <h3>1st Place, Data Masters Challenge Olympiad 2025</h3>
+
+              <p>
+                The final submission combined predictive modeling, exploratory analysis, business
+                insight development, and executive recommendations for reducing energy waste across
+                a commercial real estate portfolio.
+              </p>
+
+              <div class="energy-proof-points">
+                <span>Inter-university competition</span>
+                <span>Team-based delivery</span>
+                <span>Forecasting and business strategy</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="problem" class="detail-section">
+          <h2>The Energy Efficiency Problem</h2>
+
+          <p>
+            The simulated client was a real estate investment trust managing more than 1,600
+            commercial buildings across North America and Europe. The organization faced rising
+            energy costs, carbon penalties, and scattered meter data with missing values,
+            inconsistent readings, and seasonal demand patterns.
+          </p>
+
+          <div class="approach-grid energy-problem-grid">
+            <article class="approach-card">
+              <h3>Messy energy data</h3>
+              <p>
+                The raw workflow involved electricity readings, building metadata, and weather data,
+                requiring cleaning, reshaping, merging, and missing-value handling before modeling.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Forecasting requirement</h3>
+              <p>
+                The client needed future energy-consumption predictions to support planning,
+                efficiency targeting, and portfolio-level decision-making.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Business actionability</h3>
+              <p>
+                The final output had to connect model results to practical interventions such as
+                audits, retrofits, HVAC optimization, and peak-load management.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="workflow" class="detail-section">
+          <h2>Analytical Workflow</h2>
+
+          <p>
+            The workflow transformed raw hourly meter readings into a modeling-ready daily
+            forecasting dataset, then compared machine learning approaches and converted model
+            outputs into operational insights. The project moved from raw energy, metadata,
+            and weather inputs through feature engineering, model comparison, interpretability
+            analysis, and actionable business recommendations.
+          </p>
+
+          <figure class="energy-workflow-figure">
+            <img
+                src="../images/projects/energy-forecasting/analytical-workflow.png"
+                alt="Analytical workflow showing five stages: clean and merge, engineer features, model demand, explain drivers, and recommend action."
+            />
+          </figure>
+        </section>
+
+        <section id="insights" class="detail-section">
+          <h2>Operational Insights</h2>
+
+          <p>
+            The exploratory analysis surfaced where energy demand was concentrated, when usage
+            peaked, and how seasonal patterns shaped the client’s energy-efficiency strategy.
+          </p>
+
+          <div class="energy-visual-grid">
+            <figure class="energy-visual-card">
+              <img
+                src="../images/projects/energy-forecasting/building-type-energy-usage.jpeg"
+                alt="Bar chart showing average energy usage by building type"
+              />
+              <figcaption>
+                Health, education, utility, and science buildings emerged as high-consumption
+                categories, supporting targeted efficiency programs.
+              </figcaption>
+            </figure>
+
+            <figure class="energy-visual-card">
+              <img
+                src="../images/projects/energy-forecasting/hourly-energy-usage.jpeg"
+                alt="Line chart showing average energy usage by hour of day"
+              />
+              <figcaption>
+                Energy usage increased through the workday and peaked in the early afternoon,
+                supporting peak-load management recommendations.
+              </figcaption>
+            </figure>
+          </div>
+
+          <figure class="energy-wide-visual">
+            <img
+              src="../images/projects/energy-forecasting/seasonal-energy-trends.png"
+              alt="Line chart showing seasonal energy consumption trends across months"
+            />
+            <figcaption>
+              Seasonal demand rose into the summer months, creating a clear window for HVAC
+              optimization, maintenance planning, and cooling-season energy strategy.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="modeling" class="detail-section">
+          <h2>Forecasting Model Performance</h2>
+
+          <p>
+            XGBoost was selected as the final forecasting model after comparison with a tuned neural
+            network. The tree-based model performed better on the structured tabular forecasting
+            task and provided stronger alignment with actual energy usage patterns.
+          </p>
+
+          <div class="metrics-grid energy-model-metrics">
+            <article class="metric-card">
+              <span class="metric-value">35.13</span>
+              <span class="metric-label">RMSE after inverse log transformation</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">5.60</span>
+              <span class="metric-label">MAE on the future-period evaluation set</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">0.9794</span>
+              <span class="metric-label">R² score for XGBoost forecasting performance</span>
+            </article>
+          </div>
+
+          <figure class="energy-wide-visual">
+            <img
+              src="../images/projects/energy-forecasting/xgboost-actual-vs-predicted.png"
+              alt="Actual versus predicted energy consumption scatter plot for XGBoost"
+            />
+            <figcaption>
+              XGBoost predictions closely tracked actual consumption across low and moderate
+              demand ranges, with some underprediction at extreme usage levels.
+            </figcaption>
+          </figure>
+
+          <div class="evidence-note">
+            <h3>Why the neural network chart is not featured</h3>
+            <p>
+              The tuned neural network underperformed on this tabular forecasting task. Rather than
+              giving the weaker model a major visual slot, the page highlights the selected model and
+              explains the comparison through the modeling narrative.
+            </p>
+          </div>
+        </section>
+
+        <section id="explainability" class="detail-section">
+          <h2>Explainability and Weather Sensitivity</h2>
+
+          <p>
+            The project used explainability and weather-sensitivity analysis to move beyond prediction
+            accuracy. The goal was to understand what drove demand and how facilities teams could
+            anticipate changing energy needs.
+          </p>
+
+          <div class="energy-visual-grid">
+            <figure class="energy-visual-card">
+              <img
+                src="../images/projects/energy-forecasting/shap-feature-importance.png"
+                alt="SHAP feature importance plot for XGBoost energy forecasting model"
+              />
+              <figcaption>
+                SHAP analysis showed that recent consumption history, especially lag and rolling
+                meter-reading features, strongly influenced predictions.
+              </figcaption>
+            </figure>
+
+            <figure class="energy-visual-card">
+              <img
+                src="../images/projects/energy-forecasting/weather-feature-contribution.png"
+                alt="Weather feature contribution chart for energy consumption"
+              />
+              <figcaption>
+                Weather sensitivity analysis highlighted sea-level pressure, dew temperature,
+                air temperature, and wind speed as environmental demand signals.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="impact" class="detail-section">
+          <h2>Business Impact and Recommendations</h2>
+
+          <p>
+            The final recommendations connected model outputs to executive decisions: where to
+            audit, when to reduce peak load, which building types to prioritize, and how much value
+            could be created through portfolio-wide energy reductions.
+          </p>
+
+          <div class="energy-impact-grid">
+            <article class="metric-card">
+              <span class="metric-value">$858K</span>
+              <span class="metric-label">Estimated annual savings from a 10% energy reduction scenario</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">$1.7M</span>
+              <span class="metric-label">Estimated annual savings from a 20% energy reduction scenario</span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Top 10</span>
+              <span class="metric-label">Underperforming buildings identified for audits and retrofit review</span>
+            </article>
+          </div>
+
+          <div class="approach-grid energy-recommendation-grid">
+            <article class="approach-card">
+              <h3>Target high-consumption facilities</h3>
+              <p>
+                Prioritize health, education, utility, and science buildings for specialized energy
+                efficiency programs.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Reduce early-afternoon peak load</h3>
+              <p>
+                Use demand response, smart scheduling, and real-time monitoring to flatten the
+                1 PM to 3 PM usage peak.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <h3>Expand weather-aware controls</h3>
+              <p>
+                Incorporate humidity, pressure, and temperature signals into proactive facilities
+                planning and HVAC optimization.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="role" class="detail-section">
+          <h2>My Role and Contributions</h2>
+
+          <p>
+            I contributed as Predictive Modeling Lead and Business Insight Development contributor,
+            helping connect machine learning outputs to practical recommendations for the client
+            scenario.
+          </p>
+
+          <div class="contribution-grid energy-role-grid">
+            <article class="contribution-card">
+              <h3>Predictive modeling</h3>
+              <p>
+                Built and evaluated the XGBoost forecasting model, compared model performance,
+                and supported the final selection of the tree-based approach.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Feature engineering</h3>
+              <p>
+                Developed modeling features from building metadata, weather variables, time-series
+                lags, rolling averages, and transformed consumption signals.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Business insight development</h3>
+              <p>
+                Helped translate forecasting results into savings simulations, audit priorities,
+                peak-load recommendations, and executive-facing strategy.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Communication and reporting</h3>
+              <p>
+                Contributed to structuring results in a way that connected technical modeling,
+                visual analysis, and stakeholder-ready recommendations.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="artifacts" class="detail-section">
+          <h2>Project Artifacts</h2>
+
+          <p>
+            The project includes a public GitHub repository, competition certificate, notebook-style
+            report, business insight report, plots, scripts, and reproducible project structure.
+          </p>
+
+          <div class="artifact-grid energy-artifact-grid">
+            <article class="artifact-card">
+              <h3>GitHub Repository</h3>
+              <p>
+                Public project repository containing code, scripts, reports, and project documentation.
+              </p>
+              <a
+                href="https://github.com/Eddy-bok/Data_Olympiad_2025_Canisius.git"
+                class="energy-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open repository
+              </a>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Competition Certificate</h3>
+              <p>
+                Certificate showing 1st-place recognition in the Data Masters Challenge Olympiad.
+              </p>
+              <a
+                href="../files/achievements/data-masters-challenge-certificate.pdf"
+                class="energy-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View certificate
+              </a>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Notebook and Reports</h3>
+              <p>
+                Notebook workflow and business report artifacts used to explain the model, results,
+                and recommendations.
+              </p>
+              <span class="artifact-status">Portfolio summary available</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../energy-metrics.js"></script>
+  <script src="../assistant.js"></script>
+</body>
+</html>
