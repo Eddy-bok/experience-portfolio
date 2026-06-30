@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Breast Cancer Classification & Model Evaluation | Edidiong David Ibokete</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="breast-cancer-page">
+  <main class="detail-page breast-cancer-detail-page">
+    <section class="breast-cancer-page-hero" aria-label="Breast Cancer Classification and Model Evaluation project hero">
+      <a href="../index.html#projects" class="breast-cancer-hero-back">← Back to projects</a>
+
+      <a
+        href="https://github.com/Eddy-bok/Breast-Cancer-Detection-Machine-Learning-Approach.git"
+        class="breast-cancer-hero-source"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View source code
+      </a>
+
+      <div class="breast-cancer-page-hero-inner">
+        <div class="breast-cancer-page-hero-copy">
+          <p class="section-label">Healthcare ML • Classification</p>
+
+          <h1>Breast Cancer Classification & Model Evaluation</h1>
+
+          <h2>
+            Comparing supervised machine learning models for benign-versus-malignant
+            classification using screening-derived tumor features.
+          </h2>
+
+          <p>
+            This project evaluates multiple classification models on breast cancer screening data,
+            with emphasis on malignant-case recall, model generalization, training behavior,
+            and responsible interpretation of healthcare machine learning results.
+          </p>
+
+          <p class="detail-tags">
+            Logistic Regression • Neural Networks • Random Forest • XGBoost • Model Evaluation
+          </p>
+        </div>
+
+        <div class="breast-cancer-hero-metrics" aria-label="Breast Cancer project highlights">
+          <article class="breast-cancer-hero-metric">
+            <span class="breast-cancer-hero-metric-value">569</span>
+            <span class="breast-cancer-hero-metric-label">Screening records analyzed</span>
+          </article>
+
+          <article class="breast-cancer-hero-metric">
+            <span class="breast-cancer-hero-metric-value">30</span>
+            <span class="breast-cancer-hero-metric-label">Predictive tumor features</span>
+          </article>
+
+          <article class="breast-cancer-hero-metric">
+            <span class="breast-cancer-hero-metric-value">98.25%</span>
+            <span class="breast-cancer-hero-metric-label">Best reported test accuracy</span>
+          </article>
+
+          <article class="breast-cancer-hero-metric">
+            <span class="breast-cancer-hero-metric-value">97.62%</span>
+            <span class="breast-cancer-hero-metric-label">Best malignant-case recall</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="breast-cancer-body-layout">
+      <aside class="breast-cancer-page-sidebar" aria-label="Breast Cancer project section navigation">
+        <nav class="breast-cancer-section-nav">
+          <a href="#overview">Overview</a>
+          <a href="#dataset">Dataset</a>
+          <a href="#modeling">Modeling</a>
+          <a href="#performance">Performance</a>
+          <a href="#generalization">Generalization</a>
+          <a href="#role">Role</a>
+          <a href="#artifacts">Artifacts</a>
+        </nav>
+      </aside>
+
+      <div class="breast-cancer-body-content">
+        <section id="overview" class="detail-section">
+          <h2>Project Overview</h2>
+
+          <p>
+            This project explores breast cancer classification as a healthcare machine learning
+            case study. The goal is to compare how different supervised models classify benign
+            and malignant records, while paying close attention to recall, generalization, and
+            responsible interpretation.
+          </p>
+
+          <div class="metrics-grid breast-cancer-summary-grid">
+            <article class="metric-card">
+              <span class="metric-value">Classification</span>
+              <span class="metric-label">
+                Modeled benign-versus-malignant outcomes using screening-derived tumor features.
+              </span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Evaluation</span>
+              <span class="metric-label">
+                Compared accuracy, precision, recall, F1-score, confusion matrices, and validation behavior.
+              </span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Responsible ML</span>
+              <span class="metric-label">
+                Framed results as model-evaluation evidence, not as a clinical diagnostic system.
+              </span>
+            </article>
+          </div>
+        </section>
+
+        <section id="dataset" class="detail-section">
+          <h2>Dataset and Preprocessing</h2>
+
+          <p>
+            The dataset contains 569 labeled records with 30 numeric screening-derived features after removing the ID column. 
+            The target variable is encoded into benign and malignant classes, and models are trained and evaluated using a stratified train-test split.
+          </p>
+
+          <div class="breast-cancer-visual-grid">
+            <figure class="breast-cancer-visual-card">
+              <img
+                src="../images/projects/breast-cancer/class-distribution.png"
+                alt="Class distribution of benign and malignant breast cancer records"
+              />
+              <figcaption>
+                <strong>Class distribution.</strong> The dataset contains more benign than malignant records, creating a moderate class imbalance. 
+                This makes malignant-class recall and F1-score important evaluation metrics.
+              </figcaption>
+            </figure>
+
+            <figure class="breast-cancer-visual-card">
+              <img
+                src="../images/projects/breast-cancer/radius-by-diagnosis.png"
+                alt="Radius feature distribution by diagnosis"
+              />
+              <figcaption>
+                <strong>Feature separation.</strong> Radius-related measurements show visible differences between benign and malignant groups, 
+                supporting their predictive value in the classification workflow.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="evidence-note">
+            <h3>Preprocessing Note</h3>
+            <p>
+              The preprocessing workflow splits the data before scaling, then fits the StandardScaler only on the training set. 
+              The fitted scaler is used to transform both the training and test sets, avoiding preprocessing leakage and making model evaluation more reliable.
+            </p>
+          </div>
+        </section>
+
+        <section id="modeling" class="detail-section">
+          <h2>Modeling Approach</h2>
+
+          <p>
+            The project compares interpretable, tree-based, boosted, and neural network classifiers. 
+            This provides a broader view of model behavior than relying on a single accuracy score.
+          </p>
+
+          <div class="breast-cancer-model-grid">
+            <article class="approach-card">
+              <span class="breast-cancer-card-number">01</span>
+              <h3>Manual Logistic Regression</h3>
+              <p>
+                Implemented a logistic regression workflow to understand the mechanics of binary
+                classification, cost reduction, and gradient-based learning.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <span class="breast-cancer-card-number">02</span>
+              <h3>Tree and Ensemble Models</h3>
+              <p>
+                Compared decision tree, random forest, and XGBoost classifiers to evaluate nonlinear
+                decision boundaries and ensemble performance.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <span class="breast-cancer-card-number">03</span>
+              <h3>Neural Network Classifier</h3>
+              <p>
+                Trained a neural network and monitored accuracy and loss curves to assess training
+                stability and validation behavior.
+              </p>
+            </article>
+          </div>
+
+          <div class="pipeline-visual breast-cancer-pipeline">
+            <article class="pipeline-step">
+              <span class="pipeline-number">01</span>
+              <strong>Prepare features</strong>
+              <small>Remove ID, encode diagnosis labels, split the data, then scale numeric features using the training set.</small>
+            </article>
+
+            <span class="pipeline-arrow">→</span>
+
+            <article class="pipeline-step">
+              <span class="pipeline-number">02</span>
+              <strong>Train models</strong>
+              <small>Fit logistic regression, tree-based models, boosted models, and neural networks.</small>
+            </article>
+
+            <span class="pipeline-arrow">→</span>
+
+            <article class="pipeline-step">
+              <span class="pipeline-number">03</span>
+              <strong>Evaluate performance</strong>
+              <small>Compare accuracy, malignant recall, F1-score, confusion matrices, and validation curves.</small>
+            </article>
+          </div>
+        </section>
+
+        <section id="performance" class="detail-section">
+          <h2>Model Performance</h2>
+
+          <p>
+            Logistic Regression and the Neural Network produced the strongest holdout-test results, with matching accuracy 
+            and malignant-case recall. Because this is a healthcare classification task, malignant-case recall is especially 
+            important: missed malignant cases are more consequential than many ordinary classification errors.
+          </p>
+
+          <div class="performance-table-wrap">
+            <table class="table breast-cancer-performance-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Accuracy</th>
+                  <th>Malignant Recall</th>
+                  <th>Portfolio takeaway</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Neural Network</td>
+                  <td>98.25%</td>
+                  <td>95.24%</td>
+                  <td>High-performing model with strong recall and the highest cross-validation validation accuracy.</td>
+                </tr>
+                <tr>
+                  <td>Manual Logistic Regression</td>
+                  <td>98.25%</td>
+                  <td>95.24%</td>
+                  <td>Interpretable, stable baseline with top-tier overall accuracy and recall.</td>
+                </tr>
+                <tr>
+                  <td>Random Forest</td>
+                  <td>97.37%</td>
+                  <td>92.86%</td>
+                  <td>Strong ensemble baseline with slightly lower malignant recall.</td>
+                </tr>
+                <tr>
+                  <td>XGBoost</td>
+                  <td>97.37%</td>
+                  <td>92.86%</td>
+                  <td>Competitive boosted-tree model with strong but not best recall.</td>
+                </tr>
+                <tr>
+                  <td>Decision Tree</td>
+                  <td>95.61%</td>
+                  <td>88.10%</td>
+                  <td>Useful comparison model, but weaker generalization and recall.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="breast-cancer-visual-grid">
+            <figure class="breast-cancer-visual-card">
+              <img
+                src="../images/projects/breast-cancer/logistic-regression-confusion-matrix.png"
+                alt="Logistic regression confusion matrix for breast cancer classification"
+              />
+              <figcaption>
+                <strong>Confusion matrix.</strong> Logistic regression achieved strong class separation,
+                with very few classification errors on the test set.
+              </figcaption>
+            </figure>
+
+            <figure class="breast-cancer-visual-card">
+              <img
+                src="../images/projects/breast-cancer/neural-network-training-curves.png"
+                alt="Neural network training and validation accuracy and loss curves"
+              />
+              <figcaption>
+                <strong>Neural network training behavior.</strong> Accuracy improved quickly and loss decreased 
+                across training, while validation performance remained close to the training trend, suggesting stable learning behavior.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="generalization" class="detail-section">
+        <h2>Generalization and Bias-Variance Analysis</h2>
+
+        <p>
+            Beyond test accuracy, the notebook compares model generalization behavior using validation
+            accuracy, bias-variance patterns, and learning curves. This helps explain not only which
+            model performed well, but also whether performance appears stable.
+        </p>
+
+        <div class="breast-cancer-generalization-top">
+            <figure class="breast-cancer-visual-card">
+            <img
+                src="../images/projects/breast-cancer/bias_variance_tradeoff.png"
+                alt="Bias-variance tradeoff comparison across breast cancer classification models"
+            />
+            <figcaption>
+                <strong>Bias-variance comparison.</strong> The analysis contrasts training and validation
+                behavior to identify models that generalize better versus models that may overfit.
+            </figcaption>
+            </figure>
+
+            <div class="evidence-note breast-cancer-generalization-note">
+            <h3>Interpretation</h3>
+            <p>
+                The strongest models combine high accuracy with stronger malignant-case recall and better
+                validation behavior. The decision tree performs reasonably, but its weaker recall and larger
+                train-validation gap make it less attractive than logistic regression or the neural network.
+            </p>
+            </div>
+        </div>
+
+        <figure class="breast-cancer-visual-card breast-cancer-learning-card">
+            <img
+            src="../images/projects/breast-cancer/model-learning-curves.png"
+            alt="Learning curves for multiple breast cancer classification models"
+            />
+            <figcaption>
+            <strong>Learning curves.</strong> Model performance is compared across training sizes,
+            giving a more complete view of stability and sample-efficiency.
+            </figcaption>
+        </figure>
+        </section>
+
+        <section id="role" class="detail-section">
+          <h2>Role and Implementation</h2>
+
+          <p>
+            I implemented the full machine learning workflow, including data preparation, manual
+            logistic regression, model comparison, neural network training, evaluation visuals,
+            and interpretation of classification performance.
+          </p>
+
+          <div class="contribution-grid breast-cancer-role-grid">
+            <article class="contribution-card">
+              <h3>Classification Workflow</h3>
+              <p>
+                Prepared the feature matrix and diagnosis labels, trained multiple supervised models,
+                and compared predictive performance across model families.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Manual Model Implementation</h3>
+              <p>
+                Built a logistic regression workflow to demonstrate the underlying mechanics of
+                binary classification, gradient descent, and cost-function optimization.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Model Evaluation</h3>
+              <p>
+                Used confusion matrices, classification reports, validation curves, learning curves,
+                and bias-variance analysis to compare model behavior.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Tools</h3>
+              <p>
+                Python • NumPy • Pandas • Matplotlib • Scikit-learn • TensorFlow/Keras • XGBoost • Jupyter Notebook
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="artifacts" class="detail-section">
+          <h2>Artifacts</h2>
+
+          <p>
+            The project artifacts include the notebook, source repository, visual outputs, and
+            evaluation summaries used to communicate model behavior.
+          </p>
+
+          <div class="artifact-grid breast-cancer-artifact-grid">
+            <article class="artifact-card">
+              <h3>GitHub Repository</h3>
+              <p>
+                Source repository containing the notebook, project code, visual outputs, and documentation.
+              </p>
+              <a
+                href="https://github.com/Eddy-bok/Breast-Cancer-Detection-Machine-Learning-Approach.git"
+                class="breast-cancer-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open repository →
+              </a>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Notebook</h3>
+              <p>
+                Main Jupyter Notebook covering preprocessing, classification models, neural network training,
+                and evaluation.
+              </p>
+              <span class="artifact-status">breast_cancer_detection_ml.ipynb</span>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Visual Outputs</h3>
+              <p>
+                Selected visuals for dataset balance, feature separation, model performance, training behavior,
+                and generalization analysis.
+              </p>
+              <span class="artifact-status">images/projects/breast-cancer/</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assistant.js"></script>
+</body>
+</html>
