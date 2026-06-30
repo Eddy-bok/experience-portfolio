@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Smart City Pattern & Anomaly Detection | Edidiong David Ibokete</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="smart-city-page">
+  <main class="detail-page smart-city-detail-page">
+    <section class="smart-city-page-hero" aria-label="Smart City Pattern & Anomaly Detection project hero">
+      <a href="../index.html#projects" class="smart-city-hero-back">← Back to projects</a>
+
+      <a
+        href="https://github.com/Eddy-bok/smart-city-anomaly-detection.git"
+        class="smart-city-hero-source"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View source code
+      </a>
+
+      <div class="smart-city-page-hero-inner">
+        <div class="smart-city-page-hero-copy">
+          <p class="section-label">Machine Learning • Anomaly Detection</p>
+
+          <h1>Smart City Pattern & Anomaly Detection</h1>
+
+          <h2>
+            Clustering traffic patterns and detecting unusual energy-grid behavior
+            with compact machine learning workflows.
+          </h2>
+
+          <p>
+            This project applies K-means clustering and Gaussian anomaly detection to smart city management data, 
+            showing how transportation and energy activity can be grouped, scored, and reviewed for unusual operational patterns.
+          </p>
+
+          <p class="detail-tags">
+            K-means • Gaussian Anomaly Detection • Smart Cities • NumPy • Pandas • Matplotlib
+          </p>
+        </div>
+
+        <div class="smart-city-hero-metrics" aria-label="Smart City project highlights">
+          <article class="smart-city-hero-metric">
+            <span class="smart-city-hero-metric-value">K-means</span>
+            <span class="smart-city-hero-metric-label">Traffic pattern clustering method</span>
+          </article>
+
+          <article class="smart-city-hero-metric">
+            <span class="smart-city-hero-metric-value">3</span>
+            <span class="smart-city-hero-metric-label">Traffic clusters identified</span>
+          </article>
+
+          <article class="smart-city-hero-metric">
+            <span class="smart-city-hero-metric-value">Gaussian</span>
+            <span class="smart-city-hero-metric-label">Probability-based anomaly model</span>
+          </article>
+
+          <article class="smart-city-hero-metric">
+            <span class="smart-city-hero-metric-value">3</span>
+            <span class="smart-city-hero-metric-label">Energy anomalies detected</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="smart-city-body-layout">
+      <aside class="smart-city-page-sidebar" aria-label="Smart City project section navigation">
+        <nav class="smart-city-section-nav">
+          <a href="#overview">Overview</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#clustering">Clustering</a>
+          <a href="#detection">Detection</a>
+          <a href="#role">Role</a>
+          <a href="#artifacts">Artifacts</a>
+        </nav>
+      </aside>
+
+      <div class="smart-city-body-content">
+        <section id="overview" class="detail-section">
+          <h2>Project Overview</h2>
+
+          <p>
+            Smart city systems generate operational data from transportation networks, energy usage, 
+            sensors, and infrastructure. This project demonstrates how machine learning can organize 
+            traffic behavior into meaningful spatial groups and flag low-probability energy-grid observations 
+            for further investigation.
+          </p>
+
+          <div class="metrics-grid smart-city-summary-grid">
+            <article class="metric-card">
+              <span class="metric-value">Traffic</span>
+              <span class="metric-label">
+                Clustered location-level movement patterns to identify spatial activity groups.
+              </span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Energy</span>
+              <span class="metric-label">
+                Modeled normal energy behavior and flagged unusual observations using probability scores.
+              </span>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-value">Proof of Concept</span>
+              <span class="metric-label">
+                Built as a compact proof-of-concept for smart city monitoring, pattern discovery, and anomaly review.
+              </span>
+            </article>
+          </div>
+        </section>
+
+        <section id="workflow" class="detail-section">
+          <h2>Two-Part Machine Learning Workflow</h2>
+
+          <p>
+            The project combines two machine learning workflows: clustering traffic patterns and detecting abnormal energy usage. 
+            The goal is not to create a production monitoring system, but to demonstrate the core modeling logic behind smart 
+            city pattern discovery, anomaly scoring, and threshold-based detection.
+          </p>
+
+          <div class="smart-city-workflow-grid">
+            <article class="approach-card">
+              <span class="smart-city-card-number">01</span>
+              <h3>Traffic Pattern Clustering</h3>
+              <p>
+                K-means is implemented from scratch by initializing centroids, assigning
+                points to the nearest centroid, recomputing cluster centers, and visualizing
+                traffic groupings.
+              </p>
+            </article>
+
+            <article class="approach-card">
+              <span class="smart-city-card-number">02</span>
+              <h3>Energy Grid Anomaly Detection</h3>
+              <p>
+                A Gaussian probability model estimates normal energy behavior, computes probability 
+                scores for each observation, selects an F1-optimized threshold, and flags low-probability observations as anomalies.
+              </p>
+            </article>
+          </div>
+
+          <div class="pipeline-visual smart-city-pipeline">
+            <article class="pipeline-step">
+              <span class="pipeline-number">01</span>
+              <strong>Load data</strong>
+              <small>Traffic and energy records are prepared for clustering, probability modeling and anomaly review.</small>
+            </article>
+
+            <span class="pipeline-arrow">→</span>
+
+            <article class="pipeline-step">
+              <span class="pipeline-number">02</span>
+              <strong>Model patterns</strong>
+              <small>K-means groups traffic points, while Gaussian parameters describe normal energy behavior.</small>
+            </article>
+
+            <span class="pipeline-arrow">→</span>
+
+            <article class="pipeline-step">
+              <span class="pipeline-number">03</span>
+              <strong>Evaluate signals</strong>
+              <small>Cluster validation and probability thresholds support interpretation of unusual observations.</small>
+            </article>
+          </div>
+        </section>
+
+        <section id="clustering" class="detail-section">
+          <h2>Traffic Pattern Clustering</h2>
+
+          <p>
+            The clustering workflow uses K-means to group traffic observations into spatial activity patterns. 
+            The resulting clusters show how traffic points separate into distinct zones, while the elbow analysis 
+            helps justify the selected number of clusters.
+          </p>
+
+          <div class="smart-city-visual-grid">
+            <figure class="smart-city-visual-card">
+              <img
+                src="../images/projects/smart-city/kmeans-clustering-traffic-data.png"
+                alt="K-means clustering of traffic data"
+              />
+              <figcaption>
+                <strong>Traffic clusters.</strong> K-means grouped the traffic observations into three spatial activity 
+                zones, with centroids marking the center of each detected pattern.
+              </figcaption>
+            </figure>
+
+            <figure class="smart-city-visual-card">
+              <img
+                src="../images/projects/smart-city/traffic_kmeans_elbow_curve.png"
+                alt="K-Means elbow curve for traffic clustering"
+              />
+              <figcaption>
+                <strong>Elbow analysis.</strong> The within-cluster sum of squares drops sharply up to K = 3 
+                and then begins to flatten, supporting three clusters as a practical choice.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="evidence-note">
+            <h3>Interpretation</h3>
+            <p>
+              The clustering results show three interpretable traffic activity zones: a lower-activity region in the lower-left 
+              area, a middle spatial region, and a higher-location region in the upper-right area. The elbow curve supports K = 3 
+              because most of the compactness improvement occurs by the third cluster, with smaller gains after that point. 
+              Although additional clusters may create finer segmentation, three clusters provide a clearer and more practical summary 
+              of the traffic patterns in this sample.
+            </p>
+          </div>
+        </section>
+
+        <section id="detection" class="detail-section">
+          <h2>Energy Grid Anomaly Detection</h2>
+
+          <p>
+            The anomaly detection workflow models normal energy-grid behavior using Gaussian probability scores. 
+            Observations with unusually low probability are flagged as anomalies, making them candidates for operational 
+            review, sensor validation, or equipment monitoring.
+          </p>
+
+          <div class="smart-city-visual-grid">
+            <figure class="smart-city-visual-card smart-city-featured-visual">
+              <img
+                src="../images/projects/smart-city/energy_grid_anomaly_detection.png"
+                alt="Energy grid anomaly detection scatter plot"
+              />
+              <figcaption>
+                <strong>Detected anomalies.</strong> The model flagged three low-probability energy observations that fall 
+                outside the main normal usage pattern.
+              </figcaption>
+            </figure>
+
+            <figure class="smart-city-visual-card">
+              <img
+                src="../images/projects/smart-city/energy_threshold_performance_curve.png"
+                alt="Threshold performance curve for energy anomaly detection"
+              />
+              <figcaption>
+                <strong>Threshold tuning.</strong> Precision, recall, and F1-score were evaluated across possible anomaly 
+                thresholds to select an epsilon value that balances detection strength with false-positive control.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="evidence-note">
+            <h3>Interpretation</h3>
+            <p>
+              The model identified three unusual energy observations while preserving strong separation from normal activity. 
+              The threshold tuning curve shows how different epsilon values affect precision, recall, and F1-score, helping 
+              justify the final anomaly cutoff rather than selecting it arbitrarily. In a smart city setting, these flagged 
+              observations could represent abnormal demand, sensor issues, equipment faults, or events that require further monitoring 
+              before operational action is taken.
+            </p>
+          </div>
+        </section>
+
+        <section id="role" class="detail-section">
+          <h2>Role and Implementation</h2>
+
+          <p>
+            I implemented the clustering and anomaly detection workflow in Python,
+            including the K-means helper functions, Gaussian parameter estimation,
+            threshold selection, visual diagnostics, and project documentation.
+          </p>
+
+          <div class="contribution-grid smart-city-role-grid">
+            <article class="contribution-card">
+              <h3>Algorithm Implementation</h3>
+              <p>
+                Built the K-means workflow from scratch, including centroid assignment,
+                centroid updates, iteration control, and cluster interpretation.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Anomaly Detection Logic</h3>
+              <p>
+                Estimated Gaussian parameters, computed probability scores, selected
+                a threshold using F1-score, and flagged low-probability observations.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Visualization and Communication</h3>
+              <p>
+                Created diagnostic visuals that explain model behavior, cluster selection,
+                anomaly detection results, and threshold performance.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Tools</h3>
+              <p>
+                Python • NumPy • Pandas • Matplotlib • Jupyter Notebook • GitHub
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="artifacts" class="detail-section">
+          <h2>Artifacts</h2>
+
+          <p>
+            The project artifacts include the notebook, source code, data workflow,
+            visual outputs, and documentation used to explain the modeling approach.
+          </p>
+
+          <div class="artifact-grid smart-city-artifact-grid">
+            <article class="artifact-card">
+              <h3>GitHub Repository</h3>
+              <p>
+                Source repository containing the project notebook, data folder structure,
+                README, and generated visuals.
+              </p>
+              <a
+                href="https://github.com/Eddy-bok/smart-city-anomaly-detection.git"
+                class="smart-city-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open repository →
+              </a>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Notebook</h3>
+              <p>
+                Main Jupyter Notebook implementing clustering, Gaussian anomaly detection,
+                threshold tuning, and visualization.
+              </p>
+              <span class="artifact-status">notebooks/smart_city_anomaly_detection.ipynb</span>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Visual Outputs</h3>
+              <p>
+                Diagnostic plots for K-Means validation, threshold performance, and detected
+                energy-grid anomalies.
+              </p>
+              <span class="artifact-status">images/projects/smart-city/</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assistant.js"></script>
+</body>
+</html>
