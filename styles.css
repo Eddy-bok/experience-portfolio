@@ -6528,3 +6528,649 @@ body {
         --energy-workflow-caption-width: 100%;
     }
 }
+
+/* =========================================================
+   SMART CITY ANOMALY DETECTION PROJECT PAGE
+   Compact unsupervised ML case-study page.
+
+   Page file:
+   - projects/smart-city.html
+
+   Scope:
+   - All rules are scoped to .smart-city-page or smart-city-specific classes.
+   - This avoids affecting Ariel, Resource Matching, Energy Forecasting,
+     research pages, or homepage cards.
+
+   Tunable controls:
+   - --smart-city-hero-image controls the hero background
+   - --smart-city-page-max controls the content width
+   - --smart-city-visual-height controls chart card image height
+   ========================================================= */
+
+.smart-city-page {
+    --smart-city-page-max: 1660px;
+    --smart-city-sidebar-width: 170px;
+    --smart-city-content-gap: 64px;
+    --smart-city-sidebar-offset-x: -34px;
+    --smart-city-padding-x: clamp(28px, 4vw, 72px);
+
+    --smart-city-accent: #2f6f73;
+    --smart-city-accent-dark: #0d3f44;
+    --smart-city-text: #263234;
+    --smart-city-muted: #5f6f72;
+    --smart-city-soft: rgba(238, 246, 246, 0.72);
+    --smart-city-border: rgba(16, 42, 45, 0.12);
+
+    --smart-city-card-radius: 18px;
+    --smart-city-card-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+    --smart-city-card-shadow-hover: 0 22px 46px rgba(16, 42, 45, 0.10);
+
+    --smart-city-hero-image: url("images/projects/cards/smart-city-anomaly-bg1.jpg");
+    --smart-city-hero-position: center;
+    --smart-city-hero-min-height: 540px;
+
+    --smart-city-card-bg:
+        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+
+    --smart-city-highlight-bg:
+        radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
+        linear-gradient(
+            125deg,
+            rgba(231, 242, 243, 0.28) 0%,
+            rgba(217, 235, 236, 0.22) 56%,
+            rgba(199, 224, 226, 0.94) 100%
+        );
+
+    --smart-city-visual-max: 1120px;
+    --smart-city-visual-gap: 22px;
+    --smart-city-visual-height: 330px;
+
+    background: #ffffff;
+}
+
+/* Hero */
+
+.smart-city-detail-page.detail-page {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.smart-city-page-hero {
+    position: relative;
+    width: 100vw;
+    min-height: var(--smart-city-hero-min-height);
+    margin-left: calc(50% - 50vw);
+    padding: 82px var(--smart-city-padding-x) 72px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 25, 31, 0.94) 0%,
+            rgba(10, 36, 50, 0.78) 48%,
+            rgba(9, 28, 48, 0.42) 100%
+        ),
+        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.20), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(47, 111, 115, 0.24), transparent 34%),
+        var(--smart-city-hero-image);
+    background-size: cover;
+    background-position: var(--smart-city-hero-position);
+}
+
+.smart-city-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
+}
+
+.smart-city-hero-back {
+    position: absolute;
+    top: 28px;
+    left: var(--smart-city-padding-x);
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.smart-city-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.smart-city-hero-source {
+    position: absolute;
+    right: var(--smart-city-padding-x);
+    bottom: 20px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.smart-city-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.smart-city-page-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1220px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+}
+
+.smart-city-page-hero-copy .section-label {
+    margin-bottom: 14px;
+    color: var(--color-gold);
+    font-weight: 850;
+}
+
+.smart-city-page-hero-copy h1 {
+    max-width: 720px;
+    margin: 0 0 18px;
+    color: white;
+    font-size: clamp(1.45rem, 3vw, 3.3rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.smart-city-page-hero-copy h2 {
+    max-width: 920px;
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(1.25rem, 1.9vw, 1.1rem);
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+}
+
+.smart-city-page-hero-copy p {
+    max-width: 790px;
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.smart-city-page-hero-copy .detail-tags {
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.92rem;
+    font-weight: 750;
+}
+
+.smart-city-hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.smart-city-hero-metric {
+    min-height: 122px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
+        rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.smart-city-hero-metric-value {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-size: clamp(1.45rem, 2.3vw, 2.25rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.smart-city-hero-metric-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+/* Body layout */
+
+.smart-city-body-layout {
+    max-width: var(--smart-city-page-max);
+    margin: 0 auto;
+    padding: 56px var(--smart-city-padding-x) 82px;
+    display: grid;
+    grid-template-columns: var(--smart-city-sidebar-width) minmax(0, 1fr);
+    gap: var(--smart-city-content-gap);
+}
+
+.smart-city-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.smart-city-section-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transform: translateX(var(--smart-city-sidebar-offset-x));
+}
+
+.smart-city-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.smart-city-section-nav a:hover,
+.smart-city-section-nav a:focus-visible {
+    color: var(--smart-city-accent);
+    border-bottom-color: var(--smart-city-accent);
+    transform: translateX(8px);
+}
+
+.smart-city-body-content {
+    min-width: 0;
+}
+
+.smart-city-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.smart-city-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.smart-city-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.smart-city-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.smart-city-body-content .detail-section h2::before {
+    content: "";
+    width: 52px;
+    height: 4px;
+    display: block;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold), var(--smart-city-accent));
+}
+
+.smart-city-body-content .detail-section p {
+    max-width: 850px;
+    color: var(--smart-city-text);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+/* Shared cards */
+
+.smart-city-body-content .metric-card,
+.smart-city-body-content .approach-card,
+.smart-city-body-content .contribution-card,
+.smart-city-body-content .artifact-card,
+.smart-city-visual-card {
+    border: 1px solid var(--smart-city-border);
+    border-radius: var(--smart-city-card-radius);
+    background: var(--smart-city-card-bg);
+    box-shadow: var(--smart-city-card-shadow);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.smart-city-body-content .metric-card,
+.smart-city-body-content .approach-card,
+.smart-city-body-content .contribution-card,
+.smart-city-body-content .artifact-card {
+    padding: 24px;
+}
+
+.smart-city-body-content .metric-card:hover,
+.smart-city-body-content .approach-card:hover,
+.smart-city-body-content .contribution-card:hover,
+.smart-city-body-content .artifact-card:hover,
+.smart-city-visual-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: var(--smart-city-card-shadow-hover);
+}
+
+.smart-city-body-content .metric-value {
+    color: var(--smart-city-accent-dark);
+}
+
+.smart-city-body-content .metric-label {
+    color: #243f42;
+}
+
+.smart-city-summary-grid {
+    max-width: 1060px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.smart-city-summary-grid .metric-card {
+    background: var(--smart-city-highlight-bg);
+}
+
+.smart-city-workflow-grid,
+.smart-city-role-grid {
+    max-width: 1060px;
+}
+
+.smart-city-workflow-grid .approach-card:last-child,
+.smart-city-role-grid .contribution-card:last-child {
+    grid-column: auto;
+}
+
+.smart-city-card-number {
+    display: inline-flex;
+    margin-bottom: 18px;
+    color: var(--smart-city-accent);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+
+.smart-city-pipeline {
+    max-width: 1060px;
+}
+
+.smart-city-body-content .pipeline-step {
+    min-height: 132px;
+    border-radius: 16px;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(201, 168, 106, 0.11), transparent 34%),
+        linear-gradient(180deg, var(--smart-city-soft), #ffffff);
+    box-shadow: 0 14px 28px rgba(16, 42, 45, 0.055);
+}
+
+/* Visuals */
+
+.smart-city-visual-grid {
+    max-width: var(--smart-city-visual-max);
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--smart-city-visual-gap);
+}
+
+.smart-city-visual-card {
+    margin: 0;
+    overflow: hidden;
+}
+
+.smart-city-visual-card img {
+    width: 100%;
+    height: var(--smart-city-visual-height);
+    display: block;
+    padding: 8px;
+    object-fit: contain;
+    object-position: center;
+    background: white;
+}
+
+.smart-city-visual-card figcaption {
+    padding: 16px 18px 18px;
+    border-top: 1px solid rgba(16, 42, 45, 0.10);
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.smart-city-visual-card figcaption strong {
+    color: var(--color-dark);
+}
+
+.smart-city-body-content .evidence-note {
+    max-width: 920px;
+    margin: 30px 0 0;
+    padding: 24px 26px;
+    border-left: 5px solid var(--smart-city-accent);
+    border-radius: 0 18px 18px 0;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, var(--smart-city-soft) 100%);
+    box-shadow: var(--smart-city-card-shadow);
+}
+
+.smart-city-body-content .evidence-note h3 {
+    color: var(--color-dark);
+}
+
+.smart-city-artifact-grid {
+    max-width: 1060px;
+}
+
+.smart-city-artifact-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: auto;
+    color: var(--smart-city-accent);
+    text-decoration: none;
+    font-weight: 850;
+}
+
+.smart-city-artifact-link:hover {
+    color: var(--color-dark);
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+    .smart-city-page {
+        --smart-city-hero-min-height: auto;
+        --smart-city-visual-height: 280px;
+    }
+
+    .smart-city-page-hero {
+        min-height: var(--smart-city-hero-min-height);
+        padding: 76px 24px 58px;
+    }
+
+    .smart-city-page-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .smart-city-hero-metrics,
+    .smart-city-summary-grid,
+    .smart-city-visual-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .smart-city-body-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 38px 24px 70px;
+    }
+
+    .smart-city-section-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .smart-city-section-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .smart-city-section-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .smart-city-section-nav a:hover,
+    .smart-city-section-nav a:focus-visible {
+        transform: none;
+        color: var(--smart-city-accent);
+        border-color: var(--portfolio-accent-border);
+        background: var(--portfolio-accent-soft);
+    }
+}
+
+@media (max-width: 560px) {
+    .smart-city-page {
+        --smart-city-visual-height: 230px;
+    }
+
+    .smart-city-page-hero {
+        padding: 92px 22px 36px;
+        align-items: flex-start;
+    }
+
+    .smart-city-hero-back {
+        top: 20px;
+        left: 22px;
+        font-size: 0.88rem;
+    }
+
+    /* Mobile fix:
+       Move the source button away from the metric cards.
+       This prevents it from overlapping the last hero metric. */
+    .smart-city-hero-source {
+        top: 52px;
+        right: auto;
+        bottom: auto;
+        left: 22px;
+        min-height: 34px;
+        padding: 9px 13px;
+        font-size: 0.76rem;
+    }
+
+    .smart-city-page-hero-inner {
+        gap: 24px;
+    }
+
+    .smart-city-page-hero-copy h1 {
+        max-width: 340px;
+        font-size: clamp(2.25rem, 10.5vw, 3rem);
+        line-height: 1.02;
+    }
+
+    .smart-city-page-hero-copy h2 {
+        font-size: 1.06rem;
+        line-height: 1.4;
+    }
+
+    .smart-city-page-hero-copy p {
+        font-size: 0.94rem;
+        line-height: 1.62;
+    }
+
+    .smart-city-page-hero-copy .detail-tags {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    /* Mobile hero metric compression:
+       2 columns reduces hero height and keeps the highlights readable. */
+    .smart-city-hero-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .smart-city-hero-metric {
+        min-height: 92px;
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+    .smart-city-hero-metric-value {
+        margin-bottom: 6px;
+        font-size: 1.35rem;
+        line-height: 1.05;
+    }
+
+    .smart-city-hero-metric-label {
+        font-size: 0.72rem;
+        line-height: 1.3;
+    }
+
+    .smart-city-body-layout {
+        padding: 32px 22px 72px;
+    }
+
+    .smart-city-body-content .detail-section {
+        padding-bottom: 30px;
+        margin-bottom: 32px;
+    }
+
+    .smart-city-body-content .detail-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .smart-city-body-content .metric-card,
+    .smart-city-body-content .approach-card,
+    .smart-city-body-content .contribution-card,
+    .smart-city-body-content .artifact-card {
+        padding: 20px;
+    }
+
+    .smart-city-visual-card img {
+        padding: 6px;
+    }
+
+    .smart-city-visual-card figcaption {
+        padding: 14px 16px 16px;
+    }
+}
