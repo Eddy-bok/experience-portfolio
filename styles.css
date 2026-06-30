@@ -5559,3 +5559,972 @@ body {
         font-size: 0.72rem;
     }
 }
+
+
+/* =========================================================
+   COMMERCIAL BUILDING ENERGY FORECASTING PROJECT PAGE
+   Clean replacement CSS block.
+
+   Page file:
+   - projects/energy-forecasting.html
+
+   Scope:
+   - All rules are scoped to .energy-page or energy-specific classes.
+   - This avoids affecting Ariel, Resource Matching, research pages, or homepage cards.
+
+   HOW TO CUSTOMIZE:
+   - The tuning panel below controls the page.
+   - For chart size, change the width or height variables in Section 1 only.
+   ========================================================= */
+
+
+/* =========================================================
+   1. PAGE TUNING PANEL
+   Edit these variables first.
+   ========================================================= */
+
+.energy-page {
+    /* Layout */
+    --energy-page-max: 1660px;
+    --energy-sidebar-width: 170px;
+    --energy-content-gap: 64px;
+    --energy-sidebar-offset-x: -34px;
+    --energy-padding-x: clamp(28px, 4vw, 72px);
+
+    /* Colors */
+    --energy-accent: #2f6f73;
+    --energy-accent-dark: #0d3f44;
+    --energy-text: #263234;
+    --energy-muted: #5f6f72;
+    --energy-soft: rgba(238, 246, 246, 0.72);
+    --energy-border: rgba(16, 42, 45, 0.12);
+
+    /* Shadows */
+    --energy-card-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+    --energy-card-shadow-hover: 0 22px 46px rgba(16, 42, 45, 0.10);
+
+    /* Hero */
+    --energy-hero-image: url("images/projects/cards/data-olympiad-bg.jpg");
+    --energy-hero-position: center;
+    --energy-hero-min-height: 560px;
+    --energy-hero-overlay-left: rgba(7, 31, 36, 0.94);
+    --energy-hero-overlay-mid: rgba(16, 42, 45, 0.78);
+    --energy-hero-overlay-right: rgba(9, 28, 48, 0.44);
+
+    /* General cards */
+    --energy-card-radius: 18px;
+    --energy-card-padding: 24px;
+    --energy-card-bg:
+        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+
+    /* Highlight metric cards */
+    --energy-highlight-bg:
+        radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
+        linear-gradient(
+            125deg,
+            rgba(231, 242, 243, 0.28) 0%,
+            rgba(217, 235, 236, 0.22) 56%,
+            rgba(199, 224, 226, 0.94) 100%
+        );
+
+    /* Certificate controls.
+       Reduce --energy-certificate-max-height if the certificate feels too tall. */
+    --energy-certificate-max-height: 390px;
+    --energy-certificate-padding: 10px;
+
+    /* Analytical workflow image controls */
+    --energy-workflow-max-width: 1100px;
+    --energy-workflow-image-width: 100%;
+    --energy-workflow-image-max-height: none;
+    --energy-workflow-image-radius: 16px;
+    --energy-workflow-caption-width: 920px;
+    --energy-workflow-caption-align: center;
+    --energy-workflow-top-margin: 30px;
+
+    /* Paired chart card controls.
+       These apply to charts that remain inside visual cards. */
+    --energy-visual-max: 1120px;
+    --energy-visual-gap: 22px;
+    --energy-visual-card-height: 300px;
+    --energy-visual-card-padding: 8px;
+
+    /* Individual paired chart heights */
+    --energy-building-type-height: 620px;
+    --energy-hourly-height: 620px;
+    --energy-shap-height: 300px;
+    --energy-weather-height: 300px;
+
+    /* Direct-on-page chart controls.
+       These charts are NOT inside visible cards.
+       Reduce width to make the chart visually shorter while preserving aspect ratio. */
+    --energy-seasonal-width: 860px;
+    --energy-xgboost-width: 700px;
+
+    /* Direct chart caption controls */
+    --energy-direct-caption-width: 900px;
+    --energy-direct-caption-align: center;
+
+    /* Forecasting model metric cards */
+    --energy-model-metric-min-height: 112px;
+    --energy-model-metric-padding: 18px 22px;
+    --energy-model-metric-value-size: 1.5rem;
+
+    max-width: none;
+    padding: 0;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   2. HERO SECTION
+   ========================================================= */
+
+.energy-page-hero {
+    position: relative;
+    width: 100vw;
+    min-height: var(--energy-hero-min-height);
+    margin-left: calc(50% - 50vw);
+    padding: 82px var(--energy-padding-x) 28px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    background:
+        linear-gradient(
+            90deg,
+            var(--energy-hero-overlay-left) 0%,
+            var(--energy-hero-overlay-mid) 48%,
+            var(--energy-hero-overlay-right) 100%
+        ),
+        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.20), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(47, 111, 115, 0.24), transparent 34%),
+        var(--energy-hero-image);
+    background-size: cover;
+    background-position: var(--energy-hero-position);
+}
+
+.energy-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
+}
+
+.energy-hero-back {
+    position: absolute;
+    top: 28px;
+    left: var(--energy-padding-x);
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.energy-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.energy-hero-source {
+    position: absolute;
+    right: var(--energy-padding-x);
+    bottom: 20px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.energy-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.energy-page-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1220px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+}
+
+.energy-page-hero-copy .section-label {
+    margin-bottom: 14px;
+    color: var(--color-gold);
+    font-weight: 850;
+}
+
+.energy-page-hero-copy h1 {
+    max-width: 660px;
+    margin: 0 0 18px;
+    color: white;
+    font-size: clamp(1.2rem, 2.4vw, 2.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.energy-page-hero-copy h2 {
+    max-width: 840px;
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(1.25rem, 1vw, 1.78rem);
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+}
+
+.energy-page-hero-copy p {
+    max-width: 790px;
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.energy-page-hero-copy .detail-tags {
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.92rem;
+    font-weight: 750;
+}
+
+
+/* Hero metric cards */
+
+.energy-hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.energy-hero-metric {
+    min-height: 122px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
+        rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.energy-hero-metric-value {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-size: clamp(1.65rem, 2.5vw, 2.4rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.energy-hero-metric-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.energy-money-count {
+    font-variant-numeric: tabular-nums;
+}
+
+.energy-money-count.is-counting {
+    color: #f3d58a;
+}
+
+.energy-money-count.has-counted {
+    color: white;
+}
+
+/* =========================================================
+   3. BODY LAYOUT AND SIDE NAV
+   ========================================================= */
+
+.energy-body-layout {
+    max-width: var(--energy-page-max);
+    margin: 0 auto;
+    padding: 56px var(--energy-padding-x) 82px;
+    display: grid;
+    grid-template-columns: var(--energy-sidebar-width) minmax(0, 1fr);
+    gap: var(--energy-content-gap);
+}
+
+.energy-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.energy-section-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transform: translateX(var(--energy-sidebar-offset-x));
+}
+
+.energy-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.energy-section-nav a:hover,
+.energy-section-nav a:focus-visible {
+    color: var(--energy-accent);
+    border-bottom-color: var(--energy-accent);
+    transform: translateX(8px);
+}
+
+.energy-body-content {
+    min-width: 0;
+}
+
+.energy-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.energy-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.energy-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.energy-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.energy-body-content .detail-section h2::before {
+    content: "";
+    width: 52px;
+    height: 4px;
+    display: block;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold), var(--energy-accent));
+}
+
+.energy-body-content .detail-section p {
+    max-width: 850px;
+    color: var(--energy-text);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   4. SHARED CARD SYSTEM
+   ========================================================= */
+
+.energy-body-content .metric-card,
+.energy-body-content .approach-card,
+.energy-body-content .contribution-card,
+.energy-body-content .artifact-card,
+.energy-visual-card,
+.energy-wide-visual,
+.energy-certificate-card,
+.energy-certificate-copy,
+.energy-pipeline-grid article {
+    border: 1px solid var(--energy-border);
+    border-radius: var(--energy-card-radius);
+    background: var(--energy-card-bg);
+    box-shadow: var(--energy-card-shadow);
+}
+
+.energy-body-content .metric-card,
+.energy-body-content .approach-card,
+.energy-body-content .contribution-card,
+.energy-body-content .artifact-card {
+    padding: var(--energy-card-padding);
+}
+
+.energy-body-content .metric-card:hover,
+.energy-body-content .approach-card:hover,
+.energy-body-content .contribution-card:hover,
+.energy-body-content .artifact-card:hover,
+.energy-visual-card:hover,
+.energy-wide-visual:hover {
+    transform: translateY(-3px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: var(--energy-card-shadow-hover);
+}
+
+.energy-body-content .approach-card h3,
+.energy-body-content .contribution-card h3,
+.energy-body-content .artifact-card h3 {
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   5. OVERVIEW, PROBLEM, IMPACT, AND MODEL METRICS
+   ========================================================= */
+
+.energy-summary-grid,
+.energy-impact-grid {
+    max-width: 1060px;
+    margin: 30px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.energy-summary-grid .metric-value,
+.energy-impact-grid .metric-value,
+.energy-model-metrics .metric-value {
+    color: var(--energy-accent-dark);
+}
+
+.energy-summary-grid .metric-label,
+.energy-impact-grid .metric-label,
+.energy-model-metrics .metric-label {
+    color: #243f42;
+}
+
+.energy-problem-grid {
+    max-width: 1060px;
+}
+
+.energy-problem-grid .approach-card:last-child {
+    grid-column: auto;
+}
+
+.energy-impact-grid .metric-card {
+    border-color: rgba(15, 79, 85, 0.18);
+    background: var(--energy-highlight-bg);
+}
+
+.energy-recommendation-grid {
+    max-width: 1060px;
+}
+
+.energy-recommendation-grid .approach-card:last-child {
+    grid-column: auto;
+}
+
+.energy-model-metrics {
+    max-width: 1060px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.energy-model-metrics .metric-card {
+    min-height: var(--energy-model-metric-min-height);
+    padding: var(--energy-model-metric-padding);
+}
+
+.energy-model-metrics .metric-value {
+    margin-bottom: 6px;
+    font-size: var(--energy-model-metric-value-size);
+    line-height: 1;
+}
+
+.energy-model-metrics .metric-label {
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   6. CERTIFICATE SECTION
+   ========================================================= */
+
+.energy-certificate-showcase {
+    max-width: 1120px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.65fr);
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* Certificate image holder.
+   The certificate now sits directly on the page background.
+   No card border, no card background, no shadow. */
+
+.energy-certificate-card {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Certificate image size.
+   Change --energy-certificate-max-height near the top of .energy-page
+   if you want it shorter or taller. */
+
+.energy-certificate-card img {
+    width: auto;
+    max-width: 100%;
+    max-height: var(--energy-certificate-max-height);
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 10px;
+    background: transparent;
+}
+
+.energy-certificate-copy {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.energy-proof-label {
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--energy-accent);
+    font-size: 0.76rem;
+    font-weight: 900;
+}
+
+.energy-certificate-copy h3 {
+    margin: 0 0 14px;
+    color: var(--color-dark);
+    font-size: 1.45rem;
+    line-height: 1.25;
+}
+
+.energy-proof-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.energy-proof-points span {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 11px;
+    border: 1px solid rgba(47, 111, 115, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.76);
+    color: var(--energy-accent);
+    font-size: 0.78rem;
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   7. ANALYTICAL WORKFLOW IMAGE
+   Direct-on-page workflow visual.
+
+   The workflow image sits directly on the page background:
+   - no card border
+   - no card background
+   - no shadow
+   - no caption
+
+   Tuning:
+   - --energy-workflow-max-width controls the figure width
+   - --energy-workflow-image-radius controls image corner softness
+   - --energy-workflow-top-margin controls spacing above the image
+   ========================================================= */
+
+.energy-workflow-figure {
+    max-width: var(--energy-workflow-max-width);
+    margin: var(--energy-workflow-top-margin) 0 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.energy-workflow-figure img {
+    width: var(--energy-workflow-image-width);
+    max-width: 100%;
+    height: auto;
+    max-height: var(--energy-workflow-image-max-height);
+    display: block;
+    margin: 0 auto;
+    border: none;
+    border-radius: var(--energy-workflow-image-radius);
+    background: transparent;
+    box-shadow: none;
+}
+
+.energy-workflow-figure figcaption {
+    display: none;
+}
+
+
+/* =========================================================
+   8. GENERAL VISUAL CARD SYSTEM
+   Used for paired charts that should stay inside cards:
+   - building-type-energy-usage.png
+   - hourly-energy-usage.png
+   - shap-feature-importance.png
+   - weather-feature-contribution.png
+   ========================================================= */
+
+.energy-visual-grid {
+    max-width: var(--energy-visual-max);
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--energy-visual-gap);
+}
+
+.energy-visual-card,
+.energy-wide-visual {
+    margin: 0;
+    overflow: hidden;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.energy-visual-card img {
+    width: 100%;
+    height: var(--energy-visual-card-height);
+    display: block;
+    padding: var(--energy-visual-card-padding);
+    object-fit: contain;
+    object-position: center;
+    background: white;
+}
+
+.energy-visual-card figcaption,
+.energy-wide-visual figcaption {
+    padding: 16px 18px 18px;
+    border-top: 1px solid rgba(16, 42, 45, 0.10);
+    color: var(--color-muted);
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+
+/* Individual paired chart controls */
+
+.energy-visual-card img[src$="building-type-energy-usage.png"] {
+    height: var(--energy-building-type-height);
+}
+
+.energy-visual-card img[src$="hourly-energy-usage.png"] {
+    height: var(--energy-hourly-height);
+}
+
+.energy-visual-card img[src$="shap-feature-importance.png"] {
+    height: var(--energy-shap-height);
+}
+
+.energy-visual-card img[src$="weather-feature-contribution.png"] {
+    height: var(--energy-weather-height);
+}
+
+
+/* =========================================================
+   9. DIRECT-ON-PAGE WIDE CHARTS
+   These charts are intentionally removed from card frames:
+   - seasonal-energy-trends.png
+   - xgboost-actual-vs-predicted.png
+
+   To resize them:
+   - Change --energy-seasonal-width
+   - Change --energy-xgboost-width
+   ========================================================= */
+
+.energy-wide-visual:has(img[src$="seasonal-energy-trends.png"]),
+.energy-wide-visual:has(img[src$="xgboost-actual-vs-predicted.png"]) {
+    max-width: var(--energy-visual-max);
+    margin-top: 26px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.energy-wide-visual:has(img[src$="seasonal-energy-trends.png"]):hover,
+.energy-wide-visual:has(img[src$="xgboost-actual-vs-predicted.png"]):hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.energy-wide-visual img[src$="seasonal-energy-trends.png"] {
+    width: min(100%, var(--energy-seasonal-width));
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+}
+
+.energy-wide-visual img[src$="xgboost-actual-vs-predicted.png"] {
+    width: min(100%, var(--energy-xgboost-width));
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+}
+
+.energy-wide-visual:has(img[src$="seasonal-energy-trends.png"]) figcaption,
+.energy-wide-visual:has(img[src$="xgboost-actual-vs-predicted.png"]) figcaption {
+    max-width: var(--energy-direct-caption-width);
+    margin: 0 auto;
+    padding: 12px 0 0;
+    border-top: none;
+    background: transparent;
+    text-align: var(--energy-direct-caption-align);
+}
+
+
+/* =========================================================
+   10. EVIDENCE NOTE, ROLE, AND ARTIFACTS
+   ========================================================= */
+
+.energy-body-content .evidence-note {
+    max-width: 920px;
+    margin: 30px 0 0;
+    padding: 24px 26px;
+    border-left: 5px solid var(--energy-accent);
+    border-radius: 0 18px 18px 0;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, var(--energy-soft) 100%);
+    box-shadow: var(--energy-card-shadow);
+}
+
+.energy-body-content .evidence-note h3 {
+    color: var(--color-dark);
+}
+
+.energy-role-grid {
+    max-width: 1060px;
+}
+
+.energy-artifact-grid {
+    max-width: 1060px;
+}
+
+.energy-artifact-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: auto;
+    color: var(--energy-accent);
+    text-decoration: none;
+    font-weight: 850;
+}
+
+.energy-artifact-link:hover {
+    color: var(--color-dark);
+}
+
+
+/* =========================================================
+   11. RESPONSIVE BEHAVIOR
+   ========================================================= */
+
+@media (max-width: 1000px) {
+    .energy-page {
+        --energy-hero-min-height: auto;
+
+        --energy-certificate-max-height: 360px;
+        --energy-seasonal-width: 760px;
+        --energy-xgboost-width: 700px;
+
+        --energy-building-type-height: 300px;
+        --energy-hourly-height: 280px;
+        --energy-shap-height: 260px;
+        --energy-weather-height: 260px;
+    }
+
+    .energy-page-hero {
+        min-height: var(--energy-hero-min-height);
+        padding: 76px 24px 58px;
+    }
+
+    .energy-page-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .energy-hero-metrics,
+    .energy-summary-grid,
+    .energy-impact-grid,
+    .energy-model-metrics,
+    .energy-certificate-showcase,
+    .energy-visual-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .energy-body-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 38px 24px 70px;
+    }
+
+    .energy-section-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .energy-section-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .energy-section-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .energy-section-nav a:hover,
+    .energy-section-nav a:focus-visible {
+        transform: none;
+        color: var(--energy-accent);
+        border-color: var(--portfolio-accent-border);
+        background: var(--portfolio-accent-soft);
+    }
+}
+
+@media (max-width: 560px) {
+    .energy-page {
+        --energy-certificate-max-height: 300px;
+        --energy-seasonal-width: 100%;
+        --energy-xgboost-width: 100%;
+
+        --energy-building-type-height: 250px;
+        --energy-hourly-height: 240px;
+        --energy-shap-height: 230px;
+        --energy-weather-height: 230px;
+
+        --energy-visual-card-padding: 6px;
+    }
+
+    .energy-page-hero {
+        padding: 68px 22px 48px;
+    }
+
+    .energy-hero-back {
+        top: 22px;
+        left: 22px;
+        font-size: 0.88rem;
+    }
+
+    .energy-hero-source {
+        right: 22px;
+        bottom: 22px;
+        min-height: 38px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+    }
+
+    .energy-page-hero-copy h1 {
+        font-size: clamp(2.1rem, 12vw, 3rem);
+        line-height: 1.02;
+    }
+
+    .energy-page-hero-copy h2 {
+        font-size: 1.12rem;
+        line-height: 1.45;
+    }
+
+    .energy-page-hero-copy p {
+        font-size: 0.96rem;
+        line-height: 1.65;
+    }
+
+    .energy-page-hero-copy .detail-tags {
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+
+    .energy-body-layout {
+        padding: 32px 22px 72px;
+    }
+
+    .energy-body-content .detail-section {
+        padding-bottom: 30px;
+        margin-bottom: 32px;
+    }
+
+    .energy-body-content .detail-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .energy-body-content .metric-card,
+    .energy-body-content .approach-card,
+    .energy-body-content .contribution-card,
+    .energy-body-content .artifact-card,
+    .energy-certificate-copy,
+    .energy-pipeline-grid article {
+        padding: 20px;
+    }
+
+    .energy-visual-card figcaption,
+    .energy-wide-visual figcaption {
+        padding: 14px 16px 16px;
+    }
+
+    .energy-page {
+        --energy-workflow-image-radius: 12px;
+        --energy-workflow-caption-width: 100%;
+    }
+}
