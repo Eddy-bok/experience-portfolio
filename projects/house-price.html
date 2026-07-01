@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>House Price Prediction & Regression Benchmarking | Edidiong David Ibokete</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="house-price-page">
+  <main class="detail-page house-price-detail-page">
+    <section class="house-price-page-hero" aria-label="House Price Prediction and Regression Benchmarking project hero">
+      <a href="../index.html#projects" class="house-price-hero-back">← Back to projects</a>
+
+      <a
+        href="https://github.com/Eddy-bok/house-price-prediction.git"
+        class="house-price-hero-source"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View source code
+      </a>
+
+      <div class="house-price-page-hero-inner">
+        <div class="house-price-page-hero-copy">
+          <p class="section-label">Neural Networks • Regression Modeling</p>
+
+          <h1>House Price Prediction with Regression Benchmarking</h1>
+
+          <h2>
+            Predicting house prices with neural network regression, model benchmarking,
+            dollar-based error diagnostics, and feature-driver interpretation.
+          </h2>
+
+          <p>
+            This project builds a TensorFlow/Keras regression workflow for house price prediction, 
+            compares it against traditional machine learning baselines, and explains model behavior 
+            through residual diagnostics and permutation importance.
+          </p>
+
+          <p class="detail-tags">
+            Neural Network • Regression Benchmarking • Error Diagnostics • Feature Importance
+          </p>
+        </div>
+
+        <div class="house-price-hero-metrics" aria-label="House price project highlights">
+          <article class="house-price-hero-metric">
+            <span class="house-price-hero-metric-value">1,000</span>
+            <span class="house-price-hero-metric-label">Housing records analyzed</span>
+          </article>
+
+          <article class="house-price-hero-metric">
+            <span class="house-price-hero-metric-value">$11.6K</span>
+            <span class="house-price-hero-metric-label">Neural network MAE</span>
+          </article>
+
+          <article class="house-price-hero-metric">
+            <span class="house-price-hero-metric-value">0.961</span>
+            <span class="house-price-hero-metric-label">Neural network R² score</span>
+          </article>
+
+          <article class="house-price-hero-metric">
+            <span class="house-price-hero-metric-value">≈2.1%</span>
+            <span class="house-price-hero-metric-label">Average-price error share</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="house-price-body-layout">
+      <aside class="house-price-page-sidebar" aria-label="House Price project section navigation">
+        <nav class="house-price-section-nav">
+          <a href="#overview">Overview</a>
+          <a href="#data">Data Story</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#benchmark">Benchmark</a>
+          <a href="#diagnostics">Diagnostics</a>
+          <a href="#drivers">Drivers</a>
+          <a href="#role">Role</a>
+          <a href="#artifacts">Artifacts</a>
+        </nav>
+      </aside>
+
+      <div class="house-price-body-content">
+        <section id="overview" class="detail-section">
+          <h2>Project Overview</h2>
+
+          <p>
+            This project predicts house prices from structured housing features using a neural network regression model, 
+            then evaluates performance in real dollar terms.
+
+            The workflow combines data validation, exploratory analysis, standardized preprocessing, TensorFlow/Keras 
+            modeling, baseline benchmarking, residual diagnostics, and feature-driver interpretation.
+          </p>
+
+          <div class="metrics-grid house-price-summary-grid">
+            <article class="metric-card">
+                <span class="metric-value">Neural Network Regression</span>
+                <span class="metric-label">
+                Built a TensorFlow/Keras model to predict continuous house prices from structured property features.
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-value">Real-Dollar Evaluation</span>
+                <span class="metric-label">
+                Converted scaled model outputs back into dollar values using MAE, RMSE, and R².
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-value">Model Benchmarking</span>
+                <span class="metric-label">
+                Compared the neural network against linear, ridge, random forest, and gradient boosting baselines.
+                </span>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-value">Feature Drivers</span>
+                <span class="metric-label">
+                Used correlation, standardized effects, and permutation importance to identify the strongest price signals.
+                </span>
+            </article>
+          </div>
+        </section>
+
+        <section id="data" class="detail-section">
+          <h2>Data Story</h2>
+
+          <p>
+            The dataset contains 1,000 complete housing records with three predictive features: property size, 
+            location score, and number of bedrooms. Before modeling, the notebook validates data quality, 
+            checks for missing values and duplicates, and explores how each feature contributes to price variation.
+
+            The strongest signal comes from property size, while location score and bedrooms add secondary predictive 
+            value that helps explain differences between otherwise similar homes.
+          </p>
+
+          <figure class="house-price-visual-card house-price-dashboard-visual">
+            <a
+                href="../images/projects/house-price/house_price_data_story.png"
+                class="project-image-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open house price data story image in a new tab"
+                >
+                <img
+                    src="../images/projects/house-price/house_price_data_story.png"
+                    alt="House price data story dashboard showing price distribution, feature relationships, and correlations"
+                />
+            </a>
+            <figcaption>
+              <strong>Data story.</strong> Data story. Property size is the dominant price signal, with a correlation of 0.87. 
+              Location score and bedroom count add secondary signal, helping explain price differences across similar-sized homes.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="workflow" class="detail-section">
+          <h2>Neural Network Workflow</h2>
+
+          <p>
+            The neural network trains on standardized housing features and scaled target values, then converts predictions 
+            back to dollar prices for evaluation. Early stopping prevents unnecessary training once validation performance 
+            stabilizes, keeping the model compact and controlled.
+          </p>
+
+          <div class="house-price-model-grid">
+            <article class="approach-card">
+                <span class="house-price-card-number">01</span>
+                <h3>Prepare Features</h3>
+                <p>
+                Split the data into training and test sets, then scaled features and target values
+                using training-only transformations to avoid data leakage.
+                </p>
+            </article>
+
+            <article class="approach-card">
+                <span class="house-price-card-number">02</span>
+                <h3>Train Neural Network</h3>
+                <p>
+                Trained a compact TensorFlow/Keras regression network with two ReLU hidden layers,
+                Adam optimization, and early stopping.
+                </p>
+            </article>
+
+            <article class="approach-card">
+                <span class="house-price-card-number">03</span>
+                <h3>Evaluate in Dollars</h3>
+                <p>
+                Converted predictions back to the original price scale and reported MAE, RMSE,
+                R², residuals, and price-band errors.
+                </p>
+            </article>
+          </div>
+
+          <figure class="house-price-visual-card house-price-wide-visual">
+            <a
+                href="../images/projects/house-price/house_price_nn_training_curves.png"
+                class="project-image-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open neural network training curves image in a new tab"
+                >
+                <img
+                    src="../images/projects/house-price/house_price_nn_training_curves.png"
+                    alt="Neural network training and validation loss curves for house price prediction"
+                />
+            </a>
+            <figcaption>
+              <strong>Training curves.</strong> Loss dropped sharply within the first few epochs, and early stopping ended 
+              training after validation performance stabilized. This supports a compact neural-network workflow without unnecessary overtraining.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="benchmark" class="detail-section">
+          <h2>Regression Model Benchmark</h2>
+
+          <p>
+            The neural network was benchmarked against simpler linear, regularized, and tree-based models using the same 80/20 split. 
+            The neural network produced the lowest MAE, but its advantage over Linear Regression was modest, about $233 in average error. 
+            This comparison keeps the project honest and shows that model selection should balance accuracy, interpretability, and complexity.
+          </p>
+
+          <div class="performance-table-wrap house-price-table-wrap">
+            <table class="table house-price-performance-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>MAE</th>
+                  <th>Portfolio takeaway</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Neural Network</td>
+                  <td>$11,565.78</td>
+                  <td>Lowest MAE overall, improving on Linear Regression by about $233 in average error.</td>
+                </tr>
+                <tr>
+                  <td>Linear Regression</td>
+                  <td>$11,798.37</td>
+                  <td>Nearly matched the neural network, showing that the dataset has a strong linear structure.</td>
+                </tr>
+                <tr>
+                  <td>Ridge Regression</td>
+                  <td>$11,807.38</td>
+                  <td>Regularized linear model performed similarly to ordinary linear regression.</td>
+                </tr>
+                <tr>
+                  <td>Gradient Boosting</td>
+                  <td>$12,667.65</td>
+                  <td>Strong tree-based benchmark, but weaker than neural and linear models here.</td>
+                </tr>
+                <tr>
+                  <td>Random Forest</td>
+                  <td>$13,618.12</td>
+                  <td>Useful nonlinear baseline, but produced the highest MAE among the compared models.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="house-price-visual-card house-price-wide-visual">
+            <a
+                href="../images/projects/house-price/house_price_model_benchmark.png"
+                class="project-image-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open house price model benchmark image in a new tab"
+                >
+                <img
+                    src="../images/projects/house-price/house_price_model_benchmark.png"
+                    alt="House price model benchmark comparing MAE across regression models"
+                />
+            </a>
+            <figcaption>
+              <strong>Model benchmark.</strong> The neural network achieved the lowest MAE at $11.6K, but Linear Regression 
+              was within about $233, showing that simpler models remained highly competitive.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="diagnostics" class="detail-section">
+          <h2>Prediction Diagnostics</h2>
+
+          <p>
+            The strongest part of the project is the diagnostic analysis. Instead of reporting only
+            one metric, the notebook examines actual-vs-predicted prices, residual distribution,
+            error patterns, and model behavior across price bands.
+          </p>
+
+          <figure class="house-price-visual-card house-price-dashboard-visual">
+            <a
+                href="../images/projects/house-price/house_price_prediction_diagnostics.png"
+                class="project-image-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open house price prediction diagnostics image in a new tab"
+                >
+                <img
+                    src="../images/projects/house-price/house_price_prediction_diagnostics.png"
+                    alt="House price prediction diagnostics showing actual versus predicted prices, residuals, and error by price band"
+                />
+            </a>
+            <figcaption>
+              <strong>Prediction diagnostics.</strong> The model achieved strong alignment between
+              predicted and actual prices, with residual analysis used to inspect error behavior.
+            </figcaption>
+          </figure>
+
+          <div class="evidence-note">
+            <h3>Interpretation</h3>
+            <p>
+              The neural network achieved an MAE of about $11.6K and an R² of 0.961 after predictions were converted 
+              back into real dollar values. Benchmarking showed that the neural network performed best, while linear 
+              models remained highly competitive, making the project a practical study in accuracy, interpretability, 
+              and model complexity trade-offs. Residual diagnostics further helped identify where prediction errors 
+              were concentrated across the price range.
+            </p>
+          </div>
+        </section>
+
+        <section id="drivers" class="detail-section">
+          <h2>Feature Drivers</h2>
+
+          <p>
+            The feature analysis confirms that property size is the strongest driver of predicted price, 
+            while location score and bedrooms provide additional signal. The project compares standardized 
+            linear effects with permutation importance to show both simple feature relationships and each feature’s contribution to model performance.
+          </p>
+
+          <figure class="house-price-visual-card house-price-dashboard-visual">
+            <a
+                href="../images/projects/house-price/house_price_feature_drivers.png"
+                class="project-image-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open house price feature drivers image in a new tab"
+                >
+                <img
+                    src="../images/projects/house-price/house_price_feature_drivers.png"
+                    alt="House price feature driver analysis showing correlations and permutation importance"
+                />
+            </a>
+            <figcaption>
+              <strong>Feature drivers.</strong> Shuffling property size increased MAE by about $61K, far more than location score or bedrooms, 
+              confirming size as the dominant predictive signal.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="role" class="detail-section">
+          <h2>Role and Implementation</h2>
+
+          <p>
+            I implemented the full regression modeling workflow, from data validation and exploratory analysis to neural 
+            network training, benchmark comparison, residual diagnostics, and feature-driver interpretation. 
+            The goal was to evaluate not only whether the model predicted well, but whether its errors and feature behavior could be explained clearly.
+          </p>
+
+          <div class="contribution-grid house-price-role-grid">
+            <article class="contribution-card">
+              <h3>Regression Modeling</h3>
+              <p>
+                Built and evaluated a TensorFlow/Keras neural-network regression model for predicting continuous 
+                house prices from structured property features.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Model Benchmarking</h3>
+              <p>
+                Compared neural network performance against Linear Regression, Ridge Regression, Random Forest, 
+                and Gradient Boosting using the same train/test split.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Error Diagnostics</h3>
+              <p>
+                Evaluated model behavior using MAE, RMSE, R², actual-vs-predicted plots, residual analysis, and price-band error patterns.
+              </p>
+            </article>
+
+            <article class="contribution-card">
+              <h3>Tools</h3>
+              <p>
+                Python • Pandas • NumPy • Matplotlib • Scikit-learn • TensorFlow/Keras • Jupyter Notebook
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="artifacts" class="detail-section">
+          <h2>Artifacts</h2>
+
+          <p>
+            The project artifacts include the notebook, source repository, visual diagnostics,
+            benchmark results, and feature-driver analysis.
+          </p>
+
+          <div class="artifact-grid house-price-artifact-grid">
+            <article class="artifact-card">
+              <h3>GitHub Repository</h3>
+              <p>
+                Source repository containing the notebook, code, visuals, and project documentation.
+              </p>
+              <a
+                href="https://github.com/Eddy-bok/house-price-prediction.git"
+                class="house-price-artifact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open repository →
+              </a>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Notebook</h3>
+              <p>
+                Main Jupyter Notebook covering data validation, neural network regression,
+                benchmarking, diagnostics, and feature interpretation.
+              </p>
+              <span class="artifact-status">house_price_prediction_nn.ipynb</span>
+            </article>
+
+            <article class="artifact-card">
+              <h3>Visual Outputs</h3>
+              <p>
+                Selected visuals for data story, model benchmark, neural network training,
+                prediction diagnostics, and feature drivers.
+              </p>
+              <span class="artifact-status">images/projects/house-price/</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assistant.js"></script>
+</body>
+</html>
