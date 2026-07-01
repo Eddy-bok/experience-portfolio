@@ -91,31 +91,30 @@
           <h2>Project Overview</h2>
 
           <p>
-            This project analyzes online shopping sessions to predict whether a visitor is likely
-            to complete a purchase. The workflow goes beyond basic classification by connecting
-            model performance to conversion rate, targeting tradeoffs, threshold selection, and
-            interpretable behavioral signals.
+            This project analyzes online shopping sessions to predict purchase likelihood and support conversion targeting. 
+            The workflow combines exploratory customer behavior analysis, class-imbalance-aware modeling, model comparison, 
+            threshold tuning, and feature-importance interpretation to connect predictive performance with practical business decision-making.
           </p>
 
           <div class="metrics-grid customer-purchase-summary-grid">
             <article class="metric-card">
               <span class="metric-value">Prediction</span>
               <span class="metric-label">
-                Modeled purchase outcomes from visitor behavior, page interactions, and session context.
+                Built classification models to predict purchase outcomes from browsing behavior, product engagement, traffic context, and visitor attributes.
               </span>
             </article>
 
             <article class="metric-card">
               <span class="metric-value">Conversion</span>
               <span class="metric-label">
-                Analyzed the business problem through conversion rate, purchase imbalance, and visitor segments.
+                Analyzed purchase imbalance, visitor segments, behavioral differences, and dominant conversion signals such as PageValues and product engagement.
               </span>
             </article>
 
             <article class="metric-card">
               <span class="metric-value">Targeting</span>
               <span class="metric-label">
-                Tuned the decision threshold to balance recall, precision, and campaign actionability.
+                Selected a Gradient Boosting model and tuned the purchase-probability threshold to balance recall, precision, and campaign actionability.
               </span>
             </article>
           </div>
@@ -125,10 +124,9 @@
           <h2>Conversion Behavior</h2>
 
           <p>
-            The dataset is highly business-oriented: most sessions do not convert, so the model
-            must identify purchase-likely sessions from a much larger pool of non-purchase visits.
-            This makes class distribution, visitor type, and behavioral value signals important
-            before modeling begins.
+            The dataset is highly business-oriented: Most online shopping sessions in the dataset do not result in a purchase, 
+            creating an imbalanced conversion problem. Before modeling, the project analyzes purchase distribution, 
+            visitor-type conversion rates, and behavioral value signals to understand which session patterns are associated with revenue.
           </p>
 
           <div class="customer-purchase-visual-grid">
@@ -174,62 +172,17 @@
 
           <p>
             The notebook compares multiple supervised classification models and evaluates them
-            using business-relevant metrics. The workflow uses train-test splitting, preprocessing,
-            model comparison, threshold tuning, and final model interpretation.
+            using business-relevant metrics. The workflow progresses from cleaned session data and
+            preprocessing through model comparison, threshold tuning, and final business-oriented
+            evaluation of purchase-likelihood predictions.
           </p>
 
-          <div class="customer-purchase-model-grid">
-            <article class="approach-card">
-              <span class="customer-purchase-card-number">01</span>
-              <h3>Logistic Regression Baseline</h3>
-              <p>
-                Established an interpretable linear baseline for purchase prediction and comparison
-                against more flexible models.
-              </p>
-            </article>
-
-            <article class="approach-card">
-              <span class="customer-purchase-card-number">02</span>
-              <h3>Tree-Based Models</h3>
-              <p>
-                Compared Random Forest and Gradient Boosting to capture nonlinear patterns in
-                visitor behavior and session-level signals.
-              </p>
-            </article>
-
-            <article class="approach-card">
-              <span class="customer-purchase-card-number">03</span>
-              <h3>Threshold Tuning</h3>
-              <p>
-                Evaluated different probability cutoffs to choose a threshold that better supports
-                conversion targeting decisions.
-              </p>
-            </article>
-          </div>
-
-          <div class="pipeline-visual customer-purchase-pipeline">
-            <article class="pipeline-step">
-              <span class="pipeline-number">01</span>
-              <strong>Clean sessions</strong>
-              <small>Remove duplicates, define target, separate features, and prepare categorical/numeric inputs.</small>
-            </article>
-
-            <span class="pipeline-arrow">→</span>
-
-            <article class="pipeline-step">
-              <span class="pipeline-number">02</span>
-              <strong>Compare models</strong>
-              <small>Train Logistic Regression, Random Forest, and Gradient Boosting classifiers.</small>
-            </article>
-
-            <span class="pipeline-arrow">→</span>
-
-            <article class="pipeline-step">
-              <span class="pipeline-number">03</span>
-              <strong>Tune threshold</strong>
-              <small>Select a probability cutoff that balances precision, recall, and targeting usefulness.</small>
-            </article>
-          </div>
+          <figure class="customer-purchase-workflow-figure">
+            <img
+                src="../images/projects/customer-purchase/modeling-workflow.png"
+                alt="Customer purchase prediction modeling workflow"
+            />
+            </figure>
         </section>
 
         <section id="performance" class="detail-section">
@@ -274,18 +227,18 @@
                 alt="Gradient Boosting confusion matrix at threshold 0.70"
               />
               <figcaption>
-                <strong>Final confusion matrix.</strong> At threshold 0.70, the model correctly
-                identified 287 of 382 purchase sessions in the test set.
+                <strong>Final confusion matrix.</strong> Final confusion matrix. At threshold 0.70, the model 
+                correctly identified 287 of 382 purchase sessions in the test set, while missing 95 purchase 
+                sessions and incorrectly flagging 159 non-purchase sessions.
               </figcaption>
             </figure>
 
             <div class="evidence-note customer-purchase-performance-note">
               <h3>Business Interpretation</h3>
               <p>
-                The selected threshold favors identifying more likely buyers while still controlling
-                false positives. In a business setting, this type of model could support campaign
-                targeting, remarketing prioritization, or conversion-likelihood scoring rather than
-                replacing human strategy.
+                The selected threshold balances identifying likely buyers with reducing unnecessary 
+                targeting of non-purchase sessions. In a business setting, this type of model could support 
+                campaign targeting, remarketing prioritization, or conversion-likelihood scoring rather than replacing human strategy.
               </p>
             </div>
           </div>
@@ -307,17 +260,17 @@
               alt="Gradient Boosting threshold tradeoff curve showing precision, recall, and F1-score"
             />
             <figcaption>
-              <strong>Threshold tradeoff.</strong> Precision, recall, and F1-score are evaluated
-              across decision thresholds, supporting the selected 0.70 cutoff for the final model.
+              <strong>Threshold tradeoff.</strong> Precision, recall, and F1-score were evaluated across probability thresholds. 
+              The 0.70 cutoff was selected because it improved prediction reliability while still capturing a substantial share of purchase sessions.
             </figcaption>
           </figure>
 
           <div class="evidence-note">
             <h3>Interpretation</h3>
             <p>
-              The threshold analysis turns the model from a generic classifier into a decision tool.
-              A threshold of 0.70 provides a practical balance between finding purchase-likely sessions
-              and avoiding excessive false-positive targeting.
+              The threshold analysis turns the model from a generic classifier into a business decision tool. 
+              A threshold of 0.70 provides the strongest practical balance between identifying purchase-likely 
+              sessions and reducing unnecessary targeting of non-purchase sessions.
             </p>
           </div>
         </section>
@@ -326,9 +279,9 @@
           <h2>Feature Signals and Interpretation</h2>
 
           <p>
-            The model interpretation step identifies the behavioral signals that contribute to
-            purchase-likelihood scoring. Because PageValues is very dominant, the secondary feature
-            importance view helps surface additional predictors beyond the strongest single signal.
+            The model interpretation step identifies the behavioral signals that contribute to purchase-likelihood scoring. 
+            PageValues was the dominant predictor in the Gradient Boosting model, so this secondary feature-importance view 
+            removes it from the chart to reveal additional predictors beyond the strongest single signal.
           </p>
 
           <figure class="customer-purchase-visual-card customer-purchase-wide-visual">
@@ -337,8 +290,8 @@
               alt="Secondary Gradient Boosting feature importance without PageValues"
             />
             <figcaption>
-              <strong>Secondary feature importance.</strong> Removing the dominant PageValues signal
-              reveals additional behavioral and session-level factors that contribute to prediction.
+              <strong>Secondary feature importance.</strong> After excluding the dominant PageValues feature from the visualization, 
+              the next strongest signals include Month: November, product-related duration, exit rate, and browsing-depth features.
             </figcaption>
           </figure>
         </section>
@@ -347,32 +300,29 @@
           <h2>Role and Implementation</h2>
 
           <p>
-            I implemented the full conversion analytics workflow, including data cleaning,
-            exploratory analysis, model comparison, threshold tuning, final model evaluation,
-            and feature-importance interpretation.
+            I implemented the full conversion analytics workflow, including data cleaning, exploratory analysis, 
+            leakage-safe preprocessing, model comparison, threshold tuning, final model evaluation, and feature-importance interpretation.
           </p>
 
           <div class="contribution-grid customer-purchase-role-grid">
             <article class="contribution-card">
               <h3>Conversion Analysis</h3>
               <p>
-                Analyzed purchase imbalance, visitor behavior, and feature distributions to understand
-                the business problem before modeling.
+                Analyzed purchase imbalance, visitor behavior, PageValues dominance, and session-level engagement patterns before modeling.
               </p>
             </article>
 
             <article class="contribution-card">
               <h3>Predictive Modeling</h3>
               <p>
-                Compared Logistic Regression, Random Forest, and Gradient Boosting models for
-                purchase outcome classification.
+                Compared Logistic Regression, Random Forest, and Gradient Boosting models using a consistent preprocessing pipeline.
               </p>
             </article>
 
             <article class="contribution-card">
               <h3>Threshold and Evaluation</h3>
               <p>
-                Tuned the final decision threshold and interpreted performance using precision,
+                Tuned the final Gradient Boosting decision threshold and evaluated performance using precision, 
                 recall, F1-score, ROC-AUC, and confusion matrices.
               </p>
             </article>
@@ -380,7 +330,7 @@
             <article class="contribution-card">
               <h3>Tools</h3>
               <p>
-                Python • Pandas • NumPy • Matplotlib • Scikit-learn • XGBoost • Jupyter Notebook
+                Python • Pandas • NumPy • Matplotlib • Scikit-learn • Seaborn • Jupyter Notebook
               </p>
             </article>
           </div>

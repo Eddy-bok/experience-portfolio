@@ -8387,6 +8387,17 @@ body {
     color: var(--color-dark);
 }
 
+.customer-purchase-workflow-figure {
+    max-width: 1160px;
+    margin: 30px 0 0;
+}
+
+.customer-purchase-workflow-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .customer-purchase-wide-visual {
     max-width: var(--customer-purchase-visual-max);
     margin: 24px 0 0;
