@@ -193,9 +193,14 @@ body {
 }
 
 .research-card-body h3 {
+    min-height: 4.05em;
     margin: 0 0 16px;
     font-size: 1.18rem;
     line-height: 1.35;
+}
+
+.research-card-body > p:not(.status):not(.research-tags) {
+    min-height: 138px;
 }
 
 .research-card-body p {
@@ -208,9 +213,11 @@ body {
 }
 
 .research-tags {
+    min-height: 42px;
     margin-top: 18px;
     color: var(--color-muted);
     font-size: 0.9rem;
+    font-weight: 600;
     line-height: 1.45;
 }
 
@@ -220,6 +227,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     margin-top: auto;
+    padding-top: 18px;
 }
 
 .research-card-button {
@@ -2195,7 +2203,7 @@ body {
 /* Hero */
 
 .resource-page-hero {
-    --resource-hero-bg: url("images/projects/resource-matching/resource-matching-hero.png");
+    --resource-hero-bg: url("images/projects/resource-matching/resource-matching-hero.jpg");
     --resource-hero-position: center;
 
     position: relative;
@@ -4588,6 +4596,7 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 18px;
+    margin-bottom: 18px;
 }
 
 .recognition-button {
