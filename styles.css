@@ -371,6 +371,7 @@ body {
     margin: 0 0 12px;
     display: -webkit-box;
     overflow: hidden;
+    line-clamp: 3;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     flex-shrink: 0;
@@ -4000,6 +4001,7 @@ body {
 
 .section-projects .project-card > p:not(.project-type):not(.domain):not(.project-link-text) {
     min-height: 4.5em;
+    line-clamp: 3;
     -webkit-line-clamp: 3;
 }
 
