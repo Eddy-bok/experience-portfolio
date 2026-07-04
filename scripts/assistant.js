@@ -1,5 +1,10 @@
 const ASSISTANT_API_URL = "https://eddie-portfolio-ai-api-9516.azurewebsites.net/ask";
 
+const ASSISTANT_FEEDBACK_API_URL = ASSISTANT_API_URL.replace(
+    /\/ask$/,
+    "/feedback"
+);
+
 const ASSISTANT_SCRIPT_SRC =
     document.currentScript && document.currentScript.src
         ? document.currentScript.src
@@ -28,6 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = document.getElementById("assistantSubmit");
     const status = document.getElementById("assistantStatus");
     let typingIndicator = null;
+
+    let assistantChatHistory = [];
+    const MAX_ASSISTANT_HISTORY_MESSAGES = 8;
+
+    const assistantSessionId = createAssistantSessionId();
 
     if (
         !widget ||
@@ -76,6 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const chatHistoryForRequest = assistantChatHistory.slice(
+            -MAX_ASSISTANT_HISTORY_MESSAGES
+        );
+
         addMessage("user", question);
         input.value = "";
 
@@ -90,6 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 body: JSON.stringify({
                     question: question,
+                    session_id: assistantSessionId,
+                    chat_history: chatHistoryForRequest,
                     include_sources: false,
                     include_diagnostics: false
                 })
@@ -111,8 +127,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
             removeTypingIndicator();
 
-            await addAssistantMessageWithTyping(
-                data.answer || "I could not generate an answer."
+            const answerText = data.answer || "I could not generate an answer.";
+
+            const assistantMessageElement = await addAssistantMessageWithTyping(
+                answerText
+            );
+
+            if (
+                shouldShowFeedbackControls(
+                    question,
+                    answerText
+                )
+            ) {
+                addFeedbackControls(
+                    assistantMessageElement,
+                    question,
+                    answerText
+                );
+            }
+
+            appendAssistantChatHistory(
+                "user",
+                question
+            );
+
+            appendAssistantChatHistory(
+                "assistant",
+                answerText
             );
 
         } catch (error) {
@@ -191,6 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             await wait(getTypingDelay(chunk));
         }
+
+        return message;
     }
 
 
@@ -220,6 +263,218 @@ document.addEventListener("DOMContentLoaded", () => {
         return new Promise((resolve) => {
             setTimeout(resolve, milliseconds);
         });
+    }
+
+    function appendAssistantChatHistory(role, content) {
+        const normalizedContent = String(content || "").trim();
+
+        if (!normalizedContent) {
+            return;
+        }
+
+        assistantChatHistory.push({
+            role: role,
+            content: normalizedContent
+        });
+
+        if (assistantChatHistory.length > MAX_ASSISTANT_HISTORY_MESSAGES) {
+            assistantChatHistory = assistantChatHistory.slice(
+                -MAX_ASSISTANT_HISTORY_MESSAGES
+            );
+        }
+    }
+
+    function shouldShowFeedbackControls(question, answer) {
+        const normalizedQuestion = String(question || "")
+            .trim()
+            .toLowerCase()
+            .replace(/[.!?]+$/g, "")
+            .replace(/\s+/g, " ");
+
+        const normalizedAnswer = String(answer || "")
+            .trim()
+            .toLowerCase();
+
+        if (!normalizedQuestion || !normalizedAnswer) {
+            return false;
+        }
+
+        const courtesyMessages = new Set([
+            "thank you",
+            "thanks",
+            "thanks ariel",
+            "thank you ariel",
+            "thank you so much",
+            "thanks so much",
+            "okay",
+            "ok",
+            "ok thanks",
+            "okay thanks",
+            "got it",
+            "great",
+            "nice",
+            "cool",
+            "perfect",
+            "awesome",
+            "sounds good",
+            "that helps",
+            "this helps"
+        ]);
+
+        if (courtesyMessages.has(normalizedQuestion)) {
+            return false;
+        }
+
+        if (
+            normalizedQuestion.length <= 24 &&
+            (
+                normalizedQuestion.startsWith("thank") ||
+                normalizedQuestion.startsWith("thanks") ||
+                normalizedQuestion === "ok" ||
+                normalizedQuestion === "okay"
+            )
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function addFeedbackControls(messageElement, question, answer) {
+        if (!messageElement) {
+            return;
+        }
+
+        const feedbackWrapper = document.createElement("div");
+        feedbackWrapper.className = "assistant-feedback";
+
+        const feedbackPrompt = document.createElement("span");
+        feedbackPrompt.className = "assistant-feedback-prompt";
+        feedbackPrompt.textContent = "Was this helpful?";
+
+        const upButton = document.createElement("button");
+        upButton.type = "button";
+        upButton.className = "assistant-feedback-button";
+        upButton.setAttribute("aria-label", "Mark Ariel response as helpful");
+        upButton.textContent = "👍";
+
+        const downButton = document.createElement("button");
+        downButton.type = "button";
+        downButton.className = "assistant-feedback-button";
+        downButton.setAttribute("aria-label", "Mark Ariel response as not helpful");
+        downButton.textContent = "👎";
+
+        const feedbackStatus = document.createElement("span");
+        feedbackStatus.className = "assistant-feedback-status";
+
+        feedbackWrapper.appendChild(feedbackPrompt);
+        feedbackWrapper.appendChild(upButton);
+        feedbackWrapper.appendChild(downButton);
+        feedbackWrapper.appendChild(feedbackStatus);
+
+        messageElement.appendChild(feedbackWrapper);
+        messages.scrollTop = messages.scrollHeight;
+
+        upButton.addEventListener("click", () => {
+            submitAssistantFeedback({
+                question,
+                answer,
+                feedback: "up",
+                upButton,
+                downButton,
+                feedbackStatus
+            });
+        });
+
+        downButton.addEventListener("click", () => {
+            submitAssistantFeedback({
+                question,
+                answer,
+                feedback: "down",
+                upButton,
+                downButton,
+                feedbackStatus
+            });
+        });
+    }
+
+
+    async function submitAssistantFeedback({
+        question,
+        answer,
+        feedback,
+        upButton,
+        downButton,
+        feedbackStatus
+    }) {
+        upButton.disabled = true;
+        downButton.disabled = true;
+        feedbackStatus.textContent = "Saving...";
+
+        try {
+            const response = await fetch(ASSISTANT_FEEDBACK_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    session_id: assistantSessionId,
+                    question: question,
+                    answer: answer,
+                    feedback: feedback,
+                    source: "portfolio_widget"
+                })
+            });
+
+            let data = {};
+
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
+
+            if (!response.ok) {
+                throw new Error(
+                    extractApiError(data) || `Feedback failed with status ${response.status}`
+                );
+            }
+
+            const feedbackWrapper = upButton.closest(".assistant-feedback");
+
+            if (feedbackWrapper) {
+                feedbackWrapper.textContent = "";
+
+                const thankYouMessage = document.createElement("span");
+                thankYouMessage.className = "assistant-feedback-status";
+                thankYouMessage.textContent = "Thanks for the feedback.";
+
+                feedbackWrapper.appendChild(thankYouMessage);
+            } else {
+                feedbackStatus.textContent = "Thanks for the feedback.";
+            }
+
+        } catch (error) {
+            console.error("Assistant feedback error:", error);
+
+            upButton.disabled = false;
+            downButton.disabled = false;
+            feedbackStatus.textContent = "Could not save feedback.";
+        }
+    }
+
+
+    function createAssistantSessionId() {
+        if (
+            window.crypto &&
+            typeof window.crypto.randomUUID === "function"
+        ) {
+            return window.crypto.randomUUID();
+        }
+
+        return `ariel-session-${Date.now()}-${Math.random()
+            .toString(16)
+            .slice(2)}`;
     }
 
 

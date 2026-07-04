@@ -855,6 +855,72 @@ body {
     font-weight: 600;
 }
 
+.assistant-feedback {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(16, 42, 45, 0.12);
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
+.assistant-feedback-prompt {
+    flex: 0 0 100%;
+    color: #4b5e62;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.assistant-feedback-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    min-height: 30px;
+    padding: 5px 9px;
+    border: 1px solid rgba(47, 111, 115, 0.20);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--color-dark);
+    cursor: pointer;
+    font-size: 0.84rem;
+    line-height: 1;
+    box-shadow: none;
+    transition:
+        background 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease,
+        opacity 150ms ease;
+}
+
+.assistant-feedback-button:hover:not(:disabled) {
+    background: var(--portfolio-accent-soft);
+    border-color: var(--portfolio-accent-border);
+    transform: translateY(-1px);
+}
+
+.assistant-feedback-button:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+.assistant-feedback-status {
+    flex: 0 0 100%;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 2px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(47, 111, 115, 0.08);
+    color: var(--portfolio-accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
 .assistant-form {
     display: flex;
     gap: 8px;
