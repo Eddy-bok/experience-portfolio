@@ -9,7 +9,9 @@ const ASSISTANT_BASE_URL = ASSISTANT_SCRIPT_SRC
     ? new URL(".", ASSISTANT_SCRIPT_SRC).href
     : "";
 
-const ASSISTANT_AVATAR_URL = `${ASSISTANT_BASE_URL}images/ariel-avatar.webp`;
+const ASSISTANT_AVATAR_URL = ASSISTANT_SCRIPT_SRC
+    ? new URL("../images/ariel-avatar.webp", ASSISTANT_SCRIPT_SRC).href
+    : "images/ariel-avatar.webp";
 
 document.addEventListener("DOMContentLoaded", () => {
     ensureAssistantWidget();
