@@ -49,10 +49,10 @@ body {
     grid-template-columns: minmax(240px, 360px) minmax(0, 760px);
     align-items: center;
     gap: clamp(44px, 6vw, 92px);
-    min-height: 62vh;
+    min-height: 46vh;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    padding: 84px var(--site-gutter);
+    padding: 52px var(--site-gutter);
     background:
         linear-gradient(
             90deg,
@@ -1338,7 +1338,7 @@ body {
         align-items: flex-start;
         gap: 32px;
         min-height: auto;
-        padding: 56px 24px;
+        padding: 44px 24px;
         background-position: center;
     }
 
@@ -2654,6 +2654,11 @@ body {
     margin: 34px 0 18px;
 }
 
+.resource-pipeline-figure a {
+    display: block;
+    cursor: zoom-in;
+}
+
 .resource-pipeline-figure img {
     width: 100%;
     display: block;
@@ -3529,6 +3534,32 @@ body {
     color: var(--color-dark);
 }
 
+.ariel-rag-pipeline-figure {
+    max-width: 1100px;
+    margin: 32px 0 34px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.ariel-rag-pipeline-figure a {
+    display: block;
+    cursor: zoom-in;
+}
+
+.ariel-rag-pipeline-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+
 /* Knowledge base */
 
 .ariel-kb-grid {
@@ -3765,6 +3796,11 @@ body {
         transform: rotate(90deg);
         padding: 4px 0;
     }
+
+    .ariel-rag-pipeline-figure {
+        max-width: 100%;
+        margin: 26px 0 30px;
+    }
 }
 
 @media (max-width: 560px) {
@@ -3851,6 +3887,10 @@ body {
         min-height: 38px;
         padding: 10px 14px;
         font-size: 0.82rem;
+    }
+
+    .ariel-rag-pipeline-figure {
+        margin: 22px 0 28px;
     }
 }
 
@@ -5311,6 +5351,10 @@ body {
     }
 }
 
+.skills-mobile-visual {
+    display: none;
+}
+
 /* =========================================================
    HOMEPAGE RESPONSIVE BEHAVIOR
    Covers homepage layout, project carousel, presentations,
@@ -5407,104 +5451,27 @@ body {
         line-height: 1.65;
     }
 
-    .skills-cluster-map {
-        --skills-map-image-opacity: 0.10;
-
-        min-height: auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 18px 0 6px;
-        border: none;
-        border-radius: 0;
-        overflow: visible;
-        background: transparent;
+    .homepage-layout .skills-cluster-section .cluster-legend,
+    .homepage-layout .skills-cluster-section .skills-cluster-map {
+        display: none;
     }
 
-    .cluster-legend {
-        position: relative;
-        left: auto;
-        top: auto;
+    .skills-mobile-visual {
+        display: block;
+        max-width: 520px;
+        margin: 24px auto 0;
+    }
+
+    .skills-mobile-visual a {
+        display: block;
+        cursor: zoom-in;
+    }
+
+    .skills-mobile-visual img {
         width: 100%;
-        max-width: none;
-        order: -1;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px 12px;
-        margin-bottom: 10px;
-    }
-
-    .cluster-legend span {
-        min-width: 0;
-        font-size: 0.74rem;
-        line-height: 1.2;
-    }
-
-    .cluster-centroid {
-        display: none;
-    }
-
-    .cluster-skill {
-        position: relative;
-        left: auto;
-        top: auto;
-        flex: 0 1 auto;
-        width: auto;
         height: auto;
-        min-height: 36px;
-        max-width: 100%;
-        padding: 8px 10px;
-        border-radius: 999px;
-        font-size: 0.68rem;
-        line-height: 1.1;
-        white-space: nowrap;
-        animation: none;
-        -webkit-text-stroke: 0;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.50);
-        box-shadow:
-            inset 4px 5px 12px rgba(255, 255, 255, 0.26),
-            inset -8px -10px 16px rgba(0, 0, 0, 0.16),
-            0 8px 18px rgba(16, 42, 45, 0.12);
-    }
-
-    .skills-cluster-map .skill-lg,
-    .skills-cluster-map .skill-md,
-    .skills-cluster-map .skill-sm {
-        width: auto;
-        height: auto;
-        font-size: 0.68rem;
-    }
-
-    .cluster-skill::before {
-        width: 26%;
-        height: 18%;
-        opacity: 0.48;
-    }
-
-    .programming-skill {
-        order: 1;
-    }
-
-    .ml-skill {
-        order: 2;
-    }
-
-    .ai-skill {
-        order: 3;
-    }
-
-    .bi-skill {
-        order: 4;
-    }
-
-    .cluster-skill::after {
-        display: none;
-    }
-
-    .cluster-legend .legend-heading,
-    .cluster-legend .legend-centroid-note {
-        grid-column: 1 / -1;
+        display: block;
+        border-radius: 18px;
     }
 }
 
@@ -6118,6 +6085,16 @@ body {
     object-position: center;
     border-radius: 10px;
     background: transparent;
+}
+
+.energy-certificate-card a,
+.energy-workflow-figure a,
+.energy-visual-card a,
+.energy-wide-visual a {
+    display: block;
+    cursor: zoom-in;
+    color: inherit;
+    text-decoration: none;
 }
 
 .energy-certificate-copy {
@@ -6959,6 +6936,13 @@ body {
     overflow: hidden;
 }
 
+.smart-city-visual-card a {
+    display: block;
+    cursor: zoom-in;
+    color: inherit;
+    text-decoration: none;
+}
+
 .smart-city-visual-card img {
     width: 100%;
     height: var(--smart-city-visual-height);
@@ -7651,6 +7635,13 @@ body {
     overflow: hidden;
 }
 
+.breast-cancer-visual-card a {
+    display: block;
+    cursor: zoom-in;
+    color: inherit;
+    text-decoration: none;
+}
+
 .breast-cancer-visual-card img {
     width: 100%;
     height: var(--breast-cancer-visual-height);
@@ -7915,6 +7906,7 @@ body {
     .breast-cancer-learning-card img {
         height: 300px;
     }
+
 }
 
 /* =========================================================
@@ -8374,6 +8366,14 @@ body {
 .customer-purchase-visual-card {
     margin: 0;
     overflow: hidden;
+}
+
+.customer-purchase-visual-card a,
+.customer-purchase-workflow-figure a {
+    display: block;
+    cursor: zoom-in;
+    color: inherit;
+    text-decoration: none;
 }
 
 .customer-purchase-visual-card img {
