@@ -28,31 +28,23 @@ The portfolio includes pages for:
 
 The portfolio is organized as a static website with project pages, research pages, supporting files, images, and JavaScript behavior kept in predictable locations.
 
-    website/
-    |-- files/
-    |   |-- achievements/
-    |   |-- presentations/
-    |
-    |-- images/
-    |   |-- hero/
-    |   |-- presentations/
-    |   |-- projects/
-    |   |-- research/
-    |   |-- skills/
-    |
-    |-- projects/
-    |-- research/
-    |
-    |-- index.html
-    |-- styles.css
-    |-- assistant.js
-    |-- carousel.js
-    |-- skills-cluster.js
-    |-- energy-metrics.js
-    |-- resource-metrics.js
-    |-- ariel-metrics.js
-    |-- README.md
-    |-- .gitignore
+        website/
+    ├── files/
+    │   ├── achievements/
+    │   └── presentations/
+    ├── images/
+    │   ├── hero/
+    │   ├── presentations/
+    │   ├── projects/
+    │   ├── research/
+    │   └── skills/
+    ├── projects/
+    ├── research/
+    ├── scripts/
+    ├── index.html
+    ├── styles.css
+    ├── README.md
+    └── .gitignore
 
 ## Technology Stack
 
