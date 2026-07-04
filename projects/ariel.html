@@ -214,37 +214,19 @@
         from curated portfolio content.
       </p>
 
-      <div class="pipeline-visual">
-        <div class="pipeline-step">
-          <span class="pipeline-number">01</span>
-          <strong>Load and structure knowledge base</strong>
-          <small>Read markdown files with YAML metadata, aliases, keywords, project categories, and question-intent fields from the portfolio knowledge base.</small>
-        </div>
-
-        <div class="pipeline-arrow">→</div>
-
-        <div class="pipeline-step">
-          <span class="pipeline-number">02</span>
-          <strong>Chunk and embed content</strong>
-          <small>Split knowledge base documents into retrieval-friendly chunks, then generate semantic embeddings.</small>
-        </div>
-
-        <div class="pipeline-arrow">→</div>
-
-        <div class="pipeline-step">
-          <span class="pipeline-number">03</span>
-          <strong>Retrieve and assemble context</strong>
-          <small>Rank the most relevant chunks using semantic similarity and metadata-aware retrieval, then assemble the selected content into a grounded response context.</small>
-        </div>
-
-        <div class="pipeline-arrow">→</div>
-
-        <div class="pipeline-step">
-          <span class="pipeline-number">04</span>
-          <strong>Generate grounded answer</strong>
-          <small>Use gpt-4.1-mini to answer from the retrieved portfolio context and return the response through the Ariel assistant widget.</small>
-        </div>
-      </div>
+      <figure class="ariel-rag-pipeline-figure">
+        <a
+          href="../images/projects/ariel/rag-pipeline.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open full-size Ariel RAG pipeline image in a new tab"
+        >
+          <img
+            src="../images/projects/ariel/rag-pipeline.png"
+            alt="Ariel RAG pipeline showing knowledge base loading, chunking and embedding, retrieval and grounded context assembly, and grounded answer generation"
+          />
+        </a>
+      </figure>
     </section>
 
     <section id="knowledge-base" class="detail-section">
