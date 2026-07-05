@@ -805,21 +805,24 @@ body {
 
 .assistant-message {
     max-width: 88%;
-    padding: 11px 13px;
-    border-radius: 12px;
     line-height: 1.5;
     font-size: 0.92rem;
 }
 
 .assistant-message-user {
     align-self: flex-end;
+    padding: 11px 13px;
+    border-radius: 12px;
     background: #222;
     color: white;
 }
 
 .assistant-message-bot {
     align-self: flex-start;
-    background: #f1f1f1;
+    max-width: 90%;
+    padding: 2px 0;
+    border-radius: 0;
+    background: transparent;
     color: #222;
 }
 
@@ -827,7 +830,10 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    color: #444;
+    max-width: fit-content;
+    padding: 0;
+    background: transparent;
+    color: #555;
 }
 
 .assistant-message-typing::after {
@@ -858,11 +864,14 @@ body {
 .assistant-feedback {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 6px;
+    width: 100%;
     margin-top: 12px;
     padding-top: 10px;
     border-top: 1px solid rgba(16, 42, 45, 0.12);
+    text-align: center;
     font-size: 0.78rem;
     line-height: 1.35;
 }
@@ -872,6 +881,7 @@ body {
     color: #4b5e62;
     font-size: 0.78rem;
     font-weight: 700;
+    text-align: center;
 }
 
 .assistant-feedback-button {
@@ -908,17 +918,23 @@ body {
 }
 
 .assistant-feedback-status {
-    flex: 0 0 100%;
+    flex: 0 1 auto;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     width: fit-content;
-    margin-top: 2px;
-    padding: 5px 9px;
+    margin: 2px auto 0;
+    padding: 5px 12px;
     border-radius: 999px;
     background: rgba(47, 111, 115, 0.08);
     color: var(--portfolio-accent);
     font-size: 0.76rem;
     font-weight: 700;
+    text-align: center;
+}
+
+.assistant-feedback-status:empty {
+    display: none;
 }
 
 .assistant-form {
