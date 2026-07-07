@@ -50,12 +50,12 @@
 
         <div class="tableau-hero-metrics" aria-label="Tableau gallery highlights">
             <article class="tableau-hero-metric">
-              <span class="tableau-hero-metric-value">2</span>
+              <span class="tableau-hero-metric-value">3</span>
               <span class="tableau-hero-metric-label">Published Tableau dashboards</span>
             </article>
 
             <article class="tableau-hero-metric">
-              <span class="tableau-hero-metric-value">2</span>
+              <span class="tableau-hero-metric-value"></span>
               <span class="tableau-hero-metric-label">BI platforms represented</span>
             </article>
 
@@ -123,9 +123,8 @@
 
             <p>
               These dashboards are presented as interactive visual analytics and BI projects.
-              The Tableau dashboards include active Tableau Public links where available, while
-              Power BI public report links are represented as placeholders until published versions
-              are available.
+              The Tableau dashboards include active Tableau Public links, while Power BI public
+              report links are represented as placeholders until published versions are available.
             </p>
 
             <div class="tableau-dashboard-showcase">
@@ -209,35 +208,45 @@
                 </div>
                 </article>
 
-                <article class="tableau-dashboard-row tableau-dashboard-placeholder-row">
-                <div class="tableau-placeholder-visual">
-                    <span class="tableau-placeholder-badge">Coming Soon</span>
-                    <h3>Hofbrauhaus Buffalo Competitive Radius Dashboard</h3>
-                    <p>
-                    Interactive map dashboard for exploring nearby food-store and restaurant competitors
-                    using category selection, radius parameters, and dynamic competitor counts.
-                    </p>
-                </div>
+                <article class="tableau-dashboard-row tableau-dashboard-row-map">
+                  <a
+                    href="../images/projects/visualizations/hofbrauhaus-radius-dashboard.jpg"
+                    class="tableau-dashboard-preview"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open full-size Hofbrauhaus competitive radius dashboard preview image in a new tab"
+                  >
+                    <img
+                      src="../images/projects/visualizations/hofbrauhaus-radius-dashboard.jpg"
+                      alt="Hofbrauhaus Buffalo competitive radius Tableau dashboard preview"
+                    />
+                  </a>
 
-                <div class="tableau-dashboard-panel">
+                  <div class="tableau-dashboard-panel">
                     <p class="tableau-dashboard-type">Location Intelligence</p>
-                    <h3>Competitive Radius Dashboard</h3>
+                    <h3>Hofbrauhaus Competitive Radius Dashboard</h3>
 
                     <p>
-                    This dashboard is being revised before publication. The final version will focus on
-                    radius-based competitor exploration around Hofbrauhaus Buffalo.
+                      Explores Buffalo business-license data around Hofbrauhaus to identify nearby
+                      competitors by distance and category. Users can adjust the search radius, switch
+                      between restaurant and food-store views, and compare competitor counts dynamically.
                     </p>
 
                     <div class="tableau-insight-list">
-                    <span>Radius-based filtering</span>
-                    <span>Restaurant vs. food-store comparison</span>
-                    <span>Dynamic KPI counts</span>
+                      <span>Radius-based competitor filtering</span>
+                      <span>Restaurant vs. food-store comparison</span>
+                      <span>Dynamic KPI counts</span>
                     </div>
 
-                    <span class="tableau-dashboard-action tableau-dashboard-action-disabled" aria-disabled="true">
-                    Dashboard coming soon
-                    </span>
-                </div>
+                    <a
+                      href="https://public.tableau.com/app/profile/edidiong5684/viz/Hofbrauhaus_competitive_radius_explorer/Dashboard22"
+                      class="tableau-dashboard-action"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open interactive dashboard &rarr;
+                    </a>
+                  </div>
                 </article>
             </div>
         </section>
