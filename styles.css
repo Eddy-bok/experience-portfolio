@@ -2302,6 +2302,242 @@ body {
 
 
 /* =========================================================
+   SHARED PROJECT DETAIL FOUNDATION
+   Structural rules shared by Reciprocal Resource Matching
+   and Project Ariel. Page-specific colors, images, metrics,
+   and content treatments remain in their own sections.
+   ========================================================= */
+
+.resource-page,
+.ariel-page {
+    max-width: none;
+    padding: 0;
+    background: #ffffff;
+}
+
+/* Shared hero controls */
+
+.resource-page-hero::after,
+.ariel-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
+}
+
+.resource-hero-back,
+.ariel-hero-back {
+    position: absolute;
+    top: 28px;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.resource-hero-back:hover,
+.ariel-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.resource-hero-source,
+.ariel-hero-source {
+    position: absolute;
+    bottom: 20px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.resource-hero-source:hover,
+.ariel-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.resource-hero-source-disabled,
+.ariel-hero-source-disabled {
+    opacity: 0.78;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Shared body shell and section navigation */
+
+.resource-page-sidebar,
+.ariel-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.resource-section-nav,
+.ariel-body-layout .ariel-section-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.resource-section-nav a,
+.ariel-body-layout .ariel-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.resource-section-nav a:hover,
+.resource-section-nav a:focus-visible,
+.ariel-body-layout .ariel-section-nav a:hover,
+.ariel-body-layout .ariel-section-nav a:focus-visible {
+    transform: translateX(8px);
+}
+
+.resource-body-content,
+.ariel-body-content {
+    min-width: 0;
+}
+
+.resource-body-content .detail-section,
+.ariel-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.resource-body-content .detail-section:first-child,
+.ariel-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.resource-body-content .detail-section:last-child,
+.ariel-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.resource-body-content .detail-section h2,
+.ariel-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.resource-body-content .detail-section p,
+.ariel-body-content .detail-section p {
+    max-width: 850px;
+    color: #263234;
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+/* Shared project cards */
+
+.resource-body-content .approach-card,
+.resource-body-content .contribution-card,
+.resource-body-content .artifact-card,
+.resource-body-content .metric-card,
+.resource-problem-card,
+.ariel-body-content .approach-card,
+.ariel-body-content .contribution-card,
+.ariel-body-content .artifact-card,
+.ariel-body-content .metric-card,
+.ariel-body-content .research-visual {
+    border: 1px solid rgba(16, 42, 45, 0.12);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.resource-body-content .approach-card,
+.resource-body-content .contribution-card,
+.resource-body-content .artifact-card,
+.resource-body-content .metric-card,
+.resource-problem-card,
+.ariel-body-content .approach-card,
+.ariel-body-content .contribution-card,
+.ariel-body-content .artifact-card,
+.ariel-body-content .metric-card {
+    padding: 24px;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.resource-body-content .approach-card:hover,
+.resource-body-content .contribution-card:hover,
+.resource-body-content .artifact-card:hover,
+.resource-body-content .metric-card:hover,
+.resource-problem-card:hover,
+.ariel-body-content .approach-card:hover,
+.ariel-body-content .contribution-card:hover,
+.ariel-body-content .artifact-card:hover,
+.ariel-body-content .metric-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
+}
+
+.resource-body-content .approach-card h3,
+.resource-body-content .contribution-card h3,
+.resource-body-content .artifact-card h3,
+.resource-problem-card h3,
+.ariel-body-content .approach-card h3,
+.ariel-body-content .contribution-card h3,
+.ariel-body-content .artifact-card h3 {
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+.resource-body-content .evidence-note,
+.ariel-body-content .evidence-note {
+    max-width: 920px;
+    margin: 30px 0 0;
+    padding: 24px 26px;
+    border-radius: 0 18px 18px 0;
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.resource-body-content .evidence-note h3,
+.ariel-body-content .evidence-note h3 {
+    color: var(--color-dark);
+}
+
+/* =========================================================
    RECIPROCAL RESOURCE MATCHING PROJECT PAGE
    Systems / algorithm design case-study page.
 
@@ -2319,10 +2555,6 @@ body {
     --resource-padding-x: clamp(28px, 4vw, 72px);
     --resource-accent: var(--portfolio-accent);
     --resource-soft: rgba(238, 246, 246, 0.72);
-
-    max-width: none;
-    padding: 0;
-    background: #ffffff;
 }
 
 /* Hero */
@@ -2354,64 +2586,16 @@ body {
     background-position: var(--resource-hero-position);
 }
 
-.resource-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .resource-hero-back {
-    position: absolute;
-    top: 28px;
     left: var(--resource-padding-x);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.86);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
 }
 
-.resource-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .resource-hero-source {
-    position: absolute;
     right: var(--resource-padding-x);
-    bottom: 20px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201, 168, 106, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.resource-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.resource-hero-source-disabled {
-    opacity: 0.78;
-    cursor: not-allowed;
-    pointer-events: none;
-}
 
 .resource-page-hero-inner {
     position: relative;
@@ -2475,70 +2659,18 @@ body {
     gap: var(--resource-content-gap);
 }
 
-.resource-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .resource-section-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     transform: translateX(var(--resource-sidebar-offset-x));
 }
 
-.resource-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .resource-section-nav a:hover,
 .resource-section-nav a:focus-visible {
     color: var(--resource-accent);
     border-bottom-color: var(--resource-accent);
-    transform: translateX(8px);
 }
 
-.resource-body-content {
-    min-width: 0;
-}
-
-.resource-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.resource-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.resource-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.resource-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .resource-body-content .detail-section h2::before {
     content: "";
@@ -2550,72 +2682,12 @@ body {
     background: linear-gradient(90deg, var(--color-gold), var(--resource-accent));
 }
 
-.resource-body-content .detail-section p {
-    max-width: 850px;
-    color: #263234;
-    font-size: 1.02rem;
-    line-height: 1.75;
-}
-
-/* Shared cards */
-
-.resource-body-content .approach-card,
-.resource-body-content .contribution-card,
-.resource-body-content .artifact-card,
-.resource-body-content .metric-card,
-.resource-problem-card {
-    border: 1px solid rgba(16, 42, 45, 0.12);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.resource-body-content .approach-card,
-.resource-body-content .contribution-card,
-.resource-body-content .artifact-card,
-.resource-body-content .metric-card,
-.resource-problem-card {
-    padding: 24px;
-}
-
-.resource-body-content .approach-card:hover,
-.resource-body-content .contribution-card:hover,
-.resource-body-content .artifact-card:hover,
-.resource-body-content .metric-card:hover,
-.resource-problem-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(47, 111, 115, 0.24);
-    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
-}
-
-.resource-body-content .approach-card h3,
-.resource-body-content .contribution-card h3,
-.resource-body-content .artifact-card h3,
-.resource-problem-card h3 {
-    color: var(--color-dark);
-    line-height: 1.3;
-}
 
 .resource-body-content .evidence-note {
-    max-width: 920px;
-    margin: 30px 0 0;
-    padding: 24px 26px;
     border-left: 5px solid var(--resource-accent);
-    border-radius: 0 18px 18px 0;
     background:
         radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
         linear-gradient(135deg, #ffffff 0%, var(--resource-soft) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
-}
-
-.resource-body-content .evidence-note h3 {
-    color: var(--color-dark);
 }
 
 
@@ -2936,15 +3008,6 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.resource-metrics-grid .metric-card {
-    min-height: 150px;
-}
-
-.resource-metrics-grid .metric-value {
-    color: var(--color-dark);
-    font-size: 2.05rem;
-    letter-spacing: -0.04em;
-}
 
 .resource-metric-count {
     font-variant-numeric: tabular-nums;
@@ -2958,14 +3021,12 @@ body {
     color: var(--color-dark);
 }
 
-.resource-metrics-grid .metric-label {
-    color: var(--color-muted);
-}
 
 /* Results metric cards.
    Matches the darker teal treatment used in the Why Simple Matching Fails cards. */
 
 .resource-metrics-grid .metric-card {
+    min-height: 150px;
     border-color: rgba(15, 79, 85, 0.18);
     background:
         radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
@@ -2980,6 +3041,8 @@ body {
 
 .resource-metrics-grid .metric-value {
     color: #0d3f44;
+    font-size: 2.05rem;
+    letter-spacing: -0.04em;
 }
 
 .resource-metrics-grid .metric-label {
@@ -3058,151 +3121,6 @@ body {
     color: var(--color-dark);
 }
 
-/* Responsive */
-
-@media (max-width: 1000px) {
-    .resource-page-hero {
-        min-height: auto;
-        padding: 76px 24px 58px;
-    }
-
-    .resource-page-hero-inner {
-        grid-template-columns: 1fr;
-        gap: 34px;
-    }
-
-    .resource-body-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 38px 24px 70px;
-    }
-
-    .resource-section-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        transform: none;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .resource-section-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .resource-section-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(16, 42, 45, 0.18);
-        border-radius: 999px;
-        background: white;
-        color: var(--color-muted);
-        font-size: 0.82rem;
-    }
-
-    .resource-section-nav a:hover,
-    .resource-section-nav a:focus-visible {
-        transform: none;
-        color: var(--resource-accent);
-        border-color: var(--portfolio-accent-border);
-        background: var(--portfolio-accent-soft);
-    }
-
-    .resource-problem-grid,
-    .resource-framework-grid,
-    .resource-case-study,
-    .resource-metrics-grid,
-    .resource-application-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .resource-body-content .results-table-wrapper {
-        overflow-x: auto;
-        padding-bottom: 4px;
-    }
-
-    .resource-body-content .results-table {
-        min-width: 680px;
-    }
-
-    .resource-challenge-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .resource-capacity-figure {
-        width: min(100%, 420px);
-        justify-self: center;
-    }
-}
-
-@media (max-width: 560px) {
-    .resource-page-hero {
-        padding: 68px 22px 48px;
-    }
-
-    .resource-hero-back {
-        top: 22px;
-        left: 22px;
-        font-size: 0.88rem;
-    }
-
-    .resource-hero-source {
-        right: 22px;
-        bottom: 22px;
-        min-height: 38px;
-        padding: 10px 14px;
-        font-size: 0.82rem;
-    }
-
-    .resource-page-hero-copy h1 {
-        font-size: clamp(2.25rem, 12vw, 3rem);
-        line-height: 1.02;
-    }
-
-    .resource-page-hero-copy h2 {
-        font-size: 1.12rem;
-        line-height: 1.45;
-    }
-
-    .resource-page-hero-copy p {
-        font-size: 0.96rem;
-        line-height: 1.65;
-    }
-
-    .resource-page-hero-copy .detail-tags {
-        font-size: 0.82rem;
-        line-height: 1.55;
-    }
-
-    .resource-body-layout {
-        padding: 32px 22px 72px;
-    }
-
-    .resource-body-content .detail-section {
-        padding-bottom: 30px;
-        margin-bottom: 32px;
-    }
-
-    .resource-body-content .detail-section h2 {
-        font-size: 1.75rem;
-    }
-
-    .resource-body-content .approach-card,
-    .resource-body-content .contribution-card,
-    .resource-body-content .artifact-card,
-    .resource-body-content .metric-card,
-    .resource-problem-card {
-        padding: 20px;
-    }
-
-    .resource-case-network {
-        grid-template-columns: 1fr;
-    }
-}
-
-
 /* =========================================================
    PROJECT ARIEL CASE STUDY PAGE
    Applied AI / RAG engineering project detail page.
@@ -3221,10 +3139,6 @@ body {
     --ariel-padding-x: clamp(28px, 4vw, 72px);
     --ariel-accent: var(--portfolio-accent);
     --ariel-soft: rgba(238, 246, 246, 0.72);
-
-    max-width: none;
-    padding: 0;
-    background: #ffffff;
 }
 
 /* Hero */
@@ -3253,64 +3167,16 @@ body {
     background-position: center;
 }
 
-.ariel-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .ariel-hero-back {
-    position: absolute;
-    top: 28px;
     left: var(--ariel-padding-x);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.86);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
 }
 
-.ariel-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .ariel-hero-source {
-    position: absolute;
     right: var(--ariel-padding-x);
-    bottom: 20px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201, 168, 106, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.ariel-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.ariel-hero-source-disabled {
-    opacity: 0.78;
-    cursor: not-allowed;
-    pointer-events: none;
-}
 
 .ariel-page-hero-inner {
     position: relative;
@@ -3402,70 +3268,18 @@ body {
     gap: var(--ariel-content-gap);
 }
 
-.ariel-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .ariel-body-layout .ariel-section-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     transform: translateX(var(--ariel-sidebar-offset-x));
 }
 
-.ariel-body-layout .ariel-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .ariel-body-layout .ariel-section-nav a:hover,
 .ariel-body-layout .ariel-section-nav a:focus-visible {
     color: var(--ariel-accent);
     border-bottom-color: var(--ariel-accent);
-    transform: translateX(8px);
 }
 
-.ariel-body-content {
-    min-width: 0;
-}
-
-.ariel-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.ariel-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.ariel-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.ariel-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .ariel-body-content .detail-section h2::before {
     content: "";
@@ -3477,72 +3291,16 @@ body {
     background: linear-gradient(90deg, var(--color-gold), var(--ariel-accent));
 }
 
-.ariel-body-content .detail-section p {
-    max-width: 850px;
-    color: #263234;
-    font-size: 1.02rem;
-    line-height: 1.75;
-}
 
-/* Shared Ariel cards */
-
-.ariel-body-content .approach-card,
-.ariel-body-content .contribution-card,
-.ariel-body-content .artifact-card,
-.ariel-body-content .metric-card,
-.ariel-body-content .research-visual {
-    border: 1px solid rgba(16, 42, 45, 0.12);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
-}
-
-.ariel-body-content .approach-card,
-.ariel-body-content .contribution-card,
-.ariel-body-content .artifact-card,
-.ariel-body-content .metric-card {
-    padding: 24px;
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.ariel-body-content .approach-card:hover,
-.ariel-body-content .contribution-card:hover,
-.ariel-body-content .artifact-card:hover,
-.ariel-body-content .metric-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(47, 111, 115, 0.24);
-    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
-}
-
-.ariel-body-content .approach-card h3,
-.ariel-body-content .contribution-card h3,
-.ariel-body-content .artifact-card h3 {
-    color: var(--color-dark);
-    line-height: 1.3;
-}
-
-/* Problem callout */
+/* Page-specific evidence note */
 
 .ariel-body-content .evidence-note {
-    max-width: 920px;
-    margin: 30px 0 0;
-    padding: 24px 26px;
     border-left: 5px solid var(--ariel-accent);
-    border-radius: 0 18px 18px 0;
     background:
         radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
         linear-gradient(135deg, #ffffff 0%, var(--ariel-soft) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
 }
 
-.ariel-body-content .evidence-note h3 {
-    color: var(--color-dark);
-}
 
 /* Problem visuals */
 
@@ -3731,22 +3489,14 @@ body {
     background-repeat: no-repeat;
 }
 
-.ariel-image-grid .research-visual {
-    position: relative;
-    z-index: 1;
-}
-
-.ariel-image-grid .research-visual {
-    max-width: none;
-    margin: 0;
-    padding: 14px;
-}
 
 .ariel-image-grid .research-visual {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
+    max-width: none;
+    margin: 0;
     overflow: hidden;
     padding: 12px;
     background: rgba(255, 255, 255, 0.94);
@@ -3834,13 +3584,101 @@ body {
     font-weight: 850;
 }
 
-/* Responsive */
+/* =========================================================
+   SHARED PROJECT DETAIL RESPONSIVE RULES
+   Reciprocal Resource Matching and Project Ariel
+   Broad breakpoints come first; narrow mobile overrides follow.
+   ========================================================= */
 
 @media (max-width: 1000px) {
+    /* Shared responsive shell */
+
+    .resource-page-hero,
     .ariel-page-hero {
         min-height: auto;
         padding: 76px 24px 58px;
     }
+
+    .resource-body-layout,
+    .ariel-body-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 38px 24px 70px;
+    }
+
+    .resource-section-nav,
+    .ariel-body-layout .ariel-section-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .resource-section-nav::-webkit-scrollbar,
+    .ariel-body-layout .ariel-section-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .resource-section-nav a,
+    .ariel-body-layout .ariel-section-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .resource-section-nav a:hover,
+    .resource-section-nav a:focus-visible,
+    .ariel-body-layout .ariel-section-nav a:hover,
+    .ariel-body-layout .ariel-section-nav a:focus-visible {
+        transform: none;
+        border-color: var(--portfolio-accent-border);
+        background: var(--portfolio-accent-soft);
+    }
+
+    /* Reciprocal Resource Matching */
+
+    .resource-page-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .resource-section-nav a:hover,
+    .resource-section-nav a:focus-visible {
+        color: var(--resource-accent);
+    }
+
+    .resource-problem-grid,
+    .resource-framework-grid,
+    .resource-case-study,
+    .resource-metrics-grid,
+    .resource-application-grid,
+    .resource-challenge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-body-content .results-table-wrapper {
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .resource-body-content .results-table {
+        min-width: 680px;
+    }
+
+    .resource-capacity-figure {
+        width: min(100%, 420px);
+        justify-self: center;
+    }
+
+    /* Project Ariel */
 
     .ariel-page-hero-inner {
         grid-template-columns: 1fr;
@@ -3861,52 +3699,15 @@ body {
         height: 170px;
     }
 
-    .ariel-body-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 38px 24px 70px;
-    }
-
-    .ariel-body-layout .ariel-section-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        transform: none;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .ariel-body-layout .ariel-section-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .ariel-body-layout .ariel-section-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(16, 42, 45, 0.18);
-        border-radius: 999px;
-        background: white;
-        color: var(--color-muted);
-        font-size: 0.82rem;
-    }
-
     .ariel-body-layout .ariel-section-nav a:hover,
     .ariel-body-layout .ariel-section-nav a:focus-visible {
-        transform: none;
         color: var(--ariel-accent);
-        border-color: var(--portfolio-accent-border);
-        background: var(--portfolio-accent-soft);
     }
 
     .ariel-architecture-grid,
     .ariel-problem-visuals,
     .ariel-image-grid,
-    .ariel-metrics-grid {
-        grid-template-columns: 1fr;
-    }
-
+    .ariel-metrics-grid,
     .ariel-architecture-cards {
         grid-template-columns: 1fr;
     }
@@ -3917,8 +3718,8 @@ body {
 
     .ariel-body-content .pipeline-arrow {
         justify-content: center;
-        transform: rotate(90deg);
         padding: 4px 0;
+        transform: rotate(90deg);
     }
 
     .ariel-rag-pipeline-figure {
@@ -3928,15 +3729,90 @@ body {
 }
 
 @media (max-width: 560px) {
-    .ariel-page-hero {
-        padding: 68px 22px 46px;
-        background-position: center;
-    }
+    /* Shared mobile shell */
 
+    .resource-hero-back,
     .ariel-hero-back {
         top: 22px;
         left: 22px;
         font-size: 0.88rem;
+    }
+
+    .resource-hero-source,
+    .ariel-hero-source {
+        right: 22px;
+        bottom: 22px;
+        min-height: 38px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+    }
+
+    .resource-page-hero-copy h2,
+    .ariel-page-hero-copy h2 {
+        font-size: 1.12rem;
+        line-height: 1.45;
+    }
+
+    .resource-page-hero-copy p,
+    .ariel-page-hero-copy p {
+        font-size: 0.96rem;
+        line-height: 1.65;
+    }
+
+    .resource-page-hero-copy .detail-tags,
+    .ariel-page-hero-copy .detail-tags {
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+
+    .resource-body-layout,
+    .ariel-body-layout {
+        padding: 32px 22px 72px;
+    }
+
+    .resource-body-content .detail-section,
+    .ariel-body-content .detail-section {
+        padding-bottom: 30px;
+        margin-bottom: 32px;
+    }
+
+    .resource-body-content .detail-section h2,
+    .ariel-body-content .detail-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .resource-body-content .approach-card,
+    .resource-body-content .contribution-card,
+    .resource-body-content .artifact-card,
+    .resource-body-content .metric-card,
+    .resource-problem-card,
+    .ariel-body-content .approach-card,
+    .ariel-body-content .contribution-card,
+    .ariel-body-content .artifact-card,
+    .ariel-body-content .metric-card {
+        padding: 20px;
+    }
+
+    /* Reciprocal Resource Matching */
+
+    .resource-page-hero {
+        padding: 68px 22px 48px;
+    }
+
+    .resource-page-hero-copy h1 {
+        font-size: clamp(2.25rem, 12vw, 3rem);
+        line-height: 1.02;
+    }
+
+    .resource-case-network {
+        grid-template-columns: 1fr;
+    }
+
+    /* Project Ariel */
+
+    .ariel-page-hero {
+        padding: 68px 22px 46px;
+        background-position: center;
     }
 
     .ariel-page-hero-image {
@@ -3949,43 +3825,8 @@ body {
     }
 
     .ariel-page-hero-copy h1 {
-        font-size: clamp(2rem, 6vw, 1.55rem);
+        font-size: 2rem;
         line-height: 1.02;
-    }
-
-    .ariel-page-hero-copy h2 {
-        font-size: 1.12rem;
-        line-height: 1.45;
-    }
-
-    .ariel-page-hero-copy p {
-        font-size: 0.96rem;
-        line-height: 1.65;
-    }
-
-    .ariel-page-hero-copy .detail-tags {
-        font-size: 0.82rem;
-        line-height: 1.55;
-    }
-
-    .ariel-body-layout {
-        padding: 32px 22px 72px;
-    }
-
-    .ariel-body-content .detail-section {
-        padding-bottom: 30px;
-        margin-bottom: 32px;
-    }
-
-    .ariel-body-content .detail-section h2 {
-        font-size: 1.75rem;
-    }
-
-    .ariel-body-content .approach-card,
-    .ariel-body-content .contribution-card,
-    .ariel-body-content .artifact-card,
-    .ariel-body-content .metric-card {
-        padding: 20px;
     }
 
     .ariel-kb-grid {
@@ -4005,19 +3846,10 @@ body {
         background: transparent;
     }
 
-    .ariel-hero-source {
-        right: 22px;
-        bottom: 22px;
-        min-height: 38px;
-        padding: 10px 14px;
-        font-size: 0.82rem;
-    }
-
     .ariel-rag-pipeline-figure {
         margin: 22px 0 28px;
     }
 }
-
 
 /* =========================================================
    HOMEPAGE EXPANDED LAYOUT
@@ -6910,8 +6742,6 @@ body {
     line-height: 1.75;
 }
 
-/* Shared cards */
-
 .smart-city-body-content .metric-card,
 .smart-city-body-content .approach-card,
 .smart-city-body-content .contribution-card,
@@ -7563,8 +7393,6 @@ body {
     font-size: 1.02rem;
     line-height: 1.75;
 }
-
-/* Shared cards */
 
 .breast-cancer-body-content .metric-card,
 .breast-cancer-body-content .approach-card,
@@ -8297,8 +8125,6 @@ body {
     line-height: 1.75;
 }
 
-/* Shared cards */
-
 .customer-purchase-body-content .metric-card,
 .customer-purchase-body-content .approach-card,
 .customer-purchase-body-content .contribution-card,
@@ -9025,8 +8851,6 @@ body {
     font-size: 1.02rem;
     line-height: 1.75;
 }
-
-/* Shared cards */
 
 .house-price-body-content .metric-card,
 .house-price-body-content .approach-card,
