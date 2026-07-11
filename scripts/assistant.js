@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = document.getElementById("assistantSubmit");
     const status = document.getElementById("assistantStatus");
     let typingIndicator = null;
+    let lastAssistantTrigger = null;
 
     let assistantChatHistory = [];
     const MAX_ASSISTANT_HISTORY_MESSAGES = 8;
@@ -56,13 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (widget.classList.contains("assistant-open")) {
             closeAssistant();
         } else {
-            openAssistant();
+            openAssistant("compact", toggleButton);
         }
     });
 
     if (calloutButton) {
         calloutButton.addEventListener("click", () => {
-            openAssistant();
+            openAssistant("compact", calloutButton);
         });
     }
 
@@ -73,9 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (openAssistantLink) {
         openAssistantLink.addEventListener("click", (event) => {
             event.preventDefault();
-            openAssistant();
+            openAssistant("docked", openAssistantLink);
         });
     }
+
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            widget.classList.contains("assistant-open")
+        ) {
+            closeAssistant();
+        }
+    });
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -173,29 +183,82 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function openAssistant() {
+    function openAssistant(mode = "compact", triggerElement = null) {
+        const isDocked = mode === "docked";
+
+        lastAssistantTrigger =
+            triggerElement instanceof HTMLElement
+                ? triggerElement
+                : document.activeElement;
+
         widget.classList.add("assistant-open");
+        widget.classList.toggle("assistant-docked", isDocked);
+        document.body.classList.toggle("assistant-dock-open", isDocked);
+
         toggleButton.setAttribute("aria-expanded", "true");
+
+        if (openAssistantLink) {
+            openAssistantLink.setAttribute("aria-expanded", "true");
+        }
 
         const panel = document.getElementById("assistantPanel");
 
         if (panel) {
             panel.setAttribute("aria-hidden", "false");
+            panel.dataset.assistantMode = mode;
         }
 
         setTimeout(() => {
             input.focus();
+            messages.scrollTop = messages.scrollHeight;
         }, 100);
     }
 
     function closeAssistant() {
-        widget.classList.remove("assistant-open");
-        toggleButton.setAttribute("aria-expanded", "false");
+        widget.classList.remove(
+            "assistant-open",
+            "assistant-docked"
+        );
 
-        const panel = document.getElementById("assistantPanel");
+        document.body.classList.remove(
+            "assistant-dock-open"
+        );
+
+        toggleButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        if (openAssistantLink) {
+            openAssistantLink.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+        const panel = document.getElementById(
+            "assistantPanel"
+        );
 
         if (panel) {
-            panel.setAttribute("aria-hidden", "true");
+            panel.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            delete panel.dataset.assistantMode;
+        }
+
+        const triggerToRestore = lastAssistantTrigger;
+        lastAssistantTrigger = null;
+
+        if (
+            triggerToRestore &&
+            typeof triggerToRestore.focus === "function"
+        ) {
+            setTimeout(() => {
+                triggerToRestore.focus();
+            }, 0);
         }
     }
 
@@ -349,6 +412,40 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 
+    function createFeedbackButton(feedbackType, ariaLabel) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "assistant-feedback-button";
+        button.dataset.feedback = feedbackType;
+        button.setAttribute("aria-label", ariaLabel);
+        button.setAttribute("aria-pressed", "false");
+
+        const iconPath = feedbackType === "up"
+            ? `
+                <path d="M7 10v12"></path>
+                <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path>
+            `
+            : `
+                <path d="M17 14V2"></path>
+                <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path>
+            `;
+
+        button.innerHTML = `
+            <svg
+                class="assistant-feedback-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+            >
+                ${iconPath}
+            </svg>
+        `;
+
+        return button;
+    }
+
+
     function addFeedbackControls(messageElement, question, answer) {
         if (!messageElement) {
             return;
@@ -361,17 +458,15 @@ document.addEventListener("DOMContentLoaded", () => {
         feedbackPrompt.className = "assistant-feedback-prompt";
         feedbackPrompt.textContent = "Was this helpful?";
 
-        const upButton = document.createElement("button");
-        upButton.type = "button";
-        upButton.className = "assistant-feedback-button";
-        upButton.setAttribute("aria-label", "Mark Ariel response as helpful");
-        upButton.textContent = "👍";
+        const upButton = createFeedbackButton(
+            "up",
+            "Mark Ariel response as helpful"
+        );
 
-        const downButton = document.createElement("button");
-        downButton.type = "button";
-        downButton.className = "assistant-feedback-button";
-        downButton.setAttribute("aria-label", "Mark Ariel response as not helpful");
-        downButton.textContent = "👎";
+        const downButton = createFeedbackButton(
+            "down",
+            "Mark Ariel response as not helpful"
+        );
 
         const feedbackStatus = document.createElement("span");
         feedbackStatus.className = "assistant-feedback-status";
@@ -416,6 +511,15 @@ document.addEventListener("DOMContentLoaded", () => {
         downButton,
         feedbackStatus
     }) {
+        const selectedButton = feedback === "up" ? upButton : downButton;
+        const otherButton = feedback === "up" ? downButton : upButton;
+
+        selectedButton.classList.add("is-selected");
+        selectedButton.setAttribute("aria-pressed", "true");
+
+        otherButton.classList.remove("is-selected");
+        otherButton.setAttribute("aria-pressed", "false");
+
         upButton.disabled = true;
         downButton.disabled = true;
         feedbackStatus.textContent = "Saving...";
@@ -465,6 +569,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error("Assistant feedback error:", error);
+
+            selectedButton.classList.remove("is-selected");
+            selectedButton.setAttribute("aria-pressed", "false");
 
             upButton.disabled = false;
             downButton.disabled = false;
@@ -578,7 +685,13 @@ function ensureAssistantWidget() {
             />
         </button>
 
-        <div id="assistantPanel" class="assistant-panel" aria-hidden="true">
+        <div
+            id="assistantPanel"
+            class="assistant-panel"
+            role="dialog"
+            aria-label="Ariel, Eddie's portfolio assistant"
+            aria-hidden="true"
+        >
             <div class="assistant-panel-header">
                 <div>
                     <p class="assistant-panel-label">Ariel</p>
