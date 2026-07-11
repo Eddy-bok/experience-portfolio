@@ -33,6 +33,9 @@ html {
 
     --site-max: 1440px;
     --site-gutter: clamp(24px, 4vw, 72px);
+
+    /* Ariel docked desktop panel width */
+    --assistant-dock-width: clamp(400px, 28vw, 470px);
 }
 
 body {
@@ -135,6 +138,20 @@ body {
     color: var(--color-dark);
 }
 
+.hero-links .hero-link-assistant {
+    border-color: rgba(255, 255, 255, 0.58);
+    background: rgba(16, 42, 45, 0.34);
+    color: white;
+    backdrop-filter: blur(7px);
+}
+
+.hero-links .hero-link-assistant:hover,
+.hero-links .hero-link-assistant:focus-visible {
+    border-color: var(--color-gold);
+    background: rgba(201, 168, 106, 0.18);
+    color: var(--color-gold);
+}
+
 .section {
     max-width: var(--site-max);
     margin: 0 auto;
@@ -199,15 +216,12 @@ body {
     line-height: 1.35;
 }
 
-.research-card-body > p:not(.status):not(.research-tags) {
-    min-height: 138px;
-}
-
 .research-card-body p {
     margin-top: 0;
 }
 
 .research-card-body > p:not(.status):not(.research-tags) {
+    min-height: 138px;
     color: var(--color-muted);
     line-height: 1.55;
 }
@@ -759,23 +773,66 @@ body {
     font-size: 1.05rem;
 }
 
+.assistant-panel-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.assistant-mode-toggle,
 .assistant-close {
     width: 32px;
     height: 32px;
     display: grid;
     place-items: center;
+    padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.86);
-    font-size: 1.35rem;
     line-height: 1;
     cursor: pointer;
 }
 
+.assistant-close {
+    font-size: 1.35rem;
+}
+
+.assistant-mode-toggle:hover,
 .assistant-close:hover {
     background: rgba(255, 255, 255, 0.16);
     color: white;
+}
+
+.assistant-mode-toggle:focus-visible,
+.assistant-close:focus-visible {
+    outline: 3px solid rgba(201, 168, 106, 0.38);
+    outline-offset: 2px;
+}
+
+.assistant-mode-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.assistant-mode-icon-collapse {
+    display: none;
+}
+
+.assistant-widget.assistant-docked .assistant-mode-icon-expand {
+    display: none;
+}
+
+.assistant-widget.assistant-docked .assistant-mode-icon-collapse {
+    display: block;
 }
 
 .assistant-panel-description {
@@ -885,12 +942,14 @@ body {
 }
 
 .assistant-feedback-button {
+    width: 36px;
+    height: 34px;
+    min-width: 36px;
+    min-height: 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 34px;
-    min-height: 30px;
-    padding: 5px 9px;
+    padding: 0;
     border: 1px solid rgba(47, 111, 115, 0.20);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.86);
@@ -915,6 +974,33 @@ body {
 .assistant-feedback-button:disabled {
     cursor: default;
     opacity: 0.55;
+}
+
+.assistant-feedback-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.assistant-feedback-button.is-selected {
+    border-color: var(--portfolio-accent);
+    background: var(--portfolio-accent);
+    color: white;
+}
+
+.assistant-feedback-button.is-selected:disabled {
+    opacity: 1;
+}
+
+.assistant-feedback-button:focus-visible {
+    outline: 3px solid rgba(47, 111, 115, 0.24);
+    outline-offset: 2px;
 }
 
 .assistant-feedback-status {
@@ -10889,6 +10975,64 @@ body {
     color: var(--color-gold);
 }
 
+/* Desktop alignment with the homepage hero */
+
+@media (min-width: 1001px) {
+    .about-hero {
+        --about-hero-min-height: 46vh;
+
+        padding: 52px var(--site-gutter);
+    }
+
+    .about-hero-inner {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        grid-template-columns:
+            minmax(240px, 360px)
+            minmax(0, 760px);
+        gap: clamp(44px, 6vw, 92px);
+        align-items: center;
+    }
+
+    .about-hero-image {
+        justify-self: start;
+        transform: translateX(50px);
+    }
+
+    .about-hero-image::before {
+        width: 340px;
+        height: 340px;
+    }
+
+    .about-hero-image img {
+        width: 320px;
+        height: 320px;
+    }
+
+    .about-hero-copy {
+        max-width: 780px;
+    }
+
+    .about-hero-copy h1 {
+        max-width: 780px;
+
+        /* Preserve the approved restrained desktop scale. */
+        font-size: 2.6rem;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+    }
+
+    .about-hero-lead,
+    .about-hero-summary {
+        max-width: 760px;
+    }
+
+    .about-hero-lead {
+        font-size: 1.05rem;
+    }
+}
+
 /* Responsive */
 
 @media (max-width: 1000px) {
@@ -10983,22 +11127,75 @@ body {
 
 @media (max-width: 720px) {
     .about-hero {
-        padding: 72px 22px 46px;
+        min-height: auto;
+        padding: 56px 20px 30px;
+        align-items: flex-start;
+    }
+
+    .about-hero-back {
+        top: 18px;
+        left: 20px;
+        font-size: 0.78rem;
+    }
+
+    .about-hero-inner {
+        gap: 18px;
+    }
+
+    .about-hero-image {
+        justify-content: center;
+    }
+
+    .about-hero-image::before {
+        width: 160px;
+        height: 160px;
+    }
+
+    .about-hero-image img {
+        width: 132px;
+        height: 132px;
+        border-width: 3px;
+        box-shadow:
+            0 18px 42px rgba(0, 0, 0, 0.30),
+            0 0 0 7px rgba(255, 255, 255, 0.04);
+    }
+
+    .about-hero-copy .section-label {
+        margin-bottom: 8px;
+        font-size: 0.72rem;
     }
 
     .about-hero-copy h1 {
-        font-size: clamp(2.15rem, 10vw, 3rem);
-        line-height: 1.03;
+        margin-bottom: 14px;
+        font-size: clamp(1.75rem, 8.4vw, 2.25rem);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
     }
 
     .about-hero-lead {
-        font-size: 1rem;
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }
+
+    .about-hero-summary {
+        margin-top: 10px;
+        font-size: 0.86rem;
+        line-height: 1.55;
     }
 
     .about-hero-actions {
+        width: 100%;
+        max-width: 310px;
+        margin-top: 18px;
         display: grid;
-        grid-template-columns: 1fr;
-        max-width: 280px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .about-hero-button {
+        min-height: 38px;
+        padding: 10px 12px;
+        font-size: 0.76rem;
     }
 
     .about-education-grid,
@@ -11053,46 +11250,6 @@ body {
     }
 }
 
-/* =========================================================
-   ARIEL FEEDBACK ICONS
-   Race-neutral inline SVG feedback controls.
-   ========================================================= */
-
-.assistant-feedback-button {
-    width: 36px;
-    height: 34px;
-    min-width: 36px;
-    min-height: 34px;
-    padding: 0;
-}
-
-.assistant-feedback-icon {
-    width: 18px;
-    height: 18px;
-    display: block;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    pointer-events: none;
-}
-
-.assistant-feedback-button.is-selected {
-    border-color: var(--portfolio-accent);
-    background: var(--portfolio-accent);
-    color: white;
-}
-
-.assistant-feedback-button.is-selected:disabled {
-    opacity: 1;
-}
-
-.assistant-feedback-button:focus-visible {
-    outline: 3px solid rgba(47, 111, 115, 0.24);
-    outline-offset: 2px;
-}
-
 
 /* =========================================================
    ARIEL DOCKED PANEL
@@ -11101,26 +11258,6 @@ body {
    Main tuning control:
    - --assistant-dock-width controls desktop panel width
    ========================================================= */
-
-:root {
-    --assistant-dock-width: clamp(400px, 28vw, 470px);
-}
-
-/* Homepage Ask Ariel button */
-
-.hero-links .hero-link-assistant {
-    border-color: rgba(255, 255, 255, 0.58);
-    background: rgba(16, 42, 45, 0.34);
-    color: white;
-    backdrop-filter: blur(7px);
-}
-
-.hero-links .hero-link-assistant:hover,
-.hero-links .hero-link-assistant:focus-visible {
-    border-color: var(--color-gold);
-    background: rgba(201, 168, 106, 0.18);
-    color: var(--color-gold);
-}
 
 /* Full-height Ariel panel */
 
@@ -11275,54 +11412,6 @@ body {
 
     body.assistant-dock-open .research-showcase-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-/* Smaller desktops, tablets, and phones use a full-screen Ariel view.
-   This avoids squeezing complex portfolio layouts into an unusable column. */
-
-@media (max-width: 1279px) {
-    body.assistant-dock-open {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .assistant-widget.assistant-docked {
-        inset: 0;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
-    }
-
-    .assistant-widget.assistant-docked .assistant-panel {
-        inset: 0;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
-        border: none;
-        border-radius: 0;
-    }
-
-    .assistant-widget.assistant-docked .assistant-messages {
-        padding: 18px 20px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body.assistant-dock-open {
-        transition: none;
-    }
-}
-
-
-/* =========================================================
-   DOCKED ARIEL: COMPACT RESEARCH CARDS
-   Removes three-column height assumptions when research
-   cards switch to the two-column docked layout.
-   ========================================================= */
-
-@media (min-width: 1280px) {
-    body.assistant-dock-open .research-showcase-grid {
         align-items: start;
     }
 
@@ -11361,141 +11450,38 @@ body {
     }
 }
 
-/* =========================================================
-   ABOUT HERO ALIGNMENT
-   Matches the homepage hero's desktop proportions,
-   spacing, image size, and text hierarchy.
-   ========================================================= */
+/* Smaller desktops, tablets, and phones use a full-screen Ariel view.
+   This avoids squeezing complex portfolio layouts into an unusable column. */
 
-@media (min-width: 1001px) {
-    .about-hero {
-        --about-hero-min-height: 46vh;
-
-        padding: 52px var(--site-gutter);
-    }
-
-    .about-hero-inner {
+@media (max-width: 1279px) {
+    body.assistant-dock-open {
         width: 100%;
-        max-width: none;
-        margin: 0;
-        grid-template-columns:
-            minmax(240px, 360px)
-            minmax(0, 760px);
-        gap: clamp(44px, 6vw, 92px);
-        align-items: center;
+        overflow: hidden;
     }
 
-    .about-hero-image {
-        justify-self: start;
-        transform: translateX(50px);
+    .assistant-widget.assistant-docked {
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
     }
 
-    .about-hero-image::before {
-        width: 340px;
-        height: 340px;
+    .assistant-widget.assistant-docked .assistant-panel {
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border: none;
+        border-radius: 0;
     }
 
-    .about-hero-image img {
-        width: 320px;
-        height: 320px;
-    }
-
-    .about-hero-copy {
-        max-width: 780px;
-    }
-
-    .about-hero-copy h1 {
-        max-width: 780px;
-        font-size: clamp(2.6rem, 3.3vw, 2.5rem);
-        line-height: 1.08;
-        letter-spacing: -0.035em;
-    }
-
-    .about-hero-lead,
-    .about-hero-summary {
-        max-width: 760px;
-    }
-
-    .about-hero-lead {
-        font-size: 1.05rem;
+    .assistant-widget.assistant-docked .assistant-messages {
+        padding: 18px 20px;
     }
 }
 
-
-/* =========================================================
-   ABOUT HERO: COMPACT MOBILE LAYOUT
-   ========================================================= */
-
-@media (max-width: 720px) {
-    .about-hero {
-        min-height: auto;
-        padding: 56px 20px 30px;
-        align-items: flex-start;
-    }
-
-    .about-hero-back {
-        top: 18px;
-        left: 20px;
-        font-size: 0.78rem;
-    }
-
-    .about-hero-inner {
-        gap: 18px;
-    }
-
-    .about-hero-image {
-        justify-content: center;
-    }
-
-    .about-hero-image::before {
-        width: 160px;
-        height: 160px;
-    }
-
-    .about-hero-image img {
-        width: 132px;
-        height: 132px;
-        border-width: 3px;
-        box-shadow:
-            0 18px 42px rgba(0, 0, 0, 0.30),
-            0 0 0 7px rgba(255, 255, 255, 0.04);
-    }
-
-    .about-hero-copy .section-label {
-        margin-bottom: 8px;
-        font-size: 0.72rem;
-    }
-
-    .about-hero-copy h1 {
-        margin-bottom: 14px;
-        font-size: clamp(1.75rem, 8.4vw, 2.25rem);
-        line-height: 1.04;
-        letter-spacing: -0.04em;
-    }
-
-    .about-hero-lead {
-        font-size: 0.92rem;
-        line-height: 1.55;
-    }
-
-    .about-hero-summary {
-        margin-top: 10px;
-        font-size: 0.86rem;
-        line-height: 1.55;
-    }
-
-    .about-hero-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        width: 100%;
-        max-width: 310px;
-        margin-top: 18px;
-    }
-
-    .about-hero-button {
-        min-height: 38px;
-        padding: 10px 12px;
-        font-size: 0.76rem;
+@media (prefers-reduced-motion: reduce) {
+    body.assistant-dock-open {
+        transition: none;
     }
 }
