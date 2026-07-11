@@ -1147,15 +1147,11 @@ body {
 }
 
 
-.card-link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
-
-.card-link:hover {
-    transform: translateY(-4px);
-}
+/* =========================================================
+   SHARED DETAIL PAGE FOUNDATIONS
+   Reusable content, card, table, figure, and pipeline primitives.
+   Individual research and project pages apply scoped refinements later.
+   ========================================================= */
 
 .detail-page {
     max-width: 1000px;
@@ -1163,44 +1159,21 @@ body {
     padding: 40px;
 }
 
-.back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: #222;
-    text-decoration: none;
-}
-
-.detail-hero {
-    padding: 20px 0 35px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.detail-hero h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    max-width: 900px;
-}
-
-.detail-subtitle {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    max-width: 800px;
-}
-
 .detail-section {
+    max-width: 900px;
     padding: 32px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
 .detail-section h2 {
-    font-size: 2rem;
     margin-bottom: 20px;
+    font-size: 2rem;
 }
 
 .detail-section p {
+    max-width: 850px;
     font-size: 1.05rem;
     line-height: 1.8;
-    max-width: 850px;
 }
 
 .results-list {
@@ -1212,10 +1185,8 @@ body {
     margin-bottom: 10px;
 }
 
-.detail-hero,
-.detail-section {
-    max-width: 900px;
-}
+
+/* Shared metric cards */
 
 .metrics-grid {
     display: grid;
@@ -1234,9 +1205,9 @@ body {
 
 .metric-value {
     display: block;
+    margin-bottom: 8px;
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 8px;
 }
 
 .metric-label {
@@ -1244,6 +1215,9 @@ body {
     color: #666;
     line-height: 1.5;
 }
+
+
+/* Shared result tables */
 
 .results-table-wrapper {
     max-width: 900px;
@@ -1262,8 +1236,8 @@ body {
 
 .results-table th,
 .results-table td {
-    border: 1px solid #e2e2e2;
     padding: 14px;
+    border: 1px solid #e2e2e2;
     text-align: left;
     vertical-align: top;
 }
@@ -1277,6 +1251,9 @@ body {
     line-height: 1.5;
 }
 
+
+/* Shared artifact, approach, and contribution cards */
+
 .artifact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1286,12 +1263,12 @@ body {
 }
 
 .artifact-card {
+    display: flex;
+    flex-direction: column;
     padding: 22px;
     border: 1px solid #e2e2e2;
     border-radius: 12px;
     background: white;
-    display: flex;
-    flex-direction: column;
 }
 
 .artifact-card h3 {
@@ -1306,9 +1283,9 @@ body {
 .artifact-status {
     display: inline-block;
     margin-top: auto;
+    color: #666;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #666;
 }
 
 .evidence-note {
@@ -1327,7 +1304,8 @@ body {
     margin: 0;
 }
 
-.approach-grid {
+.approach-grid,
+.contribution-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;
@@ -1335,18 +1313,21 @@ body {
     margin-top: 25px;
 }
 
-.approach-card {
+.approach-card,
+.contribution-card {
     padding: 22px;
     border: 1px solid #e2e2e2;
     border-radius: 12px;
     background: #fff;
 }
 
-.approach-card h3 {
+.approach-card h3,
+.contribution-card h3 {
     margin-bottom: 12px;
 }
 
-.approach-card p {
+.approach-card p,
+.contribution-card p {
     font-size: 0.95rem;
     line-height: 1.6;
 }
@@ -1354,6 +1335,9 @@ body {
 .approach-card:last-child {
     grid-column: 1 / -1;
 }
+
+
+/* Shared pipeline */
 
 .pipeline-visual {
     display: flex;
@@ -1363,6 +1347,14 @@ body {
     margin: 28px 0 32px;
 }
 
+.pipeline-step {
+    flex: 1;
+    padding: 18px;
+    border: 1px solid var(--portfolio-accent-border);
+    border-top: 4px solid var(--portfolio-accent);
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--portfolio-accent-soft), #ffffff);
+}
 
 .pipeline-step strong {
     display: block;
@@ -1374,95 +1366,23 @@ body {
     line-height: 1.4;
 }
 
-
-/* Pipeline accent styling */
-
-.pipeline-step {
-    flex: 1;
-    padding: 18px;
-    border: 1px solid var(--portfolio-accent-border);
-    border-top: 4px solid var(--portfolio-accent);
-    border-radius: 12px;
-    background: linear-gradient(180deg, var(--portfolio-accent-soft), #ffffff);
-}
-
 .pipeline-number {
     display: block;
+    margin-bottom: 10px;
+    color: var(--portfolio-accent);
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--portfolio-accent);
-    margin-bottom: 10px;
 }
 
 .pipeline-arrow {
     display: flex;
     align-items: center;
-    font-weight: 700;
     color: var(--portfolio-accent);
+    font-weight: 700;
 }
 
-.contribution-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    max-width: 900px;
-    margin-top: 25px;
-}
 
-.contribution-card {
-    padding: 22px;
-    border: 1px solid #e2e2e2;
-    border-radius: 12px;
-    background: #fff;
-}
-
-.contribution-card h3 {
-    margin-bottom: 12px;
-}
-
-.contribution-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    .detail-page {
-        padding: 24px;
-    }
-
-    .detail-hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .metrics-grid,
-    .approach-grid,
-    .contribution-grid,
-    .artifact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .approach-card:last-child {
-        grid-column: auto;
-    }
-
-    .pipeline-visual {
-        flex-direction: column;
-    }
-
-    .pipeline-arrow {
-        justify-content: center;
-        transform: rotate(90deg);
-        padding: 4px 0;
-    }
-
-    .results-table-wrapper {
-        overflow-x: auto;
-    }
-
-    .results-table {
-        min-width: 650px;
-    }
-}
+/* Shared research figure */
 
 .research-visual {
     max-width: 900px;
@@ -1483,9 +1403,9 @@ body {
     margin-top: 12px;
     padding-top: 12px;
     border-top: 1px solid #eeeeee;
+    color: #666;
     font-size: 0.9rem;
     line-height: 1.6;
-    color: #666;
     text-align: left;
     word-spacing: normal;
 }
@@ -1493,6 +1413,9 @@ body {
 .research-visual figcaption strong {
     color: #222;
 }
+
+
+/* Shared small-screen foundations */
 
 @media (max-width: 768px) {
     body {
@@ -1566,14 +1489,12 @@ body {
     }
 
     .section-title {
+        margin-bottom: 28px;
         font-size: 1.55rem;
         line-height: 1.3;
-        margin-bottom: 28px;
     }
 
-    .research-grid,
     .project-grid,
-    .achievement-grid,
     .metrics-grid,
     .approach-grid,
     .contribution-grid,
@@ -1581,9 +1502,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .research-card,
     .project-card,
-    .achievement-card,
     .metric-card,
     .approach-card,
     .contribution-card,
@@ -1591,30 +1510,16 @@ body {
         width: 100%;
     }
 
-    .research-card h3,
-    .project-card h3,
-    .achievement-card h3 {
+    .project-card h3 {
+        overflow-wrap: break-word;
         font-size: 1.05rem;
         line-height: 1.3;
-        overflow-wrap: break-word;
     }
 
     .detail-page {
         width: 100%;
         max-width: 100%;
         padding: 28px 24px;
-    }
-
-    .detail-hero h1 {
-        font-size: 2rem;
-        line-height: 1.15;
-        letter-spacing: -0.02em;
-        overflow-wrap: break-word;
-    }
-
-    .detail-subtitle {
-        font-size: 1rem;
-        line-height: 1.65;
     }
 
     .detail-section {
@@ -1642,8 +1547,8 @@ body {
 
     .pipeline-arrow {
         justify-content: center;
-        transform: rotate(90deg);
         padding: 4px 0;
+        transform: rotate(90deg);
     }
 
     .results-table-wrapper {
@@ -1664,9 +1569,9 @@ body {
     }
 
     .assistant-panel {
-        width: calc(100vw - 32px);
         right: 10px;
         bottom: 68px;
+        width: calc(100vw - 32px);
     }
 
     .assistant-avatar-image {
@@ -1759,7 +1664,7 @@ body {
 
 .nbci-research-page .research-hero h1 {
     max-width: 760px;
-    font-size: clamp(3.1rem, 4.2vw, 2.7rem);
+    font-size: 3.1rem;
     line-height: 0.98;
 }
 
@@ -1831,7 +1736,7 @@ body {
     max-width: 760px;
     margin: 0 0 22px;
     color: white;
-    font-size: clamp(3.5rem, 4.5vw, 3.0rem);
+    font-size: 3.5rem;
     line-height: 0.98;
     letter-spacing: -0.045em;
 }
@@ -1898,10 +1803,6 @@ body {
     margin: 0;
     padding: 0;
     min-width: 0;
-}
-
-.research-detail-page .detail-section:first-child {
-    padding-top: 0;
 }
 
 /* Research detail body layout:
@@ -2244,7 +2145,7 @@ body {
         margin-bottom: 32px;
     }
 
-        .research-detail-content .research-visual,
+    .research-detail-content .research-visual,
     .research-detail-content .evidence-note {
         border-radius: 16px;
     }
@@ -2290,7 +2191,7 @@ body {
 
     .research-hero h1 {
         margin-bottom: 18px;
-        font-size: clamp(2rem, 12vw, 2.0rem);
+        font-size: 2rem;
         line-height: 1.02;
         letter-spacing: -0.055em;
     }
@@ -2341,6 +2242,61 @@ body {
     .poisson-research-page .assistant-avatar-image {
         width: 42px;
         height: 42px;
+    }
+}
+
+
+/* NB-CI responsive refinements */
+
+@media (max-width: 900px) {
+    .nbci-research-page .research-hero {
+        min-height: auto;
+        padding-top: 64px;
+        padding-bottom: 38px;
+    }
+
+    .nbci-research-page .research-hero-inner {
+        gap: 28px;
+    }
+
+    .nbci-research-page .research-hero h1 {
+        max-width: 100%;
+        font-size: clamp(2.15rem, 9vw, 3.2rem);
+        line-height: 1.02;
+    }
+
+    .nbci-research-page .research-hero-subtitle {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .nbci-research-page .research-hero-tags {
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .nbci-research-page .research-hero {
+        padding-top: 58px;
+        padding-bottom: 32px;
+    }
+
+    .nbci-research-page .research-hero h1 {
+        font-size: 2rem;
+        line-height: 1.02;
+    }
+
+    .nbci-research-page .research-hero-metric {
+        min-height: 88px;
+    }
+
+    .nbci-research-page .research-hero-metric-value {
+        font-size: 1.75rem;
+    }
+
+    .nbci-research-page .research-hero-metric-label {
+        font-size: 0.72rem;
     }
 }
 
@@ -5651,58 +5607,6 @@ body {
     .credential-card,
     .recognition-card {
         padding: 22px;
-    }
-}
-
-@media (max-width: 900px) {
-    .nbci-research-page .research-hero {
-        min-height: auto;
-        padding-top: 64px;
-        padding-bottom: 38px;
-    }
-
-    .nbci-research-page .research-hero-inner {
-        gap: 28px;
-    }
-
-    .nbci-research-page .research-hero h1 {
-        max-width: 100%;
-        font-size: clamp(2.15rem, 9vw, 3.2rem);
-        line-height: 1.02;
-    }
-
-    .nbci-research-page .research-hero-subtitle {
-        max-width: 100%;
-        font-size: 1rem;
-        line-height: 1.55;
-    }
-
-    .nbci-research-page .research-hero-tags {
-        font-size: 0.82rem;
-    }
-}
-
-@media (max-width: 560px) {
-    .nbci-research-page .research-hero {
-        padding-top: 58px;
-        padding-bottom: 32px;
-    }
-
-    .nbci-research-page .research-hero h1 {
-        font-size: clamp(2rem, 10.5vw, 1.85rem);
-        line-height: 1.02;
-    }
-
-    .nbci-research-page .research-hero-metric {
-        min-height: 88px;
-    }
-
-    .nbci-research-page .research-hero-metric-value {
-        font-size: 1.75rem;
-    }
-
-    .nbci-research-page .research-hero-metric-label {
-        font-size: 0.72rem;
     }
 }
 
