@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const widget = document.getElementById("assistantWidget");
     const toggleButton = document.getElementById("assistantToggle");
     const calloutButton = document.getElementById("assistantCallout");
+    const modeButton = document.getElementById("assistantModeToggle");
     const closeButton = document.getElementById("assistantClose");
     const openAssistantLink = document.getElementById("openAssistantLink");
 
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = document.getElementById("assistantSubmit");
     const status = document.getElementById("assistantStatus");
     let typingIndicator = null;
+    let lastAssistantTrigger = null;
 
     let assistantChatHistory = [];
     const MAX_ASSISTANT_HISTORY_MESSAGES = 8;
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
         !widget ||
         !toggleButton ||
+        !modeButton ||
         !closeButton ||
         !form ||
         !input ||
@@ -56,15 +59,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (widget.classList.contains("assistant-open")) {
             closeAssistant();
         } else {
-            openAssistant();
+            openAssistant("compact", toggleButton);
         }
     });
 
     if (calloutButton) {
         calloutButton.addEventListener("click", () => {
-            openAssistant();
+            openAssistant("compact", calloutButton);
         });
     }
+
+    modeButton.addEventListener("click", () => {
+        const nextMode = widget.classList.contains("assistant-docked")
+            ? "compact"
+            : "docked";
+
+        switchAssistantMode(nextMode);
+    });
 
     closeButton.addEventListener("click", () => {
         closeAssistant();
@@ -73,9 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (openAssistantLink) {
         openAssistantLink.addEventListener("click", (event) => {
             event.preventDefault();
-            openAssistant();
+            openAssistant("docked", openAssistantLink);
         });
     }
+
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            widget.classList.contains("assistant-open")
+        ) {
+            closeAssistant();
+        }
+    });
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -173,9 +193,65 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function openAssistant() {
+    function setAssistantMode(mode) {
+        const isDocked = mode === "docked";
+
+        widget.classList.toggle("assistant-docked", isDocked);
+        document.body.classList.toggle("assistant-dock-open", isDocked);
+
+        const panel = document.getElementById("assistantPanel");
+
+        if (panel) {
+            panel.dataset.assistantMode = mode;
+        }
+
+        const modeLabel = isDocked
+            ? "Return Ariel to compact view"
+            : "Open Ariel in larger view";
+
+        modeButton.setAttribute("aria-label", modeLabel);
+        modeButton.setAttribute("title", modeLabel);
+        modeButton.setAttribute(
+            "aria-pressed",
+            isDocked ? "true" : "false"
+        );
+    }
+
+    function focusAssistantInput() {
+        setTimeout(() => {
+            input.focus();
+            messages.scrollTop = messages.scrollHeight;
+        }, 100);
+    }
+
+    function switchAssistantMode(mode) {
+        if (!widget.classList.contains("assistant-open")) {
+            openAssistant(mode, modeButton);
+            return;
+        }
+
+        setAssistantMode(mode);
+        focusAssistantInput();
+    }
+
+    function openAssistant(mode = "compact", triggerElement = null) {
+        const wasOpen = widget.classList.contains("assistant-open");
+
+        if (!wasOpen) {
+            lastAssistantTrigger =
+                triggerElement instanceof HTMLElement
+                    ? triggerElement
+                    : document.activeElement;
+        }
+
         widget.classList.add("assistant-open");
+        setAssistantMode(mode);
+
         toggleButton.setAttribute("aria-expanded", "true");
+
+        if (openAssistantLink) {
+            openAssistantLink.setAttribute("aria-expanded", "true");
+        }
 
         const panel = document.getElementById("assistantPanel");
 
@@ -183,19 +259,48 @@ document.addEventListener("DOMContentLoaded", () => {
             panel.setAttribute("aria-hidden", "false");
         }
 
-        setTimeout(() => {
-            input.focus();
-        }, 100);
+        focusAssistantInput();
     }
 
     function closeAssistant() {
         widget.classList.remove("assistant-open");
-        toggleButton.setAttribute("aria-expanded", "false");
+        setAssistantMode("compact");
 
-        const panel = document.getElementById("assistantPanel");
+        toggleButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        if (openAssistantLink) {
+            openAssistantLink.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+        const panel = document.getElementById(
+            "assistantPanel"
+        );
 
         if (panel) {
-            panel.setAttribute("aria-hidden", "true");
+            panel.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            delete panel.dataset.assistantMode;
+        }
+
+        const triggerToRestore = lastAssistantTrigger;
+        lastAssistantTrigger = null;
+
+        if (
+            triggerToRestore &&
+            typeof triggerToRestore.focus === "function"
+        ) {
+            setTimeout(() => {
+                triggerToRestore.focus();
+            }, 0);
         }
     }
 
@@ -349,6 +454,40 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 
+    function createFeedbackButton(feedbackType, ariaLabel) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "assistant-feedback-button";
+        button.dataset.feedback = feedbackType;
+        button.setAttribute("aria-label", ariaLabel);
+        button.setAttribute("aria-pressed", "false");
+
+        const iconPath = feedbackType === "up"
+            ? `
+                <path d="M7 10v12"></path>
+                <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path>
+            `
+            : `
+                <path d="M17 14V2"></path>
+                <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path>
+            `;
+
+        button.innerHTML = `
+            <svg
+                class="assistant-feedback-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+            >
+                ${iconPath}
+            </svg>
+        `;
+
+        return button;
+    }
+
+
     function addFeedbackControls(messageElement, question, answer) {
         if (!messageElement) {
             return;
@@ -361,17 +500,15 @@ document.addEventListener("DOMContentLoaded", () => {
         feedbackPrompt.className = "assistant-feedback-prompt";
         feedbackPrompt.textContent = "Was this helpful?";
 
-        const upButton = document.createElement("button");
-        upButton.type = "button";
-        upButton.className = "assistant-feedback-button";
-        upButton.setAttribute("aria-label", "Mark Ariel response as helpful");
-        upButton.textContent = "👍";
+        const upButton = createFeedbackButton(
+            "up",
+            "Mark Ariel response as helpful"
+        );
 
-        const downButton = document.createElement("button");
-        downButton.type = "button";
-        downButton.className = "assistant-feedback-button";
-        downButton.setAttribute("aria-label", "Mark Ariel response as not helpful");
-        downButton.textContent = "👎";
+        const downButton = createFeedbackButton(
+            "down",
+            "Mark Ariel response as not helpful"
+        );
 
         const feedbackStatus = document.createElement("span");
         feedbackStatus.className = "assistant-feedback-status";
@@ -416,6 +553,15 @@ document.addEventListener("DOMContentLoaded", () => {
         downButton,
         feedbackStatus
     }) {
+        const selectedButton = feedback === "up" ? upButton : downButton;
+        const otherButton = feedback === "up" ? downButton : upButton;
+
+        selectedButton.classList.add("is-selected");
+        selectedButton.setAttribute("aria-pressed", "true");
+
+        otherButton.classList.remove("is-selected");
+        otherButton.setAttribute("aria-pressed", "false");
+
         upButton.disabled = true;
         downButton.disabled = true;
         feedbackStatus.textContent = "Saving...";
@@ -465,6 +611,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error("Assistant feedback error:", error);
+
+            selectedButton.classList.remove("is-selected");
+            selectedButton.setAttribute("aria-pressed", "false");
 
             upButton.disabled = false;
             downButton.disabled = false;
@@ -578,21 +727,62 @@ function ensureAssistantWidget() {
             />
         </button>
 
-        <div id="assistantPanel" class="assistant-panel" aria-hidden="true">
+        <div
+            id="assistantPanel"
+            class="assistant-panel"
+            role="dialog"
+            aria-label="Ariel, Eddie's portfolio assistant"
+            aria-hidden="true"
+        >
             <div class="assistant-panel-header">
                 <div>
                     <p class="assistant-panel-label">Ariel</p>
                     <h3>Eddie&apos;s Portfolio Assistant</h3>
                 </div>
 
-                <button
-                    id="assistantClose"
-                    class="assistant-close"
-                    type="button"
-                    aria-label="Close Ariel"
-                >
-                    ×
-                </button>
+                <div class="assistant-panel-actions">
+                    <button
+                        id="assistantModeToggle"
+                        class="assistant-mode-toggle"
+                        type="button"
+                        aria-label="Open Ariel in larger view"
+                        aria-pressed="false"
+                        title="Open Ariel in larger view"
+                    >
+                        <svg
+                            class="assistant-mode-icon assistant-mode-icon-expand"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <polyline points="9 21 3 21 3 15"></polyline>
+                            <line x1="21" y1="3" x2="14" y2="10"></line>
+                            <line x1="3" y1="21" x2="10" y2="14"></line>
+                        </svg>
+
+                        <svg
+                            class="assistant-mode-icon assistant-mode-icon-collapse"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <polyline points="4 14 10 14 10 20"></polyline>
+                            <polyline points="20 10 14 10 14 4"></polyline>
+                            <line x1="14" y1="10" x2="21" y2="3"></line>
+                            <line x1="3" y1="21" x2="10" y2="14"></line>
+                        </svg>
+                    </button>
+
+                    <button
+                        id="assistantClose"
+                        class="assistant-close"
+                        type="button"
+                        aria-label="Close Ariel"
+                    >
+                        ×
+                    </button>
+                </div>
             </div>
 
             <p class="assistant-panel-description">

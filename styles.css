@@ -33,6 +33,9 @@ html {
 
     --site-max: 1440px;
     --site-gutter: clamp(24px, 4vw, 72px);
+
+    /* Ariel docked desktop panel width */
+    --assistant-dock-width: clamp(400px, 28vw, 470px);
 }
 
 body {
@@ -135,6 +138,20 @@ body {
     color: var(--color-dark);
 }
 
+.hero-links .hero-link-assistant {
+    border-color: rgba(255, 255, 255, 0.58);
+    background: rgba(16, 42, 45, 0.34);
+    color: white;
+    backdrop-filter: blur(7px);
+}
+
+.hero-links .hero-link-assistant:hover,
+.hero-links .hero-link-assistant:focus-visible {
+    border-color: var(--color-gold);
+    background: rgba(201, 168, 106, 0.18);
+    color: var(--color-gold);
+}
+
 .section {
     max-width: var(--site-max);
     margin: 0 auto;
@@ -199,15 +216,12 @@ body {
     line-height: 1.35;
 }
 
-.research-card-body > p:not(.status):not(.research-tags) {
-    min-height: 138px;
-}
-
 .research-card-body p {
     margin-top: 0;
 }
 
 .research-card-body > p:not(.status):not(.research-tags) {
+    min-height: 138px;
     color: var(--color-muted);
     line-height: 1.55;
 }
@@ -300,8 +314,8 @@ body {
 /* Featured Projects carousel */
 
 .project-carousel {
-    --project-card-width: 440px;
-    --project-card-height: 250px;
+    --project-card-width: 500px;
+    --project-card-height: 292px;
     --project-card-gap: 24px;
 
     position: relative;
@@ -319,23 +333,16 @@ body {
     margin: 0 -36px;
 }
 
-.section-projects .project-grid > .card-link,
 .section-projects .project-grid > .project-card {
     flex: 0 0 var(--project-card-width);
     width: var(--project-card-width);
     scroll-snap-align: start;
 }
 
-.section-projects .project-grid > .card-link {
-    display: flex;
-    color: inherit;
-    text-decoration: none;
-}
-
 .section-projects .project-card {
     width: 100%;
     height: var(--project-card-height);
-    padding: 22px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -357,8 +364,8 @@ body {
 
 .section-projects .project-card h3 {
     margin: 0 0 12px;
-    font-size: 1.08rem;
-    line-height: 1.3;
+    font-size: 1.12rem;
+    line-height: 1.28;
 }
 
 .section-projects .project-card p {
@@ -366,8 +373,8 @@ body {
     line-height: 1.45;
 }
 
-.section-projects .project-card > p:not(.project-type):not(.domain):not(.project-link-text) {
-    min-height: 4.35em;
+.section-projects .project-card > p:not(.project-type):not(.domain) {
+    min-height: 4.5em;
     margin: 0 0 12px;
     display: -webkit-box;
     overflow: hidden;
@@ -380,19 +387,11 @@ body {
 .section-projects .project-card .domain {
     margin-top: auto;
     margin-bottom: 0;
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     line-height: 1.4;
     flex-shrink: 0;
 }
 
-.section-projects .project-link-text {
-    margin-top: 10px;
-    margin-bottom: 0;
-    font-size: 0.92rem;
-    flex-shrink: 0;
-}
-
-.section-projects .project-grid > .card-link.is-active .project-card,
 .section-projects .project-grid > .project-card.is-active {
     transform: scale(1.045);
     border-color: var(--portfolio-accent-border);
@@ -455,14 +454,14 @@ body {
     background:
         linear-gradient(
             90deg,
-            var(--card-overlay-left, rgba(8, 28, 31, 0.86)) 0%,
-            var(--card-overlay-mid, rgba(8, 28, 31, 0.68)) 46%,
-            var(--card-overlay-right, rgba(8, 28, 31, 0.32)) 100%
+            var(--card-overlay-left, rgba(8, 28, 31, 0.62)) 0%,
+            var(--card-overlay-mid, rgba(8, 28, 31, 0.38)) 46%,
+            var(--card-overlay-right, rgba(8, 28, 31, 0.14)) 100%
         ),
         linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0.04),
-            rgba(0, 0, 0, 0.14)
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.08)
         ),
         var(--project-card-image);
     background-size: cover;
@@ -473,18 +472,13 @@ body {
 .section-projects .project-card-visual h3,
 .section-projects .project-card-visual p {
     color: inherit;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.42);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
 .section-projects .project-card-visual .domain {
     color: rgba(255, 255, 255, 0.82);
 }
 
-.section-projects .project-card-visual .project-link-text {
-    color: var(--color-gold);
-}
-
-.section-projects .project-grid > .card-link.is-active .project-card-visual,
 .section-projects .project-grid > .project-card-visual.is-active {
     border-color: rgba(255, 255, 255, 0.55);
     box-shadow: 0 24px 46px rgba(16, 42, 45, 0.30);
@@ -496,7 +490,7 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
-    margin-top: 12px;
+    margin-top: 14px;
     flex-wrap: wrap;
 }
 
@@ -759,23 +753,66 @@ body {
     font-size: 1.05rem;
 }
 
+.assistant-panel-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.assistant-mode-toggle,
 .assistant-close {
     width: 32px;
     height: 32px;
     display: grid;
     place-items: center;
+    padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.86);
-    font-size: 1.35rem;
     line-height: 1;
     cursor: pointer;
 }
 
+.assistant-close {
+    font-size: 1.35rem;
+}
+
+.assistant-mode-toggle:hover,
 .assistant-close:hover {
     background: rgba(255, 255, 255, 0.16);
     color: white;
+}
+
+.assistant-mode-toggle:focus-visible,
+.assistant-close:focus-visible {
+    outline: 3px solid rgba(201, 168, 106, 0.38);
+    outline-offset: 2px;
+}
+
+.assistant-mode-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.assistant-mode-icon-collapse {
+    display: none;
+}
+
+.assistant-widget.assistant-docked .assistant-mode-icon-expand {
+    display: none;
+}
+
+.assistant-widget.assistant-docked .assistant-mode-icon-collapse {
+    display: block;
 }
 
 .assistant-panel-description {
@@ -885,12 +922,14 @@ body {
 }
 
 .assistant-feedback-button {
+    width: 36px;
+    height: 34px;
+    min-width: 36px;
+    min-height: 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 34px;
-    min-height: 30px;
-    padding: 5px 9px;
+    padding: 0;
     border: 1px solid rgba(47, 111, 115, 0.20);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.86);
@@ -915,6 +954,33 @@ body {
 .assistant-feedback-button:disabled {
     cursor: default;
     opacity: 0.55;
+}
+
+.assistant-feedback-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.assistant-feedback-button.is-selected {
+    border-color: var(--portfolio-accent);
+    background: var(--portfolio-accent);
+    color: white;
+}
+
+.assistant-feedback-button.is-selected:disabled {
+    opacity: 1;
+}
+
+.assistant-feedback-button:focus-visible {
+    outline: 3px solid rgba(47, 111, 115, 0.24);
+    outline-offset: 2px;
 }
 
 .assistant-feedback-status {
@@ -1061,15 +1127,11 @@ body {
 }
 
 
-.card-link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
-
-.card-link:hover {
-    transform: translateY(-4px);
-}
+/* =========================================================
+   SHARED DETAIL PAGE FOUNDATIONS
+   Reusable content, card, table, figure, and pipeline primitives.
+   Individual research and project pages apply scoped refinements later.
+   ========================================================= */
 
 .detail-page {
     max-width: 1000px;
@@ -1077,44 +1139,21 @@ body {
     padding: 40px;
 }
 
-.back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: #222;
-    text-decoration: none;
-}
-
-.detail-hero {
-    padding: 20px 0 35px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.detail-hero h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    max-width: 900px;
-}
-
-.detail-subtitle {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    max-width: 800px;
-}
-
 .detail-section {
+    max-width: 900px;
     padding: 32px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
 .detail-section h2 {
-    font-size: 2rem;
     margin-bottom: 20px;
+    font-size: 2rem;
 }
 
 .detail-section p {
+    max-width: 850px;
     font-size: 1.05rem;
     line-height: 1.8;
-    max-width: 850px;
 }
 
 .results-list {
@@ -1126,10 +1165,8 @@ body {
     margin-bottom: 10px;
 }
 
-.detail-hero,
-.detail-section {
-    max-width: 900px;
-}
+
+/* Shared metric cards */
 
 .metrics-grid {
     display: grid;
@@ -1148,9 +1185,9 @@ body {
 
 .metric-value {
     display: block;
+    margin-bottom: 8px;
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 8px;
 }
 
 .metric-label {
@@ -1158,6 +1195,9 @@ body {
     color: #666;
     line-height: 1.5;
 }
+
+
+/* Shared result tables */
 
 .results-table-wrapper {
     max-width: 900px;
@@ -1176,8 +1216,8 @@ body {
 
 .results-table th,
 .results-table td {
-    border: 1px solid #e2e2e2;
     padding: 14px;
+    border: 1px solid #e2e2e2;
     text-align: left;
     vertical-align: top;
 }
@@ -1191,6 +1231,9 @@ body {
     line-height: 1.5;
 }
 
+
+/* Shared artifact, approach, and contribution cards */
+
 .artifact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1200,12 +1243,12 @@ body {
 }
 
 .artifact-card {
+    display: flex;
+    flex-direction: column;
     padding: 22px;
     border: 1px solid #e2e2e2;
     border-radius: 12px;
     background: white;
-    display: flex;
-    flex-direction: column;
 }
 
 .artifact-card h3 {
@@ -1220,9 +1263,9 @@ body {
 .artifact-status {
     display: inline-block;
     margin-top: auto;
+    color: #666;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #666;
 }
 
 .evidence-note {
@@ -1241,7 +1284,8 @@ body {
     margin: 0;
 }
 
-.approach-grid {
+.approach-grid,
+.contribution-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;
@@ -1249,18 +1293,21 @@ body {
     margin-top: 25px;
 }
 
-.approach-card {
+.approach-card,
+.contribution-card {
     padding: 22px;
     border: 1px solid #e2e2e2;
     border-radius: 12px;
     background: #fff;
 }
 
-.approach-card h3 {
+.approach-card h3,
+.contribution-card h3 {
     margin-bottom: 12px;
 }
 
-.approach-card p {
+.approach-card p,
+.contribution-card p {
     font-size: 0.95rem;
     line-height: 1.6;
 }
@@ -1268,6 +1315,9 @@ body {
 .approach-card:last-child {
     grid-column: 1 / -1;
 }
+
+
+/* Shared pipeline */
 
 .pipeline-visual {
     display: flex;
@@ -1277,6 +1327,14 @@ body {
     margin: 28px 0 32px;
 }
 
+.pipeline-step {
+    flex: 1;
+    padding: 18px;
+    border: 1px solid var(--portfolio-accent-border);
+    border-top: 4px solid var(--portfolio-accent);
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--portfolio-accent-soft), #ffffff);
+}
 
 .pipeline-step strong {
     display: block;
@@ -1288,95 +1346,23 @@ body {
     line-height: 1.4;
 }
 
-
-/* Pipeline accent styling */
-
-.pipeline-step {
-    flex: 1;
-    padding: 18px;
-    border: 1px solid var(--portfolio-accent-border);
-    border-top: 4px solid var(--portfolio-accent);
-    border-radius: 12px;
-    background: linear-gradient(180deg, var(--portfolio-accent-soft), #ffffff);
-}
-
 .pipeline-number {
     display: block;
+    margin-bottom: 10px;
+    color: var(--portfolio-accent);
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--portfolio-accent);
-    margin-bottom: 10px;
 }
 
 .pipeline-arrow {
     display: flex;
     align-items: center;
-    font-weight: 700;
     color: var(--portfolio-accent);
+    font-weight: 700;
 }
 
-.contribution-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    max-width: 900px;
-    margin-top: 25px;
-}
 
-.contribution-card {
-    padding: 22px;
-    border: 1px solid #e2e2e2;
-    border-radius: 12px;
-    background: #fff;
-}
-
-.contribution-card h3 {
-    margin-bottom: 12px;
-}
-
-.contribution-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    .detail-page {
-        padding: 24px;
-    }
-
-    .detail-hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .metrics-grid,
-    .approach-grid,
-    .contribution-grid,
-    .artifact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .approach-card:last-child {
-        grid-column: auto;
-    }
-
-    .pipeline-visual {
-        flex-direction: column;
-    }
-
-    .pipeline-arrow {
-        justify-content: center;
-        transform: rotate(90deg);
-        padding: 4px 0;
-    }
-
-    .results-table-wrapper {
-        overflow-x: auto;
-    }
-
-    .results-table {
-        min-width: 650px;
-    }
-}
+/* Shared research figure */
 
 .research-visual {
     max-width: 900px;
@@ -1397,9 +1383,9 @@ body {
     margin-top: 12px;
     padding-top: 12px;
     border-top: 1px solid #eeeeee;
+    color: #666;
     font-size: 0.9rem;
     line-height: 1.6;
-    color: #666;
     text-align: left;
     word-spacing: normal;
 }
@@ -1407,6 +1393,9 @@ body {
 .research-visual figcaption strong {
     color: #222;
 }
+
+
+/* Shared small-screen foundations */
 
 @media (max-width: 768px) {
     body {
@@ -1480,14 +1469,12 @@ body {
     }
 
     .section-title {
+        margin-bottom: 28px;
         font-size: 1.55rem;
         line-height: 1.3;
-        margin-bottom: 28px;
     }
 
-    .research-grid,
     .project-grid,
-    .achievement-grid,
     .metrics-grid,
     .approach-grid,
     .contribution-grid,
@@ -1495,9 +1482,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .research-card,
     .project-card,
-    .achievement-card,
     .metric-card,
     .approach-card,
     .contribution-card,
@@ -1505,30 +1490,16 @@ body {
         width: 100%;
     }
 
-    .research-card h3,
-    .project-card h3,
-    .achievement-card h3 {
+    .project-card h3 {
+        overflow-wrap: break-word;
         font-size: 1.05rem;
         line-height: 1.3;
-        overflow-wrap: break-word;
     }
 
     .detail-page {
         width: 100%;
         max-width: 100%;
         padding: 28px 24px;
-    }
-
-    .detail-hero h1 {
-        font-size: 2rem;
-        line-height: 1.15;
-        letter-spacing: -0.02em;
-        overflow-wrap: break-word;
-    }
-
-    .detail-subtitle {
-        font-size: 1rem;
-        line-height: 1.65;
     }
 
     .detail-section {
@@ -1556,8 +1527,8 @@ body {
 
     .pipeline-arrow {
         justify-content: center;
-        transform: rotate(90deg);
         padding: 4px 0;
+        transform: rotate(90deg);
     }
 
     .results-table-wrapper {
@@ -1578,9 +1549,9 @@ body {
     }
 
     .assistant-panel {
-        width: calc(100vw - 32px);
         right: 10px;
         bottom: 68px;
+        width: calc(100vw - 32px);
     }
 
     .assistant-avatar-image {
@@ -1673,7 +1644,7 @@ body {
 
 .nbci-research-page .research-hero h1 {
     max-width: 760px;
-    font-size: clamp(3.1rem, 4.2vw, 2.7rem);
+    font-size: 3.1rem;
     line-height: 0.98;
 }
 
@@ -1745,7 +1716,7 @@ body {
     max-width: 760px;
     margin: 0 0 22px;
     color: white;
-    font-size: clamp(3.5rem, 4.5vw, 3.0rem);
+    font-size: 3.5rem;
     line-height: 0.98;
     letter-spacing: -0.045em;
 }
@@ -1812,10 +1783,6 @@ body {
     margin: 0;
     padding: 0;
     min-width: 0;
-}
-
-.research-detail-page .detail-section:first-child {
-    padding-top: 0;
 }
 
 /* Research detail body layout:
@@ -2158,7 +2125,7 @@ body {
         margin-bottom: 32px;
     }
 
-        .research-detail-content .research-visual,
+    .research-detail-content .research-visual,
     .research-detail-content .evidence-note {
         border-radius: 16px;
     }
@@ -2204,7 +2171,7 @@ body {
 
     .research-hero h1 {
         margin-bottom: 18px;
-        font-size: clamp(2rem, 12vw, 2.0rem);
+        font-size: 2rem;
         line-height: 1.02;
         letter-spacing: -0.055em;
     }
@@ -2259,6 +2226,297 @@ body {
 }
 
 
+/* NB-CI responsive refinements */
+
+@media (max-width: 900px) {
+    .nbci-research-page .research-hero {
+        min-height: auto;
+        padding-top: 64px;
+        padding-bottom: 38px;
+    }
+
+    .nbci-research-page .research-hero-inner {
+        gap: 28px;
+    }
+
+    .nbci-research-page .research-hero h1 {
+        max-width: 100%;
+        font-size: clamp(2.15rem, 9vw, 3.2rem);
+        line-height: 1.02;
+    }
+
+    .nbci-research-page .research-hero-subtitle {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .nbci-research-page .research-hero-tags {
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .nbci-research-page .research-hero {
+        padding-top: 58px;
+        padding-bottom: 32px;
+    }
+
+    .nbci-research-page .research-hero h1 {
+        font-size: 2rem;
+        line-height: 1.02;
+    }
+
+    .nbci-research-page .research-hero-metric {
+        min-height: 88px;
+    }
+
+    .nbci-research-page .research-hero-metric-value {
+        font-size: 1.75rem;
+    }
+
+    .nbci-research-page .research-hero-metric-label {
+        font-size: 0.72rem;
+    }
+}
+
+
+/* =========================================================
+   SHARED PROJECT DETAIL FOUNDATION
+   Structural rules shared by Reciprocal Resource Matching
+   and Project Ariel. Page-specific colors, images, metrics,
+   and content treatments remain in their own sections.
+   ========================================================= */
+
+.resource-page,
+.ariel-page {
+    max-width: none;
+    padding: 0;
+    background: #ffffff;
+}
+
+/* Shared hero controls */
+
+.resource-page-hero::after,
+.ariel-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
+}
+
+.resource-hero-back,
+.ariel-hero-back {
+    position: absolute;
+    top: 28px;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.resource-hero-back:hover,
+.ariel-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.resource-hero-source,
+.ariel-hero-source {
+    position: absolute;
+    bottom: 20px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201, 168, 106, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.resource-hero-source:hover,
+.ariel-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.resource-hero-source-disabled,
+.ariel-hero-source-disabled {
+    opacity: 0.78;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Shared body shell and section navigation */
+
+.resource-page-sidebar,
+.ariel-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.resource-section-nav,
+.ariel-body-layout .ariel-section-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.resource-section-nav a,
+.ariel-body-layout .ariel-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.resource-section-nav a:hover,
+.resource-section-nav a:focus-visible,
+.ariel-body-layout .ariel-section-nav a:hover,
+.ariel-body-layout .ariel-section-nav a:focus-visible {
+    transform: translateX(8px);
+}
+
+.resource-body-content,
+.ariel-body-content {
+    min-width: 0;
+}
+
+.resource-body-content .detail-section,
+.ariel-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.resource-body-content .detail-section:first-child,
+.ariel-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.resource-body-content .detail-section:last-child,
+.ariel-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.resource-body-content .detail-section h2,
+.ariel-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.resource-body-content .detail-section p,
+.ariel-body-content .detail-section p {
+    max-width: 850px;
+    color: #263234;
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+/* Shared project cards */
+
+.resource-body-content .approach-card,
+.resource-body-content .contribution-card,
+.resource-body-content .artifact-card,
+.resource-body-content .metric-card,
+.resource-problem-card,
+.ariel-body-content .approach-card,
+.ariel-body-content .contribution-card,
+.ariel-body-content .artifact-card,
+.ariel-body-content .metric-card,
+.ariel-body-content .research-visual {
+    border: 1px solid rgba(16, 42, 45, 0.12);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.resource-body-content .approach-card,
+.resource-body-content .contribution-card,
+.resource-body-content .artifact-card,
+.resource-body-content .metric-card,
+.resource-problem-card,
+.ariel-body-content .approach-card,
+.ariel-body-content .contribution-card,
+.ariel-body-content .artifact-card,
+.ariel-body-content .metric-card {
+    padding: 24px;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.resource-body-content .approach-card:hover,
+.resource-body-content .contribution-card:hover,
+.resource-body-content .artifact-card:hover,
+.resource-body-content .metric-card:hover,
+.resource-problem-card:hover,
+.ariel-body-content .approach-card:hover,
+.ariel-body-content .contribution-card:hover,
+.ariel-body-content .artifact-card:hover,
+.ariel-body-content .metric-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(47, 111, 115, 0.24);
+    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
+}
+
+.resource-body-content .approach-card h3,
+.resource-body-content .contribution-card h3,
+.resource-body-content .artifact-card h3,
+.resource-problem-card h3,
+.ariel-body-content .approach-card h3,
+.ariel-body-content .contribution-card h3,
+.ariel-body-content .artifact-card h3 {
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+.resource-body-content .evidence-note,
+.ariel-body-content .evidence-note {
+    max-width: 920px;
+    margin: 30px 0 0;
+    padding: 24px 26px;
+    border-radius: 0 18px 18px 0;
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.resource-body-content .evidence-note h3,
+.ariel-body-content .evidence-note h3 {
+    color: var(--color-dark);
+}
+
 /* =========================================================
    RECIPROCAL RESOURCE MATCHING PROJECT PAGE
    Systems / algorithm design case-study page.
@@ -2277,10 +2535,6 @@ body {
     --resource-padding-x: clamp(28px, 4vw, 72px);
     --resource-accent: var(--portfolio-accent);
     --resource-soft: rgba(238, 246, 246, 0.72);
-
-    max-width: none;
-    padding: 0;
-    background: #ffffff;
 }
 
 /* Hero */
@@ -2312,64 +2566,16 @@ body {
     background-position: var(--resource-hero-position);
 }
 
-.resource-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .resource-hero-back {
-    position: absolute;
-    top: 28px;
     left: var(--resource-padding-x);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.86);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
 }
 
-.resource-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .resource-hero-source {
-    position: absolute;
     right: var(--resource-padding-x);
-    bottom: 20px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201, 168, 106, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.resource-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.resource-hero-source-disabled {
-    opacity: 0.78;
-    cursor: not-allowed;
-    pointer-events: none;
-}
 
 .resource-page-hero-inner {
     position: relative;
@@ -2433,70 +2639,18 @@ body {
     gap: var(--resource-content-gap);
 }
 
-.resource-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .resource-section-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     transform: translateX(var(--resource-sidebar-offset-x));
 }
 
-.resource-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .resource-section-nav a:hover,
 .resource-section-nav a:focus-visible {
     color: var(--resource-accent);
     border-bottom-color: var(--resource-accent);
-    transform: translateX(8px);
 }
 
-.resource-body-content {
-    min-width: 0;
-}
-
-.resource-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.resource-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.resource-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.resource-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .resource-body-content .detail-section h2::before {
     content: "";
@@ -2508,72 +2662,12 @@ body {
     background: linear-gradient(90deg, var(--color-gold), var(--resource-accent));
 }
 
-.resource-body-content .detail-section p {
-    max-width: 850px;
-    color: #263234;
-    font-size: 1.02rem;
-    line-height: 1.75;
-}
-
-/* Shared cards */
-
-.resource-body-content .approach-card,
-.resource-body-content .contribution-card,
-.resource-body-content .artifact-card,
-.resource-body-content .metric-card,
-.resource-problem-card {
-    border: 1px solid rgba(16, 42, 45, 0.12);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.resource-body-content .approach-card,
-.resource-body-content .contribution-card,
-.resource-body-content .artifact-card,
-.resource-body-content .metric-card,
-.resource-problem-card {
-    padding: 24px;
-}
-
-.resource-body-content .approach-card:hover,
-.resource-body-content .contribution-card:hover,
-.resource-body-content .artifact-card:hover,
-.resource-body-content .metric-card:hover,
-.resource-problem-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(47, 111, 115, 0.24);
-    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
-}
-
-.resource-body-content .approach-card h3,
-.resource-body-content .contribution-card h3,
-.resource-body-content .artifact-card h3,
-.resource-problem-card h3 {
-    color: var(--color-dark);
-    line-height: 1.3;
-}
 
 .resource-body-content .evidence-note {
-    max-width: 920px;
-    margin: 30px 0 0;
-    padding: 24px 26px;
     border-left: 5px solid var(--resource-accent);
-    border-radius: 0 18px 18px 0;
     background:
         radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
         linear-gradient(135deg, #ffffff 0%, var(--resource-soft) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
-}
-
-.resource-body-content .evidence-note h3 {
-    color: var(--color-dark);
 }
 
 
@@ -2894,15 +2988,6 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.resource-metrics-grid .metric-card {
-    min-height: 150px;
-}
-
-.resource-metrics-grid .metric-value {
-    color: var(--color-dark);
-    font-size: 2.05rem;
-    letter-spacing: -0.04em;
-}
 
 .resource-metric-count {
     font-variant-numeric: tabular-nums;
@@ -2916,14 +3001,12 @@ body {
     color: var(--color-dark);
 }
 
-.resource-metrics-grid .metric-label {
-    color: var(--color-muted);
-}
 
 /* Results metric cards.
    Matches the darker teal treatment used in the Why Simple Matching Fails cards. */
 
 .resource-metrics-grid .metric-card {
+    min-height: 150px;
     border-color: rgba(15, 79, 85, 0.18);
     background:
         radial-gradient(circle at 88% 10%, rgba(47, 111, 115, 0.16), transparent 34%),
@@ -2938,6 +3021,8 @@ body {
 
 .resource-metrics-grid .metric-value {
     color: #0d3f44;
+    font-size: 2.05rem;
+    letter-spacing: -0.04em;
 }
 
 .resource-metrics-grid .metric-label {
@@ -3016,151 +3101,6 @@ body {
     color: var(--color-dark);
 }
 
-/* Responsive */
-
-@media (max-width: 1000px) {
-    .resource-page-hero {
-        min-height: auto;
-        padding: 76px 24px 58px;
-    }
-
-    .resource-page-hero-inner {
-        grid-template-columns: 1fr;
-        gap: 34px;
-    }
-
-    .resource-body-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 38px 24px 70px;
-    }
-
-    .resource-section-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        transform: none;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .resource-section-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .resource-section-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(16, 42, 45, 0.18);
-        border-radius: 999px;
-        background: white;
-        color: var(--color-muted);
-        font-size: 0.82rem;
-    }
-
-    .resource-section-nav a:hover,
-    .resource-section-nav a:focus-visible {
-        transform: none;
-        color: var(--resource-accent);
-        border-color: var(--portfolio-accent-border);
-        background: var(--portfolio-accent-soft);
-    }
-
-    .resource-problem-grid,
-    .resource-framework-grid,
-    .resource-case-study,
-    .resource-metrics-grid,
-    .resource-application-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .resource-body-content .results-table-wrapper {
-        overflow-x: auto;
-        padding-bottom: 4px;
-    }
-
-    .resource-body-content .results-table {
-        min-width: 680px;
-    }
-
-    .resource-challenge-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .resource-capacity-figure {
-        width: min(100%, 420px);
-        justify-self: center;
-    }
-}
-
-@media (max-width: 560px) {
-    .resource-page-hero {
-        padding: 68px 22px 48px;
-    }
-
-    .resource-hero-back {
-        top: 22px;
-        left: 22px;
-        font-size: 0.88rem;
-    }
-
-    .resource-hero-source {
-        right: 22px;
-        bottom: 22px;
-        min-height: 38px;
-        padding: 10px 14px;
-        font-size: 0.82rem;
-    }
-
-    .resource-page-hero-copy h1 {
-        font-size: clamp(2.25rem, 12vw, 3rem);
-        line-height: 1.02;
-    }
-
-    .resource-page-hero-copy h2 {
-        font-size: 1.12rem;
-        line-height: 1.45;
-    }
-
-    .resource-page-hero-copy p {
-        font-size: 0.96rem;
-        line-height: 1.65;
-    }
-
-    .resource-page-hero-copy .detail-tags {
-        font-size: 0.82rem;
-        line-height: 1.55;
-    }
-
-    .resource-body-layout {
-        padding: 32px 22px 72px;
-    }
-
-    .resource-body-content .detail-section {
-        padding-bottom: 30px;
-        margin-bottom: 32px;
-    }
-
-    .resource-body-content .detail-section h2 {
-        font-size: 1.75rem;
-    }
-
-    .resource-body-content .approach-card,
-    .resource-body-content .contribution-card,
-    .resource-body-content .artifact-card,
-    .resource-body-content .metric-card,
-    .resource-problem-card {
-        padding: 20px;
-    }
-
-    .resource-case-network {
-        grid-template-columns: 1fr;
-    }
-}
-
-
 /* =========================================================
    PROJECT ARIEL CASE STUDY PAGE
    Applied AI / RAG engineering project detail page.
@@ -3179,10 +3119,6 @@ body {
     --ariel-padding-x: clamp(28px, 4vw, 72px);
     --ariel-accent: var(--portfolio-accent);
     --ariel-soft: rgba(238, 246, 246, 0.72);
-
-    max-width: none;
-    padding: 0;
-    background: #ffffff;
 }
 
 /* Hero */
@@ -3211,64 +3147,16 @@ body {
     background-position: center;
 }
 
-.ariel-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .ariel-hero-back {
-    position: absolute;
-    top: 28px;
     left: var(--ariel-padding-x);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.86);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
 }
 
-.ariel-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .ariel-hero-source {
-    position: absolute;
     right: var(--ariel-padding-x);
-    bottom: 20px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201, 168, 106, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.ariel-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.ariel-hero-source-disabled {
-    opacity: 0.78;
-    cursor: not-allowed;
-    pointer-events: none;
-}
 
 .ariel-page-hero-inner {
     position: relative;
@@ -3360,70 +3248,18 @@ body {
     gap: var(--ariel-content-gap);
 }
 
-.ariel-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .ariel-body-layout .ariel-section-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     transform: translateX(var(--ariel-sidebar-offset-x));
 }
 
-.ariel-body-layout .ariel-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .ariel-body-layout .ariel-section-nav a:hover,
 .ariel-body-layout .ariel-section-nav a:focus-visible {
     color: var(--ariel-accent);
     border-bottom-color: var(--ariel-accent);
-    transform: translateX(8px);
 }
 
-.ariel-body-content {
-    min-width: 0;
-}
-
-.ariel-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.ariel-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.ariel-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.ariel-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .ariel-body-content .detail-section h2::before {
     content: "";
@@ -3435,72 +3271,16 @@ body {
     background: linear-gradient(90deg, var(--color-gold), var(--ariel-accent));
 }
 
-.ariel-body-content .detail-section p {
-    max-width: 850px;
-    color: #263234;
-    font-size: 1.02rem;
-    line-height: 1.75;
-}
 
-/* Shared Ariel cards */
-
-.ariel-body-content .approach-card,
-.ariel-body-content .contribution-card,
-.ariel-body-content .artifact-card,
-.ariel-body-content .metric-card,
-.ariel-body-content .research-visual {
-    border: 1px solid rgba(16, 42, 45, 0.12);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
-}
-
-.ariel-body-content .approach-card,
-.ariel-body-content .contribution-card,
-.ariel-body-content .artifact-card,
-.ariel-body-content .metric-card {
-    padding: 24px;
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.ariel-body-content .approach-card:hover,
-.ariel-body-content .contribution-card:hover,
-.ariel-body-content .artifact-card:hover,
-.ariel-body-content .metric-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(47, 111, 115, 0.24);
-    box-shadow: 0 22px 46px rgba(16, 42, 45, 0.10);
-}
-
-.ariel-body-content .approach-card h3,
-.ariel-body-content .contribution-card h3,
-.ariel-body-content .artifact-card h3 {
-    color: var(--color-dark);
-    line-height: 1.3;
-}
-
-/* Problem callout */
+/* Page-specific evidence note */
 
 .ariel-body-content .evidence-note {
-    max-width: 920px;
-    margin: 30px 0 0;
-    padding: 24px 26px;
     border-left: 5px solid var(--ariel-accent);
-    border-radius: 0 18px 18px 0;
     background:
         radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
         linear-gradient(135deg, #ffffff 0%, var(--ariel-soft) 100%);
-    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
 }
 
-.ariel-body-content .evidence-note h3 {
-    color: var(--color-dark);
-}
 
 /* Problem visuals */
 
@@ -3689,22 +3469,14 @@ body {
     background-repeat: no-repeat;
 }
 
-.ariel-image-grid .research-visual {
-    position: relative;
-    z-index: 1;
-}
-
-.ariel-image-grid .research-visual {
-    max-width: none;
-    margin: 0;
-    padding: 14px;
-}
 
 .ariel-image-grid .research-visual {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
+    max-width: none;
+    margin: 0;
     overflow: hidden;
     padding: 12px;
     background: rgba(255, 255, 255, 0.94);
@@ -3792,13 +3564,101 @@ body {
     font-weight: 850;
 }
 
-/* Responsive */
+/* =========================================================
+   SHARED PROJECT DETAIL RESPONSIVE RULES
+   Reciprocal Resource Matching and Project Ariel
+   Broad breakpoints come first; narrow mobile overrides follow.
+   ========================================================= */
 
 @media (max-width: 1000px) {
+    /* Shared responsive shell */
+
+    .resource-page-hero,
     .ariel-page-hero {
         min-height: auto;
         padding: 76px 24px 58px;
     }
+
+    .resource-body-layout,
+    .ariel-body-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 38px 24px 70px;
+    }
+
+    .resource-section-nav,
+    .ariel-body-layout .ariel-section-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .resource-section-nav::-webkit-scrollbar,
+    .ariel-body-layout .ariel-section-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .resource-section-nav a,
+    .ariel-body-layout .ariel-section-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .resource-section-nav a:hover,
+    .resource-section-nav a:focus-visible,
+    .ariel-body-layout .ariel-section-nav a:hover,
+    .ariel-body-layout .ariel-section-nav a:focus-visible {
+        transform: none;
+        border-color: var(--portfolio-accent-border);
+        background: var(--portfolio-accent-soft);
+    }
+
+    /* Reciprocal Resource Matching */
+
+    .resource-page-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .resource-section-nav a:hover,
+    .resource-section-nav a:focus-visible {
+        color: var(--resource-accent);
+    }
+
+    .resource-problem-grid,
+    .resource-framework-grid,
+    .resource-case-study,
+    .resource-metrics-grid,
+    .resource-application-grid,
+    .resource-challenge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-body-content .results-table-wrapper {
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .resource-body-content .results-table {
+        min-width: 680px;
+    }
+
+    .resource-capacity-figure {
+        width: min(100%, 420px);
+        justify-self: center;
+    }
+
+    /* Project Ariel */
 
     .ariel-page-hero-inner {
         grid-template-columns: 1fr;
@@ -3819,52 +3679,15 @@ body {
         height: 170px;
     }
 
-    .ariel-body-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 38px 24px 70px;
-    }
-
-    .ariel-body-layout .ariel-section-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        transform: none;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .ariel-body-layout .ariel-section-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .ariel-body-layout .ariel-section-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(16, 42, 45, 0.18);
-        border-radius: 999px;
-        background: white;
-        color: var(--color-muted);
-        font-size: 0.82rem;
-    }
-
     .ariel-body-layout .ariel-section-nav a:hover,
     .ariel-body-layout .ariel-section-nav a:focus-visible {
-        transform: none;
         color: var(--ariel-accent);
-        border-color: var(--portfolio-accent-border);
-        background: var(--portfolio-accent-soft);
     }
 
     .ariel-architecture-grid,
     .ariel-problem-visuals,
     .ariel-image-grid,
-    .ariel-metrics-grid {
-        grid-template-columns: 1fr;
-    }
-
+    .ariel-metrics-grid,
     .ariel-architecture-cards {
         grid-template-columns: 1fr;
     }
@@ -3875,8 +3698,8 @@ body {
 
     .ariel-body-content .pipeline-arrow {
         justify-content: center;
-        transform: rotate(90deg);
         padding: 4px 0;
+        transform: rotate(90deg);
     }
 
     .ariel-rag-pipeline-figure {
@@ -3886,15 +3709,90 @@ body {
 }
 
 @media (max-width: 560px) {
-    .ariel-page-hero {
-        padding: 68px 22px 46px;
-        background-position: center;
-    }
+    /* Shared mobile shell */
 
+    .resource-hero-back,
     .ariel-hero-back {
         top: 22px;
         left: 22px;
         font-size: 0.88rem;
+    }
+
+    .resource-hero-source,
+    .ariel-hero-source {
+        right: 22px;
+        bottom: 22px;
+        min-height: 38px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+    }
+
+    .resource-page-hero-copy h2,
+    .ariel-page-hero-copy h2 {
+        font-size: 1.12rem;
+        line-height: 1.45;
+    }
+
+    .resource-page-hero-copy p,
+    .ariel-page-hero-copy p {
+        font-size: 0.96rem;
+        line-height: 1.65;
+    }
+
+    .resource-page-hero-copy .detail-tags,
+    .ariel-page-hero-copy .detail-tags {
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+
+    .resource-body-layout,
+    .ariel-body-layout {
+        padding: 32px 22px 72px;
+    }
+
+    .resource-body-content .detail-section,
+    .ariel-body-content .detail-section {
+        padding-bottom: 30px;
+        margin-bottom: 32px;
+    }
+
+    .resource-body-content .detail-section h2,
+    .ariel-body-content .detail-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .resource-body-content .approach-card,
+    .resource-body-content .contribution-card,
+    .resource-body-content .artifact-card,
+    .resource-body-content .metric-card,
+    .resource-problem-card,
+    .ariel-body-content .approach-card,
+    .ariel-body-content .contribution-card,
+    .ariel-body-content .artifact-card,
+    .ariel-body-content .metric-card {
+        padding: 20px;
+    }
+
+    /* Reciprocal Resource Matching */
+
+    .resource-page-hero {
+        padding: 68px 22px 48px;
+    }
+
+    .resource-page-hero-copy h1 {
+        font-size: clamp(2.25rem, 12vw, 3rem);
+        line-height: 1.02;
+    }
+
+    .resource-case-network {
+        grid-template-columns: 1fr;
+    }
+
+    /* Project Ariel */
+
+    .ariel-page-hero {
+        padding: 68px 22px 46px;
+        background-position: center;
     }
 
     .ariel-page-hero-image {
@@ -3907,43 +3805,8 @@ body {
     }
 
     .ariel-page-hero-copy h1 {
-        font-size: clamp(2rem, 6vw, 1.55rem);
+        font-size: 2rem;
         line-height: 1.02;
-    }
-
-    .ariel-page-hero-copy h2 {
-        font-size: 1.12rem;
-        line-height: 1.45;
-    }
-
-    .ariel-page-hero-copy p {
-        font-size: 0.96rem;
-        line-height: 1.65;
-    }
-
-    .ariel-page-hero-copy .detail-tags {
-        font-size: 0.82rem;
-        line-height: 1.55;
-    }
-
-    .ariel-body-layout {
-        padding: 32px 22px 72px;
-    }
-
-    .ariel-body-content .detail-section {
-        padding-bottom: 30px;
-        margin-bottom: 32px;
-    }
-
-    .ariel-body-content .detail-section h2 {
-        font-size: 1.75rem;
-    }
-
-    .ariel-body-content .approach-card,
-    .ariel-body-content .contribution-card,
-    .ariel-body-content .artifact-card,
-    .ariel-body-content .metric-card {
-        padding: 20px;
     }
 
     .ariel-kb-grid {
@@ -3963,19 +3826,10 @@ body {
         background: transparent;
     }
 
-    .ariel-hero-source {
-        right: 22px;
-        bottom: 22px;
-        min-height: 38px;
-        padding: 10px 14px;
-        font-size: 0.82rem;
-    }
-
     .ariel-rag-pipeline-figure {
         margin: 22px 0 28px;
     }
 }
-
 
 /* =========================================================
    HOMEPAGE EXPANDED LAYOUT
@@ -4074,66 +3928,6 @@ body {
     }
 }
 
-
-/* =========================================================
-   PROJECT CAROUSEL REFINEMENTS
-   Controls project card width, height, image overlay, and arrows.
-   ========================================================= */
-
-.project-carousel {
-    /* Project card size controls */
-    --project-card-width: 500px;
-    --project-card-height: 292px;
-    --project-card-gap: 24px;
-}
-
-/* Lighter image overlay so project images stay visible */
-.section-projects .project-card-visual {
-    background:
-        linear-gradient(
-            90deg,
-            var(--card-overlay-left, rgba(8, 28, 31, 0.62)) 0%,
-            var(--card-overlay-mid, rgba(8, 28, 31, 0.38)) 46%,
-            var(--card-overlay-right, rgba(8, 28, 31, 0.14)) 100%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.02),
-            rgba(0, 0, 0, 0.08)
-        ),
-        var(--project-card-image);
-    background-size: cover;
-    background-position: var(--project-card-position, center);
-}
-
-.section-projects .project-card-visual .project-type,
-.section-projects .project-card-visual h3,
-.section-projects .project-card-visual p {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
-}
-
-.section-projects .project-card {
-    padding: 24px;
-}
-
-.section-projects .project-card h3 {
-    font-size: 1.12rem;
-    line-height: 1.28;
-}
-
-.section-projects .project-card > p:not(.project-type):not(.domain):not(.project-link-text) {
-    min-height: 4.5em;
-    line-clamp: 3;
-    -webkit-line-clamp: 3;
-}
-
-.section-projects .project-card .domain {
-    font-size: 0.88rem;
-}
-
-.section-projects .project-actions {
-    margin-top: 14px;
-}
 
 /* Carousel arrow placement */
 .homepage-layout .carousel-button {
@@ -5045,6 +4839,7 @@ body {
         radial-gradient(circle, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.24) 58%, transparent 74%);
     filter: blur(0.5px);
     transform: rotate(-14deg);
+    z-index: 1;
 }
 
 
@@ -5414,10 +5209,6 @@ body {
     pointer-events: none;
 }
 
-.cluster-skill::before {
-    z-index: 1;
-}
-
 .cluster-skill:hover::after,
 .cluster-skill:focus-visible::after {
     opacity: 1;
@@ -5496,7 +5287,6 @@ body {
         display: none;
     }
 
-    .section-projects .project-grid > .card-link.is-active .project-card,
     .section-projects .project-grid > .project-card.is-active {
         transform: none;
     }
@@ -5568,58 +5358,171 @@ body {
     }
 }
 
-@media (max-width: 900px) {
-    .nbci-research-page .research-hero {
-        min-height: auto;
-        padding-top: 64px;
-        padding-bottom: 38px;
-    }
 
-    .nbci-research-page .research-hero-inner {
-        gap: 28px;
-    }
+/* =========================================================
+   SHARED ENERGY + SMART CITY PROJECT FOUNDATION
+   Structural rules shared by the two analytics case-study pages.
+   Page-specific colors, hero images, metrics, visual sizing,
+   and responsive behavior remain in their own sections below.
+   ========================================================= */
 
-    .nbci-research-page .research-hero h1 {
-        max-width: 100%;
-        font-size: clamp(2.15rem, 9vw, 3.2rem);
-        line-height: 1.02;
-    }
+/* Hero structure and controls */
 
-    .nbci-research-page .research-hero-subtitle {
-        max-width: 100%;
-        font-size: 1rem;
-        line-height: 1.55;
-    }
-
-    .nbci-research-page .research-hero-tags {
-        font-size: 0.82rem;
-    }
+.energy-page-hero::after,
+.smart-city-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
 }
 
-@media (max-width: 560px) {
-    .nbci-research-page .research-hero {
-        padding-top: 58px;
-        padding-bottom: 32px;
-    }
-
-    .nbci-research-page .research-hero h1 {
-        font-size: clamp(2rem, 10.5vw, 1.85rem);
-        line-height: 1.02;
-    }
-
-    .nbci-research-page .research-hero-metric {
-        min-height: 88px;
-    }
-
-    .nbci-research-page .research-hero-metric-value {
-        font-size: 1.75rem;
-    }
-
-    .nbci-research-page .research-hero-metric-label {
-        font-size: 0.72rem;
-    }
+.energy-hero-back:hover,
+.smart-city-hero-back:hover {
+    color: var(--color-gold);
 }
 
+.energy-hero-source:hover,
+.smart-city-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.energy-page-hero-inner,
+.smart-city-page-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1220px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+}
+
+.energy-page-hero-copy .section-label,
+.smart-city-page-hero-copy .section-label {
+    margin-bottom: 14px;
+    color: var(--color-gold);
+    font-weight: 850;
+}
+
+.energy-page-hero-copy p,
+.smart-city-page-hero-copy p {
+    max-width: 790px;
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.energy-page-hero-copy .detail-tags,
+.smart-city-page-hero-copy .detail-tags {
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.92rem;
+    font-weight: 750;
+}
+
+.energy-hero-metrics,
+.smart-city-hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.energy-hero-metric,
+.smart-city-hero-metric {
+    min-height: 122px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
+        rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.energy-hero-metric-label,
+.smart-city-hero-metric-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+/* Body layout, navigation, and section rhythm */
+
+.energy-page-sidebar,
+.smart-city-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.energy-section-nav a,
+.smart-city-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.energy-body-content,
+.smart-city-body-content {
+    min-width: 0;
+}
+
+.energy-body-content .detail-section,
+.smart-city-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.energy-body-content .detail-section:first-child,
+.smart-city-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.energy-body-content .detail-section:last-child,
+.smart-city-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.energy-body-content .detail-section h2,
+.smart-city-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+/* Expandable visual links */
+
+.energy-certificate-card a,
+.energy-workflow-figure a,
+.energy-visual-card a,
+.energy-wide-visual a,
+.smart-city-visual-card a {
+    display: block;
+    cursor: zoom-in;
+    color: inherit;
+    text-decoration: none;
+}
 
 /* =========================================================
    COMMERCIAL BUILDING ENERGY FORECASTING PROJECT PAGE
@@ -5764,14 +5667,6 @@ body {
     background-position: var(--energy-hero-position);
 }
 
-.energy-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .energy-hero-back {
     position: absolute;
@@ -5784,9 +5679,6 @@ body {
     font-weight: 700;
 }
 
-.energy-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .energy-hero-source {
     position: absolute;
@@ -5810,29 +5702,6 @@ body {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.energy-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.energy-page-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
-}
-
-.energy-page-hero-copy .section-label {
-    margin-bottom: 14px;
-    color: var(--color-gold);
-    font-weight: 850;
-}
 
 .energy-page-hero-copy h1 {
     max-width: 660px;
@@ -5852,39 +5721,9 @@ body {
     letter-spacing: -0.025em;
 }
 
-.energy-page-hero-copy p {
-    max-width: 790px;
-    color: rgba(255, 255, 255, 0.80);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.energy-page-hero-copy .detail-tags {
-    margin-top: 22px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.92rem;
-    font-weight: 750;
-}
-
 
 /* Hero metric cards */
 
-.energy-hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.energy-hero-metric {
-    min-height: 122px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
-        rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-}
 
 .energy-hero-metric-value {
     display: block;
@@ -5896,12 +5735,6 @@ body {
     letter-spacing: -0.04em;
 }
 
-.energy-hero-metric-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
 
 .energy-money-count {
     font-variant-numeric: tabular-nums;
@@ -5928,10 +5761,6 @@ body {
     gap: var(--energy-content-gap);
 }
 
-.energy-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .energy-section-nav {
     position: sticky;
@@ -5942,20 +5771,6 @@ body {
     transform: translateX(var(--energy-sidebar-offset-x));
 }
 
-.energy-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .energy-section-nav a:hover,
 .energy-section-nav a:focus-visible {
@@ -5964,34 +5779,6 @@ body {
     transform: translateX(8px);
 }
 
-.energy-body-content {
-    min-width: 0;
-}
-
-.energy-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.energy-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.energy-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.energy-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .energy-body-content .detail-section h2::before {
     content: "";
@@ -6022,8 +5809,7 @@ body {
 .energy-visual-card,
 .energy-wide-visual,
 .energy-certificate-card,
-.energy-certificate-copy,
-.energy-pipeline-grid article {
+.energy-certificate-copy {
     border: 1px solid var(--energy-border);
     border-radius: var(--energy-card-radius);
     background: var(--energy-card-bg);
@@ -6169,15 +5955,6 @@ body {
     background: transparent;
 }
 
-.energy-certificate-card a,
-.energy-workflow-figure a,
-.energy-visual-card a,
-.energy-wide-visual a {
-    display: block;
-    cursor: zoom-in;
-    color: inherit;
-    text-decoration: none;
-}
 
 .energy-certificate-copy {
     padding: 28px;
@@ -6526,6 +6303,8 @@ body {
         --energy-weather-height: 230px;
 
         --energy-visual-card-padding: 6px;
+        --energy-workflow-image-radius: 12px;
+        --energy-workflow-caption-width: 100%;
     }
 
     .energy-page-hero {
@@ -6583,8 +6362,7 @@ body {
     .energy-body-content .approach-card,
     .energy-body-content .contribution-card,
     .energy-body-content .artifact-card,
-    .energy-certificate-copy,
-    .energy-pipeline-grid article {
+    .energy-certificate-copy {
         padding: 20px;
     }
 
@@ -6593,10 +6371,7 @@ body {
         padding: 14px 16px 16px;
     }
 
-    .energy-page {
-        --energy-workflow-image-radius: 12px;
-        --energy-workflow-caption-width: 100%;
-    }
+
 }
 
 /* =========================================================
@@ -6691,14 +6466,6 @@ body {
     background-position: var(--smart-city-hero-position);
 }
 
-.smart-city-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .smart-city-hero-back {
     position: absolute;
@@ -6711,9 +6478,6 @@ body {
     font-weight: 700;
 }
 
-.smart-city-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .smart-city-hero-source {
     position: absolute;
@@ -6737,29 +6501,6 @@ body {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.smart-city-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.smart-city-page-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
-}
-
-.smart-city-page-hero-copy .section-label {
-    margin-bottom: 14px;
-    color: var(--color-gold);
-    font-weight: 850;
-}
 
 .smart-city-page-hero-copy h1 {
     max-width: 720px;
@@ -6774,41 +6515,11 @@ body {
     max-width: 920px;
     margin: 0 0 20px;
     color: rgba(255, 255, 255, 0.94);
-    font-size: clamp(1.25rem, 1.9vw, 1.1rem);
+    font-size: 1.25rem;
     line-height: 1.35;
     letter-spacing: -0.025em;
 }
 
-.smart-city-page-hero-copy p {
-    max-width: 790px;
-    color: rgba(255, 255, 255, 0.80);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.smart-city-page-hero-copy .detail-tags {
-    margin-top: 22px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.92rem;
-    font-weight: 750;
-}
-
-.smart-city-hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.smart-city-hero-metric {
-    min-height: 122px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
-        rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-}
 
 .smart-city-hero-metric-value {
     display: block;
@@ -6820,12 +6531,6 @@ body {
     letter-spacing: -0.04em;
 }
 
-.smart-city-hero-metric-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
 
 /* Body layout */
 
@@ -6838,10 +6543,6 @@ body {
     gap: var(--smart-city-content-gap);
 }
 
-.smart-city-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .smart-city-section-nav {
     position: sticky;
@@ -6852,20 +6553,6 @@ body {
     transform: translateX(var(--smart-city-sidebar-offset-x));
 }
 
-.smart-city-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .smart-city-section-nav a:hover,
 .smart-city-section-nav a:focus-visible {
@@ -6874,34 +6561,6 @@ body {
     transform: translateX(8px);
 }
 
-.smart-city-body-content {
-    min-width: 0;
-}
-
-.smart-city-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.smart-city-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.smart-city-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.smart-city-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .smart-city-body-content .detail-section h2::before {
     content: "";
@@ -6919,8 +6578,6 @@ body {
     font-size: 1.02rem;
     line-height: 1.75;
 }
-
-/* Shared cards */
 
 .smart-city-body-content .metric-card,
 .smart-city-body-content .approach-card,
@@ -7018,12 +6675,6 @@ body {
     overflow: hidden;
 }
 
-.smart-city-visual-card a {
-    display: block;
-    cursor: zoom-in;
-    color: inherit;
-    text-decoration: none;
-}
 
 .smart-city-visual-card img {
     width: 100%;
@@ -7254,22 +6905,16 @@ body {
 
 
 /* =========================================================
-   BREAST CANCER CLASSIFICATION PROJECT PAGE
-   Healthcare ML classification and model-evaluation case study.
+   CLASSIFICATION PROJECT PAGE FOUNDATION
+   Shared structure for:
+   - Breast Cancer Classification
+   - Customer Purchase Prediction
 
-   Page file:
-   - projects/breast-cancer.html
-
-   Scope:
-   - All rules are scoped to .breast-cancer-page or breast-cancer-specific classes.
-   - This avoids affecting Ariel, Resource Matching, Energy Forecasting,
-     Smart City, research pages, or homepage cards.
-
-   Tunable controls:
-   - --breast-cancer-hero-image controls the hero background
-   - --breast-cancer-page-max controls the content width
-   - --breast-cancer-visual-height controls chart card image height
+   Page-specific colors, images, charts, and specialist layouts
+   remain in their dedicated sections below.
    ========================================================= */
+
+/* Page design tokens */
 
 .breast-cancer-page {
     --breast-cancer-page-max: 1660px;
@@ -7310,699 +6955,39 @@ body {
     --breast-cancer-visual-gap: 22px;
     --breast-cancer-visual-height: 330px;
 
+    /* Shared classification-page aliases */
+    --classification-page-max: var(--breast-cancer-page-max);
+    --classification-sidebar-width: var(--breast-cancer-sidebar-width);
+    --classification-content-gap: var(--breast-cancer-content-gap);
+    --classification-sidebar-offset-x: var(--breast-cancer-sidebar-offset-x);
+    --classification-padding-x: var(--breast-cancer-padding-x);
+    --classification-accent: var(--breast-cancer-accent);
+    --classification-accent-dark: var(--breast-cancer-accent-dark);
+    --classification-text: var(--breast-cancer-text);
+    --classification-soft: var(--breast-cancer-soft);
+    --classification-border: var(--breast-cancer-border);
+    --classification-card-radius: var(--breast-cancer-card-radius);
+    --classification-card-shadow: var(--breast-cancer-card-shadow);
+    --classification-card-shadow-hover: var(--breast-cancer-card-shadow-hover);
+    --classification-card-bg: var(--breast-cancer-card-bg);
+    --classification-highlight-bg: var(--breast-cancer-highlight-bg);
+    --classification-hero-position: var(--breast-cancer-hero-position);
+    --classification-hero-min-height: var(--breast-cancer-hero-min-height);
+    --classification-visual-max: var(--breast-cancer-visual-max);
+    --classification-visual-gap: var(--breast-cancer-visual-gap);
+    --classification-visual-height: var(--breast-cancer-visual-height);
+
+    --classification-nav-border: rgba(87, 42, 60, 0.18);
+    --classification-section-border: rgba(87, 42, 60, 0.10);
+    --classification-hover-border: rgba(138, 75, 99, 0.24);
+    --classification-metric-label: #4c3340;
+    --classification-pipeline-shadow: 0 14px 28px rgba(87, 42, 60, 0.055);
+    --classification-table-head-border: rgba(87, 42, 60, 0.12);
+    --classification-table-row-border: rgba(87, 42, 60, 0.08);
+    --classification-caption-border: rgba(87, 42, 60, 0.10);
+
     background: #ffffff;
 }
-
-/* Hero */
-
-.breast-cancer-detail-page.detail-page {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-}
-
-.breast-cancer-page-hero {
-    position: relative;
-    width: 100vw;
-    min-height: var(--breast-cancer-hero-min-height);
-    margin-left: calc(50% - 50vw);
-    padding: 82px var(--breast-cancer-padding-x) 72px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    color: white;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(33, 18, 28, 0.95) 0%,
-            rgba(70, 38, 58, 0.80) 48%,
-            rgba(79, 55, 75, 0.42) 100%
-        ),
-        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.22), transparent 30%),
-        radial-gradient(circle at 82% 20%, rgba(138, 75, 99, 0.28), transparent 34%),
-        var(--breast-cancer-hero-image);
-    background-size: cover;
-    background-position: var(--breast-cancer-hero-position);
-}
-
-.breast-cancer-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
-
-.breast-cancer-hero-back {
-    position: absolute;
-    top: 28px;
-    left: var(--breast-cancer-padding-x);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.86);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-}
-
-.breast-cancer-hero-back:hover {
-    color: var(--color-gold);
-}
-
-.breast-cancer-hero-source {
-    position: absolute;
-    right: var(--breast-cancer-padding-x);
-    bottom: 20px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201, 168, 106, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
-}
-
-.breast-cancer-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.breast-cancer-page-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
-}
-
-.breast-cancer-page-hero-copy .section-label {
-    margin-bottom: 14px;
-    color: var(--color-gold);
-    font-weight: 850;
-}
-
-.breast-cancer-page-hero-copy h1 {
-    max-width: 820px;
-    margin: 0 0 18px;
-    color: white;
-    font-size: clamp(1.45rem, 2vw, 2.3rem);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-}
-
-.breast-cancer-page-hero-copy h2 {
-    max-width: 850px;
-    margin: 0 0 20px;
-    color: rgba(255, 255, 255, 0.94);
-    font-size: clamp(1.25rem, 1.9vw, 1.78rem);
-    line-height: 1.35;
-    letter-spacing: -0.025em;
-}
-
-.breast-cancer-page-hero-copy p {
-    max-width: 790px;
-    color: rgba(255, 255, 255, 0.80);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.breast-cancer-page-hero-copy .detail-tags {
-    margin-top: 22px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.92rem;
-    font-weight: 750;
-}
-
-.breast-cancer-hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.breast-cancer-hero-metric {
-    min-height: 122px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
-        rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-}
-
-.breast-cancer-hero-metric-value {
-    display: block;
-    margin-bottom: 8px;
-    color: white;
-    font-size: clamp(1.45rem, 2.3vw, 2.25rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.04em;
-}
-
-.breast-cancer-hero-metric-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
-
-/* Body layout */
-
-.breast-cancer-body-layout {
-    max-width: var(--breast-cancer-page-max);
-    margin: 0 auto;
-    padding: 56px var(--breast-cancer-padding-x) 82px;
-    display: grid;
-    grid-template-columns: var(--breast-cancer-sidebar-width) minmax(0, 1fr);
-    gap: var(--breast-cancer-content-gap);
-}
-
-.breast-cancer-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
-
-.breast-cancer-section-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    transform: translateX(var(--breast-cancer-sidebar-offset-x));
-}
-
-.breast-cancer-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(87, 42, 60, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
-
-.breast-cancer-section-nav a:hover,
-.breast-cancer-section-nav a:focus-visible {
-    color: var(--breast-cancer-accent);
-    border-bottom-color: var(--breast-cancer-accent);
-    transform: translateX(8px);
-}
-
-.breast-cancer-body-content {
-    min-width: 0;
-}
-
-.breast-cancer-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(87, 42, 60, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.breast-cancer-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.breast-cancer-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.breast-cancer-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
-
-.breast-cancer-body-content .detail-section h2::before {
-    content: "";
-    width: 52px;
-    height: 4px;
-    display: block;
-    margin-bottom: 14px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--color-gold), var(--breast-cancer-accent));
-}
-
-.breast-cancer-body-content .detail-section p {
-    max-width: 850px;
-    color: var(--breast-cancer-text);
-    font-size: 1.02rem;
-    line-height: 1.75;
-}
-
-/* Shared cards */
-
-.breast-cancer-body-content .metric-card,
-.breast-cancer-body-content .approach-card,
-.breast-cancer-body-content .contribution-card,
-.breast-cancer-body-content .artifact-card,
-.breast-cancer-visual-card {
-    border: 1px solid var(--breast-cancer-border);
-    border-radius: var(--breast-cancer-card-radius);
-    background: var(--breast-cancer-card-bg);
-    box-shadow: var(--breast-cancer-card-shadow);
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.breast-cancer-body-content .metric-card,
-.breast-cancer-body-content .approach-card,
-.breast-cancer-body-content .contribution-card,
-.breast-cancer-body-content .artifact-card {
-    padding: 24px;
-}
-
-.breast-cancer-body-content .metric-card:hover,
-.breast-cancer-body-content .approach-card:hover,
-.breast-cancer-body-content .contribution-card:hover,
-.breast-cancer-body-content .artifact-card:hover,
-.breast-cancer-visual-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(138, 75, 99, 0.24);
-    box-shadow: var(--breast-cancer-card-shadow-hover);
-}
-
-.breast-cancer-body-content .metric-value {
-    color: var(--breast-cancer-accent-dark);
-}
-
-.breast-cancer-body-content .metric-label {
-    color: #4c3340;
-}
-
-.breast-cancer-summary-grid {
-    max-width: 1060px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.breast-cancer-summary-grid .metric-card {
-    background: var(--breast-cancer-highlight-bg);
-}
-
-.breast-cancer-model-grid,
-.breast-cancer-role-grid {
-    max-width: 1060px;
-}
-
-.breast-cancer-model-grid .approach-card:last-child,
-.breast-cancer-role-grid .contribution-card:last-child {
-    grid-column: auto;
-}
-
-.breast-cancer-card-number {
-    display: inline-flex;
-    margin-bottom: 18px;
-    color: var(--breast-cancer-accent);
-    font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-}
-
-.breast-cancer-pipeline {
-    max-width: 1060px;
-}
-
-.breast-cancer-body-content .pipeline-step {
-    min-height: 132px;
-    border-radius: 16px;
-    background:
-        radial-gradient(circle at 88% 10%, rgba(201, 168, 106, 0.11), transparent 34%),
-        linear-gradient(180deg, var(--breast-cancer-soft), #ffffff);
-    box-shadow: 0 14px 28px rgba(87, 42, 60, 0.055);
-}
-
-/* Performance table */
-
-.performance-table-wrap {
-    max-width: 1120px;
-    margin: 30px 0 34px;
-    overflow-x: auto;
-    border: 1px solid var(--breast-cancer-border);
-    border-radius: 18px;
-    background: white;
-    box-shadow: var(--breast-cancer-card-shadow);
-}
-
-.breast-cancer-performance-table {
-    margin: 0;
-    min-width: 780px;
-    color: var(--breast-cancer-text);
-}
-
-.breast-cancer-performance-table thead th {
-    padding: 18px 20px;
-    border-bottom: 1px solid rgba(87, 42, 60, 0.12);
-    background: var(--breast-cancer-soft);
-    color: var(--color-dark);
-    font-size: 0.84rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.breast-cancer-performance-table tbody td {
-    padding: 18px 20px;
-    border-bottom: 1px solid rgba(87, 42, 60, 0.08);
-    vertical-align: top;
-    font-size: 0.94rem;
-    line-height: 1.5;
-}
-
-.breast-cancer-performance-table tbody tr:last-child td {
-    border-bottom: 0;
-}
-
-.breast-cancer-performance-table tbody td:first-child {
-    color: var(--color-dark);
-    font-weight: 800;
-}
-
-/* Visuals */
-
-.breast-cancer-visual-grid {
-    max-width: var(--breast-cancer-visual-max);
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--breast-cancer-visual-gap);
-}
-
-.breast-cancer-visual-card {
-    margin: 0;
-    overflow: hidden;
-}
-
-.breast-cancer-visual-card a {
-    display: block;
-    cursor: zoom-in;
-    color: inherit;
-    text-decoration: none;
-}
-
-.breast-cancer-visual-card img {
-    width: 100%;
-    height: var(--breast-cancer-visual-height);
-    display: block;
-    padding: 8px;
-    object-fit: contain;
-    object-position: center;
-    background: white;
-}
-
-.breast-cancer-visual-card figcaption {
-    padding: 16px 18px 18px;
-    border-top: 1px solid rgba(87, 42, 60, 0.10);
-    color: var(--color-muted);
-    font-size: 0.88rem;
-    line-height: 1.55;
-}
-
-.breast-cancer-visual-card figcaption strong {
-    color: var(--color-dark);
-}
-
-.breast-cancer-generalization-top {
-    max-width: var(--breast-cancer-visual-max);
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.75fr);
-    gap: var(--breast-cancer-visual-gap);
-    align-items: stretch;
-}
-
-.breast-cancer-generalization-note {
-    max-width: none;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.breast-cancer-learning-card {
-    max-width: var(--breast-cancer-visual-max);
-    margin: 24px 0 0;
-}
-
-.breast-cancer-learning-card img {
-    height: 420px;
-    padding: 6px;
-    object-fit: contain;
-}
-
-.breast-cancer-body-content .evidence-note {
-    max-width: 920px;
-    margin: 30px 0 0;
-    padding: 24px 26px;
-    border-left: 5px solid var(--breast-cancer-accent);
-    border-radius: 0 18px 18px 0;
-    background:
-        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, var(--breast-cancer-soft) 100%);
-    box-shadow: var(--breast-cancer-card-shadow);
-}
-
-.breast-cancer-body-content .evidence-note h3 {
-    color: var(--color-dark);
-}
-
-.breast-cancer-artifact-grid {
-    max-width: 1060px;
-}
-
-.breast-cancer-artifact-link {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    margin-top: auto;
-    color: var(--breast-cancer-accent);
-    text-decoration: none;
-    font-weight: 850;
-}
-
-.breast-cancer-artifact-link:hover {
-    color: var(--color-dark);
-}
-
-/* Responsive */
-
-@media (max-width: 1000px) {
-    .breast-cancer-page {
-        --breast-cancer-hero-min-height: auto;
-        --breast-cancer-visual-height: 280px;
-    }
-
-    .breast-cancer-page-hero {
-        min-height: var(--breast-cancer-hero-min-height);
-        padding: 76px 24px 58px;
-    }
-
-    .breast-cancer-page-hero-inner {
-        grid-template-columns: 1fr;
-        gap: 34px;
-    }
-
-    .breast-cancer-hero-metrics,
-    .breast-cancer-summary-grid,
-    .breast-cancer-visual-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .breast-cancer-wide-visual img {
-        height: 420px;
-    }
-
-    .breast-cancer-body-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 38px 24px 70px;
-    }
-
-    .breast-cancer-section-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        transform: none;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .breast-cancer-section-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .breast-cancer-section-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(87, 42, 60, 0.18);
-        border-radius: 999px;
-        background: white;
-        color: var(--color-muted);
-        font-size: 0.82rem;
-    }
-
-    .breast-cancer-section-nav a:hover,
-    .breast-cancer-section-nav a:focus-visible {
-        transform: none;
-        color: var(--breast-cancer-accent);
-        border-color: var(--portfolio-accent-border);
-        background: var(--portfolio-accent-soft);
-    }
-
-    .breast-cancer-generalization-top {
-        grid-template-columns: 1fr;
-    }
-
-    .breast-cancer-learning-card img {
-        height: 420px;
-    }
-}
-
-@media (max-width: 560px) {
-    .breast-cancer-page {
-        --breast-cancer-visual-height: 230px;
-    }
-
-    .breast-cancer-page-hero {
-        padding: 92px 22px 36px;
-        align-items: flex-start;
-    }
-
-    .breast-cancer-hero-back {
-        top: 20px;
-        left: 22px;
-        font-size: 0.88rem;
-    }
-
-    .breast-cancer-hero-source {
-        top: 52px;
-        right: auto;
-        bottom: auto;
-        left: 22px;
-        min-height: 34px;
-        padding: 9px 13px;
-        font-size: 0.76rem;
-    }
-
-    .breast-cancer-page-hero-inner {
-        gap: 24px;
-    }
-
-    .breast-cancer-page-hero-copy h1 {
-        max-width: 340px;
-        font-size: clamp(2.18rem, 10.5vw, 3rem);
-        line-height: 1.02;
-    }
-
-    .breast-cancer-page-hero-copy h2 {
-        font-size: 1.06rem;
-        line-height: 1.4;
-    }
-
-    .breast-cancer-page-hero-copy p {
-        font-size: 0.94rem;
-        line-height: 1.62;
-    }
-
-    .breast-cancer-page-hero-copy .detail-tags {
-        font-size: 0.8rem;
-        line-height: 1.5;
-    }
-
-    .breast-cancer-hero-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-    }
-
-    .breast-cancer-hero-metric {
-        min-height: 92px;
-        padding: 14px;
-        border-radius: 16px;
-    }
-
-    .breast-cancer-hero-metric-value {
-        margin-bottom: 6px;
-        font-size: 1.24rem;
-        line-height: 1.05;
-    }
-
-    .breast-cancer-hero-metric-label {
-        font-size: 0.7rem;
-        line-height: 1.3;
-    }
-
-    .breast-cancer-body-layout {
-        padding: 32px 22px 72px;
-    }
-
-    .breast-cancer-body-content .detail-section {
-        padding-bottom: 30px;
-        margin-bottom: 32px;
-    }
-
-    .breast-cancer-body-content .detail-section h2 {
-        font-size: 1.75rem;
-    }
-
-    .breast-cancer-body-content .metric-card,
-    .breast-cancer-body-content .approach-card,
-    .breast-cancer-body-content .contribution-card,
-    .breast-cancer-body-content .artifact-card {
-        padding: 20px;
-    }
-
-    .breast-cancer-visual-card img {
-        padding: 6px;
-    }
-
-    .breast-cancer-visual-card figcaption {
-        padding: 14px 16px 16px;
-    }
-
-    .breast-cancer-learning-card img {
-        height: 300px;
-    }
-
-}
-
-/* =========================================================
-   CUSTOMER PURCHASE PREDICTION PROJECT PAGE
-   Conversion analytics and purchase-propensity modeling case study.
-
-   Page file:
-   - projects/customer-purchase.html
-
-   Scope:
-   - All rules are scoped to .customer-purchase-page or customer-purchase-specific classes.
-   - This avoids affecting Ariel, Resource Matching, Energy Forecasting,
-     Smart City, Breast Cancer, research pages, or homepage cards.
-   ========================================================= */
 
 .customer-purchase-page {
     --customer-purchase-page-max: 1660px;
@@ -8043,42 +7028,70 @@ body {
     --customer-purchase-visual-gap: 22px;
     --customer-purchase-visual-height: 330px;
 
+    /* Shared classification-page aliases */
+    --classification-page-max: var(--customer-purchase-page-max);
+    --classification-sidebar-width: var(--customer-purchase-sidebar-width);
+    --classification-content-gap: var(--customer-purchase-content-gap);
+    --classification-sidebar-offset-x: var(--customer-purchase-sidebar-offset-x);
+    --classification-padding-x: var(--customer-purchase-padding-x);
+    --classification-accent: var(--customer-purchase-accent);
+    --classification-accent-dark: var(--customer-purchase-accent-dark);
+    --classification-text: var(--customer-purchase-text);
+    --classification-soft: var(--customer-purchase-soft);
+    --classification-border: var(--customer-purchase-border);
+    --classification-card-radius: var(--customer-purchase-card-radius);
+    --classification-card-shadow: var(--customer-purchase-card-shadow);
+    --classification-card-shadow-hover: var(--customer-purchase-card-shadow-hover);
+    --classification-card-bg: var(--customer-purchase-card-bg);
+    --classification-highlight-bg: var(--customer-purchase-highlight-bg);
+    --classification-hero-position: var(--customer-purchase-hero-position);
+    --classification-hero-min-height: var(--customer-purchase-hero-min-height);
+    --classification-visual-max: var(--customer-purchase-visual-max);
+    --classification-visual-gap: var(--customer-purchase-visual-gap);
+    --classification-visual-height: var(--customer-purchase-visual-height);
+
+    --classification-nav-border: rgba(90, 53, 25, 0.18);
+    --classification-section-border: rgba(90, 53, 25, 0.10);
+    --classification-hover-border: rgba(154, 101, 50, 0.24);
+    --classification-metric-label: #513a27;
+    --classification-pipeline-shadow: 0 14px 28px rgba(90, 53, 25, 0.055);
+    --classification-table-head-border: rgba(90, 53, 25, 0.12);
+    --classification-table-row-border: rgba(90, 53, 25, 0.08);
+    --classification-caption-border: rgba(90, 53, 25, 0.10);
+
     background: #ffffff;
 }
 
-/* Hero */
+/* Full-width page and hero foundations */
 
-.customer-purchase-detail-page.detail-page {
+:is(
+    .breast-cancer-detail-page,
+    .customer-purchase-detail-page
+).detail-page {
     max-width: none;
     margin: 0;
     padding: 0;
 }
 
-.customer-purchase-page-hero {
+:is(
+    .breast-cancer-page-hero,
+    .customer-purchase-page-hero
+) {
     position: relative;
     width: 100vw;
-    min-height: var(--customer-purchase-hero-min-height);
+    min-height: var(--classification-hero-min-height);
     margin-left: calc(50% - 50vw);
-    padding: 82px var(--customer-purchase-padding-x) 72px;
+    padding: 82px var(--classification-padding-x) 72px;
     display: flex;
     align-items: center;
     overflow: hidden;
     color: white;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(35, 24, 14, 0.95) 0%,
-            rgba(72, 46, 24, 0.82) 48%,
-            rgba(100, 70, 38, 0.42) 100%
-        ),
-        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.24), transparent 30%),
-        radial-gradient(circle at 82% 20%, rgba(154, 101, 50, 0.28), transparent 34%),
-        var(--customer-purchase-hero-image);
-    background-size: cover;
-    background-position: var(--customer-purchase-hero-position);
 }
 
-.customer-purchase-page-hero::after {
+:is(
+    .breast-cancer-page-hero,
+    .customer-purchase-page-hero
+)::after {
     content: "";
     position: absolute;
     inset: auto 0 0;
@@ -8087,10 +7100,13 @@ body {
     pointer-events: none;
 }
 
-.customer-purchase-hero-back {
+:is(
+    .breast-cancer-hero-back,
+    .customer-purchase-hero-back
+) {
     position: absolute;
     top: 28px;
-    left: var(--customer-purchase-padding-x);
+    left: var(--classification-padding-x);
     z-index: 2;
     color: rgba(255, 255, 255, 0.86);
     text-decoration: none;
@@ -8098,13 +7114,19 @@ body {
     font-weight: 700;
 }
 
-.customer-purchase-hero-back:hover {
+:is(
+    .breast-cancer-hero-back,
+    .customer-purchase-hero-back
+):hover {
     color: var(--color-gold);
 }
 
-.customer-purchase-hero-source {
+:is(
+    .breast-cancer-hero-source,
+    .customer-purchase-hero-source
+) {
     position: absolute;
-    right: var(--customer-purchase-padding-x);
+    right: var(--classification-padding-x);
     bottom: 20px;
     z-index: 3;
     display: inline-flex;
@@ -8124,14 +7146,20 @@ body {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.customer-purchase-hero-source:hover {
+:is(
+    .breast-cancer-hero-source,
+    .customer-purchase-hero-source
+):hover {
     border-color: rgba(201, 168, 106, 0.78);
     background: rgba(201, 168, 106, 0.16);
     color: var(--color-gold);
     transform: translateY(-2px);
 }
 
-.customer-purchase-page-hero-inner {
+:is(
+    .breast-cancer-page-hero-inner,
+    .customer-purchase-page-hero-inner
+) {
     position: relative;
     z-index: 2;
     width: min(1220px, 100%);
@@ -8142,13 +7170,19 @@ body {
     align-items: center;
 }
 
-.customer-purchase-page-hero-copy .section-label {
+:is(
+    .breast-cancer-page-hero-copy,
+    .customer-purchase-page-hero-copy
+) .section-label {
     margin-bottom: 14px;
     color: var(--color-gold);
     font-weight: 850;
 }
 
-.customer-purchase-page-hero-copy h1 {
+:is(
+    .breast-cancer-page-hero-copy,
+    .customer-purchase-page-hero-copy
+) h1 {
     max-width: 820px;
     margin: 0 0 18px;
     color: white;
@@ -8157,7 +7191,10 @@ body {
     letter-spacing: -0.055em;
 }
 
-.customer-purchase-page-hero-copy h2 {
+:is(
+    .breast-cancer-page-hero-copy,
+    .customer-purchase-page-hero-copy
+) h2 {
     max-width: 850px;
     margin: 0 0 20px;
     color: rgba(255, 255, 255, 0.94);
@@ -8166,27 +7203,39 @@ body {
     letter-spacing: -0.025em;
 }
 
-.customer-purchase-page-hero-copy p {
+:is(
+    .breast-cancer-page-hero-copy,
+    .customer-purchase-page-hero-copy
+) p {
     max-width: 790px;
     color: rgba(255, 255, 255, 0.80);
     font-size: 1.02rem;
     line-height: 1.7;
 }
 
-.customer-purchase-page-hero-copy .detail-tags {
+:is(
+    .breast-cancer-page-hero-copy,
+    .customer-purchase-page-hero-copy
+) .detail-tags {
     margin-top: 22px;
     color: rgba(255, 255, 255, 0.76);
     font-size: 0.92rem;
     font-weight: 750;
 }
 
-.customer-purchase-hero-metrics {
+:is(
+    .breast-cancer-hero-metrics,
+    .customer-purchase-hero-metrics
+) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
 }
 
-.customer-purchase-hero-metric {
+:is(
+    .breast-cancer-hero-metric,
+    .customer-purchase-hero-metric
+) {
     min-height: 122px;
     padding: 18px;
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -8197,7 +7246,10 @@ body {
     backdrop-filter: blur(8px);
 }
 
-.customer-purchase-hero-metric-value {
+:is(
+    .breast-cancer-hero-metric-value,
+    .customer-purchase-hero-metric-value
+) {
     display: block;
     margin-bottom: 8px;
     color: white;
@@ -8207,42 +7259,57 @@ body {
     letter-spacing: -0.04em;
 }
 
-.customer-purchase-hero-metric-label {
+:is(
+    .breast-cancer-hero-metric-label,
+    .customer-purchase-hero-metric-label
+) {
     display: block;
     color: rgba(255, 255, 255, 0.72);
     font-size: 0.82rem;
     line-height: 1.4;
 }
 
-/* Body layout */
+/* Body layout and side navigation */
 
-.customer-purchase-body-layout {
-    max-width: var(--customer-purchase-page-max);
+:is(
+    .breast-cancer-body-layout,
+    .customer-purchase-body-layout
+) {
+    max-width: var(--classification-page-max);
     margin: 0 auto;
-    padding: 56px var(--customer-purchase-padding-x) 82px;
+    padding: 56px var(--classification-padding-x) 82px;
     display: grid;
-    grid-template-columns: var(--customer-purchase-sidebar-width) minmax(0, 1fr);
-    gap: var(--customer-purchase-content-gap);
+    grid-template-columns: var(--classification-sidebar-width) minmax(0, 1fr);
+    gap: var(--classification-content-gap);
 }
 
-.customer-purchase-page-sidebar {
+:is(
+    .breast-cancer-page-sidebar,
+    .customer-purchase-page-sidebar
+) {
     min-width: 0;
     padding-top: 4px;
 }
 
-.customer-purchase-section-nav {
+:is(
+    .breast-cancer-section-nav,
+    .customer-purchase-section-nav
+) {
     position: sticky;
     top: 92px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    transform: translateX(var(--customer-purchase-sidebar-offset-x));
+    transform: translateX(var(--classification-sidebar-offset-x));
 }
 
-.customer-purchase-section-nav a {
+:is(
+    .breast-cancer-section-nav,
+    .customer-purchase-section-nav
+) a {
     display: block;
     padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(90, 53, 25, 0.18);
+    border-bottom: 1px solid var(--classification-nav-border);
     color: var(--color-muted);
     text-decoration: none;
     font-size: 0.92rem;
@@ -8254,34 +7321,57 @@ body {
         transform 180ms ease;
 }
 
-.customer-purchase-section-nav a:hover,
-.customer-purchase-section-nav a:focus-visible {
-    color: var(--customer-purchase-accent);
-    border-bottom-color: var(--customer-purchase-accent);
+:is(
+    .breast-cancer-section-nav,
+    .customer-purchase-section-nav
+) a:hover,
+:is(
+    .breast-cancer-section-nav,
+    .customer-purchase-section-nav
+) a:focus-visible {
+    color: var(--classification-accent);
+    border-bottom-color: var(--classification-accent);
     transform: translateX(8px);
 }
 
-.customer-purchase-body-content {
+/* Main content sections */
+
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) {
     min-width: 0;
 }
 
-.customer-purchase-body-content .detail-section {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .detail-section {
     max-width: none;
     padding: 0 0 38px;
     margin-bottom: 42px;
-    border-bottom: 1px solid rgba(90, 53, 25, 0.10);
+    border-bottom: 1px solid var(--classification-section-border);
     scroll-margin-top: 32px;
 }
 
-.customer-purchase-body-content .detail-section:first-child {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .detail-section:first-child {
     padding-top: 0;
 }
 
-.customer-purchase-body-content .detail-section:last-child {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .detail-section:last-child {
     margin-bottom: 0;
 }
 
-.customer-purchase-body-content .detail-section h2 {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .detail-section h2 {
     position: relative;
     margin-bottom: 18px;
     color: var(--color-dark);
@@ -8290,177 +7380,259 @@ body {
     letter-spacing: -0.035em;
 }
 
-.customer-purchase-body-content .detail-section h2::before {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .detail-section h2::before {
     content: "";
     width: 52px;
     height: 4px;
     display: block;
     margin-bottom: 14px;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--color-gold), var(--customer-purchase-accent));
+    background: linear-gradient(90deg, var(--color-gold), var(--classification-accent));
 }
 
-.customer-purchase-body-content .detail-section p {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .detail-section p {
     max-width: 850px;
-    color: var(--customer-purchase-text);
+    color: var(--classification-text);
     font-size: 1.02rem;
     line-height: 1.75;
 }
 
-/* Shared cards */
+/* Cards, summary grids, and pipelines */
 
-.customer-purchase-body-content .metric-card,
-.customer-purchase-body-content .approach-card,
-.customer-purchase-body-content .contribution-card,
-.customer-purchase-body-content .artifact-card,
-.customer-purchase-visual-card {
-    border: 1px solid var(--customer-purchase-border);
-    border-radius: var(--customer-purchase-card-radius);
-    background: var(--customer-purchase-card-bg);
-    box-shadow: var(--customer-purchase-card-shadow);
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) :is(
+    .metric-card,
+    .approach-card,
+    .contribution-card,
+    .artifact-card
+),
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card
+) {
+    border: 1px solid var(--classification-border);
+    border-radius: var(--classification-card-radius);
+    background: var(--classification-card-bg);
+    box-shadow: var(--classification-card-shadow);
     transition:
         transform 180ms ease,
         box-shadow 180ms ease,
         border-color 180ms ease;
 }
 
-.customer-purchase-body-content .metric-card,
-.customer-purchase-body-content .approach-card,
-.customer-purchase-body-content .contribution-card,
-.customer-purchase-body-content .artifact-card {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) :is(
+    .metric-card,
+    .approach-card,
+    .contribution-card,
+    .artifact-card
+) {
     padding: 24px;
 }
 
-.customer-purchase-body-content .metric-card:hover,
-.customer-purchase-body-content .approach-card:hover,
-.customer-purchase-body-content .contribution-card:hover,
-.customer-purchase-body-content .artifact-card:hover,
-.customer-purchase-visual-card:hover {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) :is(
+    .metric-card,
+    .approach-card,
+    .contribution-card,
+    .artifact-card
+):hover,
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card
+):hover {
     transform: translateY(-3px);
-    border-color: rgba(154, 101, 50, 0.24);
-    box-shadow: var(--customer-purchase-card-shadow-hover);
+    border-color: var(--classification-hover-border);
+    box-shadow: var(--classification-card-shadow-hover);
 }
 
-.customer-purchase-body-content .metric-value {
-    color: var(--customer-purchase-accent-dark);
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .metric-value {
+    color: var(--classification-accent-dark);
 }
 
-.customer-purchase-body-content .metric-label {
-    color: #513a27;
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .metric-label {
+    color: var(--classification-metric-label);
 }
 
-.customer-purchase-summary-grid {
+:is(
+    .breast-cancer-summary-grid,
+    .customer-purchase-summary-grid
+) {
     max-width: 1060px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.customer-purchase-summary-grid .metric-card {
-    background: var(--customer-purchase-highlight-bg);
+:is(
+    .breast-cancer-summary-grid,
+    .customer-purchase-summary-grid
+) .metric-card {
+    background: var(--classification-highlight-bg);
 }
 
-.customer-purchase-model-grid,
-.customer-purchase-role-grid {
+:is(
+    .breast-cancer-model-grid,
+    .breast-cancer-role-grid,
+    .customer-purchase-role-grid
+) {
     max-width: 1060px;
 }
 
-.customer-purchase-model-grid .approach-card:last-child,
-.customer-purchase-role-grid .contribution-card:last-child {
+:is(
+    .breast-cancer-model-grid .approach-card:last-child,
+    .breast-cancer-role-grid .contribution-card:last-child,
+    .customer-purchase-role-grid .contribution-card:last-child
+) {
     grid-column: auto;
 }
 
-.customer-purchase-card-number {
+.breast-cancer-card-number {
     display: inline-flex;
     margin-bottom: 18px;
-    color: var(--customer-purchase-accent);
+    color: var(--classification-accent);
     font-size: 0.78rem;
     font-weight: 900;
     letter-spacing: 0.12em;
 }
 
-.customer-purchase-pipeline {
+.breast-cancer-pipeline {
     max-width: 1060px;
 }
 
-.customer-purchase-body-content .pipeline-step {
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .pipeline-step {
     min-height: 132px;
     border-radius: 16px;
     background:
         radial-gradient(circle at 88% 10%, rgba(201, 168, 106, 0.11), transparent 34%),
-        linear-gradient(180deg, var(--customer-purchase-soft), #ffffff);
-    box-shadow: 0 14px 28px rgba(90, 53, 25, 0.055);
+        linear-gradient(180deg, var(--classification-soft), #ffffff);
+    box-shadow: var(--classification-pipeline-shadow);
 }
 
-/* Performance table */
+/* Performance tables */
 
-.customer-purchase-table-wrap {
+.performance-table-wrap {
     max-width: 1120px;
     margin: 30px 0 34px;
     overflow-x: auto;
-    border: 1px solid var(--customer-purchase-border);
+    border: 1px solid var(--classification-border);
     border-radius: 18px;
     background: white;
-    box-shadow: var(--customer-purchase-card-shadow);
+    box-shadow: var(--classification-card-shadow);
 }
 
-.customer-purchase-performance-table {
+:is(
+    .breast-cancer-performance-table,
+    .customer-purchase-performance-table
+) {
     margin: 0;
-    min-width: 820px;
-    color: var(--customer-purchase-text);
+    color: var(--classification-text);
 }
 
-.customer-purchase-performance-table thead th {
+:is(
+    .breast-cancer-performance-table,
+    .customer-purchase-performance-table
+) thead th {
     padding: 18px 20px;
-    border-bottom: 1px solid rgba(90, 53, 25, 0.12);
-    background: var(--customer-purchase-soft);
+    border-bottom: 1px solid var(--classification-table-head-border);
+    background: var(--classification-soft);
     color: var(--color-dark);
     font-size: 0.84rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
-.customer-purchase-performance-table tbody td {
+:is(
+    .breast-cancer-performance-table,
+    .customer-purchase-performance-table
+) tbody td {
     padding: 18px 20px;
-    border-bottom: 1px solid rgba(90, 53, 25, 0.08);
+    border-bottom: 1px solid var(--classification-table-row-border);
     vertical-align: top;
     font-size: 0.94rem;
     line-height: 1.5;
 }
 
-.customer-purchase-performance-table tbody tr:last-child td {
+:is(
+    .breast-cancer-performance-table,
+    .customer-purchase-performance-table
+) tbody tr:last-child td {
     border-bottom: 0;
 }
 
-.customer-purchase-performance-table tbody td:first-child {
+:is(
+    .breast-cancer-performance-table,
+    .customer-purchase-performance-table
+) tbody td:first-child {
     color: var(--color-dark);
     font-weight: 800;
 }
 
-/* Visuals */
+.breast-cancer-performance-table {
+    min-width: 780px;
+}
 
-.customer-purchase-visual-grid {
-    max-width: var(--customer-purchase-visual-max);
+.customer-purchase-performance-table {
+    min-width: 820px;
+}
+
+/* Shared visual-card system */
+
+:is(
+    .breast-cancer-visual-grid,
+    .customer-purchase-visual-grid
+) {
+    max-width: var(--classification-visual-max);
     margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--customer-purchase-visual-gap);
+    gap: var(--classification-visual-gap);
 }
 
-.customer-purchase-visual-card {
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card
+) {
     margin: 0;
     overflow: hidden;
 }
 
-.customer-purchase-visual-card a,
-.customer-purchase-workflow-figure a {
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card,
+    .customer-purchase-workflow-figure
+) a {
     display: block;
     cursor: zoom-in;
     color: inherit;
     text-decoration: none;
 }
 
-.customer-purchase-visual-card img {
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card
+) img {
     width: 100%;
-    height: var(--customer-purchase-visual-height);
+    height: var(--classification-visual-height);
     display: block;
     padding: 8px;
     object-fit: contain;
@@ -8468,17 +7640,148 @@ body {
     background: white;
 }
 
-.customer-purchase-visual-card figcaption {
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card
+) figcaption {
     padding: 16px 18px 18px;
-    border-top: 1px solid rgba(90, 53, 25, 0.10);
+    border-top: 1px solid var(--classification-caption-border);
     color: var(--color-muted);
     font-size: 0.88rem;
     line-height: 1.55;
 }
 
-.customer-purchase-visual-card figcaption strong {
+:is(
+    .breast-cancer-visual-card,
+    .customer-purchase-visual-card
+) figcaption strong {
     color: var(--color-dark);
 }
+
+/* Evidence notes and artifacts */
+
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .evidence-note {
+    max-width: 920px;
+    margin: 30px 0 0;
+    padding: 24px 26px;
+    border-left: 5px solid var(--classification-accent);
+    border-radius: 0 18px 18px 0;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, var(--classification-soft) 100%);
+    box-shadow: var(--classification-card-shadow);
+}
+
+:is(
+    .breast-cancer-body-content,
+    .customer-purchase-body-content
+) .evidence-note h3 {
+    color: var(--color-dark);
+}
+
+:is(
+    .breast-cancer-artifact-grid,
+    .customer-purchase-artifact-grid
+) {
+    max-width: 1060px;
+}
+
+:is(
+    .breast-cancer-artifact-link,
+    .customer-purchase-artifact-link
+) {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: auto;
+    color: var(--classification-accent);
+    text-decoration: none;
+    font-weight: 850;
+}
+
+:is(
+    .breast-cancer-artifact-link,
+    .customer-purchase-artifact-link
+):hover {
+    color: var(--color-dark);
+}
+
+
+/* =========================================================
+   BREAST CANCER CLASSIFICATION
+   Healthcare ML classification and model-evaluation details.
+   ========================================================= */
+
+.breast-cancer-page-hero {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(33, 18, 28, 0.95) 0%,
+            rgba(70, 38, 58, 0.80) 48%,
+            rgba(79, 55, 75, 0.42) 100%
+        ),
+        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.22), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(138, 75, 99, 0.28), transparent 34%),
+        var(--breast-cancer-hero-image);
+    background-size: cover;
+    background-position: var(--breast-cancer-hero-position);
+}
+
+/* Generalization visuals */
+
+.breast-cancer-generalization-top {
+    max-width: var(--breast-cancer-visual-max);
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.75fr);
+    gap: var(--breast-cancer-visual-gap);
+    align-items: stretch;
+}
+
+.breast-cancer-generalization-note {
+    max-width: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.breast-cancer-learning-card {
+    max-width: var(--breast-cancer-visual-max);
+    margin: 24px 0 0;
+}
+
+.breast-cancer-learning-card img {
+    height: 420px;
+    padding: 6px;
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   CUSTOMER PURCHASE PREDICTION
+   Conversion analytics and purchase-propensity details.
+   ========================================================= */
+
+.customer-purchase-page-hero {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(35, 24, 14, 0.95) 0%,
+            rgba(72, 46, 24, 0.82) 48%,
+            rgba(100, 70, 38, 0.42) 100%
+        ),
+        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.24), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(154, 101, 50, 0.28), transparent 34%),
+        var(--customer-purchase-hero-image);
+    background-size: cover;
+    background-position: var(--customer-purchase-hero-position);
+}
+
+/* Modeling workflow and wide visuals */
 
 .customer-purchase-workflow-figure {
     max-width: 1160px;
@@ -8513,71 +7816,58 @@ body {
     justify-content: center;
 }
 
-.customer-purchase-body-content .evidence-note {
-    max-width: 920px;
-    margin: 30px 0 0;
-    padding: 24px 26px;
-    border-left: 5px solid var(--customer-purchase-accent);
-    border-radius: 0 18px 18px 0;
-    background:
-        radial-gradient(circle at 92% 12%, rgba(201, 168, 106, 0.12), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, var(--customer-purchase-soft) 100%);
-    box-shadow: var(--customer-purchase-card-shadow);
-}
 
-.customer-purchase-body-content .evidence-note h3 {
-    color: var(--color-dark);
-}
-
-.customer-purchase-artifact-grid {
-    max-width: 1060px;
-}
-
-.customer-purchase-artifact-link {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    margin-top: auto;
-    color: var(--customer-purchase-accent);
-    text-decoration: none;
-    font-weight: 850;
-}
-
-.customer-purchase-artifact-link:hover {
-    color: var(--color-dark);
-}
-
-/* Responsive */
+/* =========================================================
+   CLASSIFICATION PROJECT RESPONSIVE BEHAVIOR
+   ========================================================= */
 
 @media (max-width: 1000px) {
+    .breast-cancer-page,
     .customer-purchase-page {
-        --customer-purchase-hero-min-height: auto;
-        --customer-purchase-visual-height: 280px;
+        --classification-hero-min-height: auto;
+        --classification-visual-height: 280px;
     }
 
-    .customer-purchase-page-hero {
-        min-height: var(--customer-purchase-hero-min-height);
+    :is(
+        .breast-cancer-page-hero,
+        .customer-purchase-page-hero
+    ) {
+        min-height: var(--classification-hero-min-height);
         padding: 76px 24px 58px;
     }
 
-    .customer-purchase-page-hero-inner {
+    :is(
+        .breast-cancer-page-hero-inner,
+        .customer-purchase-page-hero-inner
+    ) {
         grid-template-columns: 1fr;
         gap: 34px;
     }
 
-    .customer-purchase-hero-metrics,
-    .customer-purchase-summary-grid,
-    .customer-purchase-visual-grid {
+    :is(
+        .breast-cancer-hero-metrics,
+        .customer-purchase-hero-metrics,
+        .breast-cancer-summary-grid,
+        .customer-purchase-summary-grid,
+        .breast-cancer-visual-grid,
+        .customer-purchase-visual-grid
+    ) {
         grid-template-columns: 1fr;
     }
 
-    .customer-purchase-body-layout {
+    :is(
+        .breast-cancer-body-layout,
+        .customer-purchase-body-layout
+    ) {
         grid-template-columns: 1fr;
         gap: 28px;
         padding: 38px 24px 70px;
     }
 
-    .customer-purchase-section-nav {
+    :is(
+        .breast-cancer-section-nav,
+        .customer-purchase-section-nav
+    ) {
         position: static;
         flex-direction: row;
         gap: 10px;
@@ -8588,26 +7878,46 @@ body {
         -ms-overflow-style: none;
     }
 
-    .customer-purchase-section-nav::-webkit-scrollbar {
+    :is(
+        .breast-cancer-section-nav,
+        .customer-purchase-section-nav
+    )::-webkit-scrollbar {
         display: none;
     }
 
-    .customer-purchase-section-nav a {
+    :is(
+        .breast-cancer-section-nav,
+        .customer-purchase-section-nav
+    ) a {
         flex: 0 0 auto;
         padding: 9px 13px;
-        border: 1px solid rgba(90, 53, 25, 0.18);
+        border: 1px solid var(--classification-nav-border);
         border-radius: 999px;
         background: white;
         color: var(--color-muted);
         font-size: 0.82rem;
     }
 
-    .customer-purchase-section-nav a:hover,
-    .customer-purchase-section-nav a:focus-visible {
+    :is(
+        .breast-cancer-section-nav,
+        .customer-purchase-section-nav
+    ) a:hover,
+    :is(
+        .breast-cancer-section-nav,
+        .customer-purchase-section-nav
+    ) a:focus-visible {
         transform: none;
-        color: var(--customer-purchase-accent);
+        color: var(--classification-accent);
         border-color: var(--portfolio-accent-border);
         background: var(--portfolio-accent-soft);
+    }
+
+    .breast-cancer-generalization-top {
+        grid-template-columns: 1fr;
+    }
+
+    .breast-cancer-learning-card img {
+        height: 420px;
     }
 
     .customer-purchase-wide-visual img {
@@ -8616,22 +7926,32 @@ body {
 }
 
 @media (max-width: 560px) {
+    .breast-cancer-page,
     .customer-purchase-page {
-        --customer-purchase-visual-height: 230px;
+        --classification-visual-height: 230px;
     }
 
-    .customer-purchase-page-hero {
+    :is(
+        .breast-cancer-page-hero,
+        .customer-purchase-page-hero
+    ) {
         padding: 92px 22px 36px;
         align-items: flex-start;
     }
 
-    .customer-purchase-hero-back {
+    :is(
+        .breast-cancer-hero-back,
+        .customer-purchase-hero-back
+    ) {
         top: 20px;
         left: 22px;
         font-size: 0.88rem;
     }
 
-    .customer-purchase-hero-source {
+    :is(
+        .breast-cancer-hero-source,
+        .customer-purchase-hero-source
+    ) {
         top: 52px;
         right: auto;
         bottom: auto;
@@ -8641,8 +7961,17 @@ body {
         font-size: 0.76rem;
     }
 
-    .customer-purchase-page-hero-inner {
+    :is(
+        .breast-cancer-page-hero-inner,
+        .customer-purchase-page-hero-inner
+    ) {
         gap: 24px;
+    }
+
+    .breast-cancer-page-hero-copy h1 {
+        max-width: 340px;
+        font-size: clamp(2.18rem, 10.5vw, 3rem);
+        line-height: 1.02;
     }
 
     .customer-purchase-page-hero-copy h1 {
@@ -8651,30 +7980,51 @@ body {
         line-height: 1.02;
     }
 
-    .customer-purchase-page-hero-copy h2 {
+    :is(
+        .breast-cancer-page-hero-copy,
+        .customer-purchase-page-hero-copy
+    ) h2 {
         font-size: 1.06rem;
         line-height: 1.4;
     }
 
-    .customer-purchase-page-hero-copy p {
+    :is(
+        .breast-cancer-page-hero-copy,
+        .customer-purchase-page-hero-copy
+    ) p {
         font-size: 0.94rem;
         line-height: 1.62;
     }
 
-    .customer-purchase-page-hero-copy .detail-tags {
+    :is(
+        .breast-cancer-page-hero-copy,
+        .customer-purchase-page-hero-copy
+    ) .detail-tags {
         font-size: 0.8rem;
         line-height: 1.5;
     }
 
-    .customer-purchase-hero-metrics {
+    :is(
+        .breast-cancer-hero-metrics,
+        .customer-purchase-hero-metrics
+    ) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
 
-    .customer-purchase-hero-metric {
+    :is(
+        .breast-cancer-hero-metric,
+        .customer-purchase-hero-metric
+    ) {
         min-height: 92px;
         padding: 14px;
         border-radius: 16px;
+    }
+
+    .breast-cancer-hero-metric-value {
+        margin-bottom: 6px;
+        font-size: 1.24rem;
+        line-height: 1.05;
     }
 
     .customer-purchase-hero-metric-value {
@@ -8683,55 +8033,83 @@ body {
         line-height: 1.05;
     }
 
-    .customer-purchase-hero-metric-label {
+    :is(
+        .breast-cancer-hero-metric-label,
+        .customer-purchase-hero-metric-label
+    ) {
         font-size: 0.7rem;
         line-height: 1.3;
     }
 
-    .customer-purchase-body-layout {
+    :is(
+        .breast-cancer-body-layout,
+        .customer-purchase-body-layout
+    ) {
         padding: 32px 22px 72px;
     }
 
-    .customer-purchase-body-content .detail-section {
+    :is(
+        .breast-cancer-body-content,
+        .customer-purchase-body-content
+    ) .detail-section {
         padding-bottom: 30px;
         margin-bottom: 32px;
     }
 
-    .customer-purchase-body-content .detail-section h2 {
+    :is(
+        .breast-cancer-body-content,
+        .customer-purchase-body-content
+    ) .detail-section h2 {
         font-size: 1.75rem;
     }
 
-    .customer-purchase-body-content .metric-card,
-    .customer-purchase-body-content .approach-card,
-    .customer-purchase-body-content .contribution-card,
-    .customer-purchase-body-content .artifact-card {
+    :is(
+        .breast-cancer-body-content,
+        .customer-purchase-body-content
+    ) :is(
+        .metric-card,
+        .approach-card,
+        .contribution-card,
+        .artifact-card
+    ) {
         padding: 20px;
     }
 
-    .customer-purchase-visual-card img {
+    :is(
+        .breast-cancer-visual-card,
+        .customer-purchase-visual-card
+    ) img {
         padding: 6px;
+    }
+
+    :is(
+        .breast-cancer-visual-card,
+        .customer-purchase-visual-card
+    ) figcaption {
+        padding: 14px 16px 16px;
+    }
+
+    .breast-cancer-learning-card img {
+        height: 300px;
     }
 
     .customer-purchase-wide-visual img {
         height: 270px;
     }
-
-    .customer-purchase-visual-card figcaption {
-        padding: 14px 16px 16px;
-    }
 }
 
+
 /* =========================================================
-   HOUSE PRICE PREDICTION PROJECT PAGE
-   Neural network regression, benchmarking, and diagnostics case study.
+   ANALYTICS PROJECT PAGE FOUNDATION
+   Shared structure for:
+   - House Price Prediction
+   - Visual Analytics and Business Intelligence
 
-   Page file:
-   - projects/house-price.html
-
-   Scope:
-   - All rules are scoped to .house-price-page or house-price-specific classes.
-   - This avoids affecting other project pages, research pages, and homepage cards.
+   Page-specific colors, hero imagery, charts, tables, and gallery
+   treatments remain in their dedicated sections below.
    ========================================================= */
+
+/* Page design tokens */
 
 .house-price-page {
     --house-price-page-max: 1660px;
@@ -8772,42 +8150,124 @@ body {
     --house-price-visual-gap: 22px;
     --house-price-visual-height: 330px;
 
+    /* Shared analytics-project aliases */
+    --analytics-project-page-max: var(--house-price-page-max);
+    --analytics-project-sidebar-width: var(--house-price-sidebar-width);
+    --analytics-project-content-gap: var(--house-price-content-gap);
+    --analytics-project-sidebar-offset-x: var(--house-price-sidebar-offset-x);
+    --analytics-project-padding-x: var(--house-price-padding-x);
+    --analytics-project-accent: var(--house-price-accent);
+    --analytics-project-accent-dark: var(--house-price-accent-dark);
+    --analytics-project-text: var(--house-price-text);
+    --analytics-project-soft: var(--house-price-soft);
+    --analytics-project-border: var(--house-price-border);
+    --analytics-project-card-radius: var(--house-price-card-radius);
+    --analytics-project-card-shadow: var(--house-price-card-shadow);
+    --analytics-project-card-shadow-hover: var(--house-price-card-shadow-hover);
+    --analytics-project-card-bg: var(--house-price-card-bg);
+    --analytics-project-highlight-bg: var(--house-price-highlight-bg);
+    --analytics-project-hero-min-height: var(--house-price-hero-min-height);
+    --analytics-project-visual-height: var(--house-price-visual-height);
+
+    --analytics-project-nav-border: rgba(31, 70, 95, 0.18);
+    --analytics-project-section-border: rgba(31, 70, 95, 0.10);
+    --analytics-project-hover-border: rgba(63, 111, 143, 0.24);
+    --analytics-project-metric-label: #314556;
+
     background: #ffffff;
 }
 
-/* Hero */
+.tableau-page {
+    --tableau-page-max: 1660px;
+    --tableau-sidebar-width: 170px;
+    --tableau-content-gap: 64px;
+    --tableau-sidebar-offset-x: -34px;
+    --tableau-padding-x: clamp(28px, 4vw, 72px);
 
-.house-price-detail-page.detail-page {
+    --tableau-accent: #4f7fa8;
+    --tableau-accent-dark: #234c6f;
+    --tableau-text: #24313a;
+    --tableau-muted: #5f6d76;
+    --tableau-soft: rgba(232, 241, 248, 0.74);
+    --tableau-border: rgba(35, 76, 111, 0.14);
+
+    --tableau-card-radius: 18px;
+    --tableau-card-shadow: 0 16px 34px rgba(35, 76, 111, 0.065);
+    --tableau-card-shadow-hover: 0 22px 46px rgba(35, 76, 111, 0.11);
+
+    --tableau-hero-image: url("images/projects/cards/visualization-bg.png");
+    --tableau-hero-position: center;
+    --tableau-hero-min-height: 540px;
+
+    --tableau-card-bg:
+        radial-gradient(circle at 90% 10%, rgba(232, 241, 248, 0.74), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(232, 241, 248, 0.44) 100%);
+
+    --tableau-highlight-bg:
+        radial-gradient(circle at 88% 10%, rgba(79, 127, 168, 0.16), transparent 34%),
+        linear-gradient(
+            125deg,
+            rgba(232, 241, 248, 0.36) 0%,
+            rgba(216, 232, 243, 0.28) 56%,
+            rgba(197, 220, 236, 0.92) 100%
+        );
+
+    /* Shared analytics-project aliases */
+    --analytics-project-page-max: var(--tableau-page-max);
+    --analytics-project-sidebar-width: var(--tableau-sidebar-width);
+    --analytics-project-content-gap: var(--tableau-content-gap);
+    --analytics-project-sidebar-offset-x: var(--tableau-sidebar-offset-x);
+    --analytics-project-padding-x: var(--tableau-padding-x);
+    --analytics-project-accent: var(--tableau-accent);
+    --analytics-project-accent-dark: var(--tableau-accent-dark);
+    --analytics-project-text: var(--tableau-text);
+    --analytics-project-soft: var(--tableau-soft);
+    --analytics-project-border: var(--tableau-border);
+    --analytics-project-card-radius: var(--tableau-card-radius);
+    --analytics-project-card-shadow: var(--tableau-card-shadow);
+    --analytics-project-card-shadow-hover: var(--tableau-card-shadow-hover);
+    --analytics-project-card-bg: var(--tableau-card-bg);
+    --analytics-project-highlight-bg: var(--tableau-highlight-bg);
+    --analytics-project-hero-min-height: var(--tableau-hero-min-height);
+
+    --analytics-project-nav-border: rgba(35, 76, 111, 0.18);
+    --analytics-project-section-border: rgba(35, 76, 111, 0.10);
+    --analytics-project-hover-border: rgba(79, 127, 168, 0.24);
+    --analytics-project-metric-label: #314556;
+
+    background: #ffffff;
+}
+
+/* Full-width page and hero foundations */
+
+:is(
+    .house-price-detail-page,
+    .tableau-detail-page
+).detail-page {
     max-width: none;
     margin: 0;
     padding: 0;
 }
 
-.house-price-page-hero {
+:is(
+    .house-price-page-hero,
+    .tableau-page-hero
+) {
     position: relative;
     width: 100vw;
-    min-height: var(--house-price-hero-min-height);
+    min-height: var(--analytics-project-hero-min-height);
     margin-left: calc(50% - 50vw);
-    padding: 82px var(--house-price-padding-x) 72px;
+    padding: 82px var(--analytics-project-padding-x) 72px;
     display: flex;
     align-items: center;
     overflow: hidden;
     color: white;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(13, 26, 38, 0.95) 0%,
-            rgba(28, 55, 78, 0.82) 48%,
-            rgba(54, 86, 108, 0.42) 100%
-        ),
-        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.22), transparent 30%),
-        radial-gradient(circle at 82% 20%, rgba(63, 111, 143, 0.30), transparent 34%),
-        var(--house-price-hero-image);
-    background-size: cover;
-    background-position: var(--house-price-hero-position);
 }
 
-.house-price-page-hero::after {
+:is(
+    .house-price-page-hero,
+    .tableau-page-hero
+)::after {
     content: "";
     position: absolute;
     inset: auto 0 0;
@@ -8816,10 +8276,13 @@ body {
     pointer-events: none;
 }
 
-.house-price-hero-back {
+:is(
+    .house-price-hero-back,
+    .tableau-hero-back
+) {
     position: absolute;
     top: 28px;
-    left: var(--house-price-padding-x);
+    left: var(--analytics-project-padding-x);
     z-index: 2;
     color: rgba(255, 255, 255, 0.86);
     text-decoration: none;
@@ -8827,13 +8290,19 @@ body {
     font-weight: 700;
 }
 
-.house-price-hero-back:hover {
+:is(
+    .house-price-hero-back,
+    .tableau-hero-back
+):hover {
     color: var(--color-gold);
 }
 
-.house-price-hero-source {
+:is(
+    .house-price-hero-source,
+    .tableau-hero-source
+) {
     position: absolute;
-    right: var(--house-price-padding-x);
+    right: var(--analytics-project-padding-x);
     bottom: 20px;
     z-index: 3;
     display: inline-flex;
@@ -8853,14 +8322,20 @@ body {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.house-price-hero-source:hover {
+:is(
+    .house-price-hero-source,
+    .tableau-hero-source
+):hover {
     border-color: rgba(201, 168, 106, 0.78);
     background: rgba(201, 168, 106, 0.16);
     color: var(--color-gold);
     transform: translateY(-2px);
 }
 
-.house-price-page-hero-inner {
+:is(
+    .house-price-page-hero-inner,
+    .tableau-page-hero-inner
+) {
     position: relative;
     z-index: 2;
     width: min(1220px, 100%);
@@ -8871,13 +8346,19 @@ body {
     align-items: center;
 }
 
-.house-price-page-hero-copy .section-label {
+:is(
+    .house-price-page-hero-copy,
+    .tableau-page-hero-copy
+) .section-label {
     margin-bottom: 14px;
     color: var(--color-gold);
     font-weight: 850;
 }
 
-.house-price-page-hero-copy h1 {
+:is(
+    .house-price-page-hero-copy,
+    .tableau-page-hero-copy
+) h1 {
     max-width: 850px;
     margin: 0 0 18px;
     color: white;
@@ -8886,7 +8367,10 @@ body {
     letter-spacing: -0.055em;
 }
 
-.house-price-page-hero-copy h2 {
+:is(
+    .house-price-page-hero-copy,
+    .tableau-page-hero-copy
+) h2 {
     max-width: 850px;
     margin: 0 0 20px;
     color: rgba(255, 255, 255, 0.94);
@@ -8895,27 +8379,39 @@ body {
     letter-spacing: -0.025em;
 }
 
-.house-price-page-hero-copy p {
+:is(
+    .house-price-page-hero-copy,
+    .tableau-page-hero-copy
+) p {
     max-width: 790px;
     color: rgba(255, 255, 255, 0.80);
     font-size: 1.02rem;
     line-height: 1.7;
 }
 
-.house-price-page-hero-copy .detail-tags {
+:is(
+    .house-price-page-hero-copy,
+    .tableau-page-hero-copy
+) .detail-tags {
     margin-top: 22px;
     color: rgba(255, 255, 255, 0.76);
     font-size: 0.92rem;
     font-weight: 750;
 }
 
-.house-price-hero-metrics {
+:is(
+    .house-price-hero-metrics,
+    .tableau-hero-metrics
+) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
 }
 
-.house-price-hero-metric {
+:is(
+    .house-price-hero-metric,
+    .tableau-hero-metric
+) {
     min-height: 122px;
     padding: 18px;
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -8926,7 +8422,10 @@ body {
     backdrop-filter: blur(8px);
 }
 
-.house-price-hero-metric-value {
+:is(
+    .house-price-hero-metric-value,
+    .tableau-hero-metric-value
+) {
     display: block;
     margin-bottom: 8px;
     color: white;
@@ -8936,42 +8435,49 @@ body {
     letter-spacing: -0.04em;
 }
 
-.house-price-hero-metric-label {
+:is(
+    .house-price-hero-metric-label,
+    .tableau-hero-metric-label
+) {
     display: block;
     color: rgba(255, 255, 255, 0.72);
     font-size: 0.82rem;
     line-height: 1.4;
 }
 
-/* Body layout */
+/* Shared body shell and section navigation */
 
-.house-price-body-layout {
-    max-width: var(--house-price-page-max);
+:is(
+    .house-price-body-layout,
+    .tableau-body-layout
+) {
+    max-width: var(--analytics-project-page-max);
     margin: 0 auto;
-    padding: 56px var(--house-price-padding-x) 82px;
+    padding: 56px var(--analytics-project-padding-x) 82px;
     display: grid;
-    grid-template-columns: var(--house-price-sidebar-width) minmax(0, 1fr);
-    gap: var(--house-price-content-gap);
+    grid-template-columns: var(--analytics-project-sidebar-width) minmax(0, 1fr);
+    gap: var(--analytics-project-content-gap);
 }
 
-.house-price-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
-
-.house-price-section-nav {
+:is(
+    .house-price-section-nav,
+    .tableau-section-nav
+) {
     position: sticky;
     top: 92px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    transform: translateX(var(--house-price-sidebar-offset-x));
+    transform: translateX(var(--analytics-project-sidebar-offset-x));
 }
 
-.house-price-section-nav a {
+:is(
+    .house-price-section-nav,
+    .tableau-section-nav
+) a {
     display: block;
     padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(31, 70, 95, 0.18);
+    border-bottom: 1px solid var(--analytics-project-nav-border);
     color: var(--color-muted);
     text-decoration: none;
     font-size: 0.92rem;
@@ -8983,34 +8489,55 @@ body {
         transform 180ms ease;
 }
 
-.house-price-section-nav a:hover,
-.house-price-section-nav a:focus-visible {
-    color: var(--house-price-accent);
-    border-bottom-color: var(--house-price-accent);
+:is(
+    .house-price-section-nav,
+    .tableau-section-nav
+) a:hover,
+:is(
+    .house-price-section-nav,
+    .tableau-section-nav
+) a:focus-visible {
+    color: var(--analytics-project-accent);
+    border-bottom-color: var(--analytics-project-accent);
     transform: translateX(8px);
 }
 
-.house-price-body-content {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) {
     min-width: 0;
 }
 
-.house-price-body-content .detail-section {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .detail-section {
     max-width: none;
     padding: 0 0 38px;
     margin-bottom: 42px;
-    border-bottom: 1px solid rgba(31, 70, 95, 0.10);
+    border-bottom: 1px solid var(--analytics-project-section-border);
     scroll-margin-top: 32px;
 }
 
-.house-price-body-content .detail-section:first-child {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .detail-section:first-child {
     padding-top: 0;
 }
 
-.house-price-body-content .detail-section:last-child {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .detail-section:last-child {
     margin-bottom: 0;
 }
 
-.house-price-body-content .detail-section h2 {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .detail-section h2 {
     position: relative;
     margin-bottom: 18px;
     color: var(--color-dark);
@@ -9019,63 +8546,172 @@ body {
     letter-spacing: -0.035em;
 }
 
-.house-price-body-content .detail-section h2::before {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .detail-section h2::before {
     content: "";
     width: 52px;
     height: 4px;
     display: block;
     margin-bottom: 14px;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--color-gold), var(--house-price-accent));
+    background: linear-gradient(90deg, var(--color-gold), var(--analytics-project-accent));
 }
 
-.house-price-body-content .detail-section p {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .detail-section p {
     max-width: 850px;
-    color: var(--house-price-text);
+    color: var(--analytics-project-text);
     font-size: 1.02rem;
     line-height: 1.75;
 }
 
-/* Shared cards */
+/* Shared card system */
 
-.house-price-body-content .metric-card,
-.house-price-body-content .approach-card,
-.house-price-body-content .contribution-card,
-.house-price-body-content .artifact-card,
-.house-price-visual-card {
-    border: 1px solid var(--house-price-border);
-    border-radius: var(--house-price-card-radius);
-    background: var(--house-price-card-bg);
-    box-shadow: var(--house-price-card-shadow);
+:is(
+    .house-price-body-content .metric-card,
+    .house-price-body-content .approach-card,
+    .house-price-body-content .contribution-card,
+    .house-price-body-content .artifact-card,
+    .house-price-visual-card,
+    .tableau-body-content .metric-card,
+    .tableau-body-content .approach-card,
+    .tableau-body-content .contribution-card,
+    .tableau-body-content .artifact-card,
+    .tableau-dashboard-row
+) {
+    border: 1px solid var(--analytics-project-border);
+    border-radius: var(--analytics-project-card-radius);
+    background: var(--analytics-project-card-bg);
+    box-shadow: var(--analytics-project-card-shadow);
     transition:
         transform 180ms ease,
         box-shadow 180ms ease,
         border-color 180ms ease;
 }
 
-.house-price-body-content .metric-card,
-.house-price-body-content .approach-card,
-.house-price-body-content .contribution-card,
-.house-price-body-content .artifact-card {
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) :is(
+    .metric-card,
+    .approach-card,
+    .contribution-card,
+    .artifact-card
+) {
     padding: 24px;
 }
 
-.house-price-body-content .metric-card:hover,
-.house-price-body-content .approach-card:hover,
-.house-price-body-content .contribution-card:hover,
-.house-price-body-content .artifact-card:hover,
-.house-price-visual-card:hover {
+:is(
+    .house-price-body-content .metric-card,
+    .house-price-body-content .approach-card,
+    .house-price-body-content .contribution-card,
+    .house-price-body-content .artifact-card,
+    .house-price-visual-card,
+    .tableau-body-content .metric-card,
+    .tableau-body-content .approach-card,
+    .tableau-body-content .contribution-card,
+    .tableau-body-content .artifact-card,
+    .tableau-dashboard-row
+):hover {
     transform: translateY(-3px);
-    border-color: rgba(63, 111, 143, 0.24);
-    box-shadow: var(--house-price-card-shadow-hover);
+    border-color: var(--analytics-project-hover-border);
+    box-shadow: var(--analytics-project-card-shadow-hover);
 }
 
-.house-price-body-content .metric-value {
-    color: var(--house-price-accent-dark);
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .metric-value {
+    color: var(--analytics-project-accent-dark);
 }
 
-.house-price-body-content .metric-label {
-    color: #314556;
+:is(
+    .house-price-body-content,
+    .tableau-body-content
+) .metric-label {
+    color: var(--analytics-project-metric-label);
+}
+
+:is(
+    .house-price-summary-grid,
+    .tableau-summary-grid
+) .metric-card {
+    background: var(--analytics-project-highlight-bg);
+}
+
+/* Shared expandable-image utility */
+
+.project-image-link {
+    display: block;
+    cursor: zoom-in;
+}
+
+.project-image-link img {
+    transition:
+        transform 180ms ease,
+        filter 180ms ease;
+}
+
+.project-image-link:hover img,
+.project-image-link:focus-visible img {
+    transform: scale(1.01);
+    filter: brightness(1.02);
+}
+
+/* Shared artifact links */
+
+:is(
+    .house-price-artifact-link,
+    .tableau-artifact-link
+) {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: auto;
+    color: var(--analytics-project-accent);
+    text-decoration: none;
+    font-weight: 850;
+}
+
+:is(
+    .house-price-artifact-link,
+    .tableau-artifact-link
+):hover {
+    color: var(--color-dark);
+}
+
+
+/* =========================================================
+   HOUSE PRICE PREDICTION PROJECT PAGE
+   Neural network regression, benchmarking, and diagnostics.
+   ========================================================= */
+
+/* Hero background */
+
+.house-price-page-hero {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(13, 26, 38, 0.95) 0%,
+            rgba(28, 55, 78, 0.82) 48%,
+            rgba(54, 86, 108, 0.42) 100%
+        ),
+        radial-gradient(circle at 17% 24%, rgba(201, 168, 106, 0.22), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(63, 111, 143, 0.30), transparent 34%),
+        var(--house-price-hero-image);
+    background-size: cover;
+    background-position: var(--house-price-hero-position);
+}
+
+/* Page-specific body and summary layouts */
+
+.house-price-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
 }
 
 .house-price-summary-grid {
@@ -9092,10 +8728,6 @@ body {
 .house-price-summary-grid .metric-label {
     font-size: 0.95rem;
     line-height: 1.55;
-}
-
-.house-price-summary-grid .metric-card {
-    background: var(--house-price-highlight-bg);
 }
 
 .house-price-model-grid,
@@ -9172,7 +8804,7 @@ body {
     font-weight: 800;
 }
 
-/* Visuals */
+/* Diagnostic visuals */
 
 .house-price-visual-card {
     max-width: var(--house-price-visual-max);
@@ -9182,7 +8814,7 @@ body {
 
 .house-price-visual-card img {
     width: 100%;
-    height: var(--house-price-visual-height);
+    height: var(--analytics-project-visual-height);
     display: block;
     padding: 8px;
     object-fit: contain;
@@ -9200,23 +8832,6 @@ body {
 
 .house-price-visual-card figcaption strong {
     color: var(--color-dark);
-}
-
-.project-image-link {
-    display: block;
-    cursor: zoom-in;
-}
-
-.project-image-link img {
-    transition:
-        transform 180ms ease,
-        filter 180ms ease;
-}
-
-.project-image-link:hover img,
-.project-image-link:focus-visible img {
-    transform: scale(1.01);
-    filter: brightness(1.02);
 }
 
 .house-price-wide-visual img {
@@ -9248,274 +8863,15 @@ body {
     max-width: 1060px;
 }
 
-.house-price-artifact-link {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    margin-top: auto;
-    color: var(--house-price-accent);
-    text-decoration: none;
-    font-weight: 850;
-}
-
-.house-price-artifact-link:hover {
-    color: var(--color-dark);
-}
-
-/* Responsive */
-
-@media (max-width: 1000px) {
-    .house-price-page {
-        --house-price-hero-min-height: auto;
-        --house-price-visual-height: 280px;
-    }
-
-    .house-price-page-hero {
-        min-height: var(--house-price-hero-min-height);
-        padding: 76px 24px 58px;
-    }
-
-    .house-price-page-hero-inner {
-        grid-template-columns: 1fr;
-        gap: 34px;
-    }
-
-    .house-price-hero-metrics,
-    .house-price-summary-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .house-price-body-layout {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 38px 24px 70px;
-    }
-
-    .house-price-section-nav {
-        position: static;
-        flex-direction: row;
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        transform: none;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .house-price-section-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .house-price-section-nav a {
-        flex: 0 0 auto;
-        padding: 9px 13px;
-        border: 1px solid rgba(31, 70, 95, 0.18);
-        border-radius: 999px;
-        background: white;
-        color: var(--color-muted);
-        font-size: 0.82rem;
-    }
-
-    .house-price-section-nav a:hover,
-    .house-price-section-nav a:focus-visible {
-        transform: none;
-        color: var(--house-price-accent);
-        border-color: var(--portfolio-accent-border);
-        background: var(--portfolio-accent-soft);
-    }
-
-    .house-price-wide-visual img {
-        height: 360px;
-    }
-
-    .house-price-dashboard-visual img {
-        height: auto;
-    }
-
-    .house-price-model-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 560px) {
-    .house-price-page {
-        --house-price-visual-height: 230px;
-    }
-
-    .house-price-page-hero {
-        padding: 92px 22px 36px;
-        align-items: flex-start;
-    }
-
-    .house-price-hero-back {
-        top: 20px;
-        left: 22px;
-        font-size: 0.88rem;
-    }
-
-    .house-price-hero-source {
-        top: 52px;
-        right: auto;
-        bottom: auto;
-        left: 22px;
-        min-height: 34px;
-        padding: 9px 13px;
-        font-size: 0.76rem;
-    }
-
-    .house-price-page-hero-inner {
-        gap: 24px;
-    }
-
-    .house-price-page-hero-copy h1 {
-        max-width: 340px;
-        font-size: clamp(2.08rem, 10.5vw, 3rem);
-        line-height: 1.02;
-    }
-
-    .house-price-page-hero-copy h2 {
-        font-size: 1.06rem;
-        line-height: 1.4;
-    }
-
-    .house-price-page-hero-copy p {
-        font-size: 0.94rem;
-        line-height: 1.62;
-    }
-
-    .house-price-page-hero-copy .detail-tags {
-        font-size: 0.8rem;
-        line-height: 1.5;
-    }
-
-    .house-price-hero-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-    }
-
-    .house-price-hero-metric {
-        min-height: 92px;
-        padding: 14px;
-        border-radius: 16px;
-    }
-
-    .house-price-hero-metric-value {
-        margin-bottom: 6px;
-        font-size: 1.2rem;
-        line-height: 1.05;
-    }
-
-    .house-price-hero-metric-label {
-        font-size: 0.7rem;
-        line-height: 1.3;
-    }
-
-    .house-price-body-layout {
-        padding: 32px 22px 72px;
-    }
-
-    .house-price-body-content .detail-section {
-        padding-bottom: 30px;
-        margin-bottom: 32px;
-    }
-
-    .house-price-body-content .detail-section h2 {
-        font-size: 1.75rem;
-    }
-
-    .house-price-body-content .metric-card,
-    .house-price-body-content .approach-card,
-    .house-price-body-content .contribution-card,
-    .house-price-body-content .artifact-card {
-        padding: 20px;
-    }
-
-    .house-price-visual-card img {
-        padding: 6px;
-    }
-
-    .house-price-wide-visual img {
-        height: 270px;
-    }
-
-    .house-price-dashboard-visual img {
-        height: auto;
-        padding: 0;
-    }
-
-    .house-price-visual-card figcaption {
-        padding: 14px 16px 16px;
-    }
-}
-
 
 /* =========================================================
-   TABLEAU VISUALIZATION GALLERY PAGE
+   VISUAL ANALYTICS AND BUSINESS INTELLIGENCE PAGE
    Tableau dashboards, BI storytelling, and visual analytics.
-
-   Page file:
-   - projects/visualizations.html
-
-   Scope:
-   - All rules are scoped to .tableau-page or tableau-specific classes.
    ========================================================= */
 
-.tableau-page {
-    --tableau-page-max: 1660px;
-    --tableau-sidebar-width: 170px;
-    --tableau-content-gap: 64px;
-    --tableau-sidebar-offset-x: -34px;
-    --tableau-padding-x: clamp(28px, 4vw, 72px);
-
-    --tableau-accent: #4f7fa8;
-    --tableau-accent-dark: #234c6f;
-    --tableau-text: #24313a;
-    --tableau-muted: #5f6d76;
-    --tableau-soft: rgba(232, 241, 248, 0.74);
-    --tableau-border: rgba(35, 76, 111, 0.14);
-
-    --tableau-card-radius: 18px;
-    --tableau-card-shadow: 0 16px 34px rgba(35, 76, 111, 0.065);
-    --tableau-card-shadow-hover: 0 22px 46px rgba(35, 76, 111, 0.11);
-
-    --tableau-hero-image: url("images/projects/cards/visualization-bg.png");
-    --tableau-hero-position: center;
-    --tableau-hero-min-height: 540px;
-
-    --tableau-card-bg:
-        radial-gradient(circle at 90% 10%, rgba(232, 241, 248, 0.74), transparent 34%),
-        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(232, 241, 248, 0.44) 100%);
-
-    --tableau-highlight-bg:
-        radial-gradient(circle at 88% 10%, rgba(79, 127, 168, 0.16), transparent 34%),
-        linear-gradient(
-            125deg,
-            rgba(232, 241, 248, 0.36) 0%,
-            rgba(216, 232, 243, 0.28) 56%,
-            rgba(197, 220, 236, 0.92) 100%
-        );
-
-    background: #ffffff;
-}
-
-/* Hero */
-
-.tableau-detail-page.detail-page {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-}
+/* Hero background */
 
 .tableau-page-hero {
-    position: relative;
-    width: 100vw;
-    min-height: var(--tableau-hero-min-height);
-    margin-left: calc(50% - 50vw);
-    padding: 82px var(--tableau-padding-x) 72px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    color: white;
     background:
         linear-gradient(
             90deg,
@@ -9530,279 +8886,11 @@ body {
     background-position: var(--tableau-hero-position);
 }
 
-.tableau-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
-
-.tableau-hero-back {
-    position: absolute;
-    top: 28px;
-    left: var(--tableau-padding-x);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.86);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-}
-
-.tableau-hero-back:hover {
-    color: var(--color-gold);
-}
-
-.tableau-hero-source {
-    position: absolute;
-    right: var(--tableau-padding-x);
-    bottom: 20px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201, 168, 106, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
-}
-
-.tableau-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.tableau-page-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
-}
-
-.tableau-page-hero-copy .section-label {
-    margin-bottom: 14px;
-    color: var(--color-gold);
-    font-weight: 850;
-}
-
-.tableau-page-hero-copy h1 {
-    max-width: 850px;
-    margin: 0 0 18px;
-    color: white;
-    font-size: clamp(1.45rem, 2vw, 2.3rem);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-}
-
-.tableau-page-hero-copy h2 {
-    max-width: 850px;
-    margin: 0 0 20px;
-    color: rgba(255, 255, 255, 0.94);
-    font-size: clamp(1.25rem, 1.9vw, 1.78rem);
-    line-height: 1.35;
-    letter-spacing: -0.025em;
-}
-
-.tableau-page-hero-copy p {
-    max-width: 790px;
-    color: rgba(255, 255, 255, 0.80);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.tableau-page-hero-copy .detail-tags {
-    margin-top: 22px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.92rem;
-    font-weight: 750;
-}
-
-.tableau-hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.tableau-hero-metric {
-    min-height: 122px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
-        rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-}
-
-.tableau-hero-metric-value {
-    display: block;
-    margin-bottom: 8px;
-    color: white;
-    font-size: clamp(1.45rem, 2.3vw, 2.25rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.04em;
-}
-
-.tableau-hero-metric-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
-
-/* Body */
-
-.tableau-body-layout {
-    max-width: var(--tableau-page-max);
-    margin: 0 auto;
-    padding: 56px var(--tableau-padding-x) 82px;
-    display: grid;
-    grid-template-columns: var(--tableau-sidebar-width) minmax(0, 1fr);
-    gap: var(--tableau-content-gap);
-}
-
-.tableau-section-nav {
-    position: sticky;
-    top: 92px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    transform: translateX(var(--tableau-sidebar-offset-x));
-}
-
-.tableau-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(35, 76, 111, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
-
-.tableau-section-nav a:hover,
-.tableau-section-nav a:focus-visible {
-    color: var(--tableau-accent);
-    border-bottom-color: var(--tableau-accent);
-    transform: translateX(8px);
-}
-
-.tableau-body-content {
-    min-width: 0;
-}
-
-.tableau-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(35, 76, 111, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.tableau-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.tableau-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.tableau-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
-
-.tableau-body-content .detail-section h2::before {
-    content: "";
-    width: 52px;
-    height: 4px;
-    display: block;
-    margin-bottom: 14px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--color-gold), var(--tableau-accent));
-}
-
-.tableau-body-content .detail-section p {
-    max-width: 850px;
-    color: var(--tableau-text);
-    font-size: 1.02rem;
-    line-height: 1.75;
-}
-
-/* Cards */
-
-.tableau-body-content .metric-card,
-.tableau-body-content .approach-card,
-.tableau-body-content .contribution-card,
-.tableau-body-content .artifact-card,
-.tableau-dashboard-card {
-    border: 1px solid var(--tableau-border);
-    border-radius: var(--tableau-card-radius);
-    background: var(--tableau-card-bg);
-    box-shadow: var(--tableau-card-shadow);
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.tableau-body-content .metric-card,
-.tableau-body-content .approach-card,
-.tableau-body-content .contribution-card,
-.tableau-body-content .artifact-card {
-    padding: 24px;
-}
-
-.tableau-body-content .metric-card:hover,
-.tableau-body-content .approach-card:hover,
-.tableau-body-content .contribution-card:hover,
-.tableau-body-content .artifact-card:hover,
-.tableau-dashboard-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(79, 127, 168, 0.24);
-    box-shadow: var(--tableau-card-shadow-hover);
-}
+/* Summary metrics */
 
 .tableau-summary-grid {
     max-width: 1060px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.tableau-summary-grid .metric-card {
-    background: var(--tableau-highlight-bg);
-}
-
-.tableau-body-content .metric-value {
-    color: var(--tableau-accent-dark);
-}
-
-.tableau-body-content .metric-label {
-    color: #314556;
 }
 
 /* Dashboard gallery */
@@ -9819,14 +8907,6 @@ body {
     grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.48fr);
     min-height: 350px;
     overflow: hidden;
-    border: 1px solid var(--tableau-border);
-    border-radius: var(--tableau-card-radius);
-    background: var(--tableau-card-bg);
-    box-shadow: var(--tableau-card-shadow);
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
 }
 
 .tableau-dashboard-row-map {
@@ -9849,12 +8929,6 @@ body {
 
 .tableau-dashboard-row-map .tableau-insight-list {
     margin: 8px 0 20px;
-}
-
-.tableau-dashboard-row:hover {
-    transform: translateY(-3px);
-    border-color: rgba(79, 127, 168, 0.24);
-    box-shadow: var(--tableau-card-shadow-hover);
 }
 
 .tableau-dashboard-row-reverse {
@@ -9967,71 +9041,70 @@ body {
     display: block;
 }
 
-/* Process and artifacts */
+/* Role and artifacts */
 
-.tableau-process-grid,
 .tableau-role-grid,
 .tableau-artifact-grid {
     max-width: 1060px;
 }
 
-.tableau-process-grid .approach-card:last-child,
 .tableau-role-grid .contribution-card:last-child {
     grid-column: auto;
 }
 
-.tableau-card-number {
-    display: inline-flex;
-    margin-bottom: 18px;
-    color: var(--tableau-accent);
-    font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-}
 
-.tableau-artifact-link {
-    display: inline-flex;
-    align-items: center;
-    align-self: flex-start;
-    margin-top: auto;
-    color: var(--tableau-accent);
-    text-decoration: none;
-    font-weight: 850;
-}
-
-.tableau-artifact-link:hover {
-    color: var(--color-dark);
-}
-
-/* Responsive */
+/* =========================================================
+   ANALYTICS PROJECT RESPONSIVE BEHAVIOR
+   ========================================================= */
 
 @media (max-width: 1000px) {
+    .house-price-page,
     .tableau-page {
-        --tableau-hero-min-height: auto;
+        --analytics-project-hero-min-height: auto;
     }
 
-    .tableau-page-hero {
-        min-height: var(--tableau-hero-min-height);
+    .house-price-page {
+        --analytics-project-visual-height: 280px;
+    }
+
+    :is(
+        .house-price-page-hero,
+        .tableau-page-hero
+    ) {
+        min-height: var(--analytics-project-hero-min-height);
         padding: 76px 24px 58px;
     }
 
-    .tableau-page-hero-inner {
+    :is(
+        .house-price-page-hero-inner,
+        .tableau-page-hero-inner
+    ) {
         grid-template-columns: 1fr;
         gap: 34px;
     }
 
-    .tableau-hero-metrics,
-    .tableau-summary-grid {
+    :is(
+        .house-price-hero-metrics,
+        .tableau-hero-metrics,
+        .house-price-summary-grid,
+        .tableau-summary-grid
+    ) {
         grid-template-columns: 1fr;
     }
 
-    .tableau-body-layout {
+    :is(
+        .house-price-body-layout,
+        .tableau-body-layout
+    ) {
         grid-template-columns: 1fr;
         gap: 28px;
         padding: 38px 24px 70px;
     }
 
-    .tableau-section-nav {
+    :is(
+        .house-price-section-nav,
+        .tableau-section-nav
+    ) {
         position: static;
         flex-direction: row;
         gap: 10px;
@@ -10042,26 +9115,50 @@ body {
         -ms-overflow-style: none;
     }
 
-    .tableau-section-nav::-webkit-scrollbar {
+    :is(
+        .house-price-section-nav,
+        .tableau-section-nav
+    )::-webkit-scrollbar {
         display: none;
     }
 
-    .tableau-section-nav a {
+    :is(
+        .house-price-section-nav,
+        .tableau-section-nav
+    ) a {
         flex: 0 0 auto;
         padding: 9px 13px;
-        border: 1px solid rgba(35, 76, 111, 0.18);
+        border: 1px solid var(--analytics-project-nav-border);
         border-radius: 999px;
         background: white;
         color: var(--color-muted);
         font-size: 0.82rem;
     }
 
-    .tableau-section-nav a:hover,
-    .tableau-section-nav a:focus-visible {
+    :is(
+        .house-price-section-nav,
+        .tableau-section-nav
+    ) a:hover,
+    :is(
+        .house-price-section-nav,
+        .tableau-section-nav
+    ) a:focus-visible {
         transform: none;
-        color: var(--tableau-accent);
+        color: var(--analytics-project-accent);
         border-color: var(--portfolio-accent-border);
         background: var(--portfolio-accent-soft);
+    }
+
+    .house-price-wide-visual img {
+        height: 360px;
+    }
+
+    .house-price-dashboard-visual img {
+        height: auto;
+    }
+
+    .house-price-model-grid {
+        grid-template-columns: 1fr;
     }
 
     .tableau-dashboard-row,
@@ -10085,18 +9182,31 @@ body {
 }
 
 @media (max-width: 560px) {
-    .tableau-page-hero {
+    .house-price-page {
+        --analytics-project-visual-height: 230px;
+    }
+
+    :is(
+        .house-price-page-hero,
+        .tableau-page-hero
+    ) {
         padding: 92px 22px 36px;
         align-items: flex-start;
     }
 
-    .tableau-hero-back {
+    :is(
+        .house-price-hero-back,
+        .tableau-hero-back
+    ) {
         top: 20px;
         left: 22px;
         font-size: 0.88rem;
     }
 
-    .tableau-hero-source {
+    :is(
+        .house-price-hero-source,
+        .tableau-hero-source
+    ) {
         top: 52px;
         right: auto;
         bottom: auto;
@@ -10106,8 +9216,17 @@ body {
         font-size: 0.76rem;
     }
 
-    .tableau-page-hero-inner {
+    :is(
+        .house-price-page-hero-inner,
+        .tableau-page-hero-inner
+    ) {
         gap: 24px;
+    }
+
+    .house-price-page-hero-copy h1 {
+        max-width: 340px;
+        font-size: clamp(2.08rem, 10.5vw, 3rem);
+        line-height: 1.02;
     }
 
     .tableau-page-hero-copy h1 {
@@ -10116,61 +9235,113 @@ body {
         line-height: 1.02;
     }
 
-    .tableau-page-hero-copy h2 {
+    :is(
+        .house-price-page-hero-copy,
+        .tableau-page-hero-copy
+    ) h2 {
         font-size: 1.06rem;
         line-height: 1.4;
     }
 
-    .tableau-page-hero-copy p {
+    :is(
+        .house-price-page-hero-copy,
+        .tableau-page-hero-copy
+    ) p {
         font-size: 0.94rem;
         line-height: 1.62;
     }
 
-    .tableau-page-hero-copy .detail-tags {
+    :is(
+        .house-price-page-hero-copy,
+        .tableau-page-hero-copy
+    ) .detail-tags {
         font-size: 0.8rem;
         line-height: 1.5;
     }
 
-    .tableau-hero-metrics {
+    :is(
+        .house-price-hero-metrics,
+        .tableau-hero-metrics
+    ) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
 
-    .tableau-hero-metric {
+    :is(
+        .house-price-hero-metric,
+        .tableau-hero-metric
+    ) {
         min-height: 92px;
         padding: 14px;
         border-radius: 16px;
     }
 
-    .tableau-hero-metric-value {
+    :is(
+        .house-price-hero-metric-value,
+        .tableau-hero-metric-value
+    ) {
         margin-bottom: 6px;
         font-size: 1.2rem;
         line-height: 1.05;
     }
 
-    .tableau-hero-metric-label {
+    :is(
+        .house-price-hero-metric-label,
+        .tableau-hero-metric-label
+    ) {
         font-size: 0.7rem;
         line-height: 1.3;
     }
 
-    .tableau-body-layout {
+    :is(
+        .house-price-body-layout,
+        .tableau-body-layout
+    ) {
         padding: 32px 22px 72px;
     }
 
-    .tableau-body-content .detail-section {
+    :is(
+        .house-price-body-content,
+        .tableau-body-content
+    ) .detail-section {
         padding-bottom: 30px;
         margin-bottom: 32px;
     }
 
-    .tableau-body-content .detail-section h2 {
+    :is(
+        .house-price-body-content,
+        .tableau-body-content
+    ) .detail-section h2 {
         font-size: 1.75rem;
     }
 
-    .tableau-body-content .metric-card,
-    .tableau-body-content .approach-card,
-    .tableau-body-content .contribution-card,
-    .tableau-body-content .artifact-card {
+    :is(
+        .house-price-body-content,
+        .tableau-body-content
+    ) :is(
+        .metric-card,
+        .approach-card,
+        .contribution-card,
+        .artifact-card
+    ) {
         padding: 20px;
+    }
+
+    .house-price-visual-card img {
+        padding: 6px;
+    }
+
+    .house-price-wide-visual img {
+        height: 270px;
+    }
+
+    .house-price-dashboard-visual img {
+        height: auto;
+        padding: 0;
+    }
+
+    .house-price-visual-card figcaption {
+        padding: 14px 16px 16px;
     }
 
     .tableau-dashboard-preview,
@@ -10193,5 +9364,1210 @@ body {
 
     .tableau-insight-list span {
         font-size: 0.72rem;
+    }
+}
+
+
+/* =========================================================
+   ABOUT PAGE
+   Standalone professional narrative page.
+
+   Page file:
+   - about.html
+
+   Main tuning controls:
+   - --about-page-max controls the body width
+   - --about-sidebar-width controls the sticky navigation width
+   - --about-content-gap controls space between navigation and content
+   ========================================================= */
+
+.about-page-body {
+    background: #ffffff;
+}
+
+/* Hero */
+
+.about-hero {
+    --about-hero-min-height: 300px;
+
+    position: relative;
+    width: 100vw;
+    min-height: var(--about-hero-min-height);
+    margin-left: calc(50% - 50vw);
+    padding: 65px var(--site-gutter) 52px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    background:
+        radial-gradient(circle at 18% 24%, rgba(201, 168, 106, 0.18), transparent 30%),
+        linear-gradient(
+            90deg,
+            rgba(8, 28, 31, 0.90) 0%,
+            rgba(8, 28, 31, 0.64) 48%,
+            rgba(8, 28, 31, 0.30) 100%
+        ),
+        url("images/hero/hero-background3.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.about-hero-back {
+    position: absolute;
+    top: 28px;
+    left: var(--site-gutter);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.about-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.about-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(240px, 330px) minmax(0, 1fr);
+    gap: clamp(42px, 6vw, 86px);
+    align-items: center;
+}
+
+.about-hero-image {
+    position: relative;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+.about-hero-image::before {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47, 111, 115, 0.34), transparent 64%);
+}
+
+.about-hero-image img {
+    position: relative;
+    width: 286px;
+    height: 286px;
+    display: block;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    box-shadow:
+        0 26px 64px rgba(0, 0, 0, 0.34),
+        0 0 0 12px rgba(255, 255, 255, 0.04);
+}
+
+.about-hero-copy .section-label {
+    margin-bottom: 14px;
+    color: var(--color-gold);
+    font-weight: 850;
+}
+
+.about-hero-copy h1 {
+    max-width: 900px;
+    margin: 0 0 24px;
+    color: white;
+    font-size: clamp(2.25rem, 3.7vw, 2.7rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+.about-hero-lead,
+.about-hero-summary {
+    max-width: 840px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+    line-height: 1.72;
+}
+
+.about-hero-lead {
+    font-size: 1.08rem;
+    font-weight: 650;
+}
+
+.about-hero-summary {
+    margin-top: 14px;
+    font-size: 0.99rem;
+}
+
+.about-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.about-hero-button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1;
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.about-hero-button:hover {
+    transform: translateY(-2px);
+}
+
+.about-hero-button-primary {
+    border: 1px solid white;
+    background: white;
+    color: var(--color-dark);
+}
+
+.about-hero-button-primary:hover {
+    border-color: var(--color-gold);
+    background: var(--color-gold);
+    color: var(--color-dark);
+}
+
+.about-hero-button-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.46);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    backdrop-filter: blur(6px);
+}
+
+.about-hero-button-secondary:hover {
+    border-color: rgba(201, 168, 106, 0.72);
+    background: rgba(201, 168, 106, 0.14);
+    color: var(--color-gold);
+}
+
+/* Page shell */
+
+.about-page-shell {
+    --about-page-max: 1660px;
+    --about-sidebar-width: 170px;
+    --about-content-gap: 64px;
+    --about-sidebar-offset-x: -34px;
+    --about-padding-x: clamp(28px, 4vw, 72px);
+
+    max-width: var(--about-page-max);
+    margin: 0 auto;
+    padding: 56px var(--about-padding-x) 82px;
+    display: grid;
+    grid-template-columns: var(--about-sidebar-width) minmax(0, 1fr);
+    gap: var(--about-content-gap);
+}
+
+.about-page-sidebar {
+    min-width: 0;
+}
+
+.about-section-nav {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transform: translateX(var(--about-sidebar-offset-x));
+}
+
+.about-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 650;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.about-section-nav a:hover,
+.about-section-nav a:focus-visible {
+    color: var(--portfolio-accent);
+    border-bottom-color: var(--portfolio-accent);
+    transform: translateX(8px);
+}
+
+.about-page-content {
+    min-width: 0;
+}
+
+.about-section {
+    max-width: none;
+    padding: 0 0 40px;
+    margin-bottom: 44px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 34px;
+}
+
+.about-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.about-section > .section-label {
+    margin-bottom: 10px;
+    color: var(--portfolio-accent);
+    font-weight: 850;
+}
+
+.about-section > h2 {
+    position: relative;
+    max-width: 980px;
+    margin: 0 0 20px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.5vw, 2.65rem);
+    line-height: 1.14;
+    letter-spacing: -0.035em;
+}
+
+.about-section > h2::before {
+    content: "";
+    width: 52px;
+    height: 4px;
+    display: block;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold), var(--portfolio-accent));
+}
+
+.about-section > p {
+    max-width: 900px;
+    color: #263234;
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+.about-section-intro {
+    font-weight: 700;
+}
+
+/* Overview cards */
+
+.about-profile-grid {
+    max-width: 1080px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.about-profile-card,
+.about-education-card,
+.about-focus-card,
+.about-experience-card {
+    border: 1px solid rgba(16, 42, 45, 0.12);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(238, 246, 246, 0.72), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+    box-shadow: 0 16px 34px rgba(16, 42, 45, 0.065);
+}
+
+.about-profile-card {
+    min-height: 220px;
+    padding: 24px;
+}
+
+.about-card-number {
+    display: inline-flex;
+    margin-bottom: 18px;
+    color: var(--portfolio-accent);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+
+.about-profile-card h3,
+.about-education-card h3,
+.about-focus-card h3,
+.about-experience-card h3 {
+    color: var(--color-dark);
+    line-height: 1.3;
+}
+
+.about-profile-card p,
+.about-education-card p,
+.about-focus-card p,
+.about-experience-card p {
+    color: var(--color-muted);
+    line-height: 1.65;
+}
+
+/* Career journey */
+
+.about-journey {
+    position: relative;
+    max-width: 980px;
+    margin-top: 32px;
+    display: grid;
+    gap: 16px;
+}
+
+.about-journey::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 25px;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        var(--color-gold),
+        var(--portfolio-accent),
+        rgba(47, 111, 115, 0.18)
+    );
+}
+
+.about-journey-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 22px 20px 0;
+}
+
+.about-journey-marker {
+    position: relative;
+    z-index: 2;
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(47, 111, 115, 0.20);
+    border-radius: 50%;
+    background: white;
+    color: var(--portfolio-accent);
+    font-size: 0.76rem;
+    font-weight: 900;
+    box-shadow: 0 12px 28px rgba(16, 42, 45, 0.10);
+}
+
+.about-journey-step h3 {
+    margin: 2px 0 8px;
+    color: var(--color-dark);
+    font-size: 1.18rem;
+}
+
+.about-journey-step p {
+    max-width: 820px;
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.68;
+}
+
+/* Experience timeline */
+
+.about-experience-timeline {
+    max-width: 1120px;
+    margin-top: 32px;
+    display: grid;
+    gap: 22px;
+}
+
+.about-experience-item {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.about-experience-meta {
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.about-experience-date {
+    color: var(--portfolio-accent);
+    font-size: 0.85rem;
+    font-weight: 900;
+}
+
+.about-experience-location {
+    color: var(--color-muted);
+    font-size: 0.84rem;
+    line-height: 1.45;
+}
+
+.about-experience-card {
+    position: relative;
+    padding: 26px;
+}
+
+.about-experience-card::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: -31px;
+    width: 14px;
+    height: 14px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: var(--portfolio-accent);
+    box-shadow: 0 0 0 1px rgba(47, 111, 115, 0.20);
+}
+
+.about-experience-item:not(:last-child) .about-experience-card::after {
+    content: "";
+    position: absolute;
+    top: 42px;
+    bottom: -38px;
+    left: -25px;
+    width: 1px;
+    background: rgba(47, 111, 115, 0.24);
+}
+
+.about-experience-organization {
+    margin: 0 0 7px;
+    color: var(--portfolio-accent) !important;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.about-experience-card h3 {
+    margin: 0 0 14px;
+    font-size: 1.25rem;
+}
+
+.about-experience-card > p:not(.about-experience-organization) {
+    margin-bottom: 18px;
+}
+
+.about-inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--portfolio-accent);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 850;
+}
+
+.about-inline-link:hover {
+    color: var(--color-dark);
+}
+
+/* Education */
+
+.about-education-grid {
+    max-width: 1080px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.about-education-card {
+    min-height: 100%;
+    padding: 28px;
+}
+
+.about-education-card-featured {
+    border-color: rgba(201, 168, 106, 0.32);
+    background:
+        radial-gradient(circle at 90% 10%, rgba(201, 168, 106, 0.16), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #ffffff 62%, rgba(238, 246, 246, 0.44) 100%);
+}
+
+.about-education-level {
+    margin: 0 0 12px;
+    color: var(--portfolio-accent) !important;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+}
+
+.about-education-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.28rem;
+}
+
+.about-education-school {
+    margin: 0;
+    color: var(--color-dark) !important;
+    font-weight: 800;
+}
+
+.about-education-date {
+    margin: 5px 0 18px;
+    color: var(--color-muted) !important;
+    font-size: 0.88rem;
+}
+
+/* Focus areas */
+
+.about-focus-grid {
+    max-width: 1120px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.about-focus-card {
+    min-height: 210px;
+    padding: 24px;
+}
+
+.about-focus-card:last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 9px);
+}
+
+.about-focus-card > i {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    border-radius: 14px;
+    background: var(--portfolio-accent-soft);
+    color: var(--portfolio-accent);
+    font-size: 1.15rem;
+}
+
+.about-focus-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.12rem;
+}
+
+/* Current direction */
+
+.about-role-grid {
+    max-width: 980px;
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.about-role-card {
+    min-height: 92px;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    border: 1px solid rgba(47, 111, 115, 0.20);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(201, 168, 106, 0.10), transparent 34%),
+        linear-gradient(135deg, var(--portfolio-accent-soft), #ffffff);
+    color: var(--portfolio-accent);
+    font-weight: 900;
+    line-height: 1.35;
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(16, 42, 45, 0.055);
+}
+
+.about-direction-copy {
+    margin-top: 24px;
+}
+
+/* Contact */
+
+.about-contact-section {
+    padding-bottom: 0;
+}
+
+.about-contact-panel {
+    max-width: 1120px;
+    padding: 42px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.6fr);
+    gap: 42px;
+    align-items: center;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 16% 22%, rgba(47, 111, 115, 0.24), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(201, 168, 106, 0.12), transparent 30%),
+        linear-gradient(135deg, #0d292c 0%, #102a2d 52%, #0b2225 100%);
+    color: white;
+    box-shadow: 0 24px 54px rgba(16, 42, 45, 0.18);
+}
+
+.about-contact-copy .section-label {
+    margin-bottom: 10px;
+    color: var(--color-gold);
+    font-weight: 850;
+}
+
+.about-contact-copy h2 {
+    margin: 0 0 16px;
+    color: white;
+    font-size: clamp(2rem, 3.4vw, 3rem);
+}
+
+.about-contact-copy p {
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.80);
+    line-height: 1.72;
+}
+
+.about-contact-links {
+    display: grid;
+    gap: 12px;
+}
+
+.about-contact-links a {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.about-contact-links a:hover {
+    transform: translateX(4px);
+    border-color: rgba(201, 168, 106, 0.64);
+    background: rgba(201, 168, 106, 0.14);
+    color: var(--color-gold);
+}
+
+/* Desktop alignment with the homepage hero */
+
+@media (min-width: 1001px) {
+    .about-hero {
+        --about-hero-min-height: 46vh;
+
+        padding: 52px var(--site-gutter);
+    }
+
+    .about-hero-inner {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        grid-template-columns:
+            minmax(240px, 360px)
+            minmax(0, 760px);
+        gap: clamp(44px, 6vw, 92px);
+        align-items: center;
+    }
+
+    .about-hero-image {
+        justify-self: start;
+        transform: translateX(50px);
+    }
+
+    .about-hero-image::before {
+        width: 340px;
+        height: 340px;
+    }
+
+    .about-hero-image img {
+        width: 320px;
+        height: 320px;
+    }
+
+    .about-hero-copy {
+        max-width: 780px;
+    }
+
+    .about-hero-copy h1 {
+        max-width: 780px;
+
+        /* Preserve the approved restrained desktop scale. */
+        font-size: 2.6rem;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+    }
+
+    .about-hero-lead,
+    .about-hero-summary {
+        max-width: 760px;
+    }
+
+    .about-hero-lead {
+        font-size: 1.05rem;
+    }
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+    .about-hero {
+        min-height: auto;
+        padding: 82px 24px 56px;
+    }
+
+    .about-hero-back {
+        left: 24px;
+    }
+
+    .about-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .about-hero-image {
+        justify-content: flex-start;
+    }
+
+    .about-hero-image::before {
+        width: 230px;
+        height: 230px;
+    }
+
+    .about-hero-image img {
+        width: 190px;
+        height: 190px;
+    }
+
+    .about-page-shell {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 38px 24px 70px;
+    }
+
+    .about-section-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .about-section-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .about-section-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        font-size: 0.82rem;
+    }
+
+    .about-section-nav a:hover,
+    .about-section-nav a:focus-visible {
+        transform: none;
+        border-color: var(--portfolio-accent-border);
+        background: var(--portfolio-accent-soft);
+    }
+
+    .about-profile-grid,
+    .about-role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-experience-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .about-experience-meta {
+        padding-top: 0;
+    }
+
+    .about-experience-card::before,
+    .about-experience-card::after {
+        display: none;
+    }
+
+    .about-contact-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .about-hero {
+        min-height: auto;
+        padding: 56px 20px 30px;
+        align-items: flex-start;
+    }
+
+    .about-hero-back {
+        top: 18px;
+        left: 20px;
+        font-size: 0.78rem;
+    }
+
+    .about-hero-inner {
+        gap: 18px;
+    }
+
+    .about-hero-image {
+        justify-content: center;
+    }
+
+    .about-hero-image::before {
+        width: 160px;
+        height: 160px;
+    }
+
+    .about-hero-image img {
+        width: 132px;
+        height: 132px;
+        border-width: 3px;
+        box-shadow:
+            0 18px 42px rgba(0, 0, 0, 0.30),
+            0 0 0 7px rgba(255, 255, 255, 0.04);
+    }
+
+    .about-hero-copy .section-label {
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+    }
+
+    .about-hero-copy h1 {
+        margin-bottom: 14px;
+        font-size: clamp(1.75rem, 8.4vw, 2.25rem);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+    }
+
+    .about-hero-lead {
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }
+
+    .about-hero-summary {
+        margin-top: 10px;
+        font-size: 0.86rem;
+        line-height: 1.55;
+    }
+
+    .about-hero-actions {
+        width: 100%;
+        max-width: 310px;
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .about-hero-button {
+        min-height: 38px;
+        padding: 10px 12px;
+        font-size: 0.76rem;
+    }
+
+    .about-education-grid,
+    .about-focus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-focus-card:last-child {
+        grid-column: auto;
+        max-width: none;
+    }
+
+    .about-contact-panel {
+        padding: 28px 22px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .about-page-shell {
+        padding: 32px 22px 72px;
+    }
+
+    .about-section {
+        padding-bottom: 32px;
+        margin-bottom: 34px;
+    }
+
+    .about-section > h2 {
+        font-size: 1.75rem;
+    }
+
+    .about-profile-card,
+    .about-education-card,
+    .about-focus-card,
+    .about-experience-card {
+        padding: 20px;
+    }
+
+    .about-journey-step {
+        grid-template-columns: 46px minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .about-journey-marker {
+        width: 46px;
+        height: 46px;
+    }
+
+    .about-journey::before {
+        left: 22px;
+    }
+}
+
+
+/* =========================================================
+   ARIEL DOCKED PANEL
+   Large right-side panel opened from the homepage Ask Ariel button.
+
+   Main tuning control:
+   - --assistant-dock-width controls desktop panel width
+   ========================================================= */
+
+/* Full-height Ariel panel */
+
+.assistant-widget.assistant-docked {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--assistant-dock-width);
+    height: 100vh;
+    height: 100dvh;
+}
+
+.assistant-widget.assistant-docked .assistant-toggle,
+.assistant-widget.assistant-docked .assistant-callout {
+    display: none;
+}
+
+.assistant-widget.assistant-docked .assistant-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--assistant-dock-width);
+    max-width: none;
+    max-height: none;
+    display: flex;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 0;
+    box-shadow: -18px 0 46px rgba(0, 0, 0, 0.18);
+}
+
+.assistant-widget.assistant-docked .assistant-panel-header {
+    flex: 0 0 auto;
+    padding: 22px 22px 17px;
+}
+
+.assistant-widget.assistant-docked .assistant-panel-description {
+    flex: 0 0 auto;
+    padding: 16px 22px;
+    font-size: 0.88rem;
+}
+
+.assistant-widget.assistant-docked .assistant-messages {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    padding: 20px 22px;
+}
+
+.assistant-widget.assistant-docked .assistant-message {
+    font-size: 0.96rem;
+}
+
+.assistant-widget.assistant-docked .assistant-form {
+    flex: 0 0 auto;
+    padding: 17px 22px 13px;
+}
+
+.assistant-widget.assistant-docked .assistant-status {
+    flex: 0 0 auto;
+    min-height: 14px;
+    padding: 0 22px 13px;
+}
+
+/* Desktop split view.
+   The portfolio uses the remaining viewport width while Ariel stays fixed
+   on the right. */
+
+@media (min-width: 1280px) {
+    body.assistant-dock-open {
+        width: calc(100% - var(--assistant-dock-width));
+        min-height: 100vh;
+        overflow-x: hidden;
+        transition: width 220ms ease;
+    }
+
+    /* Full-width page heroes normally use 100vw. In docked mode they
+       use the remaining portfolio width instead of extending beneath Ariel. */
+    body.assistant-dock-open .hero,
+    body.assistant-dock-open .research-hero,
+    body.assistant-dock-open .resource-page-hero,
+    body.assistant-dock-open .ariel-page-hero,
+    body.assistant-dock-open .energy-page-hero,
+    body.assistant-dock-open .smart-city-page-hero,
+    body.assistant-dock-open .breast-cancer-page-hero,
+    body.assistant-dock-open .customer-purchase-page-hero,
+    body.assistant-dock-open .house-price-page-hero,
+    body.assistant-dock-open .tableau-page-hero,
+    body.assistant-dock-open .about-hero {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* Homepage hero tuning for the narrower content area. */
+    body.assistant-dock-open .hero {
+        grid-template-columns: minmax(190px, 280px) minmax(0, 1fr);
+        gap: clamp(28px, 4vw, 56px);
+    }
+
+    body.assistant-dock-open .hero-image {
+        transform: none;
+    }
+
+    body.assistant-dock-open .hero-image img {
+        width: min(260px, 100%);
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    body.assistant-dock-open .hero-text h1 {
+        font-size: clamp(2.5rem, 3vw, 3.2rem);
+    }
+
+    body.assistant-dock-open .hero-text h2 {
+        font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+    }
+
+    /* Remove the fixed left sidebar while the dock is open.
+       The same navigation remains available as horizontal pills. */
+    body.assistant-dock-open .homepage-layout {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 42px clamp(24px, 3vw, 48px) 0;
+    }
+
+    body.assistant-dock-open .homepage-layout .homepage-side-nav {
+        position: static;
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding: 0 0 6px;
+        transform: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    body.assistant-dock-open .homepage-layout .homepage-side-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    body.assistant-dock-open .homepage-layout .homepage-side-nav a {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(16, 42, 45, 0.18);
+        border-radius: 999px;
+        background: white;
+        line-height: 1.2;
+        transform: none;
+    }
+
+    body.assistant-dock-open .research-showcase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    body.assistant-dock-open .research-feature-card {
+        min-height: 0;
+        align-self: start;
+    }
+
+    body.assistant-dock-open .research-card-image {
+        height: 240px;
+    }
+
+    body.assistant-dock-open .research-card-body {
+        padding: 22px 22px 24px;
+    }
+
+    body.assistant-dock-open .research-card-body h3 {
+        min-height: 0;
+        margin-bottom: 12px;
+    }
+
+    body.assistant-dock-open
+    .research-card-body
+    > p:not(.status):not(.research-tags) {
+        min-height: 0;
+        margin-bottom: 0;
+    }
+
+    body.assistant-dock-open .research-tags {
+        min-height: 0;
+        margin-top: 14px;
+    }
+
+    body.assistant-dock-open .research-card-actions {
+        padding-top: 14px;
+    }
+}
+
+/* Smaller desktops, tablets, and phones use a full-screen Ariel view.
+   This avoids squeezing complex portfolio layouts into an unusable column. */
+
+@media (max-width: 1279px) {
+    body.assistant-dock-open {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .assistant-widget.assistant-docked {
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    .assistant-widget.assistant-docked .assistant-panel {
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border: none;
+        border-radius: 0;
+    }
+
+    .assistant-widget.assistant-docked .assistant-messages {
+        padding: 18px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.assistant-dock-open {
+        transition: none;
     }
 }
