@@ -5444,6 +5444,171 @@ body {
 
 
 /* =========================================================
+   SHARED ENERGY + SMART CITY PROJECT FOUNDATION
+   Structural rules shared by the two analytics case-study pages.
+   Page-specific colors, hero images, metrics, visual sizing,
+   and responsive behavior remain in their own sections below.
+   ========================================================= */
+
+/* Hero structure and controls */
+
+.energy-page-hero::after,
+.smart-city-page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 110px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
+    pointer-events: none;
+}
+
+.energy-hero-back:hover,
+.smart-city-hero-back:hover {
+    color: var(--color-gold);
+}
+
+.energy-hero-source:hover,
+.smart-city-hero-source:hover {
+    border-color: rgba(201, 168, 106, 0.78);
+    background: rgba(201, 168, 106, 0.16);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.energy-page-hero-inner,
+.smart-city-page-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1220px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+}
+
+.energy-page-hero-copy .section-label,
+.smart-city-page-hero-copy .section-label {
+    margin-bottom: 14px;
+    color: var(--color-gold);
+    font-weight: 850;
+}
+
+.energy-page-hero-copy p,
+.smart-city-page-hero-copy p {
+    max-width: 790px;
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.energy-page-hero-copy .detail-tags,
+.smart-city-page-hero-copy .detail-tags {
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.92rem;
+    font-weight: 750;
+}
+
+.energy-hero-metrics,
+.smart-city-hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.energy-hero-metric,
+.smart-city-hero-metric {
+    min-height: 122px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
+        rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.energy-hero-metric-label,
+.smart-city-hero-metric-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+/* Body layout, navigation, and section rhythm */
+
+.energy-page-sidebar,
+.smart-city-page-sidebar {
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.energy-section-nav a,
+.smart-city-section-nav a {
+    display: block;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.energy-body-content,
+.smart-city-body-content {
+    min-width: 0;
+}
+
+.energy-body-content .detail-section,
+.smart-city-body-content .detail-section {
+    max-width: none;
+    padding: 0 0 38px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
+    scroll-margin-top: 32px;
+}
+
+.energy-body-content .detail-section:first-child,
+.smart-city-body-content .detail-section:first-child {
+    padding-top: 0;
+}
+
+.energy-body-content .detail-section:last-child,
+.smart-city-body-content .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.energy-body-content .detail-section h2,
+.smart-city-body-content .detail-section h2 {
+    position: relative;
+    margin-bottom: 18px;
+    color: var(--color-dark);
+    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+/* Expandable visual links */
+
+.energy-certificate-card a,
+.energy-workflow-figure a,
+.energy-visual-card a,
+.energy-wide-visual a,
+.smart-city-visual-card a {
+    display: block;
+    cursor: zoom-in;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =========================================================
    COMMERCIAL BUILDING ENERGY FORECASTING PROJECT PAGE
    Clean replacement CSS block.
 
@@ -5586,14 +5751,6 @@ body {
     background-position: var(--energy-hero-position);
 }
 
-.energy-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .energy-hero-back {
     position: absolute;
@@ -5606,9 +5763,6 @@ body {
     font-weight: 700;
 }
 
-.energy-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .energy-hero-source {
     position: absolute;
@@ -5632,29 +5786,6 @@ body {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.energy-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.energy-page-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
-}
-
-.energy-page-hero-copy .section-label {
-    margin-bottom: 14px;
-    color: var(--color-gold);
-    font-weight: 850;
-}
 
 .energy-page-hero-copy h1 {
     max-width: 660px;
@@ -5674,39 +5805,9 @@ body {
     letter-spacing: -0.025em;
 }
 
-.energy-page-hero-copy p {
-    max-width: 790px;
-    color: rgba(255, 255, 255, 0.80);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.energy-page-hero-copy .detail-tags {
-    margin-top: 22px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.92rem;
-    font-weight: 750;
-}
-
 
 /* Hero metric cards */
 
-.energy-hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.energy-hero-metric {
-    min-height: 122px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
-        rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-}
 
 .energy-hero-metric-value {
     display: block;
@@ -5718,12 +5819,6 @@ body {
     letter-spacing: -0.04em;
 }
 
-.energy-hero-metric-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
 
 .energy-money-count {
     font-variant-numeric: tabular-nums;
@@ -5750,10 +5845,6 @@ body {
     gap: var(--energy-content-gap);
 }
 
-.energy-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .energy-section-nav {
     position: sticky;
@@ -5764,20 +5855,6 @@ body {
     transform: translateX(var(--energy-sidebar-offset-x));
 }
 
-.energy-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .energy-section-nav a:hover,
 .energy-section-nav a:focus-visible {
@@ -5786,34 +5863,6 @@ body {
     transform: translateX(8px);
 }
 
-.energy-body-content {
-    min-width: 0;
-}
-
-.energy-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.energy-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.energy-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.energy-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .energy-body-content .detail-section h2::before {
     content: "";
@@ -5991,15 +6040,6 @@ body {
     background: transparent;
 }
 
-.energy-certificate-card a,
-.energy-workflow-figure a,
-.energy-visual-card a,
-.energy-wide-visual a {
-    display: block;
-    cursor: zoom-in;
-    color: inherit;
-    text-decoration: none;
-}
 
 .energy-certificate-copy {
     padding: 28px;
@@ -6348,6 +6388,8 @@ body {
         --energy-weather-height: 230px;
 
         --energy-visual-card-padding: 6px;
+        --energy-workflow-image-radius: 12px;
+        --energy-workflow-caption-width: 100%;
     }
 
     .energy-page-hero {
@@ -6415,10 +6457,7 @@ body {
         padding: 14px 16px 16px;
     }
 
-    .energy-page {
-        --energy-workflow-image-radius: 12px;
-        --energy-workflow-caption-width: 100%;
-    }
+
 }
 
 /* =========================================================
@@ -6513,14 +6552,6 @@ body {
     background-position: var(--smart-city-hero-position);
 }
 
-.smart-city-page-hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 110px;
-    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08));
-    pointer-events: none;
-}
 
 .smart-city-hero-back {
     position: absolute;
@@ -6533,9 +6564,6 @@ body {
     font-weight: 700;
 }
 
-.smart-city-hero-back:hover {
-    color: var(--color-gold);
-}
 
 .smart-city-hero-source {
     position: absolute;
@@ -6559,29 +6587,6 @@ body {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
-.smart-city-hero-source:hover {
-    border-color: rgba(201, 168, 106, 0.78);
-    background: rgba(201, 168, 106, 0.16);
-    color: var(--color-gold);
-    transform: translateY(-2px);
-}
-
-.smart-city-page-hero-inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.58fr);
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
-}
-
-.smart-city-page-hero-copy .section-label {
-    margin-bottom: 14px;
-    color: var(--color-gold);
-    font-weight: 850;
-}
 
 .smart-city-page-hero-copy h1 {
     max-width: 720px;
@@ -6596,41 +6601,11 @@ body {
     max-width: 920px;
     margin: 0 0 20px;
     color: rgba(255, 255, 255, 0.94);
-    font-size: clamp(1.25rem, 1.9vw, 1.1rem);
+    font-size: 1.25rem;
     line-height: 1.35;
     letter-spacing: -0.025em;
 }
 
-.smart-city-page-hero-copy p {
-    max-width: 790px;
-    color: rgba(255, 255, 255, 0.80);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.smart-city-page-hero-copy .detail-tags {
-    margin-top: 22px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.92rem;
-    font-weight: 750;
-}
-
-.smart-city-hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.smart-city-hero-metric {
-    min-height: 122px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(201, 168, 106, 0.14), transparent 38%),
-        rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-}
 
 .smart-city-hero-metric-value {
     display: block;
@@ -6642,12 +6617,6 @@ body {
     letter-spacing: -0.04em;
 }
 
-.smart-city-hero-metric-label {
-    display: block;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
 
 /* Body layout */
 
@@ -6660,10 +6629,6 @@ body {
     gap: var(--smart-city-content-gap);
 }
 
-.smart-city-page-sidebar {
-    min-width: 0;
-    padding-top: 4px;
-}
 
 .smart-city-section-nav {
     position: sticky;
@@ -6674,20 +6639,6 @@ body {
     transform: translateX(var(--smart-city-sidebar-offset-x));
 }
 
-.smart-city-section-nav a {
-    display: block;
-    padding: 13px 0 12px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.18);
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.35;
-    transition:
-        color 180ms ease,
-        border-color 180ms ease,
-        transform 180ms ease;
-}
 
 .smart-city-section-nav a:hover,
 .smart-city-section-nav a:focus-visible {
@@ -6696,34 +6647,6 @@ body {
     transform: translateX(8px);
 }
 
-.smart-city-body-content {
-    min-width: 0;
-}
-
-.smart-city-body-content .detail-section {
-    max-width: none;
-    padding: 0 0 38px;
-    margin-bottom: 42px;
-    border-bottom: 1px solid rgba(16, 42, 45, 0.10);
-    scroll-margin-top: 32px;
-}
-
-.smart-city-body-content .detail-section:first-child {
-    padding-top: 0;
-}
-
-.smart-city-body-content .detail-section:last-child {
-    margin-bottom: 0;
-}
-
-.smart-city-body-content .detail-section h2 {
-    position: relative;
-    margin-bottom: 18px;
-    color: var(--color-dark);
-    font-size: clamp(1.8rem, 2.3vw, 2.45rem);
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-}
 
 .smart-city-body-content .detail-section h2::before {
     content: "";
@@ -6838,12 +6761,6 @@ body {
     overflow: hidden;
 }
 
-.smart-city-visual-card a {
-    display: block;
-    cursor: zoom-in;
-    color: inherit;
-    text-decoration: none;
-}
 
 .smart-city-visual-card img {
     width: 100%;
