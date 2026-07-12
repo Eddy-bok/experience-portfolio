@@ -334,23 +334,24 @@
       <h2>Evaluation and Reliability</h2>
 
       <p>
-        Ariel includes a structured evaluation workflow with retrieval audits, test suites, smoke
-        tests, baseline reports, and monitoring fields for retrieval latency and question size.
+        Ariel uses a structured, feedback-driven evaluation workflow that combines
+        retrieval audits, permanent test suites, targeted patch tests, smoke tests,
+        baseline reports, and monitoring for retrieval latency and question size.
       </p>
 
       <div class="metrics-grid ariel-metrics-grid">
         <article class="metric-card">
-          <span class="metric-value">38</span>
+          <span class="metric-value">46</span>
           <span class="metric-label">Knowledge base documents</span>
         </article>
 
         <article class="metric-card">
-          <span class="metric-value">146</span>
-          <span class="metric-label">Embedded chunks/documents</span>
+          <span class="metric-value">233</span>
+          <span class="metric-label">Embedded retrieval chunks</span>
         </article>
 
         <article class="metric-card">
-          <span class="metric-value">184</span>
+          <span class="metric-value">262</span>
           <span class="metric-label">Retrieval audit questions</span>
         </article>
 
@@ -362,32 +363,36 @@
             data-count-decimals="0"
             data-count-suffix="%"
           >1%</span>
-          <span class="metric-label">Top-k retrieval coverage across current suites</span>
+          <span class="metric-label">
+            Top-k retrieval accuracy across current suites
+          </span>
         </article>
 
         <article class="metric-card">
           <span
             class="metric-value ariel-count-up"
             data-count-start="1"
-            data-count-target="98.4"
-            data-count-decimals="1"
+            data-count-target="100"
+            data-count-decimals="0"
             data-count-suffix="%"
           >1%</span>
-          <span class="metric-label">Top-1 retrieval accuracy across current suites</span>
+          <span class="metric-label">
+            Top-1 retrieval accuracy across current suites
+          </span>
         </article>
 
         <article class="metric-card">
-          <span class="metric-value">11</span>
+          <span class="metric-value">17</span>
           <span class="metric-label">Retrieval evaluation suites</span>
         </article>
       </div>
 
       <div class="evidence-note">
-        <h3>Known evaluation result</h3>
+        <h3>Current evaluation result</h3>
         <p>
-          In the latest retrieval report, three questions missed the expected document at rank 1, but
-          the expected document still appeared in the top 3. This supports the use of top-k retrieval
-          for context construction.
+          Across the current 17-suite retrieval audit, all 262 questions retrieved
+          the expected document at rank 1 and within the top-k results, producing
+          100% top-1 and 100% top-k retrieval accuracy.
         </p>
       </div>
     </section>
@@ -458,8 +463,10 @@
         <article class="approach-card">
           <h3>Retrieval Evaluation System</h3>
           <p>
-            Initial evaluation workflows have been implemented, including retrieval test suites, smoke tests, top-k accuracy checks,
-            similarity score review, report outputs, and failure tracking to improve retrieval quality over time.
+            A mature evaluation workflow is now in place, combining permanent retrieval
+            suites, targeted feedback tests, smoke tests, top-1 and top-k accuracy checks,
+            similarity-score review, report generation, and failure analysis to protect
+            answer quality as the knowledge base evolves.
           </p>
         </article>
 
@@ -474,8 +481,10 @@
         <article class="approach-card">
           <h3>Production Roadmap</h3>
           <p>
-            Next improvements include source-aware answer display, supporting snippets or references, visitor feedback collection,
-            latency tracking, cold-start optimization, and deeper monitoring for answer quality and system reliability.
+            Next improvements include source-aware answer display, supporting snippets
+            or references, cold-start optimization, further automation of regression
+            testing, and deeper production monitoring for answer quality, retrieval
+            drift, and system reliability.
           </p>
         </article>
       </div>
