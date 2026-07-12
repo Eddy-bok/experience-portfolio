@@ -9515,6 +9515,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 7px;
     padding: 12px 18px;
     border-radius: 999px;
     text-decoration: none;
@@ -10282,6 +10283,10 @@ body {
         min-height: 38px;
         padding: 10px 12px;
         font-size: 0.76rem;
+    }
+
+    .about-hero-actions .about-hero-button-primary {
+        grid-column: 1 / -1;
     }
 
     .about-education-grid,
