@@ -760,6 +760,7 @@ body {
     flex: 0 0 auto;
 }
 
+.assistant-new-chat,
 .assistant-mode-toggle,
 .assistant-close {
     width: 32px;
@@ -779,12 +780,14 @@ body {
     font-size: 1.35rem;
 }
 
+.assistant-new-chat:hover,
 .assistant-mode-toggle:hover,
 .assistant-close:hover {
     background: rgba(255, 255, 255, 0.16);
     color: white;
 }
 
+.assistant-new-chat:focus-visible,
 .assistant-mode-toggle:focus-visible,
 .assistant-close:focus-visible {
     outline: 3px solid rgba(201, 168, 106, 0.38);

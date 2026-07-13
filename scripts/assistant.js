@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleButton = document.getElementById("assistantToggle");
     const calloutButton = document.getElementById("assistantCallout");
     const modeButton = document.getElementById("assistantModeToggle");
+    const newChatButton = document.getElementById("assistantNewChat");
     const closeButton = document.getElementById("assistantClose");
     const openAssistantLink = document.getElementById("openAssistantLink");
 
@@ -37,14 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let lastAssistantTrigger = null;
 
     let assistantChatHistory = [];
-    const MAX_ASSISTANT_HISTORY_MESSAGES = 8;
+    let assistantSessionId = createAssistantSessionId();
+    let activeAssistantRequest = null;
+    let assistantConversationVersion = 0;
 
-    const assistantSessionId = createAssistantSessionId();
+    const MAX_ASSISTANT_HISTORY_MESSAGES = 8;
 
     if (
         !widget ||
         !toggleButton ||
         !modeButton ||
+        !newChatButton ||
         !closeButton ||
         !form ||
         !input ||
@@ -68,6 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
             openAssistant("compact", calloutButton);
         });
     }
+
+    newChatButton.addEventListener("click", () => {
+        resetAssistantConversation();
+    });
 
     modeButton.addEventListener("click", () => {
         const nextMode = widget.classList.contains("assistant-docked")
@@ -106,6 +114,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const requestConversationVersion = assistantConversationVersion;
+        const requestController = new AbortController();
+
+        activeAssistantRequest = requestController;
+
         const chatHistoryForRequest = assistantChatHistory.slice(
             -MAX_ASSISTANT_HISTORY_MESSAGES
         );
@@ -119,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(ASSISTANT_API_URL, {
                 method: "POST",
+                signal: requestController.signal,
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -145,6 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
 
+            if (requestConversationVersion !== assistantConversationVersion) {
+                return;
+            }
+
             removeTypingIndicator();
 
             const answerText = data.answer || "I could not generate an answer.";
@@ -152,6 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const assistantMessageElement = await addAssistantMessageWithTyping(
                 answerText
             );
+
+            if (requestConversationVersion !== assistantConversationVersion) {
+                return;
+            }
 
             if (
                 shouldShowFeedbackControls(
@@ -177,6 +199,10 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
         } catch (error) {
+            if (error && error.name === "AbortError") {
+                return;
+            }
+
             console.error("Assistant API error:", error);
 
             removeTypingIndicator();
@@ -187,11 +213,42 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
         } finally {
-            removeTypingIndicator();
-            setLoading(false, "");
-            input.focus();
+            if (activeAssistantRequest === requestController) {
+                activeAssistantRequest = null;
+            }
+
+            if (requestConversationVersion === assistantConversationVersion) {
+                removeTypingIndicator();
+                setLoading(false, "");
+                input.focus();
+            }
         }
     });
+
+    function resetAssistantConversation() {
+        assistantConversationVersion += 1;
+
+        if (activeAssistantRequest) {
+            activeAssistantRequest.abort();
+            activeAssistantRequest = null;
+        }
+
+        removeTypingIndicator();
+
+        assistantChatHistory = [];
+        assistantSessionId = createAssistantSessionId();
+
+        messages.replaceChildren();
+
+        addMessage(
+            "assistant",
+            "Hi, I'm Ariel, Eddie's portfolio assistant. Ask me anything about his portfolio."
+        );
+
+        input.value = "";
+        setLoading(false, "");
+        focusAssistantInput();
+    }
 
     function setAssistantMode(mode) {
         const isDocked = mode === "docked";
@@ -741,6 +798,25 @@ function ensureAssistantWidget() {
                 </div>
 
                 <div class="assistant-panel-actions">
+                    <button
+                        id="assistantNewChat"
+                        class="assistant-new-chat"
+                        type="button"
+                        aria-label="Start a new chat and clear this conversation"
+                        title="New chat"
+                    >
+                        <svg
+                            class="assistant-mode-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h6"></path>
+                            <line x1="18" y1="2" x2="18" y2="8"></line>
+                            <line x1="15" y1="5" x2="21" y2="5"></line>
+                        </svg>
+                    </button>
+
                     <button
                         id="assistantModeToggle"
                         class="assistant-mode-toggle"
