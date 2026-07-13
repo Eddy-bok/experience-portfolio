@@ -3101,6 +3101,12 @@ body {
     color: var(--color-dark);
 }
 
+.resource-artifact-link-disabled {
+    opacity: 0.72;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* =========================================================
    PROJECT ARIEL CASE STUDY PAGE
    Applied AI / RAG engineering project detail page.
