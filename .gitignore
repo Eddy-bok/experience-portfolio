@@ -38,3 +38,6 @@ build/
 # Local server/cache files
 .cache/
 .parcel-cache/
+
+# resume archives
+files/resume/archive/
